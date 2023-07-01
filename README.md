@@ -1,2 +1,2 @@
 # CypressAutomation
-CypressAutomation
+Regression Suite
