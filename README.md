@@ -1,2 +1,2 @@
-#  automated_testing
+#  Automated_testing
 Regression Suite
