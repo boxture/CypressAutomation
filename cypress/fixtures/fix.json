@@ -1,0 +1,28 @@
+{
+  "boxtureusername": "avi@boxture.com",
+  "boxturepassword": "testing123",
+  "username": "pavirajuv+3@gmail.com",
+  "pickerUsername": "pavirajuv+1@gmail.com",
+
+  "password": "Qwerty@123",
+  "pickerPassword": "Giftofgod@123",
+
+  "cricut": "Cricut",
+  "cricutLoc": "CRICUT1",
+  "cricutPackingMat": "box",
+  "cricutBin": "PICKING",
+
+  "account1": "Boxture acce",
+  "account": "Cypress",
+  "location": "BTX-ALM-NEW",
+  "destLoc": "CPR-IND-NEW",
+  "originLoc": "CPR-IND-NEW",
+  "customer": "CYPRESS",
+  "scrapVendor": "Das",
+  "product1": "BXT-SNXX000000000",
+  "product2": "BXT-SNYX00000000",
+  "product3": "BXT-SNXX000000002",
+  "body": "Fixtures are a great way to mock data for responses to routes",
+  "bin": "P0101",
+  "packingMaterial": "Box 1"
+}
