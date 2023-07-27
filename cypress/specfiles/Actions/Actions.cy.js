@@ -38,7 +38,7 @@ describe("CREATE SALES ORDER", () => {
     homePage
       .getProduct()
       .type(data1.product1)
-      .should("have.value", "[Cypress] BXT-SNXX000000000 Chair");
+      .should("have.value", "[Cypress] BXT-SNXX000000000 Chair CH");
 
     homePage.getSalesQuantityOne().eq(0).clear().type("1");
 
@@ -96,7 +96,7 @@ describe("CREATE SALES ORDER", () => {
     homePage
       .getProduct()
       .type(data1.product1)
-      .should("have.value", "[Cypress] BXT-SNXX000000000 Chair");
+      .should("have.value", "[Cypress] BXT-SNXX000000000 Chair CH");
 
     homePage.getSalesQuantityOne().eq(0).clear().type("1");
 
