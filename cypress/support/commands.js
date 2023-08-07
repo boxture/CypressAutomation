@@ -10,6 +10,7 @@
 //
 //
 // -- This is a parent command --
+import { homePage } from "../support/pageObjects/HomePage";
 
 Cypress.Commands.add("login", (username, password) => {
   cy.clearCookies();
@@ -55,6 +56,17 @@ Cypress.Commands.add("BAT_Account", (OrderElement) => {
     .type(this.data.location);
 });
 
+Cypress.Commands.add("createSO1", () => {
+  cy.url().should("include", "https://oms.staging.boxture.com/");
+  cy.wait(2000);
+  homePage.getOrdersClick().dblclick({ force: true });
+  cy.wait(3000);
+  homePage.getCreateOrder().click();
+  cy.wait(2000);
+  homePage.getcreateSales().click();
+
+  cy.url().should("include", "type=sales_order");
+});
 //
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })

@@ -9,9 +9,12 @@ module.exports = defineConfig({
   video: true,
   viewportWidth: 1600,
   viewportHeight: 900,
-  video: false,
+  videoCompression: 15,
+
   env: {
     baseUrl: "https://oms.staging.boxture.com",
+    username: "pavirajuv+3@gmail.com",
+    password: "Qwerty@123",
   },
   e2e: {
     experimentalStudio: true,
@@ -21,5 +24,6 @@ module.exports = defineConfig({
     },
     specPattern: "cypress/specfiles/**/*.js",
     // specPattern: 'cypress/integration/examples/*.js',
+    // specPattern: ["leads/new-lead.spec.js", "leads/leads-list.spec.js"],
   },
 });
