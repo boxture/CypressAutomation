@@ -43,7 +43,7 @@ describe("SO", () => {
     cy.get('input[data-order-line-target*="quantity"]').eq(1).clear().type("1");
 
     cy.get(".secondary").scrollIntoView().should("be.visible").click();
-
+    cy.pause();
     cy.get(".-ml-4")
       .find(".font-semibold")
       .then((ele) => {
@@ -52,8 +52,8 @@ describe("SO", () => {
 
         for (let i = 0; i < 3; i++) {
           if (lengt == 1) {
-              cy.wrap(ele).click();
-              return
+            cy.wrap(ele).click();
+            return;
           } else {
             cy.wait(1000);
           }
