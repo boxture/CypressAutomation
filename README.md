@@ -10,9 +10,9 @@ A few guidelines (read rules :-)) writing a test file.
 Template:
 
 // TEST CASES:
-// 1. test case 1 [COMPLETED]
-// 2  test case 2 [BUSY]
-// 3. test case 3 [PENDING]
+// 1. test case 1 [COMPLETED]  
+// 2  test case 2 [BUSY]  
+// 3. test case 3 [PENDING]  
 
 // KNOWN ISSUES:
 // https://github.com/boxture/oms/issues/0001: issue description
