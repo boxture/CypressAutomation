@@ -72,7 +72,7 @@ describe("Validation of filters in Order Overview", () => {
       .contains("Hide column")
       .should("be.visible");
   });
-  it.only("ID Filter", () => {
+  it("ID Filter", () => {
     cy.visit("/orders");
     cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]')
       .first()
