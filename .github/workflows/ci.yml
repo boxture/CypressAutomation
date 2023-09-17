@@ -11,12 +11,12 @@ jobs:
       - name: Cypress run in Chrome
         uses: cypress-io/github-action@v6
         with:
-          command: npm run ui-regression
+          command: npm run ui-regression-chrome
           browser: chrome
       - name: Cypress run in Firefox
         uses: cypress-io/github-action@v6
         with:
-          command: npm run ui-regression
+          command: npm run ui-regression-firefox
           browser: firefox
       - name: Uploading artifact
         uses: actions/upload-artifact@v2

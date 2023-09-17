@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "ui-regression": "cypress run --spec cypress/e2e/exploratory/filters.cy.js"
+    "ui-regression-chrome": "cypress run --browser chrome --spec cypress/e2e/exploratory/filters.cy.js",
+    "ui-regression-firefox": "cypress run --browser firefox --spec cypress/e2e/exploratory/filters.cy.js"
   },
   "keywords": [],
   "author": "",
