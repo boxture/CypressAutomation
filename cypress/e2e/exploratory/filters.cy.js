@@ -499,8 +499,10 @@ describe("Validation of filters in Order Overview", () => {
       .should("be.visible")
       .clear()
       .type("3745873465");
-    cy.contains('[title*="index.orders"]', "Orders").click();
-    cy.get("tr:nth-child(1) td:nth-child(9)").should("have.text", "3745873465");
+    cy.contains('[title*="index.orders"]', "Orders").scrollIntoView().click();
+    cy.get("tr:nth-child(1) td:nth-child(9)")
+      .scrollIntoView()
+      .should("have.text", "3745873465");
     // }
   });
 
