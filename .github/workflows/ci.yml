@@ -1,4 +1,4 @@
-name: End-to-end tests
+name: Check My Status
 on: push
 jobs:
   cypress-run:
@@ -8,10 +8,16 @@ jobs:
         uses: actions/checkout@v4
       # Install npm dependencies, cache them correctly
       # and run all Cypress tests
-      - name: Cypress run
+      - name: Cypress run in Chrome
         uses: cypress-io/github-action@v6
         with:
           command: npm run ui-regression
+          browser: chrome
+      - name: Cypress run in Firefox
+        uses: cypress-io/github-action@v6
+        with:
+          command: npm run ui-regression
+          browser: firefox
       - name: Uploading artifact
         uses: actions/upload-artifact@v2
         if: always()
