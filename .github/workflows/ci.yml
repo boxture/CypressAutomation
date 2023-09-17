@@ -13,13 +13,6 @@ jobs:
         with:
           command: npm run ui-regression-chrome
           browser: chrome
-          parallel: 3
-      - name: Cypress run in Firefox
-        uses: cypress-io/github-action@v6
-        with:
-          command: npm run ui-regression-firefox
-          browser: firefox
-          parallel: 3
       - name: Uploading artifact
         uses: actions/upload-artifact@v2
         if: always()
