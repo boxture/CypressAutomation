@@ -1347,6 +1347,8 @@ describe("Validation of filters in Order Overview", () => {
     cy.get("tr:nth-child(3) td:nth-child(27)")
       .should("be.visible")
       .should("not.be.empty");
+    
+    
     // }
   });
 });
