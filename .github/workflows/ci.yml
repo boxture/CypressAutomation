@@ -1,4 +1,4 @@
-name: Check My Status
+name: Cypress Test Project
 on: push
 jobs:
   cypress-run:
