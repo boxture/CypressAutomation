@@ -1,4 +1,4 @@
-name: Cypress Cloud Tests 
+name: Cypress Cloud Tests
 on: [push]
 jobs:
   cypress-run:
@@ -30,11 +30,3 @@ jobs:
       #     # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
       #     record: true
       #     parallel: true # Runs test in parallel using settings above
-      - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_USERNAME: Test Automation
-          SLACK_TITLE: Regression Test Report
-          SLACK_MESSAGE: "New changes :rocket:"
-          SLACK_COLOR: ${{ job.status }}
