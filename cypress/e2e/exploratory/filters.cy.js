@@ -6,6 +6,9 @@
 // 5. Combination of different filter selection [PENDING]
 // 6.  [PENDING]
 
+//Issues
+//Consistency in Filter behaviour #3131
+
 beforeEach(() => {
   cy.login({
     email: "acceptance-test+oms@boxture.com",
@@ -235,6 +238,8 @@ describe("Validation of filters in Order Overview", () => {
     cy.get("tr:nth-child(5) td:nth-child(5)").should("have.text", "processing");
   });
   it.skip("Channel Filter", () => {
+    //Consistency in Filter behaviour #3131
+
     cy.visit("/orders");
     cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]')
       .first()
@@ -277,10 +282,7 @@ describe("Validation of filters in Order Overview", () => {
       .contains("Hide column")
       .should("be.visible");
     //validation of input search column
-    cy.get(
-      '[data-column="channel"] [data-satis-dropdown-target="searchInput"]',
-      { timeout: 3000 }
-    )
+    cy.get('[data-column="channel"] [data-satis-dropdown-target="searchInput"]')
       .should("be.visible")
       .clear()
       .type("ebay");
@@ -431,7 +433,6 @@ describe("Validation of filters in Order Overview", () => {
     //   .then((e1) => {
     //     cy.log(e1.text());
     //   });
-
     cy.contains(".block", "1").click();
     cy.contains(".block", "20").click();
     cy.get("tr:nth-child(1) td:nth-child(8)")
@@ -443,6 +444,86 @@ describe("Validation of filters in Order Overview", () => {
     cy.get("tr:nth-child(3) td:nth-child(8)")
       .should("be.visible")
       .should("not.be.empty");
+
+    cy.get(
+      '[data-column="ship_at"] [data-satis-date-time-picker-target="input"]'
+    )
+      .should("be.visible")
+      .click();
+
+    cy.get('[data-satis-date-time-picker-target="month"]').then((e1) => {
+      const monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+
+      const d = new Date();
+      let currentMonth = monthNames[d.getMonth()];
+      const actualText = e1.text().substring(0, 9);
+      expect(actualText).to.eq(currentMonth);
+    });
+
+    cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]')
+      .first()
+      .click();
+
+    cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
+      const text = $e1.text();
+      if (text.includes("Reset view")) {
+        cy.contains("Reset view").click();
+        cy.contains(".translation_missing", "Orders").click();
+      } else {
+        cy.contains('[title*="index.orders"]', "Orders").click();
+      }
+    });
+    cy.get('[data-column="ship_at"] [data-icon="ellipsis"] ')
+
+      .should("be.visible")
+      .click();
+    cy.get(
+      '[data-column="ship_at"] [data-satis-date-time-picker-target="input"]'
+    )
+      .should("be.visible")
+      .click();
+    cy.get('[data-satis-date-time-picker-target="calendarView"]')
+      .eq(0)
+      .then((e1) => {
+        cy.wrap(e1).find('[data-action="satis-date-time-picker#nextMonth"]');
+      })
+      .click();
+
+    cy.get('[data-satis-date-time-picker-target="month"]').then((e1) => {
+      const monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+
+      const d = new Date();
+      let currentMonth = monthNames[d.getMonth() + 1];
+      const actualText = e1.text().substring(0, 7);
+      expect(actualText).to.eq(currentMonth);
+    });
+
     // }
   });
   it("Customer Reference Number Filter", () => {
@@ -505,7 +586,6 @@ describe("Validation of filters in Order Overview", () => {
       .should("have.text", "3745873465");
     // }
   });
-
   it("Purchase Order Number Filter", () => {
     cy.visit("/orders");
 
@@ -1083,6 +1163,8 @@ describe("Validation of filters in Order Overview", () => {
     // }
   });
   it.skip("Origin Locations Filter", () => {
+    // Consistency in Filter behaviour #3131
+
     cy.visit("/orders");
 
     cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]')
@@ -1145,6 +1227,8 @@ describe("Validation of filters in Order Overview", () => {
     // }
   });
   it.skip("Destination Locations Filter", () => {
+    // Consistency in Filter behaviour #3131
+
     cy.visit("/orders");
 
     cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]')
@@ -1347,8 +1431,7 @@ describe("Validation of filters in Order Overview", () => {
     cy.get("tr:nth-child(3) td:nth-child(27)")
       .should("be.visible")
       .should("not.be.empty");
-    
-    
+
     // }
   });
 });
