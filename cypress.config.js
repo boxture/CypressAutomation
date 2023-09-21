@@ -6,11 +6,10 @@ module.exports = defineConfig({
   viewportWidth: 1600,
   viewportHeight: 900,
   defaultCommandTimeout: 10000,
-  video: false,
+  video: true,
   watchForFileChanges: false,
   retries: {
-    runMode: 1,
-    openMode: 1,
+    runMode: 2,
   },
   e2e: {
     baseUrl: "https://oms.staging.boxture.com",

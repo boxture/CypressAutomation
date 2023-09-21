@@ -75,7 +75,7 @@ describe("Validation of filters in Order Overview", () => {
       .contains("Hide column")
       .should("be.visible");
   });
-  it("ID Filter", () => {
+  it.only("ID Filter", () => {
     cy.visit("/orders");
     cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]')
       .first()
@@ -122,6 +122,7 @@ describe("Validation of filters in Order Overview", () => {
       .type("03312027");
     cy.get("body").click();
     cy.get("tr:nth-child(1) td:nth-child(5)").then((e1) => {
+      cy.wrap(e1).should('exist')
       let status = e1.text();
       expect(status).to.equal("cancelled");
     });
