@@ -121,6 +121,7 @@ describe("Validation of filters in Order Overview", () => {
       .clear()
       .type("03312027");
     cy.contains('[title*="index.orders"]', "Orders").click();
+    cy.wait(500)
     cy.get("tr:nth-child(1) td:nth-child(5)").then((e1) => {
       cy.wrap(e1).should("exist");
       let status = e1.text();
