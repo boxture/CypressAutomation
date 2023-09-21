@@ -17,7 +17,7 @@ beforeEach(() => {
 });
 
 describe("Validation of filters in Order Overview", () => {
-  it.only("Account Filter", () => {
+  it("Account Filter", () => {
     cy.visit("/orders");
     cy.url().should("include", "/orders");
     cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]')
