@@ -7,6 +7,10 @@ module.exports = defineConfig({
   viewportHeight: 900,
   defaultCommandTimeout: 10000,
   watchForFileChanges: false,
+  retries: {
+    runMode: 1,
+    openMode: 1,
+  },
   e2e: {
     baseUrl: "https://oms.staging.boxture.com",
     setupNodeEvents(on, config) {
