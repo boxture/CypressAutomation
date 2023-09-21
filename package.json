@@ -1,17 +1,17 @@
 {
-    "name": "automation",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "cypress-mochawesome-reporter": "^3.6.0",
-    "devDependencies": {
-      "cypress": "^12.3.0"
-    }
+  "name": "automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ui-regression-chrome": "cypress run --browser chrome --spec cypress/e2e/exploratory/filters.cy.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "cypress-mochawesome-reporter": "^3.6.0",
+  "devDependencies": {
+    "cypress": "^12.3.0"
   }
-  
+}
