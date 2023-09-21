@@ -120,9 +120,9 @@ describe("Validation of filters in Order Overview", () => {
       .should("be.visible")
       .clear()
       .type("03312027");
-    cy.get("body").click();
+    cy.contains('[title*="index.orders"]', "Orders").click();
     cy.get("tr:nth-child(1) td:nth-child(5)").then((e1) => {
-      cy.wrap(e1).should('exist')
+      cy.wrap(e1).should("exist");
       let status = e1.text();
       expect(status).to.equal("cancelled");
     });
