@@ -6,7 +6,7 @@
 // 5. Combination of different filter selection [PENDING]
 // 6.  [PENDING]
 
-//Issues
+// KNOWN ISSUES:
 //Consistency in Filter behaviour #3131
 
 beforeEach(() => {
@@ -121,7 +121,6 @@ describe("Validation of filters in Order Overview", () => {
       .clear()
       .type("03312027");
     cy.get("body").click();
-    cy.wait(2000);
     cy.get("tr:nth-child(1) td:nth-child(5)").then((e1) => {
       let status = e1.text();
       expect(status).to.equal("cancelled");
@@ -357,7 +356,6 @@ describe("Validation of filters in Order Overview", () => {
       .should("be.visible")
       .clear()
       .type("Business to consumer");
-    cy.wait(2000);
     cy.get("tr:nth-child(2) td:nth-child(7)").should(
       "have.text",
       "Business to consumer"
