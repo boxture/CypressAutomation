@@ -16,7 +16,7 @@ jobs:
       - name: Cypress run in Chrome
         uses: cypress-io/github-action@v6
         with:
-          command: npx cypress run --record --key 81be12a5-3e79-4f62-96af-c6b1ce68f6ea --spec cypress/e2e/exploratory/filters.cy.js
+          command: npx cypress run --record --key 81be12a5-3e79-4f62-96af-c6b1ce68f6ea --spec cypress/e2e/exploratory/*.cy.js
           browser: chrome
       - name: Uploading artifact
         uses: actions/upload-artifact@v2
