@@ -742,7 +742,6 @@ describe("Views", () => {
         .click({ force: true });
 
       cy.get('[data-act-table-target="column"][data-column="position"]')
-        .eq(1)
         .scrollIntoView()
         .should("be.visible");
       cy.get(
@@ -1280,7 +1279,7 @@ describe("Views", () => {
       );
       cy.get(
         '[data-act-table-target="column"][data-column="created_at"]'
-      ).should("be.visible");
+      ).scrollIntoView().should("be.visible");
     }),
     it("Plans ", () => {
       // Plans
@@ -1452,7 +1451,7 @@ describe("Views", () => {
       ).should("be.visible");
       cy.get(
         '[data-act-table-target="column"][data-column="product_name"]'
-      ).should("be.visible");
+      ).scrollIntoView().should("be.visible");
       cy.get('[data-act-table-target="column"][data-column="status"]')
         .scrollIntoView()
         .should("be.visible");
@@ -1520,7 +1519,7 @@ describe("Views", () => {
       );
       cy.get(
         '[data-act-table-target="column"][data-column="available"]'
-      ).should("be.visible");
+      ).scrollIntoView().should("be.visible");
       cy.get('[data-act-table-target="column"][data-column="expected"]')
         .scrollIntoView()
         .should("be.visible");
@@ -1615,7 +1614,7 @@ describe("Views", () => {
       cy.get('[data-act-table-target="column"][data-column="product"]').should(
         "be.visible"
       );
-      cy.get('[data-act-table-target="column"][data-column="status"]').should(
+      cy.get('[data-act-table-target="column"][data-column="status"]').scrollIntoView().should(
         "be.visible"
       );
       cy.get('[data-act-table-target="column"][data-column="state"]')
@@ -1668,7 +1667,7 @@ describe("Views", () => {
       cy.get(
         '[data-act-table-target="column"][data-column="in_container"]'
       ).should("be.visible");
-      cy.get('[data-act-table-target="column"][data-column="contents"]').should(
+      cy.get('[data-act-table-target="column"][data-column="contents"]').scrollIntoView().should(
         "be.visible"
       );
       cy.get('[data-act-table-target="column"][data-column="license_plate"]')
@@ -1968,7 +1967,7 @@ describe("Views", () => {
       ).should("be.visible");
       cy.get(
         '[data-act-table-target="column"][data-column="to_bin_location_name"]'
-      ).should("be.visible");
+      ).scrollIntoView().should("be.visible");
       cy.get(
         '[data-act-table-target="column"][data-column="to_bin_location_purpose"]'
       )
@@ -2080,7 +2079,7 @@ describe("Views", () => {
       cy.get(
         '[data-act-table-target="column"][data-column="received_quantity"]'
       ).should("be.visible");
-      cy.get('[data-act-table-target="column"][data-column="location"]').should(
+      cy.get('[data-act-table-target="column"][data-column="location"]').scrollIntoView().should(
         "be.visible"
       );
       cy.get('[data-act-table-target="column"][data-column="bin_location"]')
@@ -2106,7 +2105,7 @@ describe("Views", () => {
       ).should("be.visible");
       cy.get(
         '[data-act-table-target="column"][data-column="total_weight"]'
-      ).should("be.visible");
+      ).scrollIntoView().should("be.visible");
       cy.get('[data-act-table-target="column"][data-column="serial"]')
         .scrollIntoView()
         .should("be.visible");
@@ -2249,7 +2248,7 @@ describe("Views", () => {
       cy.get('[data-act-table-target="column"][data-column="location"]').should(
         "be.visible"
       );
-      cy.get('[data-act-table-target="column"][data-column="customer"]').should(
+      cy.get('[data-act-table-target="column"][data-column="customer"]').scrollIntoView().should(
         "be.visible"
       );
       cy.get('[data-act-table-target="column"][data-column="to_location"]')
@@ -2656,9 +2655,9 @@ describe("Views", () => {
       ).should("be.visible");
       cy.get(
         '[data-act-table-target="column"][data-column="organization"]'
-      ).should("be.visible");
+      ).scrollIntoView().should("be.visible");
       cy.get('[data-act-table-target="column"][data-column="created_at"]')
-        .scrollIntoView()
+        
         .should("be.visible");
       cy.get(
         '[data-act-table-target="column"][data-column="updated_at"]'
@@ -2756,9 +2755,9 @@ describe("Views", () => {
       ).should("be.visible");
       cy.get(
         '[data-act-table-target="column"][data-column="organization"]'
-      ).should("be.visible");
+      ).scrollIntoView().should("be.visible");
       cy.get('[data-act-table-target="column"][data-column="created_at"]')
-        .scrollIntoView()
+        
         .should("be.visible");
       cy.get(
         '[data-act-table-target="column"][data-column="updated_at"]'
@@ -3301,9 +3300,9 @@ describe("Views", () => {
       );
       cy.get(
         '[data-act-table-target="column"][data-column="state_or_province_code"]'
-      ).should("be.visible");
+      ).scrollIntoView().should("be.visible");
       cy.get('[data-act-table-target="column"][data-column="country_code"]')
-        .scrollIntoView()
+        
         .should("be.visible");
       cy.get('[data-act-table-target="column"][data-column="state"]').should(
         "be.visible"
@@ -3971,7 +3970,7 @@ describe("Views", () => {
       cy.get('[data-act-table-target="column"][data-column="subject"]').should(
         "be.visible"
       );
-      cy.get('[data-act-table-target="column"][data-column="children"]').should(
+      cy.get('[data-act-table-target="column"][data-column="children"]').scrollIntoView().should(
         "be.visible"
       );
     }),
@@ -4015,7 +4014,7 @@ describe("Views", () => {
       );
       cy.get(
         '[data-act-table-target="column"][data-column="created_at"]'
-      ).should("be.visible");
+      ).scrollIntoView().should("be.visible");
     }),
     it("Integration - Messages", () => {
       // Admin - Integration - Messages
@@ -4054,7 +4053,7 @@ describe("Views", () => {
       cy.get('[data-act-table-target="column"][data-column="subject"]').should(
         "be.visible"
       );
-      cy.get('[data-act-table-target="column"][data-column="children"]').should(
+      cy.get('[data-act-table-target="column"][data-column="children"]').scrollIntoView().should(
         "be.visible"
       );
     }),
@@ -4152,7 +4151,7 @@ describe("Views", () => {
         .should("be.visible");
       cy.get(
         '[data-act-table-target="column"][data-column="confidential"]'
-      ).should("be.visible");
+      ).scrollIntoView().should("be.visible");
     }),
     it("Integration - Third Party", () => {
       // Admin - Integration - Third Party
@@ -4190,9 +4189,9 @@ describe("Views", () => {
       );
       cy.get(
         '[data-act-table-target="column"][data-column="created_at"]'
-      ).should("be.visible");
+      ).scrollIntoView().should("be.visible");
       cy.get('[data-act-table-target="column"][data-column="last_order_at"]')
-        .scrollIntoView()
+        
         .should("be.visible");
     }),
     it("Imports", () => {
@@ -4320,7 +4319,7 @@ describe("Views", () => {
       );
       cy.get(
         '[data-act-table-target="column"][data-column="created_at"]'
-      ).should("be.visible");
+      ).scrollIntoView().should("be.visible");
     }),
     it("Messaging - Layout", () => {
       // Admin - Messaging - Layout
@@ -4460,7 +4459,7 @@ describe("Views", () => {
       );
       cy.get(
         '[data-act-table-target="column"][data-column="consolidation_id"]'
-      ).should("be.visible");
+      ).scrollIntoView().should("be.visible");
     }),
     it("Papers Templates", () => {
       // Admin - Papers Templates
@@ -4502,11 +4501,11 @@ describe("Views", () => {
       cy.get('[data-act-table-target="column"][data-column="use"]').should(
         "be.visible"
       );
-      cy.get('[data-act-table-target="column"][data-column="copies"]').should(
+      cy.get('[data-act-table-target="column"][data-column="copies"]').scrollIntoView().should(
         "be.visible"
       );
       cy.get('[data-act-table-target="column"][data-column="metadata"]')
-        .scrollIntoView()
+        
         .should("be.visible");
       cy.get(
         '[data-act-table-target="column"][data-column="created_at"]'
@@ -4784,7 +4783,7 @@ describe("Views", () => {
       cy.get(
         '[data-act-table-target="column"][data-column="last_occurence"]'
       ).should("be.visible");
-      cy.get('[data-act-table-target="column"][data-column="actions"]').should(
+      cy.get('[data-act-table-target="column"][data-column="actions"]').scrollIntoView().should(
         "be.visible"
       );
     });
