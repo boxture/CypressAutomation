@@ -7,6 +7,8 @@ module.exports = defineConfig({
   viewportHeight: 900,
   defaultCommandTimeout: 10000,
   video: false,
+  experimentalMemoryManagement: false,
+  numTestsKeptInMemory: 0,
   // videoRecording: false,
   // watchForFileChanges: false,
   retries: {
