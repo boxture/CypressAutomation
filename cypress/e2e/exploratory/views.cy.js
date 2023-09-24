@@ -950,7 +950,7 @@ describe("Views", () => {
         "be.visible"
       );
     }),
-    it.only("Return Orders Lines - Pricing and values", () => {
+    it("Return Orders Lines - Pricing and values", () => {
       // Return Orders Lines - Pricing and values
       cy.visit("/orders?type=Orders%3A%3AReturnOrder");
       cy.url().should("include", "/orders?type=Orders%3A%3AReturnOrder");
