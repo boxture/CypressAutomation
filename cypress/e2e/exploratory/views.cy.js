@@ -594,7 +594,6 @@ beforeEach(() => {
       cy.url().should("include", "/orders?type=Orders%3A%3ASalesOrder");
       cy.get(
         '[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]'
-        
       )
         .first()
         .click();
