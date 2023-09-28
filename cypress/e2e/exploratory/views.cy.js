@@ -61,6 +61,95 @@ describe('Views', () => {
     cy.get('[data-act-table-target="column"][data-column="destination_location"]').should('be.visible')
     cy.get('[data-act-table-target="column"][data-column="created_at"]').scrollIntoView().should('be.visible')
     cy.get('[data-act-table-target="column"][data-column="received_at"]').should('be.visible')
+    });
+    cy.get('[data-act-table-target="column"][data-column="account"]').should(
+      "be.visible"
+    );
+    cy.get('[data-act-table-target="column"][data-column="id"]').should(
+      "be.visible"
+    );
+    cy.get('[data-act-table-target="column"][data-column="type"]').should(
+      "be.visible"
+    );
+    cy.get('[data-act-table-target="column"][data-column="state"]').should(
+      "be.visible"
+    );
+    cy.get('[data-act-table-target="column"][data-column="channel"]').should(
+      "be.visible"
+    );
+    cy.get(
+      '[data-act-table-target="column"][data-column="business_model"]'
+    ).should("be.visible");
+    cy.get('[data-act-table-target="column"][data-column="ship_at"]').should(
+      "be.visible"
+    );
+    cy.get(
+      '[data-act-table-target="column"][data-column="customer_reference_number"]'
+    ).should("be.visible");
+    cy.get(
+      '[data-act-table-target="column"][data-column="purchase_order_number"]'
+    )
+      .scrollIntoView()
+      .should("be.visible");
+    cy.get(
+      '[data-act-table-target="column"][data-column="purchase_order_number"]'
+    ).should("be.visible");
+    cy.get('[data-act-table-target="column"][data-column="expected"]').should(
+      "be.visible"
+    );
+    cy.get('[data-act-table-target="column"][data-column="pending"]').should(
+      "be.visible"
+    );
+    cy.get('[data-act-table-target="column"][data-column="received"]').should(
+      "be.visible"
+    );
+    cy.get(
+      '[data-act-table-target="column"][data-column="backordered"]'
+    ).should("be.visible");
+    cy.get('[data-act-table-target="column"][data-column="allocated"]').should(
+      "be.visible"
+    );
+    cy.get('[data-act-table-target="column"][data-column="picking"]').should(
+      "be.visible"
+    );
+    cy.get('[data-act-table-target="column"][data-column="picked"]').should(
+      "be.visible"
+    );
+    cy.get('[data-act-table-target="column"][data-column="packed"]')
+      .scrollIntoView()
+      .should("be.visible");
+    cy.get('[data-act-table-target="column"][data-column="packed"]').should(
+      "be.visible"
+    );
+    cy.get('[data-act-table-target="column"][data-column="shipped"]').should(
+      "be.visible"
+    );
+    cy.get('[data-act-table-target="column"][data-column="hold"]').should(
+      "be.visible"
+    );
+    cy.get('[data-act-table-target="column"][data-column="cancelled"]').should(
+      "be.visible"
+    );
+    cy.get('[data-act-table-target="column"][data-column="customer"]').should(
+      "be.visible"
+    );
+    cy.get('[data-act-table-target="column"][data-column="vendor"]').should(
+      "be.visible"
+    );
+    cy.get(
+      '[data-act-table-target="column"][data-column="origin_locations"]'
+    ).should("be.visible");
+    
+    cy.get(
+      '[data-act-table-target="column"][data-column="destination_location"]'
+    ).should("be.visible");
+    
+    cy.get('[data-act-table-target="column"][data-column="created_at"]')
+      .scrollIntoView()
+      .should("be.visible");
+    cy.get(
+      '[data-act-table-target="column"][data-column="received_at"]'
+    ).should("be.visible");
   }),
     it('Purchase Order Lines - Basic', () => {
       // Purchase Order Lines - Basic
