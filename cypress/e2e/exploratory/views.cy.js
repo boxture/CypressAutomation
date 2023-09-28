@@ -14,7 +14,7 @@
 // https://github.com/boxture/oms/issues/3040: /settings Inventory: Restrict transactions to setup complete slow.
 
 beforeEach(() => {
-  cy.login({ email: 'acceptance-test+oms@boxture.com', password: 'xudrah-zygJa2-topbib'})
+  cy.login({ email: 'acceptance-test+oms@boxture.com', password: 'xudrah-zygJa2-topbib' })
 })
 
 describe('Views', () => {
@@ -1109,7 +1109,7 @@ describe('Views', () => {
       cy.url().should('include', '/reporting/manual_inventory_adjustments')
 
       cy.get('[data-act-table-target="column"][data-column="order"]', {
-        timeout: 20000,
+        timeout: 20000
       }).should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="product_number"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="product_name"]').should('be.visible')

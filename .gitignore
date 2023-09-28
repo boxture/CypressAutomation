@@ -1,5 +1,6 @@
 node_modules
 cypress/videos/
 /cypress/downloads/
-/cypress/reports/videos//cypress/screenshots/
+/cypress/reports/videos/
+/cypress/screenshots/
 
