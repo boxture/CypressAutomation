@@ -5,14 +5,12 @@
 // 4. all columns are present [DONE]
 // 5. infinite scroll is working [PENDING]
 // 6. no failures displayed on page e.g. 'undefined method' , 'Content missing'... [PENDING]
-
 // KNOWN ISSUES:
 // https://github.com/boxture/oms/issues/3291: /audits is only reachable for the role admin super user.
 // https://github.com/boxture/oms/issues/3292: /reporting/manual_inventory_adjustments is taking 10+ seconds to load.
 // https://github.com/boxture/oms/issues/3211: /holiday returns a undefined method `iso8601'.
 // https://github.com/boxture/oms/issues/3293: /messaging href: Action table export missing.
 // https://github.com/boxture/oms/issues/3040: /settings Inventory: Restrict transactions to setup complete slow.
-
 beforeEach(() => {
   cy.login({ email: 'acceptance-test+oms@boxture.com', password: 'xudrah-zygJa2-topbib' })
 })
@@ -61,9 +59,7 @@ describe('Views', () => {
       cy.contains('h3', 'Addresses')
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
-
       cy.get('[title*=".tabs.basic"]').eq(1).contains('Basic').click({ force: true })
-
       cy.get('[data-act-table-target="column"][data-column="#"]').scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="product_number"]').should('be.visible')
@@ -96,7 +92,6 @@ describe('Views', () => {
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
       cy.get('[title*=".tabs.items"]').contains('Items').click({ force: true })
-
       cy.get('[data-act-table-target="column"][data-column="position"]').scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="status"]').should('be.visible')
@@ -123,7 +118,6 @@ describe('Views', () => {
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
       cy.get('[id*="tab_label"]').contains('Pricing and values').click({ force: true })
-
       cy.get('[data-act-table-target="column"][data-column="position"]').eq(1).scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="description"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="customs_description"]').should('be.visible')
@@ -143,9 +137,7 @@ describe('Views', () => {
       cy.contains('h3', 'Addresses')
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
-
       cy.get('[title*=".tabs.basic"]').eq(1).contains('Basic').click({ force: true })
-
       cy.get('[data-act-table-target="column"][data-column="#"]').scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="product_number"]').should('be.visible')
@@ -178,7 +170,6 @@ describe('Views', () => {
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
       cy.get('[title*=".tabs.items"]').contains('Items').click({ force: true })
-
       cy.get('[data-act-table-target="column"][data-column="position"]').scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="status"]').should('be.visible')
@@ -205,7 +196,6 @@ describe('Views', () => {
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
       cy.get('[id*="tab_label"]').contains('Pricing and values').click({ force: true })
-
       cy.get('[data-act-table-target="column"][data-column="position"]').eq(1).scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="description"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="customs_description"]').should('be.visible')
@@ -225,9 +215,7 @@ describe('Views', () => {
       cy.contains('h3', 'Addresses')
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
-
       cy.get('[title*=".tabs.basic"]').eq(1).contains('Basic').click({ force: true })
-
       cy.get('[data-act-table-target="column"][data-column="#"]').scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="product_number"]').should('be.visible')
@@ -260,7 +248,6 @@ describe('Views', () => {
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
       cy.get('[title*=".tabs.items"]').contains('Items').click({ force: true })
-
       cy.get('[data-act-table-target="column"][data-column="position"]').scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="status"]').should('be.visible')
@@ -346,7 +333,6 @@ describe('Views', () => {
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
       cy.get('[title*=".tabs.items"]').contains('Items').click({ force: true })
-
       cy.get('[data-act-table-target="column"][data-column="position"]').scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="status"]').should('be.visible')
@@ -768,7 +754,6 @@ describe('Views', () => {
       // Reporting - Manual inventory adjustments - #3292
       cy.visit('/reporting/manual_inventory_adjustments')
       cy.url().should('include', '/reporting/manual_inventory_adjustments')
-
       cy.get('[data-act-table-target="column"][data-column="order"]', {
         timeout: 20000
       }).should('be.visible')
@@ -1008,7 +993,6 @@ describe('Views', () => {
       cy.visit('/billing/events')
       cy.url().should('include', '/billing/events')
       cy.resetView()
-
       cy.get('[data-act-table-target="column"][data-column="created_at"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="location"]').should('be.visible')
@@ -1031,7 +1015,6 @@ describe('Views', () => {
       // Audits - #3291
       cy.visit('/audits')
       cy.url().should('include', '/audits')
-
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="created_at"]').should('be.visible')
@@ -1082,7 +1065,6 @@ describe('Views', () => {
       cy.visit('/admin/channels')
       cy.url().should('include', '/admin/channels')
       cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
         const text = $e1.text()
         if (text.includes('Reset view')) {
@@ -1090,7 +1072,6 @@ describe('Views', () => {
           cy.contains('.translation_missing', 'Orders').click()
         } else {
           cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
           cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
             const text = $e1.text()
             if (text.includes('Reset view')) {
@@ -1130,7 +1111,6 @@ describe('Views', () => {
       // Admin - Carriers & Services - Holidays - #3211
       cy.visit('/admin/holidays')
       cy.url().should('include', '/admin/holidays')
-
       cy.get('[data-act-table-target="column"][data-column="description"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="location"]').should('be.visible')
@@ -1521,7 +1501,6 @@ describe('Views', () => {
       cy.visit('/integration')
       cy.url().should('include', '/integration')
       cy.resetView()
-
       cy.get('[data-act-table-target="column"][data-column="id"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="created_at"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="flow"]').should('be.visible')
@@ -1534,7 +1513,6 @@ describe('Views', () => {
       // Admin - Integration - Flows
       cy.visit('/integration/flows')
       cy.url().should('include', '/integration/flows')
-
       cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="enabled"]').should('be.visible')
@@ -1617,7 +1595,6 @@ describe('Views', () => {
       // Admin - Messaging - #3293
       cy.visit('/messaging/')
       cy.url().should('include', '/messaging')
-
       cy.get('a[href*="Action table export"]').should('be.visible')
     }),
     it('Messages', () => {
@@ -1657,7 +1634,6 @@ describe('Views', () => {
       // Admin - Messaging - Locales
       cy.visit('/messaging/admin/locales')
       cy.url().should('include', '/messaging/admin/locales')
-
       cy.get('[data-act-table-target="column"][data-column="key"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="metadata"]').should('be.visible')
     }),
