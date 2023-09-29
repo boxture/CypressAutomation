@@ -15,52 +15,13 @@
 
 beforeEach(() => {
   cy.login({ email: 'acceptance-test+oms@boxture.com', password: 'xudrah-zygJa2-topbib' })
-
-  describe('Views', () => {
-    it('Orders ', () => {
-      // Orders
-      cy.visit('/orders')
-      cy.url().should('include', '/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.contains('[title*="index.orders"]', 'Orders').click()
-        }
-      })
-      cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="id"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="type"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="state"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="channel"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="business_model"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="ship_at"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="customer_reference_number"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="purchase_order_number"]').scrollIntoView().should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="purchase_order_number"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="expected"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="pending"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="received"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="backordered"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="allocated"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="picking"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="picked"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="packed"]').scrollIntoView().should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="packed"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="shipped"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="hold"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="cancelled"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="customer"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="vendor"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="origin_locations"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="destination_location"]').should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="created_at"]').scrollIntoView().should('be.visible')
-      cy.get('[data-act-table-target="column"][data-column="received_at"]').should('be.visible')
-    })
+})
+describe('Views', () => {
+  it('Orders ', () => {
+    // Orders
+    cy.visit('/orders')
+    cy.url().should('include', '/orders')
+    cy.resetView()
     cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
     cy.get('[data-act-table-target="column"][data-column="id"]').should('be.visible')
     cy.get('[data-act-table-target="column"][data-column="type"]').should('be.visible')
@@ -86,9 +47,7 @@ beforeEach(() => {
     cy.get('[data-act-table-target="column"][data-column="customer"]').should('be.visible')
     cy.get('[data-act-table-target="column"][data-column="vendor"]').should('be.visible')
     cy.get('[data-act-table-target="column"][data-column="origin_locations"]').should('be.visible')
-
     cy.get('[data-act-table-target="column"][data-column="destination_location"]').should('be.visible')
-
     cy.get('[data-act-table-target="column"][data-column="created_at"]').scrollIntoView().should('be.visible')
     cy.get('[data-act-table-target="column"][data-column="received_at"]').should('be.visible')
   }),
@@ -96,17 +55,7 @@ beforeEach(() => {
       // Purchase Order Lines - Basic
       cy.visit('/orders?type=Orders%3A%3APurchaseOrder')
       cy.url().should('include', '/orders?type=Orders%3A%3APurchaseOrder')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.contains('[title*="index.orders"]', 'Orders').click()
-        }
-      })
+      cy.resetView()
       cy.get('tr').last().click({ force: true })
       cy.contains('h3', 'Lines')
       cy.contains('h3', 'Addresses')
@@ -140,17 +89,7 @@ beforeEach(() => {
       // Purchase Orders Lines - Items
       cy.visit('/orders?type=Orders%3A%3APurchaseOrder')
       cy.url().should('include', '/orders?type=Orders%3A%3APurchaseOrder')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.contains('[title*="index.orders"]', 'Orders').click()
-        }
-      })
+      cy.resetView()
       cy.get('tr').last().click({ force: true })
       cy.contains('h3', 'Lines')
       cy.contains('h3', 'Addresses')
@@ -177,17 +116,7 @@ beforeEach(() => {
       // Purchase Orders Lines - Pricing and values
       cy.visit('/orders?type=Orders%3A%3APurchaseOrder')
       cy.url().should('include', '/orders?type=Orders%3A%3APurchaseOrder')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.contains('[title*="index.orders"]', 'Orders').click()
-        }
-      })
+      cy.resetView()
       cy.get('tr').last().click({ force: true })
       cy.contains('h3', 'Lines')
       cy.contains('h3', 'Addresses')
@@ -208,17 +137,7 @@ beforeEach(() => {
       // Trans Order Lines - Basic
       cy.visit('/orders?type=Orders%3A%3ATransferOrder')
       cy.url().should('include', '/orders?type=Orders%3A%3ATransferOrder')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.contains('[title*="index.orders"]', 'Orders').click()
-        }
-      })
+      cy.resetView()
       cy.get('tr').last().click({ force: true })
       cy.contains('h3', 'Lines')
       cy.contains('h3', 'Addresses')
@@ -252,17 +171,7 @@ beforeEach(() => {
       // Transfer Orders Lines - Items
       cy.visit('/orders?type=Orders%3A%3ATransferOrder')
       cy.url().should('include', '/orders?type=Orders%3A%3ATransferOrder')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.contains('[title*="index.orders"]', 'Orders').click()
-        }
-      })
+      cy.resetView()
       cy.get('tr').last().click({ force: true })
       cy.contains('h3', 'Lines')
       cy.contains('h3', 'Addresses')
@@ -289,17 +198,7 @@ beforeEach(() => {
       // Purchase Orders Lines - Pricing and values
       cy.visit('/orders?type=Orders%3A%3ATransferOrder')
       cy.url().should('include', '/orders?type=Orders%3A%3ATransferOrder')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.contains('[title*="index.orders"]', 'Orders').click()
-        }
-      })
+      cy.resetView()
       cy.get('tr').last().click({ force: true })
       cy.contains('h3', 'Lines')
       cy.contains('h3', 'Addresses')
@@ -320,17 +219,7 @@ beforeEach(() => {
       // Sales Order Lines - Basic
       cy.visit('/orders?type=Orders%3A%3ASalesOrder')
       cy.url().should('include', '/orders?type=Orders%3A%3ASalesOrder')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.contains('[title*="index.orders"]', 'Orders').click()
-        }
-      })
+      cy.resetView()
       cy.get('tr').last().click({ force: true })
       cy.contains('h3', 'Lines')
       cy.contains('h3', 'Addresses')
@@ -364,17 +253,7 @@ beforeEach(() => {
       // Sales Orders Lines - Items
       cy.visit('/orders?type=Orders%3A%3ASalesOrder')
       cy.url().should('include', '/orders?type=Orders%3A%3ASalesOrder')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.contains('[title*="index.orders"]', 'Orders').click()
-        }
-      })
+      cy.resetView()
       cy.get('tr').last().click({ force: true })
       cy.contains('h3', 'Lines')
       cy.contains('h3', 'Addresses')
@@ -401,17 +280,7 @@ beforeEach(() => {
       // Sales Orders Lines - Pricing and values
       cy.visit('/orders?type=Orders%3A%3ASalesOrder')
       cy.url().should('include', '/orders?type=Orders%3A%3ASalesOrder')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.contains('[title*="index.orders"]', 'Orders').click()
-        }
-      })
+      cy.resetView()
       cy.get('tr').last().click({ force: true })
       cy.contains('h3', 'Lines')
       cy.contains('h3', 'Addresses')
@@ -439,17 +308,7 @@ beforeEach(() => {
       // Return Order Lines - Basic
       cy.visit('/orders?type=Orders%3A%3AReturnOrder')
       cy.url().should('include', '/orders?type=Orders%3A%3AReturnOrder')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.contains('[title*="index.orders"]', 'Orders').click()
-        }
-      })
+      cy.resetView()
       cy.get('tr').last().click({ force: true })
       cy.contains('h3', 'Lines')
       cy.contains('h3', 'Addresses')
@@ -483,17 +342,7 @@ beforeEach(() => {
       // Return Orders Lines - Items
       cy.visit('/orders?type=Orders%3A%3AReturnOrder')
       cy.url().should('include', '/orders?type=Orders%3A%3AReturnOrder')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.contains('[title*="index.orders"]', 'Orders').click()
-        }
-      })
+      cy.resetView()
       cy.get('tr').last().click({ force: true })
       cy.contains('h3', 'Lines')
       cy.contains('h3', 'Addresses')
@@ -553,17 +402,7 @@ beforeEach(() => {
       // Scrap Order Lines - Basic
       cy.visit('/orders?type=Orders%3A%3AScrapOrder')
       cy.url().should('include', '/orders?type=Orders%3A%3AScrapOrder')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.contains('[title*="index.orders"]', 'Orders').click()
-        }
-      })
+      cy.resetView()
       cy.get('tr').last().click({ force: true })
       cy.contains('h3', 'Lines')
       cy.contains('h3', 'Addresses')
@@ -597,17 +436,7 @@ beforeEach(() => {
       // Return Orders Lines - Items
       cy.visit('/orders?type=Orders%3A%3AScrapOrder')
       cy.url().should('include', '/orders?type=Orders%3A%3AScrapOrder')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.contains('[title*="index.orders"]', 'Orders').click()
-        }
-      })
+      cy.resetView()
       cy.get('tr').last().click({ force: true })
       cy.contains('h3', 'Lines')
       cy.contains('h3', 'Addresses')
@@ -633,17 +462,7 @@ beforeEach(() => {
       // Scrap Orders Lines - Pricing and values
       cy.visit('/orders?type=Orders%3A%3AScrapOrder')
       cy.url().should('include', '/orders?type=Orders%3A%3AScrapOrder')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.contains('[title*="index.orders"]', 'Orders').click()
-        }
-      })
+      cy.resetView()
       cy.get('tr').last().click({ force: true })
       cy.contains('h3', 'Lines')
       cy.contains('h3', 'Addresses')
@@ -664,17 +483,7 @@ beforeEach(() => {
       // Pick Lists
       cy.visit('/pick_lists')
       cy.url().should('include', '/pick_lists')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="accounts"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="location"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
@@ -695,17 +504,7 @@ beforeEach(() => {
       // Plans
       cy.visit('/pick_list_plans')
       cy.url().should('include', '/pick_list_plans')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="pick_list_type"]').should('be.visible')
@@ -719,17 +518,7 @@ beforeEach(() => {
       // Waves
       cy.visit('/pick_list_waves')
       cy.url().should('include', '/pick_list_waves')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="pick_list_plan"]').should('be.visible')
@@ -739,17 +528,7 @@ beforeEach(() => {
     it('Shipments ', () => {
       cy.visit('/shipments')
       cy.url().should('include', '/shipments')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="id"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').should('be.visible')
@@ -766,17 +545,7 @@ beforeEach(() => {
       // Inventory
       cy.visit('/inventories')
       cy.url().should('include', '/inventories')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="product_account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="location"]').should('be.visible')
@@ -798,17 +567,7 @@ beforeEach(() => {
       // Consolidated
       cy.visit('/inventories/consolidated')
       cy.url().should('include', '/inventories/consolidated')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="product_account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="location"]').should('be.visible')
@@ -828,17 +587,7 @@ beforeEach(() => {
       // Kits
       cy.visit('inventories/kits')
       cy.url().should('include', '/inventories/kits')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="product_number"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="product_name"]').should('be.visible')
@@ -849,17 +598,7 @@ beforeEach(() => {
       // License plates
       cy.visit('/inventory_license_plates')
       cy.url().should('include', '/inventory_license_plates')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="license_plate"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="location"]').should('be.visible')
@@ -876,17 +615,7 @@ beforeEach(() => {
       // Containers
       cy.visit('/containers')
       cy.url().should('include', '/containers')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="product_account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="location"]').should('be.visible')
@@ -903,17 +632,7 @@ beforeEach(() => {
       // Products
       cy.visit('/products')
       cy.url().should('include', '/products')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="number"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
@@ -937,17 +656,7 @@ beforeEach(() => {
       // Customers
       cy.visit('/customers')
       cy.url().should('include', '/customers')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="contact"]').should('be.visible')
@@ -964,17 +673,7 @@ beforeEach(() => {
       // Vendors
       cy.visit('/vendors')
       cy.url().should('include', '/vendors')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="contact"]').should('be.visible')
@@ -991,17 +690,7 @@ beforeEach(() => {
       // Reporting - Bin location movements
       cy.visit('/reporting/bin_location_movements')
       cy.url().should('include', '/reporting/bin_location_movements')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="transacted_at"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="user"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="order"]').should('be.visible')
@@ -1019,17 +708,7 @@ beforeEach(() => {
       // Reporting - Container Bin Location Movements
       cy.visit('/reporting/container_bin_location_movements')
       cy.url().should('include', '/reporting/container_bin_location_movements')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="account_name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="user"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="container_name"]').should('be.visible')
@@ -1045,17 +724,7 @@ beforeEach(() => {
       // Reporting - Container Inventory Adjustments
       cy.visit('/reporting/container_inventory_adjustments')
       cy.url().should('include', '/reporting/container_inventory_adjustments')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="account_name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="user"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="container_name"]').should('be.visible')
@@ -1068,17 +737,7 @@ beforeEach(() => {
       // Reporting - Inbounded inventory items
       cy.visit('/reporting/inbounded_inventory_items')
       cy.url().should('include', '/reporting/inbounded_inventory_items')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="received_at"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="received_by"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="order"]').should('be.visible')
@@ -1109,17 +768,7 @@ beforeEach(() => {
       // Reporting - Inventory on hand
       cy.visit('/reporting/inventory_on_hand')
       cy.url().should('include', '/reporting/inventory_on_hand')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="outer_container"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="inner_container"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="location"]').should('be.visible')
@@ -1156,17 +805,7 @@ beforeEach(() => {
       // Reporting - Open sales orders
       cy.visit('/reporting/open_sales_orders')
       cy.url().should('include', '/reporting/open_sales_orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="created_at"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="order"]').should('be.visible')
@@ -1194,17 +833,7 @@ beforeEach(() => {
       // Reporting - Open receives
       cy.visit('/reporting/open_receives')
       cy.url().should('include', '/reporting/open_receives')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="location"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="order"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="purchase_order_number"]').should('be.visible')
@@ -1225,17 +854,7 @@ beforeEach(() => {
       // Reporting - Replenishment items
       cy.visit('/reporting/replenishment_items')
       cy.url().should('include', '/reporting/replenishment_items')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="product_number"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="product_description"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
@@ -1252,17 +871,7 @@ beforeEach(() => {
       // Reporting - Shipped products
       cy.visit('/reporting/shipped_products')
       cy.url().should('include', '/reporting/shipped_products')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="shipped_at"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="shipment"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="created_at"]').should('be.visible')
@@ -1307,17 +916,7 @@ beforeEach(() => {
       // Reporting - Shipped serial numbers
       cy.visit('/reporting/shipped_serial_numbers')
       cy.url().should('include', '/reporting/shipped_serial_numbers')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="shipped_at"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="shipment"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="created_at"]').should('be.visible')
@@ -1335,17 +934,7 @@ beforeEach(() => {
       // Tickets
       cy.visit('/agent/tickets')
       cy.url().should('include', '/agent/tickets')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="priority"]').should('be.visible')
@@ -1361,17 +950,7 @@ beforeEach(() => {
       // Tickets - Work order
       cy.visit('/agent/tickets?kind=manual')
       cy.url().should('include', '/agent/tickets?kind=manual')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="priority"]').should('be.visible')
@@ -1387,17 +966,7 @@ beforeEach(() => {
       // Tickets - Problems
       cy.visit('/agent/tickets?kind=automated')
       cy.url().should('include', '/agent/tickets?kind=automated')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="priority"]').should('be.visible')
@@ -1413,17 +982,7 @@ beforeEach(() => {
       // Tickets - Groups
       cy.visit('/agent/groups')
       cy.url().should('include', '/agent/groups')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="created_at"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="updated_at"]').should('be.visible')
@@ -1432,17 +991,7 @@ beforeEach(() => {
       // Tickets - Contacts
       cy.visit('/agent/contacts')
       cy.url().should('include', '/agent/contacts')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="email"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="phone"]').should('be.visible')
@@ -1459,17 +1008,7 @@ beforeEach(() => {
       // Tickets - Organisations
       cy.visit('/agent/organizations')
       cy.url().should('include', '/agent/organizations')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="owner"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="url"]').should('be.visible')
@@ -1486,17 +1025,7 @@ beforeEach(() => {
       // Billing - Events
       cy.visit('/billing/events')
       cy.url().should('include', '/billing/events')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
 
       cy.get('[data-act-table-target="column"][data-column="created_at"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
@@ -1509,17 +1038,7 @@ beforeEach(() => {
       // Transaction Logs
       cy.visit('/transaction_logs')
       cy.url().should('include', '/transaction_logs')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="transaction"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="user"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
@@ -1544,17 +1063,7 @@ beforeEach(() => {
       // Admin - Users & Accounts - Accounts
       cy.visit('/admin/accounts')
       cy.url().should('include', '/admin/accounts')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="code"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="parent_account"]').should('be.visible')
@@ -1565,17 +1074,7 @@ beforeEach(() => {
       // Admin - Users & Accounts - Users
       cy.visit('/admin/users')
       cy.url().should('include', '/admin/users')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="location"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="first_name"]').should('be.visible')
@@ -1591,17 +1090,7 @@ beforeEach(() => {
       // Admin - Carriers & Services - Carriers
       cy.visit('/admin/carriers')
       cy.url().should('include', '/admin/carriers')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="code"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="countries"]').should('be.visible')
@@ -1638,17 +1127,7 @@ beforeEach(() => {
       // Admin - Carriers & Services - Service Types
       cy.visit('/admin/service_types')
       cy.url().should('include', '/admin/service_types')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="carrier"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="code"]').should('be.visible')
@@ -1657,17 +1136,7 @@ beforeEach(() => {
       // Admin - Carriers & Services - Shipping methods
       cy.visit('/admin/shipping_methods')
       cy.url().should('include', '/admin/shipping_methods')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="code"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
@@ -1690,17 +1159,7 @@ beforeEach(() => {
       // Admin - Carriers & Services - Reasons
       cy.visit('/admin/reasons')
       cy.url().should('include', '/admin/reasons')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="use"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').should('be.visible')
@@ -1711,17 +1170,7 @@ beforeEach(() => {
       // Admin - Warehousing - Locations
       cy.visit('/admin/locations')
       cy.url().should('include', '/admin/locations')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="company_name"]').should('be.visible')
@@ -1736,17 +1185,7 @@ beforeEach(() => {
       // Admin - Warehousing - Bin locations
       cy.visit('/admin/bin_locations')
       cy.url().should('include', '/admin/bin_locations')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="purpose"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="zone"]').should('be.visible')
@@ -1763,17 +1202,7 @@ beforeEach(() => {
       // Admin - Warehousing - Totes
       cy.visit('/admin/totes')
       cy.url().should('include', '/admin/totes')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="order"]').should('be.visible')
@@ -1782,17 +1211,7 @@ beforeEach(() => {
       // Admin - Warehousing - Packing Material
       cy.visit('/admin/packing_materials')
       cy.url().should('include', '/admin/packing_materials')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="level"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="number"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
@@ -2119,17 +1538,7 @@ beforeEach(() => {
       // Admin - Integration
       cy.visit('/integration')
       cy.url().should('include', '/integration')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
 
       cy.get('[data-act-table-target="column"][data-column="id"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="created_at"]').should('be.visible')
@@ -2144,17 +1553,7 @@ beforeEach(() => {
       cy.visit('/integration/flows')
       cy.url().should('include', '/integration/flows')
 
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="enabled"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="klass"]').should('be.visible')
@@ -2167,17 +1566,7 @@ beforeEach(() => {
       // Admin - Integration - Messages
       cy.visit('/integration/messages')
       cy.url().should('include', '/integration/messages')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="id"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="created_at"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="flow"]').should('be.visible')
@@ -2190,17 +1579,7 @@ beforeEach(() => {
       // Admin - Integration - Credentials
       cy.visit('/integration/credentials')
       cy.url().should('include', '/integration/credentials')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="key"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="metadata"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="created_at"]').should('be.visible')
@@ -2209,17 +1588,7 @@ beforeEach(() => {
       // Admin - Integration - Oauth - Authorized
       cy.visit('/oauth/authorized_applications')
       cy.url().should('include', '/oauth/authorized_applications')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="scopes"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="created_at"]').scrollIntoView().should('be.visible')
@@ -2229,17 +1598,7 @@ beforeEach(() => {
       // Admin - Integration - Oauth - Applications
       cy.visit('/oauth/applications')
       cy.url().should('include', '/oauth/applications')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="uid"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="redirect_uri"]').should('be.visible')
@@ -2250,17 +1609,7 @@ beforeEach(() => {
       // Admin - Integration - Third Party
       cy.visit('/admin/integrations')
       cy.url().should('include', '/admin/integrations')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="type"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="integration_account"]').should('be.visible')
@@ -2273,17 +1622,7 @@ beforeEach(() => {
       // Imports
       cy.visit('/importing')
       cy.url().should('include', '/importing')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="created_at"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="user"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="kind"]').should('be.visible')
@@ -2303,17 +1642,7 @@ beforeEach(() => {
       // Admin - Messaging - Messages
       cy.visit('/messaging/admin/messages')
       cy.url().should('include', '/messaging/admin/messages')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="to"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="created_at"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="last_sent_at"]').should('be.visible')
@@ -2325,17 +1654,7 @@ beforeEach(() => {
       // Admin - Messaging - Templates
       cy.visit('/messaging/admin/templates')
       cy.url().should('include', '/messaging/admin/templates')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="description"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="enabled"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="klass"]').should('be.visible')
@@ -2348,17 +1667,7 @@ beforeEach(() => {
       // Admin - Messaging - Layout
       cy.visit('/messaging/admin/layouts')
       cy.url().should('include', '/messaging/admin/layouts')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="metadata"]').should('be.visible')
     }),
@@ -2374,17 +1683,7 @@ beforeEach(() => {
       // Admin - Messaging Campaigns
       cy.visit('/messaging/admin/campaigns')
       cy.url().should('include', '/messaging/admin/campaigns')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="metadata"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="transport"]').should('be.visible')
@@ -2395,17 +1694,7 @@ beforeEach(() => {
       // Admin - Messaging Lists
       cy.visit('/messaging/admin/lists')
       cy.url().should('include', '/messaging/admin/lists')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="metadata"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="subscribers"]').should('be.visible')
@@ -2414,17 +1703,7 @@ beforeEach(() => {
       // Admin - Papers
       cy.visit('/papers')
       cy.url().should('include', '/papers')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="owner"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="template"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="attachment"]').should('be.visible')
@@ -2436,17 +1715,7 @@ beforeEach(() => {
       // Admin - Papers Templates
       cy.visit('/papers/admin/templates')
       cy.url().should('include', '/papers/admin/templates')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="description"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="enabled"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="klass"]').should('be.visible')
@@ -2462,17 +1731,7 @@ beforeEach(() => {
       // Admin - Papers Locales
       cy.visit('/papers/admin/locales')
       cy.url().should('include', '/papers/admin/locales')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="key"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="metadata"]').should('be.visible')
     }),
@@ -2485,17 +1744,7 @@ beforeEach(() => {
       // Admin - Apps
       cy.visit('/distribution/admin/apps')
       cy.url().should('include', '/distribution/admin/apps')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="icon"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="release_type"]').should('be.visible')
@@ -2506,17 +1755,7 @@ beforeEach(() => {
       // Admin - Billing - Sources
       cy.visit('/admin/billing/sources')
       cy.url().should('include', '/admin/billing/sources')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="code"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="description"]').should('be.visible')
@@ -2525,17 +1764,7 @@ beforeEach(() => {
       // Admin - Billing - Event types
       cy.visit('/admin/billing/event_types')
       cy.url().should('include', '/admin/billing/event_types')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="code"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="description"]').should('be.visible')
@@ -2544,17 +1773,7 @@ beforeEach(() => {
       // Admin - Billing Rate groups
       cy.visit('/admin/billing/rate_groups')
       cy.url().should('include', '/admin/billing/rate_groups')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="rate_group"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="description"]').should('be.visible')
@@ -2563,17 +1782,7 @@ beforeEach(() => {
       // Admin - Billing Rate types
       cy.visit('/admin/billing/rate_types')
       cy.url().should('include', '/admin/billing/rate_types')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="name"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="rate_group"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="event_type"]').should('be.visible')
@@ -2587,17 +1796,7 @@ beforeEach(() => {
       // Admin - Billing Rates
       cy.visit('/admin/billing/rates')
       cy.url().should('include', '/admin/billing/rates')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="account"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="location"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="rate_group"]').should('be.visible')
@@ -2610,17 +1809,7 @@ beforeEach(() => {
       // Admin - Exceptions
       cy.visit('/exceptions')
       cy.url().should('include', '/exceptions')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
       cy.get('[data-act-table-target="column"][data-column="exception_class"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="message"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="code_location"]').should('be.visible')
