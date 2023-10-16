@@ -13,34 +13,28 @@
 // Cypress.Commands.add('login', (email, password) => { ... })
 
 Cypress.Commands.add('login', (user) => {
-    cy.session(
-      user,
-      () => {
-        cy.clearCookies();
-        cy.clearLocalStorage();
-        cy.visit('/')
+  cy.session(user, () => {
+    cy.clearCookies()
+    cy.clearLocalStorage()
+    cy.visit('/')
 
-        // Assert login page
-        cy.url().should('include', '/users/sign_in')
-        cy.title().should('eq', 'Boxture OMS')
-        cy.contains('Log in to your account').click()
+    // Assert login page
+    cy.url().should('include', '/users/sign_in')
+    cy.title().should('eq', 'Boxture OMS')
+    cy.contains('Log in to your account').click()
 
-        // Get an input, type into it
-        cy.get('[id^=user_email]').type(user.email)
-        cy.get('[id^=user_password]').type(user.password)
+    // Get an input, type into it
+    cy.get('[id^=user_email]').type(user.email)
+    cy.get('[id^=user_password]').type(user.password)
 
+    // Click Log in button
+    cy.get('button').click()
+    cy.url().should('include', '/')
 
-
-        // Click Log in button
-        cy.get('button').click()
-        cy.url().should('include', '/')
-
-        // Verify login screen
-        cy.contains('Powered by Boxture') //IF THIS COMMAND IS REMOVED THE SCRIPT WILL FAIL
-
-      }
-    )
+    // Verify login screen
+    cy.contains('Powered by Boxture') //IF THIS COMMAND IS REMOVED THE SCRIPT WILL FAIL
   })
+})
 
 Cypress.Commands.add('resetView', (OrderElement) => {
   cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
@@ -56,10 +50,6 @@ Cypress.Commands.add('resetView', (OrderElement) => {
   })
 })
 
-
-
-
-
 //
 //
 // -- This is a child command --
@@ -74,7 +64,7 @@ Cypress.Commands.add('resetView', (OrderElement) => {
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.on('uncaught:exception', (err, runnable) => {
-    // returning false here prevents Cypress from
-    // failing the test
-    return false
+  // returning false here prevents Cypress from
+  // failing the test
+  return false
 })
