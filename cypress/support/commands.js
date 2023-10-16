@@ -29,7 +29,7 @@ Cypress.Commands.add('login', (user) => {
         cy.get('[id^=user_email]').type(user.email)
         cy.get('[id^=user_password]').type(user.password)
 
-        
+
 
         // Click Log in button
         cy.get('button').click()
@@ -44,6 +44,7 @@ Cypress.Commands.add('login', (user) => {
 
 Cypress.Commands.add('resetView', (OrderElement) => {
   cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
+  cy.wait(500)
   cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
     const text = $e1.text()
     if (text.includes('Reset view')) {

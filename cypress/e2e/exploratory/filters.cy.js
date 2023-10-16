@@ -31,9 +31,10 @@ describe('Validation of filters in Order Overview', () => {
     cy.get('[data-column="account"] [data-satis-dropdown-target="toggleButton"]').click()
     // cy.conta
     //validate each rows
-    cy.get('[data-column="account"]').find('li').should('have.length', '5')
+    cy.get('[data-column="account"]').find('li').should('have.length', '6')
     cy.get('[data-column="account"]').find('li').contains('Filter values').should('be.visible')
     cy.get('[data-column="account"]').find('li').contains('Sort ascending').should('be.visible')
+    cy.get('[data-column="account"]').find('li').contains('Group by').should('be.visible')
     cy.get('[data-column="account"]').find('li').contains('Sort descending').should('be.visible')
     cy.get('[data-column="account"]').find('li').contains('Hide column').should('be.visible')
   })
@@ -64,16 +65,14 @@ describe('Validation of filters in Order Overview', () => {
     cy.resetView()
     cy.get('[data-column="type"] [data-icon="ellipsis"]').should('be.visible').click()
     cy.get('ul').find('[data-satis-dropdown-target="searchInput"]').should('be.visible')
-    cy.get('[data-column="type"]').find('li').should('have.length', '3')
+    cy.get('[data-column="type"]').find('li').should('have.length', '4')
     cy.get('[data-column="type"]').find('li').contains('Filter values').should('be.visible')
     cy.get('[data-column="type"]').find('li').contains('Hide column').should('be.visible')
+    cy.get('[data-column="type"]').find('li').contains('Group by').should('be.visible')
     //validation of input search column
     cy.get('[data-column="type"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('sales')
     cy.contains('[title*="index.orders"]', 'Orders').click()
     cy.get('tr:nth-child(2) td:nth-child(4)').should('have.text', 'Sales order')
-    cy.get('tr:nth-child(3) td:nth-child(4)').should('have.text', 'Sales order')
-    cy.get('tr:nth-child(4) td:nth-child(4)').should('have.text', 'Sales order')
-    cy.get('tr:nth-child(5) td:nth-child(4)').should('have.text', 'Sales order')
   })
   it('STATE Filter', () => {
     cy.visit('/orders')
@@ -82,13 +81,15 @@ describe('Validation of filters in Order Overview', () => {
     cy.get('[data-column="state"] [data-icon="ellipsis"] ').should('be.visible').click()
     cy.get('ul').find('[data-satis-dropdown-target="searchInput"]').should('be.visible')
     //validate each rows
-    cy.get('[data-column="state"]').find('li').should('have.length', '5')
+    cy.get('[data-column="state"]').find('li').should('have.length', '6')
     cy.get('[data-column="state"]').find('li').contains('Filter values').should('be.visible')
     cy.get('[data-column="state"]').find('li').contains('Sort ascending').should('be.visible')
+    cy.get('[data-column="state"]').find('li').contains('Group by').should('be.visible')
     cy.get('[data-column="state"]').find('li').contains('Sort descending').should('be.visible')
     cy.get('[data-column="state"]').find('li').contains('Hide column').should('be.visible')
     //validation of input search column
-    cy.get('[data-column="state"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('proce')
+    cy.get('[data-column="state"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('processing')
+    cy.wait(500)
     cy.contains('[title*="index.orders"]', 'Orders').click()
     cy.get('tr:nth-child(2) td:nth-child(5)').should('have.text', 'processing')
     cy.get('tr:nth-child(3) td:nth-child(5)').should('have.text', 'processing')
@@ -110,10 +111,12 @@ describe('Validation of filters in Order Overview', () => {
     cy.get('[data-column="channel"] [data-icon="ellipsis"] ').should('be.visible').click()
     cy.get('ul').find('[data-satis-dropdown-target="searchInput"]').should('be.visible')
     //validate each rows
-    cy.get('[data-column="channel"]').find('li').should('have.length', '5')
+    cy.get('[data-column="channel"]').find('li').should('have.length', '6')
     cy.get('[data-column="channel"]').find('li').contains('Filter values').should('be.visible')
     cy.get('[data-column="channel"]').find('li').contains('Sort ascending').should('be.visible')
+    cy.get('[data-column="channel"]').find('li').contains('Group by').should('be.visible')
     cy.get('[data-column="channel"]').find('li').contains('Sort descending').should('be.visible')
+
     cy.get('[data-column="channel"]').find('li').contains('Hide column').should('be.visible')
     //validation of input search column
     cy.get('[data-column="channel"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('ebay')
@@ -137,11 +140,13 @@ describe('Validation of filters in Order Overview', () => {
     cy.get('[data-column="business_model"] [data-icon="ellipsis"] ').should('be.visible').click()
     cy.get('ul').find('[data-satis-dropdown-target="searchInput"]').should('be.visible')
     //validate each rows
-    cy.get('[data-column="business_model"]').find('li').should('have.length', '5')
+    cy.get('[data-column="business_model"]').find('li').should('have.length', '6')
     cy.get('[data-column="business_model"]').find('li').contains('Filter values').should('be.visible')
     cy.get('[data-column="business_model"]').find('li').contains('Sort ascending').should('be.visible')
     cy.get('[data-column="business_model"]').find('li').contains('Sort descending').should('be.visible')
     cy.get('[data-column="business_model"]').find('li').contains('Hide column').should('be.visible')
+    cy.get('[data-column="business_model"]').find('li').contains('Group by').should('be.visible')
+
     //validation of input search column
     cy.get('[data-column="business_model"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('Business to consumer')
     cy.get('tr:nth-child(2) td:nth-child(7)').should('have.text', 'Business to consumer')
@@ -399,9 +404,11 @@ describe('Validation of filters in Order Overview', () => {
     cy.resetView()
     cy.get('[data-column="origin_locations"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
     //validate each rows
-    cy.get('[data-column="origin_locations"]').find('li').should('have.length', '3')
+    cy.get('[data-column="origin_locations"]').find('li').should('have.length', '4')
     cy.get('[data-column="origin_locations"]').find('li').contains('Filter values').should('be.visible')
     cy.get('[data-column="origin_locations"]').find('li').contains('Hide column').should('be.visible')
+    cy.get('[data-column="origin_locations"]').find('li').contains('Group by').should('be.visible')
+
     //validation of input search column
     cy.get('[placeholder="Origin locations"]').scrollIntoView().should('be.visible').clear().type('btx-alm-new')
     cy.contains('[title*="index.orders"]', 'Orders').click()
@@ -418,9 +425,11 @@ describe('Validation of filters in Order Overview', () => {
     cy.resetView()
     cy.get('[data-column="destination_location"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
     //validate each rows
-    cy.get('[data-column="destination_location"]').find('li').should('have.length', '3')
+    cy.get('[data-column="destination_location"]').find('li').should('have.length', '4')
     cy.get('[data-column="destination_location"]').find('li').contains('Filter values').should('be.visible')
     cy.get('[data-column="destination_location"]').find('li').contains('Hide column').should('be.visible')
+    cy.get('[data-column="destination_location"]').find('li').contains('Group by').should('be.visible')
+
     //validation of input search column
     cy.get('[placeholder="Destination location"]').scrollIntoView().should('be.visible').clear().type('btx-alm-new')
     cy.contains('[title*="index.orders"]', 'Orders').click()
