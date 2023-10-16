@@ -643,17 +643,7 @@ describe('Views', () => {
       cy.visit('/inventory_license_plates')
       cy.url().should('include', '/inventory_license_plates')
 
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
-      cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-        const text = $e1.text()
-        if (text.includes('Reset view')) {
-          cy.contains('Reset view').click()
-          cy.contains('.translation_missing', 'Orders').click()
-        } else {
-          cy.get('.border-r > .items-center > img').click()
-        }
-      })
+      cy.resetView()
 
       cy.get('[data-act-table-target="column"][data-column="account"]').scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="license_plate"]').scrollIntoView().should('be.visible')
