@@ -35,7 +35,7 @@
 // https://github.com/boxture/oms/issues/3381: shipper able to create an order
 // https://github.com/boxture/oms/issues/3382: billing not access to Reports
 // https://github.com/boxture/oms/issues/3394: no 2FA for role Super User
-// No ticket                                 : automate 2fa (Super User, Admin and Billing Admin)
+// No ticket                                 : automate 2FA (Super User, Admin and Billing Admin)
 
 
 describe('RBAC visibility', () => {
