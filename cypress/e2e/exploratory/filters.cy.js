@@ -13,9 +13,9 @@ beforeEach(() => {
     password: 'xudrah-zygJa2-topbib'
   })
 })
-describe('Validation of filters in Order Overview', () => {
+describe('Filters Orders overview', () => {
 
-  it('Account Filter', () => {
+  it('Account', () => {
 
     cy.visit('/orders')
     cy.url().should('include', '/orders')
