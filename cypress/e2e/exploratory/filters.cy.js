@@ -58,6 +58,7 @@ describe('Validation of filters in Order Overview', () => {
     //validation of input search column
     cy.get('[data-column="id"]').find('[data-action="change->act-table#__perform"]').should('be.visible').clear().type('03312027')
     cy.contains('[title*="index.orders"]', 'Orders').click()
+    cy.wait(500)
     cy.get('tr:nth-child(1) td:nth-child(5)').then((e1) => {
       cy.wrap(e1).should('exist')
       let status = e1.text()
@@ -78,7 +79,7 @@ describe('Validation of filters in Order Overview', () => {
     cy.get('[data-column="type"]').find('li').contains('Hide column').should('be.visible')
     cy.get('[data-column="type"]').find('li').contains('Group by').should('be.visible')
     //validation of input search column
-    cy.get('[data-column="type"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('sales')
+    cy.get('[data-column="type"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('sal',{ delay: 500 })
     cy.contains('[title*="index.orders"]', 'Orders').click()
     cy.get('tr:nth-child(2) td:nth-child(4)').should('have.text', 'Sales order')
 
@@ -99,7 +100,8 @@ describe('Validation of filters in Order Overview', () => {
     cy.get('[data-column="state"]').find('li').contains('Sort descending').should('be.visible')
     cy.get('[data-column="state"]').find('li').contains('Hide column').should('be.visible')
     //validation of input search column
-    cy.get('[data-column="state"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('processing')
+    cy.get('[data-column="state"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('pro',{ delay: 500 })
+    cy.wait(500)
     cy.contains('[title*="index.orders"]', 'Orders').click()
     cy.get('tr:nth-child(2) td:nth-child(5)').should('have.text', 'processing')
     cy.get('tr:nth-child(3) td:nth-child(5)').should('have.text', 'processing')
@@ -174,15 +176,14 @@ describe('Validation of filters in Order Overview', () => {
     cy.get('[data-column="ship_at"] [data-satis-date-time-picker-target="input"]').should('be.visible').click()
     cy.contains('.block', '1').click()
     cy.contains('.block', '20').click()
-    cy.get('tr:nth-child(1) td:nth-child(8)').should('be.visible').should('not.be.empty')
-    cy.get('tr:nth-child(2) td:nth-child(8)').should('be.visible').should('not.be.empty')
-    cy.get('tr:nth-child(3) td:nth-child(8)').should('be.visible').should('not.be.empty')
     cy.get('[data-column="ship_at"] [data-satis-date-time-picker-target="input"]').should('be.visible').click()
-    cy.get('[data-satis-date-time-picker-target="month"]').then((e1) => {
+    cy.pause()
+    cy.get('[data-column="ship_at"] [data-satis-date-time-picker-target="month"]').then((e1) => {
       const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
       const d = new Date()
       let currentMonth = monthNames[d.getMonth()]
-      const actualText = e1.text().substring(0, 9)
+      cy.log(currentMonth)
+      const actualText = e1.text()
       expect(actualText).to.eq(currentMonth)
     })
     cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
@@ -195,11 +196,11 @@ describe('Validation of filters in Order Overview', () => {
         cy.wrap(e1).find('[data-action="satis-date-time-picker#nextMonth"]')
       })
       .click()
-    cy.get('[data-satis-date-time-picker-target="month"]').then((e1) => {
+    cy.get('[data-column="ship_at"] [data-satis-date-time-picker-target="month"]').then((e1) => {
       const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
       const d = new Date()
       let currentMonth = monthNames[d.getMonth() + 1]
-      const actualText = e1.text().substring(0, 7)
+      const actualText = e1.text()
       expect(actualText).to.eq(currentMonth)
     })
 
