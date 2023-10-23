@@ -11,9 +11,9 @@ module.exports = defineConfig({
   numTestsKeptInMemory: 0,
   // videoRecording: false,
   // watchForFileChanges: false,
-  retries: {
-    runMode: 2,
-  },
+  // retries: {
+  //   runMode: 2,
+  // },
   e2e: {
     baseUrl: "https://oms.staging.boxture.com",
     setupNodeEvents(on, config) {
