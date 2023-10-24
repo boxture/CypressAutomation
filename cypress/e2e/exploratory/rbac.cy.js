@@ -1838,195 +1838,846 @@ describe('RBAC visibility', () => {
 
     })
 
+})
+
+describe.only('RBAC Actions - Create a sales order', () => {
+  it('Account Owner - Allowed', () => {
+
+    cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
+
+    // New sales order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
+
+    // New sales order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
+
+    // Import - Sales Order - Overview dropdown
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Sales order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
+    cy.get('.primary').contains('Create Sales order')
+
+  })
+  it('Reporting - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_reporting@wrap-it.com', password: 'majrir-5zozqa-vempyX'})
+
+    // New sales order - Sidebar
+    cy.visit('/')
+    cy.get('[href="/orders"]').eq(1).click()
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
+    
+    // New sales order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
+    
+    // Import - Sales Order - Overview dropdown
+    cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
+
+    // URL accessible
+    cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
+    cy.get('.primary').contains('Create Sales order')
+
+  })
+  it('Billing - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_billing@wrap-it.com', password: 'tihto1-miqmyr-wimbuJ'})
+
+    // New sales order - Sidebar
+    cy.visit('/')
+    cy.get('[href="/orders"]').eq(1).click()
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New sales order')
+    
+    // New sales order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
+
+    // Import - Sales Order - Overview dropdown
+    cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
+
+    // URL accessible
+    cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
+    cy.get('.primary').contains('Create Sales order')
+
+  })
+  it('Warehouse associate - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
+
+    // New sales order - Sidebar
+    cy.visit('/')
+    cy.get('[href="/orders"]').eq(1).click()
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
+    
+    // New sales order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
+
+    // Import - Sales Order - Overview dropdown
+    cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
+    
+    // URL accessible
+    cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
+    cy.get('.primary').contains('Create Sales order')
+
+  })
+  it('Receiver - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_receiver@wrap-it.com', password: 'fykja3-bobkev-Cogxyn'})
+
+    // New sales order - Sidebar
+    cy.visit('/')
+    cy.get('[href="/orders"]').eq(1).click()
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
+
+    // New sales order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
+
+    // Import - Sales Order - Overview dropdown
+    cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
+
+    // URL accessible
+    cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
+    cy.get('.primary').contains('Create Sales order')
+
+  })
+  it('Pick list planner - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
+
+    // New sales order - Sidebar
+    cy.visit('/')
+    cy.get('[href="/orders"]').eq(1).click()
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
+
+    // New sales order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
+
+    // Import - Sales Order - Overview dropdown
+    cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
+
+    // URL accessible
+    cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
+    cy.get('.primary').contains('Create Sales order')
+
+  })
+  it('Picker - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
+
+    // New sales order - Sidebar
+    cy.visit('/')
+    cy.get('[href="/orders"]').eq(1).click()
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New sales order')
+
+    // New sales order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
+
+    // Import - Sales Order - Overview dropdown
+    cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
+    
+    // URL accessible
+    cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
+    cy.get('.primary').contains('Create Sales order')
+
+  })
+  it('Packer - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_packer@wrap-it.com', password: 'womje7-hEsrij-jaqhys'})
+
+    // New sales order - Sidebar
+    cy.visit('/')
+    cy.get('[href="/orders"]').eq(1).click()
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
+
+    // New sales order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
+
+    // Import - Sales Order - Overview dropdown
+    cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
+
+    // URL accessible
+    cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
+    cy.get('.primary').contains('Create Sales order')
+
+  })
+  it('Shipper - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_shipper@wrap-it.com', password: 'qokseg-rugga0-gApcir'})
+
+    // New sales order - Sidebar
+    cy.visit('/')
+    cy.get('[href="/orders"]').eq(1).click()
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
+
+    // New sales order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
+
+    // Import - Sales Order - Overview dropdown
+    cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
+
+    // URL accessible
+    cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
+    cy.get('.primary').contains('Create Sales order')
+
   })
 
-  describe.only('RBAC Actions - Create a sales order', () => {
-    it('Account Owner - Allowed', () => {
+})
+describe('RBAC Actions - Create a purchase order', () => {
+  it('Account Owner - Allowed', () => {
 
-      cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
+    cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
 
-      // New sales order - Sidebar
-      cy.visit('/')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
+    // New purchase order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
 
-      // New sales order - Overview dropdown
-      cy.visit('/orders')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
+    // New purchase order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
 
-      // Import - Sales Order - Overview dropdown
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Sales order')
+    // URL accessible
+    cy.visit('/orders/new?type=purchase_order').contains('h3', 'Purchase order')
+    cy.get('.primary').contains('Create Purchase order')
 
-      // URL accessible
-      cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
-      cy.get('.primary').contains('Create Sales order')
-
-    })
-    it('Reporting - Not allowed', () => {
-
-      cy.login({ email: 'wrap-it_reporting@wrap-it.com', password: 'majrir-5zozqa-vempyX'})
-
-      // New sales order - Sidebar
-      cy.visit('/')
-      cy.get('[href="/orders"]').eq(1).click()
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
-      
-      // New sales order - Overview dropdown
-      cy.visit('/orders')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-      
-      // Import - Sales Order - Overview dropdown
-      cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
-
-      // URL accessible
-      cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
-      cy.get('.primary').contains('Create Sales order')
-
-    })
-    it('Billing - Not allowed', () => {
-
-      cy.login({ email: 'wrap-it_billing@wrap-it.com', password: 'tihto1-miqmyr-wimbuJ'})
-
-      // New sales order - Sidebar
-      cy.visit('/')
-      cy.get('[href="/orders"]').eq(1).click()
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New sales order')
-      
-      // New sales order - Overview dropdown
-      cy.visit('/orders')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-
-      // Import - Sales Order - Overview dropdown
-      cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
-
-      // URL accessible
-      cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
-      cy.get('.primary').contains('Create Sales order')
-
-    })
-    it('Warehouse associate - Not allowed', () => {
-
-      cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
-
-      // New sales order - Sidebar
-      cy.visit('/')
-      cy.get('[href="/orders"]').eq(1).click()
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
-      
-      // New sales order - Overview dropdown
-      cy.visit('/orders')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-
-      // Import - Sales Order - Overview dropdown
-      cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
-      
-      // URL accessible
-      cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
-      cy.get('.primary').contains('Create Sales order')
-
-    })
-    it('Receiver - Not allowed', () => {
-
-      cy.login({ email: 'wrap-it_receiver@wrap-it.com', password: 'fykja3-bobkev-Cogxyn'})
-
-      // New sales order - Sidebar
-      cy.visit('/')
-      cy.get('[href="/orders"]').eq(1).click()
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
-
-      // New sales order - Overview dropdown
-      cy.visit('/orders')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-
-      // Import - Sales Order - Overview dropdown
-      cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
-
-      // URL accessible
-      cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
-      cy.get('.primary').contains('Create Sales order')
-
-    })
-    it('Pick list planner - Not allowed', () => {
-
-      cy.login({ email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
-
-      // New sales order - Sidebar
-      cy.visit('/')
-      cy.get('[href="/orders"]').eq(1).click()
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
-
-      // New sales order - Overview dropdown
-      cy.visit('/orders')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-
-      // Import - Sales Order - Overview dropdown
-      cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
-
-      // URL accessible
-      cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
-      cy.get('.primary').contains('Create Sales order')
-
-    })
-    it('Picker - Not allowed', () => {
-
-      cy.login({ email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
-
-      // New sales order - Sidebar
-      cy.visit('/')
-      cy.get('[href="/orders"]').eq(1).click()
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New sales order')
-
-      // New sales order - Overview dropdown
-      cy.visit('/orders')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-
-      // Import - Sales Order - Overview dropdown
-      cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
-      
-      // URL accessible
-      cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
-      cy.get('.primary').contains('Create Sales order')
-
-    })
-    it('Packer - Not allowed', () => {
-
-      cy.login({ email: 'wrap-it_packer@wrap-it.com', password: 'womje7-hEsrij-jaqhys'})
-
-      // New sales order - Sidebar
-      cy.visit('/')
-      cy.get('[href="/orders"]').eq(1).click()
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
-
-      // New sales order - Overview dropdown
-      cy.visit('/orders')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-
-      // Import - Sales Order - Overview dropdown
-      cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
-
-      // URL accessible
-      cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
-      cy.get('.primary').contains('Create Sales order')
-
-    })
-    it('Shipper - Not allowed', () => {
-
-      cy.login({ email: 'wrap-it_shipper@wrap-it.com', password: 'qokseg-rugga0-gApcir'})
-
-      // New sales order - Sidebar
-      cy.visit('/')
-      cy.get('[href="/orders"]').eq(1).click()
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
- 
-      // New sales order - Overview dropdown
-      cy.visit('/orders')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-
-      // Import - Sales Order - Overview dropdown
-      cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
-
-      // URL accessible
-      cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
-      cy.get('.primary').contains('Create Sales order')
-
-    })
   })
+  it('Reporting - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_reporting@wrap-it.com', password: 'majrir-5zozqa-vempyX'})
+
+    // New purchase order - Sidebar
+    cy.visit('/')
+    cy.get('[href="/orders"]').eq(1).click()
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
+    
+    // New purchase order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=purchase_order').contains('h3', 'Purchase order')
+    cy.get('.primary').contains('Create Purchase order')
+
+  })
+  it('Billing - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_billing@wrap-it.com', password: 'tihto1-miqmyr-wimbuJ'})
+
+    // New purchase order - Sidebar
+    cy.visit('/')
+    cy.get('[href="/orders"]').eq(1).click()
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
+    
+    // New purchase order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=purchase_order').contains('h3', 'Purchase order')
+    cy.get('.primary').contains('Create Purchase order')
+
+  })
+  it('Warehouse associate - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
+
+    // New purchase order - Sidebar
+    cy.visit('/')
+    cy.get('[href="/orders"]').eq(1).click()
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
+    
+    // New purchase order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
+    
+    // URL accessible
+    cy.visit('/orders/new?type=purchase_order').contains('h3', 'Purchase order')
+    cy.get('.primary').contains('Create Purchase order')
+
+  })
+  it('Receiver - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_receiver@wrap-it.com', password: 'fykja3-bobkev-Cogxyn'})
+
+    // New purchase order - Sidebar
+    cy.visit('/')
+    cy.get('[href="/orders"]').eq(1).click()
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
+
+    // New purchase order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=purchase_order').contains('h3', 'Purchase order')
+    cy.get('.primary').contains('Create Purchase order')
+
+  })
+  it('Pick list planner - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
+
+    // New purchase order - Sidebar
+    cy.visit('/')
+    cy.get('[href="/orders"]').eq(1).click()
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
+
+    // New purchase order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=purchase_order').contains('h3', 'Purchase order')
+    cy.get('.primary').contains('Create Purchase order')
+
+  })
+  it('Picker - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
+
+    // New purchase order - Sidebar
+    cy.visit('/')
+    cy.get('[href="/orders"]').eq(1).click()
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
+
+    // New purchase order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
+    
+    // URL accessible
+    cy.visit('/orders/new?type=purchase_order').contains('h3', 'Purchase order')
+    cy.get('.primary').contains('Create Purchase order')
+
+  })
+  it('Packer - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_packer@wrap-it.com', password: 'womje7-hEsrij-jaqhys'})
+
+    // New purchase order - Sidebar
+    cy.visit('/')
+    cy.get('[href="/orders"]').eq(1).click()
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
+
+    // New purchase order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=purchase_order').contains('h3', 'Purchase order')
+    cy.get('.primary').contains('Create Purchase order')
+
+  })
+  it('Shipper - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_shipper@wrap-it.com', password: 'qokseg-rugga0-gApcir'})
+
+    // New purchase order - Sidebar
+    cy.visit('/')
+    cy.get('[href="/orders"]').eq(1).click()
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
+
+    // New purchase order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=purchase_order').contains('h3', 'Purchase order')
+    cy.get('.primary').contains('Create Purchase order')
+
+  })
+})
+
+describe('RBAC Actions - Create a return order', () => {
+  it('Account Owner - Allowed', () => {
+
+    cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
+
+    // New return order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New return order')
+
+    // New return order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=return_order').contains('h3', 'Return order')
+    cy.get('.primary').contains('Create Return order')
+
+    // Order detail - Context menu
+
+  })
+  it('Reporting - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_reporting@wrap-it.com', password: 'majrir-5zozqa-vempyX'})
+
+    // New return order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New return order')
+    
+    // New return order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=return_order').contains('h3', 'Return order')
+    cy.get('.primary').contains('Create Return order')
+
+    // Order detail - Context menu
+
+  })
+  it('Billing - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_billing@wrap-it.com', password: 'tihto1-miqmyr-wimbuJ'})
+
+    // New return order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New return order')
+    
+    // New return order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=return_order').contains('h3', 'Return order')
+    cy.get('.primary').contains('Create Return order')
+
+    // Order detail - Context menu
+
+  })
+  it('Warehouse associate - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
+
+    // New return order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New return order')
+    
+    // New return order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
+    
+    // URL accessible
+    cy.visit('/orders/new?type=return_order').contains('h3', 'Return order')
+    cy.get('.primary').contains('Create Return order')
+
+    // Order detail - Context menu
+
+  })
+  it('Receiver - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_receiver@wrap-it.com', password: 'fykja3-bobkev-Cogxyn'})
+
+    // New return order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New return order')
+
+    // New return order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=return_order').contains('h3', 'Return order')
+    cy.get('.primary').contains('Create Return order')
+
+    // Order detail - Context menu
+
+  })
+  it('Pick list planner - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
+
+    // New return order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New return order')
+
+    // New return order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=return_order').contains('h3', 'Return order')
+    cy.get('.primary').contains('Create Return order')
+
+    // Order detail - Context menu
+
+  })
+  it('Picker - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
+
+    // New return order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New return order')
+
+    // New return order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
+    
+    // URL accessible
+    cy.visit('/orders/new?type=return_order').contains('h3', 'Return order')
+    cy.get('.primary').contains('Create Return order')
+
+    // Order detail - Context menu
+
+  })
+  it('Packer - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_packer@wrap-it.com', password: 'womje7-hEsrij-jaqhys'})
+
+    // New return order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New return order')
+
+    // New return order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=return_order').contains('h3', 'Return order')
+    cy.get('.primary').contains('Create Return order')
+
+    // Order detail - Context menu
+
+  })
+  it('Shipper - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_shipper@wrap-it.com', password: 'qokseg-rugga0-gApcir'})
+
+    // New return order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New return order')
+
+    // New return order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=return_order').contains('h3', 'Return order')
+    cy.get('.primary').contains('Create Return order')
+
+    // Order detail - Context menu
+
+  })
+})
+
+describe('RBAC Actions - Create a transfer order', () => {
+  it('Account Owner - Allowed', () => {
+
+    cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
+
+    // New transfer order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New transfer order')
+
+    // New transfer order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New transfer order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=transfer_order').contains('h3', 'Transfer order')
+    cy.get('.primary').contains('Create Transfer order')
+
+  })
+  it('Reporting - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_reporting@wrap-it.com', password: 'majrir-5zozqa-vempyX'})
+
+    // New transfer order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New transfer order')
+    
+    // New transfer order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New transfer order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=transfer_order').contains('h3', 'Transfer order')
+    cy.get('.primary').contains('Create Transfer order')
+
+  })
+  it.skip('Billing - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_billing@wrap-it.com', password: 'tihto1-miqmyr-wimbuJ'})
+
+    // New transfer order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').should('not.exist') // find unique element
+    
+    // New transfer order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').should('not.exist') // find unique element
+
+    // URL accessible
+    cy.visit('/orders/new?type=transfer_order')
+    cy.get('.primary').should('not.exist')
+
+  })
+  it('Warehouse associate - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
+
+    // New transfer order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New transfer order')
+    
+    // New transfer order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New transfer order')
+    
+    // URL accessible
+    cy.visit('/orders/new?type=transfer_order').contains('h3', 'Transfer order')
+    cy.get('.primary').contains('Create Transfer order')
+
+  })
+  it('Receiver - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_receiver@wrap-it.com', password: 'fykja3-bobkev-Cogxyn'})
+
+    // New transfer order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New transfer order')
+
+    // New transfer order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New transfer order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=transfer_order').contains('h3', 'Transfer order')
+    cy.get('.primary').contains('Create Transfer order')
+
+  })
+  it('Pick list planner - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
+
+    // New transfer order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New transfer order')
+
+    // New transfer order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New transfer order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=transfer_order').contains('h3', 'Transfer order')
+    cy.get('.primary').contains('Create Transfer order')
+
+  })
+  it.skip('Picker - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
+
+    // New transfer order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').should('not.exist') // find unique element
+    
+    // New transfer order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').should('not.exist') // find unique element
+    
+    // URL accessible
+    cy.visit('/orders/new?type=transfer_order')
+    cy.get('.primary').should('not.exist')
+
+  })
+  it('Packer - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_packer@wrap-it.com', password: 'womje7-hEsrij-jaqhys'})
+
+    // New transfer order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New transfer order')
+
+    // New transfer order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New transfer order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=transfer_order').contains('h3', 'Transfer order')
+    cy.get('.primary').contains('Create Transfer order')
+
+  })
+  it('Shipper - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_shipper@wrap-it.com', password: 'qokseg-rugga0-gApcir'})
+
+    // New transfer order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New transfer order')
+
+    // New transfer order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New transfer order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=transfer_order').contains('h3', 'Transfer order')
+    cy.get('.primary').contains('Create Transfer order')
+
+  })
+})
+
+describe('RBAC Actions - Create a scrap order', () => {
+  it('Account Owner - Allowed', () => {
+
+    cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
+
+    // New scrap order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(5).contains('New scrap order')
+
+    // New scrap order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=scrap_order').contains('h3', 'Scrap order')
+    cy.get('.primary').contains('Create Scrap order')
+
+  })
+  it('Reporting - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_reporting@wrap-it.com', password: 'majrir-5zozqa-vempyX'})
+
+    // New scrap order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(5).contains('New scrap order')
+    
+    // New scrap order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=scrap_order').contains('h3', 'Scrap order')
+    cy.get('.primary').contains('Create Scrap order')
+
+  })
+  it('Billing - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_billing@wrap-it.com', password: 'tihto1-miqmyr-wimbuJ'})
+
+    // New scrap order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New scrap order')
+    
+    // New scrap order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=scrap_order')
+    cy.get('.primary').contains('Create Scrap order')
+
+  })
+  it('Warehouse associate - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
+
+    // New scrap order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(5).contains('New scrap order')
+    
+    // New scrap order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
+    
+    // URL accessible
+    cy.visit('/orders/new?type=scrap_order').contains('h3', 'Scrap order')
+    cy.get('.primary').contains('Create Scrap order')
+
+  })
+  it('Receiver - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_receiver@wrap-it.com', password: 'fykja3-bobkev-Cogxyn'})
+
+    // New scrap order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(5).contains('New scrap order')
+
+    // New scrap order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=scrap_order').contains('h3', 'Scrap order')
+    cy.get('.primary').contains('Create Scrap order')
+
+  })
+  it('Pick list planner - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
+
+    // New scrap order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(5).contains('New scrap order')
+
+    // New scrap order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=scrap_order').contains('h3', 'Scrap order')
+    cy.get('.primary').contains('Create Scrap order')
+
+  })
+  it('Picker - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
+
+    // New scrap order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New scrap order')
+    
+    // New scrap order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
+    
+    // URL accessible
+    cy.visit('/orders/new?type=scrap_order')
+    cy.get('.primary').contains('Create Scrap order')
+
+  })
+  it('Packer - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_packer@wrap-it.com', password: 'womje7-hEsrij-jaqhys'})
+
+    // New scrap order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(5).contains('New scrap order')
+
+    // New scrap order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=scrap_order').contains('h3', 'Scrap order')
+    cy.get('.primary').contains('Create Scrap order')
+
+  })
+  it('Shipper - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_shipper@wrap-it.com', password: 'qokseg-rugga0-gApcir'})
+
+    // New scrap order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(5).contains('New scrap order')
+
+    // New scrap order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=scrap_order').contains('h3', 'Scrap order')
+    cy.get('.primary').contains('Create Scrap order')
+
+  })
+})
+
