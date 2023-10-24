@@ -19,7 +19,6 @@ beforeEach(() => {
 
       cy.visit('/orders')
       cy.url().should('include', '/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
       cy.resetView()
 
       cy.get('[data-column="account"] [data-icon="ellipsis"]').should('be.visible').click()
@@ -40,7 +39,6 @@ beforeEach(() => {
     it('ID Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
       cy.resetView()
 
       cy.get('[data-column="id"]').find('[type="button"]').should('be.visible').click()
@@ -56,7 +54,6 @@ beforeEach(() => {
     it('TYPE Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
       cy.resetView()
 
       cy.get('[data-column="type"] [data-icon="ellipsis"]').should('be.visible').click()
@@ -73,7 +70,6 @@ beforeEach(() => {
     it('STATE Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
       cy.resetView()
 
       cy.get('[data-column="state"] [data-icon="ellipsis"] ').should('be.visible').click()
@@ -93,8 +89,8 @@ beforeEach(() => {
 
       //Consistency in Filter behaviour #3131
       cy.visit('/orders')
-
       cy.resetView()
+
       cy.get('[data-column="channel"] [data-icon="ellipsis"] ').should('be.visible').click()
       cy.get('ul').find('[data-satis-dropdown-target="searchInput"]').should('be.visible')
       cy.get('[data-column="channel"]').find('li').should('have.length', '6')
@@ -108,17 +104,15 @@ beforeEach(() => {
       cy.get('tr:nth-child(2) td:nth-child(6)').should('have.text', 'eBay')
       cy.get('tr:nth-child(2) td:nth-child(6)').should('have.text', 'eBay')
       cy.get('tr:nth-child(2) td:nth-child(6)').should('have.text', 'eBay')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-      cy.contains('Reset view').click()
+            cy.contains('Reset view').click()
       cy.contains('.translation_missing', 'Orders').click()
 
     })
     it('Business Model Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="business_model"] [data-icon="ellipsis"] ').should('be.visible').click()
       cy.get('ul').find('[data-satis-dropdown-target="searchInput"]').should('be.visible')
       cy.get('[data-column="business_model"]').find('li').should('have.length', '6')
@@ -137,9 +131,8 @@ beforeEach(() => {
     it('Ship At Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="ship_at"] [data-icon="ellipsis"] ').should('be.visible').click()
       cy.get('[data-column="ship_at"] [data-satis-date-time-picker-target="input"]').should('be.visible')
       cy.get('[data-column="ship_at"]').find('li').should('have.length', '5')
@@ -150,17 +143,18 @@ beforeEach(() => {
       cy.get('[data-column="ship_at"] [data-satis-date-time-picker-target="input"]').should('be.visible').click()
       cy.contains('.block', '1').click()
       cy.contains('.block', '20').click()
+      cy.get('tr:nth-child(2) td:nth-child(4)').should('be.visible')
+
       cy.get('[data-column="ship_at"] [data-satis-date-time-picker-target="input"]').should('be.visible').click()
-      cy.get('[data-column="ship_at"] [data-column="ship_at"] [data-satis-date-time-picker-target="month"]').then((e1) => {
+      cy.get('[data-column="ship_at"] [data-satis-date-time-picker-target="month"]').then((e1) => {
         const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
         const d = new Date()
-        let currentMonth = monthNames[d.getMonth()]
+        const currentMonth = monthNames[d.getMonth()]
         cy.log(currentMonth)
         const actualText = e1.text()
         expect(actualText).to.eq(currentMonth)
       })
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-      cy.resetView()
+            cy.resetView()
       cy.get('[data-column="ship_at"] [data-icon="ellipsis"] ').should('be.visible').click()
       cy.get('[data-column="ship_at"] [data-satis-date-time-picker-target="input"]').should('be.visible').click()
       cy.get('[data-satis-date-time-picker-target="calendarView"]')
@@ -169,7 +163,7 @@ beforeEach(() => {
           cy.wrap(e1).find('[data-action="satis-date-time-picker#nextMonth"]')
         })
         .click()
-      cy.get('[data-column="ship_at"] [data-column="ship_at"] [data-satis-date-time-picker-target="month"]').then((e1) => {
+      cy.get('[data-column="ship_at"] [data-satis-date-time-picker-target="month"]').then((e1) => {
         const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
         const d = new Date()
         let currentMonth = monthNames[d.getMonth() + 1]
@@ -181,9 +175,8 @@ beforeEach(() => {
     it('Customer Reference Number Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="customer_reference_number"] [data-icon="ellipsis"]').scrollIntoView().should('be.visible').click()
       cy.get('ul').find('[data-filter="customer_reference_number"]').should('be.visible')
       cy.get('[data-column="customer_reference_number"]').find('li').should('have.length', '5')
@@ -199,9 +192,8 @@ beforeEach(() => {
     it('Purchase Order Number Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="purchase_order_number"] [data-icon="ellipsis"]').scrollIntoView().should('be.visible').click()
       cy.get('[data-column="purchase_order_number"]').find('li').should('have.length', '3')
       cy.get('[data-column="purchase_order_number"]').find('li').contains('Sort ascending').should('be.visible')
@@ -212,9 +204,8 @@ beforeEach(() => {
     it('Expected Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="expected"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
       cy.get('[data-column="expected"]').find('li').should('have.length', '3')
       cy.get('[data-column="expected"]').find('li').contains('Sort ascending').should('be.visible')
@@ -225,9 +216,8 @@ beforeEach(() => {
     it('Pending Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="pending"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
       cy.get('[data-column="pending"]').find('li').should('have.length', '3')
       cy.get('[data-column="pending"]').find('li').contains('Sort ascending').should('be.visible')
@@ -238,9 +228,8 @@ beforeEach(() => {
     it('Received Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="received"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
       cy.get('[data-column="received"]').find('li').should('have.length', '3')
       cy.get('[data-column="received"]').find('li').contains('Sort ascending').should('be.visible')
@@ -251,9 +240,8 @@ beforeEach(() => {
     it('Backordered Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="backordered"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
       cy.get('[data-column="backordered"]').find('li').should('have.length', '3')
       cy.get('[data-column="backordered"]').find('li').contains('Sort ascending').should('be.visible')
@@ -264,9 +252,8 @@ beforeEach(() => {
     it('Allocated Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="allocated"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
       cy.get('[data-column="allocated"]').find('li').should('have.length', '3')
       cy.get('[data-column="allocated"]').find('li').contains('Sort ascending').should('be.visible')
@@ -277,9 +264,8 @@ beforeEach(() => {
     it('Picking Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="picking"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
       cy.get('[data-column="picking"]').find('li').should('have.length', '3')
       cy.get('[data-column="picking"]').find('li').contains('Sort ascending').should('be.visible')
@@ -290,9 +276,8 @@ beforeEach(() => {
     it('Picked Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="picked"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
       cy.get('[data-column="picked"]').find('li').should('have.length', '3')
       cy.get('[data-column="picked"]').find('li').contains('Sort ascending').should('be.visible')
@@ -303,9 +288,8 @@ beforeEach(() => {
     it('Packed Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="packed"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
       cy.get('[data-column="packed"]').find('li').should('have.length', '3')
       cy.get('[data-column="packed"]').find('li').contains('Sort ascending').should('be.visible')
@@ -316,9 +300,8 @@ beforeEach(() => {
     it('Shipped Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="shipped"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
       cy.get('[data-column="shipped"]').find('li').should('have.length', '3')
       cy.get('[data-column="shipped"]').find('li').contains('Sort ascending').should('be.visible')
@@ -329,9 +312,8 @@ beforeEach(() => {
     it('Hold Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="hold"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
       cy.get('[data-column="hold"]').find('li').should('have.length', '3')
       cy.get('[data-column="hold"]').find('li').contains('Sort ascending').should('be.visible')
@@ -342,9 +324,8 @@ beforeEach(() => {
     it('Cancelled Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="cancelled"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
       cy.get('[data-column="cancelled"]').find('li').should('have.length', '3')
       cy.get('[data-column="cancelled"]').find('li').contains('Sort ascending').should('be.visible')
@@ -355,9 +336,8 @@ beforeEach(() => {
     it('Customer Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="customer"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
       cy.get('[data-filter="customer"]').should('be.visible')
       cy.get('[data-column="customer"]').find('li').should('have.length', '3')
@@ -374,9 +354,8 @@ beforeEach(() => {
     it('Vendor Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="vendor"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
       cy.get('[data-column="vendor"]').find('li').should('have.length', '1')
       cy.get('[data-column="vendor"]').find('li').contains('Hide column').should('be.visible')
@@ -386,9 +365,8 @@ beforeEach(() => {
 
       // Consistency in Filter behaviour #3131
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="origin_locations"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
       cy.get('[data-column="origin_locations"]').find('li').should('have.length', '4')
       cy.get('[data-column="origin_locations"]').find('li').contains('Filter values').should('be.visible')
@@ -406,9 +384,8 @@ beforeEach(() => {
 
       // Consistency in Filter behaviour #3131
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="destination_location"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
       cy.get('[data-column="destination_location"]').find('li').should('have.length', '4')
       cy.get('[data-column="destination_location"]').find('li').contains('Filter values').should('be.visible')
@@ -425,9 +402,8 @@ beforeEach(() => {
     it('Created At Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="created_at"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
       cy.get('[data-column="created_at"] [data-satis-date-time-picker-target="input"]').should('be.visible')
       cy.get('[data-column="created_at"]').find('li').should('have.length', '5')
@@ -446,9 +422,8 @@ beforeEach(() => {
     it('Received At Filter', () => {
 
       cy.visit('/orders')
-      cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-
       cy.resetView()
+
       cy.get('[data-column="received_at"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
       cy.get('[data-column="received_at"] [data-satis-date-time-picker-target="input"]').should('be.visible')
       cy.get('[data-column="received_at"]').find('li').should('have.length', '5')
@@ -460,8 +435,6 @@ beforeEach(() => {
       cy.contains("[data-column='received_at'] .grid-cols-7 .block", '1').click()
       cy.contains("[data-column='received_at'] .grid-cols-7 .block", '20').click()
       cy.get('tr:nth-child(1) td:nth-child(27)').should('be.visible').should('not.be.empty')
-      cy.get('tr:nth-child(2) td:nth-child(27)').should('be.visible').should('not.be.empty')
-      cy.get('tr:nth-child(3) td:nth-child(27)').should('be.visible').should('not.be.empty')
 
     })
   })

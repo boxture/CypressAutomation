@@ -39,14 +39,19 @@ Cypress.Commands.add('login', (user) => {
 Cypress.Commands.add('resetView', (OrderElement) => {
   cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
   cy.wait(500)
-  cy.get('[data-satis-menu-submenu-placement="bottom"] li').then(($e1) => {
-    const text = $e1.text()
-    if (text.includes('Reset view')) {
+  cy.get('[aria-label="Tabs"] .sts-menu__items').eq(0).then(($e1) => {
+    cy.wrap($e1).find('li').then($e2=>{
+    const text1 = $e2.text()
+    if (text1.includes('Reset view')) {
+      cy.log(text1)
       cy.contains('Reset view').click()
+      cy.wait(500)
       cy.contains('.translation_missing', 'Orders').click()
     } else {
       cy.get('.border-r > .items-center > img').click()
     }
+    })
+
   })
 })
 
