@@ -1,7 +1,7 @@
 // TEST CASES:
 // 1. Verify the layout and behaviour of all filters in Orders overview [DONE]
 // 2. Partial search [PENDING]
-// 3. Auto-Select [PENDING]
+// 3. Auto-Select [DONE]
 
 // KNOWN ISSUES:
 // https://github.com/boxture/oms/issues/3131 Consistency in Filter behaviour
