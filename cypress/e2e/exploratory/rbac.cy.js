@@ -1840,330 +1840,189 @@ describe('RBAC visibility', () => {
 
   })
 
-  describe.only('RBAC Actions', () => {
-    it('Account Owner - Create a sales order', () => {
+  describe.only('RBAC Actions - Create a sales order', () => {
+    it('Account Owner - Allowed', () => {
 
       cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
 
       // New sales order - Sidebar
       cy.visit('/')
-      cy.get('[href="/orders"]').eq(1).click()
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New transfer order')
       cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New return order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(5).contains('New scrap order')
 
       // New sales order - Overview dropdown
       cy.visit('/orders')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New transfer order')
       cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
 
       // Import - Sales Order - Overview dropdown
       cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Sales order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Purchase order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Transfer order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Return order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Scrap order')
 
       // URL accessible
       cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
       cy.get('.primary').contains('Create Sales order')
 
     })
-    it('Reporting - Create a sales order', () => {
+    it('Reporting - Not allowed', () => {
 
       cy.login({ email: 'wrap-it_reporting@wrap-it.com', password: 'majrir-5zozqa-vempyX'})
 
       // New sales order - Sidebar
       cy.visit('/')
       cy.get('[href="/orders"]').eq(1).click()
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New transfer order')
       cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New return order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(5).contains('New scrap order')
-
+      
       // New sales order - Overview dropdown
       cy.visit('/orders')
-      // can remove mouseover: >    cy.get('.mt-2 .sts-menu__button').trigger('mouseover')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New transfer order')
       cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
-
-
+      
       // Import - Sales Order - Overview dropdown
-      //cy.get('.mt-2 .sts-menu__button').trigger('mouseover')
-      //cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('Import').trigger('mouseover')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Sales order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Purchase order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Transfer order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Return order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Scrap order')
+      cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
 
       // URL accessible
       cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
       cy.get('.primary').contains('Create Sales order')
 
     })
-    it('Billing - Create a sales order', () => {
+    it('Billing - Not allowed', () => {
 
       cy.login({ email: 'wrap-it_billing@wrap-it.com', password: 'tihto1-miqmyr-wimbuJ'})
 
       // New sales order - Sidebar
       cy.visit('/')
       cy.get('[href="/orders"]').eq(1).click()
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New transfer order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New return order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(5).contains('New scrap order')
-
+      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New sales order')
+      
       // New sales order - Overview dropdown
       cy.visit('/orders')
-      // can remove mouseover: >    cy.get('.mt-2 .sts-menu__button').trigger('mouseover')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New transfer order')
       cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
-
 
       // Import - Sales Order - Overview dropdown
-      //cy.get('.mt-2 .sts-menu__button').trigger('mouseover')
-      //cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('Import').trigger('mouseover')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Sales order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Purchase order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Transfer order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Return order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Scrap order')
+      cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
 
       // URL accessible
       cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
       cy.get('.primary').contains('Create Sales order')
 
     })
-    it('Warehouse associate - Create a sales order', () => {
+    it('Warehouse associate - Not allowed', () => {
 
       cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
 
       // New sales order - Sidebar
       cy.visit('/')
       cy.get('[href="/orders"]').eq(1).click()
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New transfer order')
       cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New return order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(5).contains('New scrap order')
-
+      
       // New sales order - Overview dropdown
       cy.visit('/orders')
-      // can remove mouseover: >    cy.get('.mt-2 .sts-menu__button').trigger('mouseover')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New transfer order')
       cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
-
 
       // Import - Sales Order - Overview dropdown
-      //cy.get('.mt-2 .sts-menu__button').trigger('mouseover')
-      //cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('Import').trigger('mouseover')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Sales order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Purchase order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Transfer order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Return order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Scrap order')
-
+      cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
+      
       // URL accessible
       cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
       cy.get('.primary').contains('Create Sales order')
 
     })
-    it('Receiver - Create a sales order', () => {
+    it('Receiver - Not allowed', () => {
 
       cy.login({ email: 'wrap-it_receiver@wrap-it.com', password: 'fykja3-bobkev-Cogxyn'})
 
       // New sales order - Sidebar
       cy.visit('/')
       cy.get('[href="/orders"]').eq(1).click()
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New transfer order')
       cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New return order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(5).contains('New scrap order')
 
       // New sales order - Overview dropdown
       cy.visit('/orders')
-      // can remove mouseover: >    cy.get('.mt-2 .sts-menu__button').trigger('mouseover')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New transfer order')
       cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
-
 
       // Import - Sales Order - Overview dropdown
-      //cy.get('.mt-2 .sts-menu__button').trigger('mouseover')
-      //cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('Import').trigger('mouseover')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Sales order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Purchase order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Transfer order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Return order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Scrap order')
+      cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
 
       // URL accessible
       cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
       cy.get('.primary').contains('Create Sales order')
 
     })
-    it('Pick list planner - Create a sales order', () => {
+    it('Pick list planner - Not allowed', () => {
 
       cy.login({ email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
 
       // New sales order - Sidebar
       cy.visit('/')
       cy.get('[href="/orders"]').eq(1).click()
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New transfer order')
       cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New return order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(5).contains('New scrap order')
 
       // New sales order - Overview dropdown
       cy.visit('/orders')
-      // can remove mouseover: >    cy.get('.mt-2 .sts-menu__button').trigger('mouseover')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New transfer order')
       cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
-
 
       // Import - Sales Order - Overview dropdown
-      //cy.get('.mt-2 .sts-menu__button').trigger('mouseover')
-      //cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('Import').trigger('mouseover')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Sales order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Purchase order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Transfer order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Return order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Scrap order')
+      cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
 
       // URL accessible
       cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
       cy.get('.primary').contains('Create Sales order')
 
     })
-    it('Picker - Create a sales order', () => {
+    it('Picker - Not allowed', () => {
 
       cy.login({ email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
 
       // New sales order - Sidebar
       cy.visit('/')
       cy.get('[href="/orders"]').eq(1).click()
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New transfer order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New return order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(5).contains('New scrap order')
+      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New sales order')
 
       // New sales order - Overview dropdown
       cy.visit('/orders')
-      // can remove mouseover: >    cy.get('.mt-2 .sts-menu__button').trigger('mouseover')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New transfer order')
       cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
-
 
       // Import - Sales Order - Overview dropdown
-      //cy.get('.mt-2 .sts-menu__button').trigger('mouseover')
-      //cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('Import').trigger('mouseover')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Sales order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Purchase order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Transfer order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Return order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Scrap order')
-
+      cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
+      
       // URL accessible
       cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
       cy.get('.primary').contains('Create Sales order')
 
     })
-    it('Packer - Create a sales order', () => {
+    it('Packer - Not allowed', () => {
 
       cy.login({ email: 'wrap-it_packer@wrap-it.com', password: 'womje7-hEsrij-jaqhys'})
 
       // New sales order - Sidebar
       cy.visit('/')
       cy.get('[href="/orders"]').eq(1).click()
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New transfer order')
       cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New return order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(5).contains('New scrap order')
 
       // New sales order - Overview dropdown
       cy.visit('/orders')
-      // can remove mouseover: >    cy.get('.mt-2 .sts-menu__button').trigger('mouseover')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New transfer order')
       cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
-
 
       // Import - Sales Order - Overview dropdown
-      //cy.get('.mt-2 .sts-menu__button').trigger('mouseover')
-      //cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('Import').trigger('mouseover')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Sales order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Purchase order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Transfer order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Return order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Scrap order')
+      cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
 
       // URL accessible
       cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
       cy.get('.primary').contains('Create Sales order')
 
     })
-    it('Shipper - Create a sales order', () => {
+    it('Shipper - Not allowed', () => {
 
       cy.login({ email: 'wrap-it_shipper@wrap-it.com', password: 'qokseg-rugga0-gApcir'})
 
       // New sales order - Sidebar
       cy.visit('/')
       cy.get('[href="/orders"]').eq(1).click()
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New transfer order')
       cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New return order')
-      cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(5).contains('New scrap order')
-
+ 
       // New sales order - Overview dropdown
       cy.visit('/orders')
-      // can remove mouseover: >    cy.get('.mt-2 .sts-menu__button').trigger('mouseover')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New transfer order')
       cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
-      cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
-
 
       // Import - Sales Order - Overview dropdown
-      //cy.get('.mt-2 .sts-menu__button').trigger('mouseover')
-      //cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('Import').trigger('mouseover')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Sales order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Purchase order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Transfer order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Return order')
-      cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Scrap order')
+      cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
 
       // URL accessible
       cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
