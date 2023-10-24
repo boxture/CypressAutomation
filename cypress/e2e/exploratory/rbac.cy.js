@@ -1840,7 +1840,7 @@ describe('RBAC visibility', () => {
 
 })
 
-describe.only('RBAC Actions - Create a sales order', () => {
+describe('RBAC Actions - Create a sales order', () => {
   it('Account Owner - Allowed', () => {
 
     cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
