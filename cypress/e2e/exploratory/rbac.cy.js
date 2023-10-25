@@ -1839,8 +1839,24 @@ describe('RBAC visibility', () => {
     })
 
 })
-
 describe('RBAC Actions - Create a sales order', () => {
+  it('Regular - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_regular_user@wrap-it.com', password: 'hugzap-4comny-Sizkat'})
+
+    // New sales order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
+
+    // New sales order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
+    cy.get('.primary').contains('Create Sales order')
+
+  })
   it('Account Owner - Allowed', () => {
 
     cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
@@ -2029,9 +2045,26 @@ describe('RBAC Actions - Create a sales order', () => {
     cy.get('.primary').contains('Create Sales order')
 
   })
-
 })
+
 describe('RBAC Actions - Create a purchase order', () => {
+  it('Regular - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_regular_user@wrap-it.com', password: 'hugzap-4comny-Sizkat'})
+
+    // New purchase order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
+
+    // New purchase order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=purchase_order').contains('h3', 'Purchase order')
+    cy.get('.primary').contains('Create Purchase order')
+
+  })
   it('Account Owner - Allowed', () => {
 
     cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
@@ -2196,6 +2229,23 @@ describe('RBAC Actions - Create a purchase order', () => {
 })
 
 describe('RBAC Actions - Create a return order', () => {
+  it('Regular - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_regular_user@wrap-it.com', password: 'hugzap-4comny-Sizkat'})
+
+    // New return order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New return order')
+
+    // New return order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=return_order').contains('h3', 'Return order')
+    cy.get('.primary').contains('Create Return order')
+
+  })
   it('Account Owner - Allowed', () => {
 
     cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
@@ -2370,6 +2420,23 @@ describe('RBAC Actions - Create a return order', () => {
 })
 
 describe('RBAC Actions - Create a transfer order', () => {
+  it('Regular - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_regular_user@wrap-it.com', password: 'hugzap-4comny-Sizkat'})
+
+    // New tranfer order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New transfer order')
+
+    // New transfer order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New transfer order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=transfer_order').contains('h3', 'Transfer order')
+    cy.get('.primary').contains('Create Transfer order')
+
+  })
   it('Account Owner - Allowed', () => {
 
     cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
@@ -2526,6 +2593,23 @@ describe('RBAC Actions - Create a transfer order', () => {
 })
 
 describe('RBAC Actions - Create a scrap order', () => {
+  it('Regular - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_regular_user@wrap-it.com', password: 'hugzap-4comny-Sizkat'})
+
+    // New scrap order - Sidebar
+    cy.visit('/')
+    cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(5).contains('New scrap order')
+
+    // New scrap order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
+
+    // URL accessible
+    cy.visit('/orders/new?type=scrap_order').contains('h3', 'Scrap order')
+    cy.get('.primary').contains('Create Scrap order')
+
+  })
   it('Account Owner - Allowed', () => {
 
     cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
