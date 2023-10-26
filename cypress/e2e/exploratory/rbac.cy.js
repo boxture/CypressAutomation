@@ -1885,11 +1885,11 @@ describe('RBAC Actions - Create a sales order', () => {
     cy.visit('/')
     cy.get('[href="/orders"]').eq(1).click()
     cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
-    
+
     // New sales order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-    
+
     // Import - Sales Order - Overview dropdown
     cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
 
@@ -1906,7 +1906,7 @@ describe('RBAC Actions - Create a sales order', () => {
     cy.visit('/')
     cy.get('[href="/orders"]').eq(1).click()
     cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New sales order')
-    
+
     // New sales order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
@@ -1927,14 +1927,14 @@ describe('RBAC Actions - Create a sales order', () => {
     cy.visit('/')
     cy.get('[href="/orders"]').eq(1).click()
     cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New sales order')
-    
+
     // New sales order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
 
     // Import - Sales Order - Overview dropdown
     cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
-    
+
     // URL accessible
     cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
     cy.get('.primary').contains('Create Sales order')
@@ -1997,7 +1997,7 @@ describe('RBAC Actions - Create a sales order', () => {
 
     // Import - Sales Order - Overview dropdown
     cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
-    
+
     // URL accessible
     cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
     cy.get('.primary').contains('Create Sales order')
@@ -2090,7 +2090,7 @@ describe('RBAC Actions - Create a purchase order', () => {
     cy.visit('/')
     cy.get('[href="/orders"]').eq(1).click()
     cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
-    
+
     // New purchase order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
@@ -2108,7 +2108,7 @@ describe('RBAC Actions - Create a purchase order', () => {
     cy.visit('/')
     cy.get('[href="/orders"]').eq(1).click()
     cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
-    
+
     // New purchase order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
@@ -2126,11 +2126,11 @@ describe('RBAC Actions - Create a purchase order', () => {
     cy.visit('/')
     cy.get('[href="/orders"]').eq(1).click()
     cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(1).contains('New purchase order')
-    
+
     // New purchase order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
-    
+
     // URL accessible
     cy.visit('/orders/new?type=purchase_order').contains('h3', 'Purchase order')
     cy.get('.primary').contains('Create Purchase order')
@@ -2184,7 +2184,7 @@ describe('RBAC Actions - Create a purchase order', () => {
     // New purchase order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New purchase order')
-    
+
     // URL accessible
     cy.visit('/orders/new?type=purchase_order').contains('h3', 'Purchase order')
     cy.get('.primary').contains('Create Purchase order')
@@ -2272,7 +2272,7 @@ describe('RBAC Actions - Create a return order', () => {
     // New return order - Sidebar
     cy.visit('/')
     cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New return order')
-    
+
     // New return order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
@@ -2291,7 +2291,7 @@ describe('RBAC Actions - Create a return order', () => {
     // New return order - Sidebar
     cy.visit('/')
     cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(3).contains('New return order')
-    
+
     // New return order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
@@ -2310,11 +2310,11 @@ describe('RBAC Actions - Create a return order', () => {
     // New return order - Sidebar
     cy.visit('/')
     cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New return order')
-    
+
     // New return order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
-    
+
     // URL accessible
     cy.visit('/orders/new?type=return_order').contains('h3', 'Return order')
     cy.get('.primary').contains('Create Return order')
@@ -2371,7 +2371,7 @@ describe('RBAC Actions - Create a return order', () => {
     // New return order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New return order')
-    
+
     // URL accessible
     cy.visit('/orders/new?type=return_order').contains('h3', 'Return order')
     cy.get('.primary').contains('Create Return order')
@@ -2461,7 +2461,7 @@ describe('RBAC Actions - Create a transfer order', () => {
     // New transfer order - Sidebar
     cy.visit('/')
     cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New transfer order')
-    
+
     // New transfer order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New transfer order')
@@ -2478,7 +2478,7 @@ describe('RBAC Actions - Create a transfer order', () => {
     // New transfer order - Sidebar
     cy.visit('/')
     cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').should('not.exist') // find unique element
-    
+
     // New transfer order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').should('not.exist') // find unique element
@@ -2495,11 +2495,11 @@ describe('RBAC Actions - Create a transfer order', () => {
     // New transfer order - Sidebar
     cy.visit('/')
     cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(2).contains('New transfer order')
-    
+
     // New transfer order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New transfer order')
-    
+
     // URL accessible
     cy.visit('/orders/new?type=transfer_order').contains('h3', 'Transfer order')
     cy.get('.primary').contains('Create Transfer order')
@@ -2546,11 +2546,11 @@ describe('RBAC Actions - Create a transfer order', () => {
     // New transfer order - Sidebar
     cy.visit('/')
     cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').should('not.exist') // find unique element
-    
+
     // New transfer order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').should('not.exist') // find unique element
-    
+
     // URL accessible
     cy.visit('/orders/new?type=transfer_order')
     cy.get('.primary').should('not.exist')
@@ -2634,7 +2634,7 @@ describe('RBAC Actions - Create a scrap order', () => {
     // New scrap order - Sidebar
     cy.visit('/')
     cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(5).contains('New scrap order')
-    
+
     // New scrap order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
@@ -2651,7 +2651,7 @@ describe('RBAC Actions - Create a scrap order', () => {
     // New scrap order - Sidebar
     cy.visit('/')
     cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New scrap order')
-    
+
     // New scrap order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
@@ -2668,11 +2668,11 @@ describe('RBAC Actions - Create a scrap order', () => {
     // New scrap order - Sidebar
     cy.visit('/')
     cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(5).contains('New scrap order')
-    
+
     // New scrap order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
-    
+
     // URL accessible
     cy.visit('/orders/new?type=scrap_order').contains('h3', 'Scrap order')
     cy.get('.primary').contains('Create Scrap order')
@@ -2719,11 +2719,11 @@ describe('RBAC Actions - Create a scrap order', () => {
     // New scrap order - Sidebar
     cy.visit('/')
     cy.get('[data-satis-sidebar-menu-item-target="submenu"] .sts-sidebar-menu-item__label').eq(4).contains('New scrap order')
-    
+
     // New scrap order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New scrap order')
-    
+
     // URL accessible
     cy.visit('/orders/new?type=scrap_order')
     cy.get('.primary').contains('Create Scrap order')
@@ -2765,3 +2765,469 @@ describe('RBAC Actions - Create a scrap order', () => {
   })
 })
 
+
+///
+describe.only('RBAC Actions - Import a sales order', () => {
+  it('Regular - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_regular_user@wrap-it.com', password: 'hugzap-4comny-Sizkat'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Sales order')
+
+  })
+  it('Account Owner - Allowed', () => {
+
+    cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Sales order')
+
+  })
+  it('Reporting - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_reporting@wrap-it.com', password: 'majrir-5zozqa-vempyX'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Sales order')
+
+  })
+  it('Billing - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_billing@wrap-it.com', password: 'tihto1-miqmyr-wimbuJ'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Sales order')
+
+  })
+  it('Warehouse associate - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Sales order')
+
+  })
+  it('Receiver - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_receiver@wrap-it.com', password: 'fykja3-bobkev-Cogxyn'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Sales order')
+
+  })
+  it('Pick list planner - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Sales order')
+
+  })
+  it('Picker - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Sales order')
+
+  })
+  it('Packer - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_packer@wrap-it.com', password: 'womje7-hEsrij-jaqhys'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Sales order')
+
+  })
+  it('Shipper - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_shipper@wrap-it.com', password: 'qokseg-rugga0-gApcir'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Sales order')
+
+  })
+})
+
+describe.only('RBAC Actions - Import a purchase order', () => {
+  it('Regular - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_regular_user@wrap-it.com', password: 'hugzap-4comny-Sizkat'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
+
+  })
+  it('Account Owner - Allowed', () => {
+
+    cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Purchase order')
+
+  })
+  it('Reporting - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_reporting@wrap-it.com', password: 'majrir-5zozqa-vempyX'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
+
+  })
+  it('Billing - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_billing@wrap-it.com', password: 'tihto1-miqmyr-wimbuJ'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
+
+  })
+  it('Warehouse associate - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
+
+  })
+  it('Receiver - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_receiver@wrap-it.com', password: 'fykja3-bobkev-Cogxyn'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
+
+  })
+  it('Pick list planner - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
+
+  })
+  it('Picker - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
+
+  })
+  it('Packer - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_packer@wrap-it.com', password: 'womje7-hEsrij-jaqhys'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
+
+  })
+  it('Shipper - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_shipper@wrap-it.com', password: 'qokseg-rugga0-gApcir'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
+
+  })
+})
+
+describe.only('RBAC Actions - Import a return order', () => {
+  it('Regular - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_regular_user@wrap-it.com', password: 'hugzap-4comny-Sizkat'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
+
+  })
+  it('Account Owner - Allowed', () => {
+
+    cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Return order')
+
+  })
+  it('Reporting - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_reporting@wrap-it.com', password: 'majrir-5zozqa-vempyX'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
+
+  })
+  it('Billing - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_billing@wrap-it.com', password: 'tihto1-miqmyr-wimbuJ'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
+
+  })
+  it('Warehouse associate - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
+
+  })
+  it('Receiver - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_receiver@wrap-it.com', password: 'fykja3-bobkev-Cogxyn'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
+
+  })
+  it('Pick list planner - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
+
+  })
+  it('Picker - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
+
+  })
+  it('Packer - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_packer@wrap-it.com', password: 'womje7-hEsrij-jaqhys'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
+
+  })
+  it('Shipper - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_shipper@wrap-it.com', password: 'qokseg-rugga0-gApcir'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
+
+  })
+})
+
+describe.only('RBAC Actions - Import a transfer order', () => {
+  it('Regular - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_regular_user@wrap-it.com', password: 'hugzap-4comny-Sizkat'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
+
+  })
+  it('Account Owner - Allowed', () => {
+
+    cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Transfer order')
+
+  })
+  it('Reporting - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_reporting@wrap-it.com', password: 'majrir-5zozqa-vempyX'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
+
+  })
+  it('Billing - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_billing@wrap-it.com', password: 'tihto1-miqmyr-wimbuJ'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
+
+  })
+  it('Warehouse associate - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
+
+  })
+  it('Receiver - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_receiver@wrap-it.com', password: 'fykja3-bobkev-Cogxyn'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
+
+  })
+  it('Pick list planner - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
+
+  })
+  it('Picker - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
+
+  })
+  it('Packer - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_packer@wrap-it.com', password: 'womje7-hEsrij-jaqhys'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
+
+  })
+  it('Shipper - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_shipper@wrap-it.com', password: 'qokseg-rugga0-gApcir'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
+
+  })
+})
+
+describe.only('RBAC Actions - Import a scrap order', () => {
+  it('Regular - Allowed', () => {
+
+    cy.login({ email: 'wrap-it_regular_user@wrap-it.com', password: 'hugzap-4comny-Sizkat'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
+
+  })
+  it('Account Owner - Allowed', () => {
+
+    cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Scrap order')
+
+  })
+  it('Reporting - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_reporting@wrap-it.com', password: 'majrir-5zozqa-vempyX'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
+
+  })
+  it('Billing - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_billing@wrap-it.com', password: 'tihto1-miqmyr-wimbuJ'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
+
+  })
+  it('Warehouse associate - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
+
+  })
+  it('Receiver - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_receiver@wrap-it.com', password: 'fykja3-bobkev-Cogxyn'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
+
+  })
+  it('Pick list planner - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
+
+  })
+  it('Picker - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
+
+  })
+  it('Packer - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_packer@wrap-it.com', password: 'womje7-hEsrij-jaqhys'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
+
+  })
+  it('Shipper - Not allowed', () => {
+
+    cy.login({ email: 'wrap-it_shipper@wrap-it.com', password: 'qokseg-rugga0-gApcir'})
+
+    // Import - Sales Order - Overview dropdown
+    cy.visit('/orders')
+    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
+
+  })
+})
