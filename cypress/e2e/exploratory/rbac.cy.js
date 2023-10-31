@@ -1929,7 +1929,7 @@ describe('RBAC Actions - Create a sales order', () => {
     cy.get('.primary').contains('Create Sales order')
 
   })
-  it('Receiver - Not allowed', () => {
+  it('Receiver - Allowed', () => {
 
     cy.login({ email: 'wrap-it_receiver@wrap-it.com', password: 'fykja3-bobkev-Cogxyn'})
 
