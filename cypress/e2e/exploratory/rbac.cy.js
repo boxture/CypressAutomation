@@ -1870,9 +1870,6 @@ describe('RBAC Actions - Create a sales order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
 
-    // Import - Sales Order - Overview dropdown
-    cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Sales order')
-
     // URL accessible
     cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
     cy.get('.primary').contains('Create Sales order')
@@ -1890,9 +1887,6 @@ describe('RBAC Actions - Create a sales order', () => {
     // New sales order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-
-    // Import - Sales Order - Overview dropdown
-    cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
 
     // URL accessible
     cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
@@ -1912,15 +1906,12 @@ describe('RBAC Actions - Create a sales order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
 
-    // Import - Sales Order - Overview dropdown
-    cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
-
     // URL accessible
     cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
     cy.get('.primary').contains('Create Sales order')
 
   })
-  it('Warehouse associate - Not allowed', () => {
+  it('Warehouse associate - Allowed', () => {
 
     cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
 
@@ -1932,9 +1923,6 @@ describe('RBAC Actions - Create a sales order', () => {
     // New sales order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-
-    // Import - Sales Order - Overview dropdown
-    cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
 
     // URL accessible
     cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
@@ -1954,9 +1942,6 @@ describe('RBAC Actions - Create a sales order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
 
-    // Import - Sales Order - Overview dropdown
-    cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
-
     // URL accessible
     cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
     cy.get('.primary').contains('Create Sales order')
@@ -1974,9 +1959,6 @@ describe('RBAC Actions - Create a sales order', () => {
     // New sales order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-
-    // Import - Sales Order - Overview dropdown
-    cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
 
     // URL accessible
     cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
@@ -1996,9 +1978,6 @@ describe('RBAC Actions - Create a sales order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
 
-    // Import - Sales Order - Overview dropdown
-    cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
-
     // URL accessible
     cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
     cy.get('.primary').contains('Create Sales order')
@@ -2017,9 +1996,6 @@ describe('RBAC Actions - Create a sales order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
 
-    // Import - Sales Order - Overview dropdown
-    cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
-
     // URL accessible
     cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
     cy.get('.primary').contains('Create Sales order')
@@ -2037,9 +2013,6 @@ describe('RBAC Actions - Create a sales order', () => {
     // New sales order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New sales order')
-
-    // Import - Sales Order - Overview dropdown
-    cy.get('.sts-card__header .pr-1 .flex-1 .text-gray-500').should('not.exist')
 
     // URL accessible
     cy.visit('/orders/new?type=sales_order').contains('h3', 'Sales order')
