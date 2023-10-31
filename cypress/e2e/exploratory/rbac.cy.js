@@ -2864,7 +2864,7 @@ describe('RBAC Actions - Import a purchase order', () => {
 
     cy.login({ email: 'wrap-it_regular_user@wrap-it.com', password: 'hugzap-4comny-Sizkat'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Purchase Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
 
@@ -2873,7 +2873,7 @@ describe('RBAC Actions - Import a purchase order', () => {
 
     cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Purchase Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Purchase order')
 
@@ -2882,7 +2882,7 @@ describe('RBAC Actions - Import a purchase order', () => {
 
     cy.login({ email: 'wrap-it_reporting@wrap-it.com', password: 'majrir-5zozqa-vempyX'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Purchase Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
 
@@ -2891,7 +2891,7 @@ describe('RBAC Actions - Import a purchase order', () => {
 
     cy.login({ email: 'wrap-it_billing@wrap-it.com', password: 'tihto1-miqmyr-wimbuJ'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Purchase Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
 
@@ -2900,7 +2900,7 @@ describe('RBAC Actions - Import a purchase order', () => {
 
     cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Purchase Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
 
@@ -2909,7 +2909,7 @@ describe('RBAC Actions - Import a purchase order', () => {
 
     cy.login({ email: 'wrap-it_receiver@wrap-it.com', password: 'fykja3-bobkev-Cogxyn'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Purchase Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
 
@@ -2918,7 +2918,7 @@ describe('RBAC Actions - Import a purchase order', () => {
 
     cy.login({ email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Purchase Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
 
@@ -2927,7 +2927,7 @@ describe('RBAC Actions - Import a purchase order', () => {
 
     cy.login({ email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Purchase Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
 
@@ -2936,7 +2936,7 @@ describe('RBAC Actions - Import a purchase order', () => {
 
     cy.login({ email: 'wrap-it_packer@wrap-it.com', password: 'womje7-hEsrij-jaqhys'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Purchase Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
 
@@ -2945,7 +2945,7 @@ describe('RBAC Actions - Import a purchase order', () => {
 
     cy.login({ email: 'wrap-it_shipper@wrap-it.com', password: 'qokseg-rugga0-gApcir'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Purchase Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
 
@@ -2957,7 +2957,7 @@ describe('RBAC Actions - Import a return order', () => {
 
     cy.login({ email: 'wrap-it_regular_user@wrap-it.com', password: 'hugzap-4comny-Sizkat'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Return Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
 
@@ -2966,7 +2966,7 @@ describe('RBAC Actions - Import a return order', () => {
 
     cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Return Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Return order')
 
@@ -2975,7 +2975,7 @@ describe('RBAC Actions - Import a return order', () => {
 
     cy.login({ email: 'wrap-it_reporting@wrap-it.com', password: 'majrir-5zozqa-vempyX'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Return Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
 
@@ -2984,7 +2984,7 @@ describe('RBAC Actions - Import a return order', () => {
 
     cy.login({ email: 'wrap-it_billing@wrap-it.com', password: 'tihto1-miqmyr-wimbuJ'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Return Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
 
@@ -2993,7 +2993,7 @@ describe('RBAC Actions - Import a return order', () => {
 
     cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Return Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
 
@@ -3002,7 +3002,7 @@ describe('RBAC Actions - Import a return order', () => {
 
     cy.login({ email: 'wrap-it_receiver@wrap-it.com', password: 'fykja3-bobkev-Cogxyn'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Return Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
 
@@ -3011,7 +3011,7 @@ describe('RBAC Actions - Import a return order', () => {
 
     cy.login({ email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Return Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
 
@@ -3020,7 +3020,7 @@ describe('RBAC Actions - Import a return order', () => {
 
     cy.login({ email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Return Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
 
@@ -3029,7 +3029,7 @@ describe('RBAC Actions - Import a return order', () => {
 
     cy.login({ email: 'wrap-it_packer@wrap-it.com', password: 'womje7-hEsrij-jaqhys'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Return Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
 
@@ -3038,7 +3038,7 @@ describe('RBAC Actions - Import a return order', () => {
 
     cy.login({ email: 'wrap-it_shipper@wrap-it.com', password: 'qokseg-rugga0-gApcir'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Return Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
 
@@ -3050,7 +3050,7 @@ describe('RBAC Actions - Import a transfer order', () => {
 
     cy.login({ email: 'wrap-it_regular_user@wrap-it.com', password: 'hugzap-4comny-Sizkat'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Transfer Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
 
@@ -3059,7 +3059,7 @@ describe('RBAC Actions - Import a transfer order', () => {
 
     cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Transfer Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Transfer order')
 
@@ -3068,7 +3068,7 @@ describe('RBAC Actions - Import a transfer order', () => {
 
     cy.login({ email: 'wrap-it_reporting@wrap-it.com', password: 'majrir-5zozqa-vempyX'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Transfer Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
 
@@ -3077,7 +3077,7 @@ describe('RBAC Actions - Import a transfer order', () => {
 
     cy.login({ email: 'wrap-it_billing@wrap-it.com', password: 'tihto1-miqmyr-wimbuJ'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Transfer Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
 
@@ -3086,7 +3086,7 @@ describe('RBAC Actions - Import a transfer order', () => {
 
     cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Transfer Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
 
@@ -3095,7 +3095,7 @@ describe('RBAC Actions - Import a transfer order', () => {
 
     cy.login({ email: 'wrap-it_receiver@wrap-it.com', password: 'fykja3-bobkev-Cogxyn'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Transfer Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
 
@@ -3104,7 +3104,7 @@ describe('RBAC Actions - Import a transfer order', () => {
 
     cy.login({ email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Transfer Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
 
@@ -3113,7 +3113,7 @@ describe('RBAC Actions - Import a transfer order', () => {
 
     cy.login({ email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Transfer Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
 
@@ -3122,7 +3122,7 @@ describe('RBAC Actions - Import a transfer order', () => {
 
     cy.login({ email: 'wrap-it_packer@wrap-it.com', password: 'womje7-hEsrij-jaqhys'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Transfer Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
 
@@ -3131,7 +3131,7 @@ describe('RBAC Actions - Import a transfer order', () => {
 
     cy.login({ email: 'wrap-it_shipper@wrap-it.com', password: 'qokseg-rugga0-gApcir'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Transfer Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
 
@@ -3143,7 +3143,7 @@ describe('RBAC Actions - Import a scrap order', () => {
 
     cy.login({ email: 'wrap-it_regular_user@wrap-it.com', password: 'hugzap-4comny-Sizkat'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Scrap Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
 
@@ -3152,7 +3152,7 @@ describe('RBAC Actions - Import a scrap order', () => {
 
     cy.login({ email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Scrap Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Scrap order')
 
@@ -3161,7 +3161,7 @@ describe('RBAC Actions - Import a scrap order', () => {
 
     cy.login({ email: 'wrap-it_reporting@wrap-it.com', password: 'majrir-5zozqa-vempyX'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Scrap Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
 
@@ -3170,7 +3170,7 @@ describe('RBAC Actions - Import a scrap order', () => {
 
     cy.login({ email: 'wrap-it_billing@wrap-it.com', password: 'tihto1-miqmyr-wimbuJ'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Scrap Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
 
@@ -3179,7 +3179,7 @@ describe('RBAC Actions - Import a scrap order', () => {
 
     cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Scrap Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
 
@@ -3188,7 +3188,7 @@ describe('RBAC Actions - Import a scrap order', () => {
 
     cy.login({ email: 'wrap-it_receiver@wrap-it.com', password: 'fykja3-bobkev-Cogxyn'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Scrap Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
 
@@ -3197,7 +3197,7 @@ describe('RBAC Actions - Import a scrap order', () => {
 
     cy.login({ email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Scrap Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
 
@@ -3206,7 +3206,7 @@ describe('RBAC Actions - Import a scrap order', () => {
 
     cy.login({ email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Scrap Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
 
@@ -3215,7 +3215,7 @@ describe('RBAC Actions - Import a scrap order', () => {
 
     cy.login({ email: 'wrap-it_packer@wrap-it.com', password: 'womje7-hEsrij-jaqhys'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Scrap Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
 
@@ -3224,7 +3224,7 @@ describe('RBAC Actions - Import a scrap order', () => {
 
     cy.login({ email: 'wrap-it_shipper@wrap-it.com', password: 'qokseg-rugga0-gApcir'})
 
-    // Import - Sales Order - Overview dropdown
+    // Import - Scrap Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
 
