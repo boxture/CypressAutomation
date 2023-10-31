@@ -36,7 +36,7 @@
 // https://github.com/boxture/oms/issues/3382: billing not access to Reports
 // https://github.com/boxture/oms/issues/3394: no 2FA for role Super User
 // No ticket                                 : automate 2FA (Super User, Admin and Billing Admin)
-// https://github.com/boxture/oms/issues/3516: role account owner is able to create a Transfer
+// https://github.com/boxture/oms/issues/3516: multiple roles are able to create a Transfer but not allowed
 
 
 describe('RBAC visibility', () => {
@@ -1947,7 +1947,7 @@ describe('RBAC Actions - Create a sales order', () => {
     cy.get('.primary').contains('Create Sales order')
 
   })
-  it('Pick list planner - Not allowed', () => {
+  it('Pick list planner - Allowed', () => {
 
     cy.login({ email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
 
@@ -1983,7 +1983,7 @@ describe('RBAC Actions - Create a sales order', () => {
     cy.get('.primary').contains('Create Sales order')
 
   })
-  it('Packer - Not allowed', () => {
+  it('Packer - Allowed', () => {
 
     cy.login({ email: 'wrap-it_packer@wrap-it.com', password: 'womje7-hEsrij-jaqhys'})
 
@@ -2001,7 +2001,7 @@ describe('RBAC Actions - Create a sales order', () => {
     cy.get('.primary').contains('Create Sales order')
 
   })
-  it('Shipper - Not allowed', () => {
+  it('Shipper - Allowed', () => {
 
     cy.login({ email: 'wrap-it_shipper@wrap-it.com', password: 'qokseg-rugga0-gApcir'})
 
