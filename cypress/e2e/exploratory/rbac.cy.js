@@ -36,6 +36,7 @@
 // https://github.com/boxture/oms/issues/3382: billing not access to Reports
 // https://github.com/boxture/oms/issues/3394: no 2FA for role Super User
 // No ticket                                 : automate 2FA (Super User, Admin and Billing Admin)
+// https://github.com/boxture/oms/issues/3516: role account owner is able to create a Transfer
 
 
 describe('RBAC visibility', () => {
@@ -2449,9 +2450,9 @@ describe('RBAC Actions - Create a transfer order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-popper-placement="bottom"]').contains('New transfer order')
 
-    // URL accessible
+    // URL accessible // #3516
     cy.visit('/orders/new?type=transfer_order').contains('h3', 'Transfer order')
-    cy.get('.primary').contains('Create Transfer order')
+    cy.get('.primary').contains('Create Transfer order') // << it should not contain this button but redirect to the home page
 
   })
   it('Reporting - Allowed', () => {
@@ -2763,11 +2764,9 @@ describe('RBAC Actions - Create a scrap order', () => {
     cy.get('.primary').contains('Create Scrap order')
 
   })
+
 })
-
-
-///
-describe.only('RBAC Actions - Import a sales order', () => {
+describe('RBAC Actions - Import a sales order', () => {
   it('Regular - Allowed', () => {
 
     cy.login({ email: 'wrap-it_regular_user@wrap-it.com', password: 'hugzap-4comny-Sizkat'})
@@ -2860,7 +2859,7 @@ describe.only('RBAC Actions - Import a sales order', () => {
   })
 })
 
-describe.only('RBAC Actions - Import a purchase order', () => {
+describe('RBAC Actions - Import a purchase order', () => {
   it('Regular - Allowed', () => {
 
     cy.login({ email: 'wrap-it_regular_user@wrap-it.com', password: 'hugzap-4comny-Sizkat'})
@@ -2953,7 +2952,7 @@ describe.only('RBAC Actions - Import a purchase order', () => {
   })
 })
 
-describe.only('RBAC Actions - Import a return order', () => {
+describe('RBAC Actions - Import a return order', () => {
   it('Regular - Allowed', () => {
 
     cy.login({ email: 'wrap-it_regular_user@wrap-it.com', password: 'hugzap-4comny-Sizkat'})
@@ -3046,7 +3045,7 @@ describe.only('RBAC Actions - Import a return order', () => {
   })
 })
 
-describe.only('RBAC Actions - Import a transfer order', () => {
+describe('RBAC Actions - Import a transfer order', () => {
   it('Regular - Allowed', () => {
 
     cy.login({ email: 'wrap-it_regular_user@wrap-it.com', password: 'hugzap-4comny-Sizkat'})
@@ -3139,7 +3138,7 @@ describe.only('RBAC Actions - Import a transfer order', () => {
   })
 })
 
-describe.only('RBAC Actions - Import a scrap order', () => {
+describe('RBAC Actions - Import a scrap order', () => {
   it('Regular - Allowed', () => {
 
     cy.login({ email: 'wrap-it_regular_user@wrap-it.com', password: 'hugzap-4comny-Sizkat'})

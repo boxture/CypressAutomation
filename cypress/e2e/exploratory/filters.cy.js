@@ -8,6 +8,7 @@
 // https://github.com/boxture/oms/issues/3157 Test cases for filters
 
 
+
 beforeEach(() => {
   cy.login({
     email: 'acceptance-test+oms@boxture.com', password: 'xudrah-zygJa2-topbib'})
