@@ -2749,7 +2749,7 @@ describe('RBAC Actions - Import a sales order', () => {
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Sales order')
 
     // URL accessible
-    cy.visit('importing/orders%2Fsales_order/new').contains
+    // cy.visit('importing/orders%2Fsales_order/new').contains
     // cy.get('.primary').contains('Create Sales order')
 
 

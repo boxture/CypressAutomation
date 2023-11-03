@@ -195,6 +195,7 @@ beforeEach(() => {
       cy.visit('/orders')
       cy.resetView()
 
+      cy.get('[data-action="click->satis-tabs#select"]').eq(0).click()
       cy.get('[data-column="purchase_order_number"] [data-icon="ellipsis"]').scrollIntoView().should('be.visible').click()
       cy.get('[data-column="purchase_order_number"]').find('li').should('have.length', '3')
       cy.get('[data-column="purchase_order_number"]').find('li').contains('Sort ascending').should('be.visible')
