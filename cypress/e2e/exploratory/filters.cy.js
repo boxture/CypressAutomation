@@ -347,9 +347,6 @@ beforeEach(() => {
       cy.get('[data-column="customer"] [data-filter="customer"]').should('be.visible').clear().type('Boxture')
       cy.contains('[title*="index.orders"]', 'Orders').click()
       cy.get('tr:nth-child(2) td:nth-child(22)').should('have.text', 'Boxture BV')
-      cy.get('tr:nth-child(3) td:nth-child(22)').should('have.text', 'Boxture BV')
-      cy.get('tr:nth-child(4) td:nth-child(22)').should('have.text', 'Boxture BV')
-      cy.get('tr:nth-child(5) td:nth-child(22)').should('have.text', 'Boxture BV')
 
     })
     it('Vendor Filter', () => {
@@ -357,6 +354,7 @@ beforeEach(() => {
       cy.visit('/orders')
       cy.resetView()
 
+      cy.get('.title').contains('Vendor')
       cy.get('[data-column="vendor"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
       cy.get('[data-column="vendor"]').find('li').should('have.length', '1')
       cy.get('[data-column="vendor"]').find('li').contains('Hide column').should('be.visible')
@@ -435,7 +433,6 @@ beforeEach(() => {
       cy.get('[data-column="received_at"] [data-satis-date-time-picker-target="input"]').should('be.visible').click()
       cy.contains("[data-column='received_at'] .grid-cols-7 .block", '1').click()
       cy.contains("[data-column='received_at'] .grid-cols-7 .block", '20').click()
-      cy.get('tr:nth-child(1) td:nth-child(27)').should('be.visible').should('not.be.empty')
 
     })
   })

@@ -45,6 +45,7 @@ Cypress.Commands.add('resetView', (OrderElement) => {
     if (text1.includes('Reset view')) {
       cy.log(text1)
       cy.contains('Reset view').click()
+      cy.get('.title').contains('Account')
     } else {
       cy.get('.border-r > .items-center > img').click()
     }
