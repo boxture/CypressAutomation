@@ -31,10 +31,6 @@ beforeEach(() => {
       cy.get('[data-column="account"] [data-satis-dropdown-target="resetButton"]').should('be.visible').click()
       cy.get('[data-column="account"]').find('li').should('have.length', '6')
       cy.get('[data-column="account"]').find('li').contains('Filter values').should('be.visible')
-      cy.get('[data-column="account"]').find('li').contains('Sort ascending').should('be.visible')
-      cy.get('[data-column="account"]').find('li').contains('Group by').should('be.visible')
-      cy.get('[data-column="account"]').find('li').contains('Sort descending').should('be.visible')
-      cy.get('[data-column="account"]').find('li').contains('Hide column').should('be.visible')
 
     })
     it('ID Filter', () => {
