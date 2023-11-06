@@ -9,6 +9,7 @@
 
 
 
+
 beforeEach(() => {
   cy.login({
     email: 'acceptance-test+oms@boxture.com', password: 'xudrah-zygJa2-topbib'})
@@ -64,7 +65,7 @@ beforeEach(() => {
       cy.get('tr:nth-child(2) td:nth-child(4)').should('have.text', 'Sales order')
 
     })
-    it('STATE Filter', () => {
+    it.only('STATE Filter', () => {
 
       cy.visit('/orders')
       cy.resetView()
