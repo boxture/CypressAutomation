@@ -65,7 +65,7 @@ beforeEach(() => {
       cy.get('tr:nth-child(2) td:nth-child(4)').should('have.text', 'Sales order')
 
     })
-    it.only('STATE Filter', () => {
+    it('STATE Filter', () => {
 
       cy.visit('/orders')
       cy.resetView()
