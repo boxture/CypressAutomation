@@ -110,7 +110,6 @@
 
       cy.visit(`/orders/${po}`)
       cy.contains('.pr-1', 'Receive').click({ force: true })
-      cy.pause()
       cy.get('[placeholder="Packing material"]').type('a3',{ delay: 200 })
       cy.get('[placeholder="Product"]').eq(0).type('BXT-SNO23245', {delay:200})
       cy.get('[data-order-line-target="quantity"]').eq(0).type(5)
