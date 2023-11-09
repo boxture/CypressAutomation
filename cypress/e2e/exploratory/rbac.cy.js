@@ -2749,9 +2749,12 @@ describe('RBAC Actions - Import a sales order', () => {
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Sales order')
 
     // URL accessible
-    // cy.visit('importing/orders%2Fsales_order/new').contains
-    // cy.get('.primary').contains('Create Sales order')
-
+      cy.request({
+      url: '/'+'importing/orders%2Fsales_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
   it('Account Owner - Allowed', () => {
@@ -2762,6 +2765,14 @@ describe('RBAC Actions - Import a sales order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Sales order')
 
+     // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fsales_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(200); // Verify that the response status code is 500
+    });
+
   })
   it('Reporting - Not allowed', () => {
 
@@ -2770,6 +2781,14 @@ describe('RBAC Actions - Import a sales order', () => {
     // Import - Sales Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Sales order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fsales_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
   it('Billing - Not allowed', () => {
@@ -2780,6 +2799,14 @@ describe('RBAC Actions - Import a sales order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Sales order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fsales_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Warehouse associate - Not allowed', () => {
 
@@ -2788,6 +2815,14 @@ describe('RBAC Actions - Import a sales order', () => {
     // Import - Sales Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Sales order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fsales_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
   it('Receiver - Not allowed', () => {
@@ -2798,6 +2833,14 @@ describe('RBAC Actions - Import a sales order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Sales order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fsales_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Pick list planner - Not allowed', () => {
 
@@ -2806,6 +2849,14 @@ describe('RBAC Actions - Import a sales order', () => {
     // Import - Sales Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Sales order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fsales_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
   it('Picker - Not allowed', () => {
@@ -2816,6 +2867,14 @@ describe('RBAC Actions - Import a sales order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Sales order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fsales_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Packer - Not allowed', () => {
 
@@ -2825,6 +2884,14 @@ describe('RBAC Actions - Import a sales order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Sales order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fsales_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Shipper - Not allowed', () => {
 
@@ -2833,6 +2900,14 @@ describe('RBAC Actions - Import a sales order', () => {
     // Import - Sales Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Sales order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fsales_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
 })
@@ -2846,6 +2921,14 @@ describe('RBAC Actions - Import a purchase order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fpurchase_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Account Owner - Allowed', () => {
 
@@ -2854,6 +2937,14 @@ describe('RBAC Actions - Import a purchase order', () => {
     // Import - Purchase Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Purchase order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fpurchase_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(200); // Verify that the response status code is 500
+    });
 
   })
   it('Reporting - Not allowed', () => {
@@ -2864,6 +2955,14 @@ describe('RBAC Actions - Import a purchase order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fpurchase_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Billing - Not allowed', () => {
 
@@ -2872,6 +2971,14 @@ describe('RBAC Actions - Import a purchase order', () => {
     // Import - Purchase Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fpurchase_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
   it('Warehouse associate - Not allowed', () => {
@@ -2882,6 +2989,14 @@ describe('RBAC Actions - Import a purchase order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fpurchase_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Receiver - Not allowed', () => {
 
@@ -2890,6 +3005,14 @@ describe('RBAC Actions - Import a purchase order', () => {
     // Import - Purchase Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fpurchase_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
   it('Pick list planner - Not allowed', () => {
@@ -2900,6 +3023,14 @@ describe('RBAC Actions - Import a purchase order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fpurchase_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Picker - Not allowed', () => {
 
@@ -2908,6 +3039,14 @@ describe('RBAC Actions - Import a purchase order', () => {
     // Import - Purchase Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fpurchase_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
   it('Packer - Not allowed', () => {
@@ -2918,6 +3057,14 @@ describe('RBAC Actions - Import a purchase order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fpurchase_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Shipper - Not allowed', () => {
 
@@ -2926,6 +3073,14 @@ describe('RBAC Actions - Import a purchase order', () => {
     // Import - Purchase Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Purchase order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fpurchase_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
 })
@@ -2939,6 +3094,14 @@ describe('RBAC Actions - Import a return order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Freturn_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Account Owner - Allowed', () => {
 
@@ -2947,6 +3110,14 @@ describe('RBAC Actions - Import a return order', () => {
     // Import - Return Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Return order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Freturn_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(200); // Verify that the response status code is 500
+    });
 
   })
   it('Reporting - Not allowed', () => {
@@ -2957,6 +3128,14 @@ describe('RBAC Actions - Import a return order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Freturn_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Billing - Not allowed', () => {
 
@@ -2965,6 +3144,14 @@ describe('RBAC Actions - Import a return order', () => {
     // Import - Return Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Freturn_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
   it('Warehouse associate - Not allowed', () => {
@@ -2975,6 +3162,14 @@ describe('RBAC Actions - Import a return order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Freturn_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Receiver - Not allowed', () => {
 
@@ -2983,6 +3178,14 @@ describe('RBAC Actions - Import a return order', () => {
     // Import - Return Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Freturn_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
   it('Pick list planner - Not allowed', () => {
@@ -2993,6 +3196,14 @@ describe('RBAC Actions - Import a return order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Freturn_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Picker - Not allowed', () => {
 
@@ -3001,6 +3212,14 @@ describe('RBAC Actions - Import a return order', () => {
     // Import - Return Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Freturn_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
   it('Packer - Not allowed', () => {
@@ -3011,6 +3230,14 @@ describe('RBAC Actions - Import a return order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Freturn_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Shipper - Not allowed', () => {
 
@@ -3019,6 +3246,14 @@ describe('RBAC Actions - Import a return order', () => {
     // Import - Return Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Return order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Freturn_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
 })
@@ -3032,6 +3267,14 @@ describe('RBAC Actions - Import a transfer order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Ftransfer_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Account Owner - Allowed', () => {
 
@@ -3040,6 +3283,14 @@ describe('RBAC Actions - Import a transfer order', () => {
     // Import - Transfer Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Transfer order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Ftransfer_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(200); // Verify that the response status code is 500
+    });
 
   })
   it('Reporting - Not allowed', () => {
@@ -3050,6 +3301,14 @@ describe('RBAC Actions - Import a transfer order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Ftransfer_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Billing - Not allowed', () => {
 
@@ -3058,6 +3317,14 @@ describe('RBAC Actions - Import a transfer order', () => {
     // Import - Transfer Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Ftransfer_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
   it('Warehouse associate - Not allowed', () => {
@@ -3068,6 +3335,14 @@ describe('RBAC Actions - Import a transfer order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Ftransfer_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Receiver - Not allowed', () => {
 
@@ -3076,6 +3351,14 @@ describe('RBAC Actions - Import a transfer order', () => {
     // Import - Transfer Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Ftransfer_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
   it('Pick list planner - Not allowed', () => {
@@ -3086,6 +3369,14 @@ describe('RBAC Actions - Import a transfer order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Ftransfer_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Picker - Not allowed', () => {
 
@@ -3094,6 +3385,14 @@ describe('RBAC Actions - Import a transfer order', () => {
     // Import - Transfer Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Ftransfer_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
   it('Packer - Not allowed', () => {
@@ -3104,6 +3403,14 @@ describe('RBAC Actions - Import a transfer order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Ftransfer_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Shipper - Not allowed', () => {
 
@@ -3112,6 +3419,14 @@ describe('RBAC Actions - Import a transfer order', () => {
     // Import - Transfer Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Transfer order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Ftransfer_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
 })
@@ -3125,6 +3440,14 @@ describe('RBAC Actions - Import a scrap order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fscrap_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Account Owner - Allowed', () => {
 
@@ -3133,6 +3456,14 @@ describe('RBAC Actions - Import a scrap order', () => {
     // Import - Scrap Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').contains('Scrap order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fscrap_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(200); // Verify that the response status code is 500
+    });
 
   })
   it('Reporting - Not allowed', () => {
@@ -3143,6 +3474,14 @@ describe('RBAC Actions - Import a scrap order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fscrap_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Billing - Not allowed', () => {
 
@@ -3151,6 +3490,14 @@ describe('RBAC Actions - Import a scrap order', () => {
     // Import - Scrap Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fscrap_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
   it('Warehouse associate - Not allowed', () => {
@@ -3161,6 +3508,14 @@ describe('RBAC Actions - Import a scrap order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fscrap_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Receiver - Not allowed', () => {
 
@@ -3169,6 +3524,14 @@ describe('RBAC Actions - Import a scrap order', () => {
     // Import - Scrap Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fscrap_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
   it('Pick list planner - Not allowed', () => {
@@ -3179,6 +3542,14 @@ describe('RBAC Actions - Import a scrap order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fscrap_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Picker - Not allowed', () => {
 
@@ -3187,6 +3558,14 @@ describe('RBAC Actions - Import a scrap order', () => {
     // Import - Scrap Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fscrap_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
   it('Packer - Not allowed', () => {
@@ -3197,6 +3576,14 @@ describe('RBAC Actions - Import a scrap order', () => {
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
 
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fscrap_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
+
   })
   it('Shipper - Not allowed', () => {
 
@@ -3205,6 +3592,14 @@ describe('RBAC Actions - Import a scrap order', () => {
     // Import - Scrap Order - Overview dropdown
     cy.visit('/orders')
     cy.get('.sts-card__header [data-satis-menu-submenu-placement="bottom"] [data-satis-menu-target="submenu"]').should('not.contain','Scrap order')
+
+    // URL accessible
+      cy.request({
+      url: '/'+'importing/orders%2Fscrap_order/new', // Replace with your URL
+      failOnStatusCode: false, // Prevent the request from failing on non-2xx status codes
+    }).should((response) => {
+      expect(response.status).to.equal(500); // Verify that the response status code is 500
+    });
 
   })
 })
