@@ -547,8 +547,8 @@ beforeEach(() => {
   
       // Roles
       cy.get('.sts-tabs .tab[id^=roles]').click()
-      cy.get('.form-label[for=user_roles_attributes_TEMPLATE_name]').contains('Role')
-      cy.get('.form-label[for=user_roles_attributes_TEMPLATE_resource_id]').contains('For')
+      cy.get('.form-label[for=user_roles_attributes_TEMPLATE_name]').contains('role')
+      cy.get('.form-label[for=user_roles_attributes_TEMPLATE_resource_id]').contains('for')
   
       // Security
       cy.get('.sts-tabs .tab[id^=security]').click()

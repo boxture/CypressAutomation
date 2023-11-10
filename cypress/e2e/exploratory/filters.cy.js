@@ -60,8 +60,7 @@ beforeEach(() => {
       cy.get('[data-column="type"]').find('li').contains('Filter values').should('be.visible')
       cy.get('[data-column="type"]').find('li').contains('Hide column').should('be.visible')
       cy.get('[data-column="type"]').find('li').contains('Group by').should('be.visible')
-      cy.get('[data-column="type"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('sal',{ delay: 500 })
-      cy.pause()
+      cy.get('[data-column="type"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('sal',{ delay: 200 })
       cy.get('.border-r > .items-center > img').click()
       cy.get('tr:nth-child(2) td:nth-child(4)').should('have.text', 'Sales order')
 
@@ -72,16 +71,16 @@ beforeEach(() => {
       cy.resetView()
 
       cy.get('[data-column="state"] [data-icon="ellipsis"]').should('be.visible').click()
-      cy.get('ul').find('[data-satis-dropdown-target="searchInput"]').should('be.visible')
+      cy.get('ul').find('[data-satis-dropdown-target="searchInput"]').should('be.visible', {force:true})
       cy.get('[data-column="state"]').find('li').should('have.length', '6')
       cy.get('[data-column="state"]').find('li').contains('Filter values').should('be.visible')
       cy.get('[data-column="state"]').find('li').contains('Sort ascending').should('be.visible')
       cy.get('[data-column="state"]').find('li').contains('Group by').should('be.visible')
       cy.get('[data-column="state"]').find('li').contains('Sort descending').should('be.visible')
       cy.get('[data-column="state"]').find('li').contains('Hide column').should('be.visible')
-      cy.get('[data-column="state"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('proce',{ delay: 200 })
+      cy.get('[data-column="state"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('can',{ delay: 200 })
       cy.get('.border-r > .items-center > img').click()
-      cy.get('tr:nth-child(2) td:nth-child(5)').should('have.text', 'processing')
+      cy.get('tr:nth-child(2) td:nth-child(5)').should('have.text', 'cancelled')
 
     })
     it('Channel Filter', () => {
