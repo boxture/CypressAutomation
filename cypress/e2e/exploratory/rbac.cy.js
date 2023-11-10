@@ -93,7 +93,7 @@ describe('RBAC visibility', () => {
         // Reporting
         .and('contain', 'Reporting')
         .and('contain', 'Bin location movements')
-        .and('contain', 'Container Bin Location Movements')
+        .and('contain', 'Container Bin Location movements')
         .and('contain', 'Container Inventory Adjustments')
         .and('contain', 'Inbounded inventory items')
         .and('contain', 'Inventory on hand')
