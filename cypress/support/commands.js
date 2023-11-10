@@ -50,6 +50,7 @@ Cypress.Commands.add('resetView', (OrderElement) => {
       cy.get('.border-r > .items-center > img').click()
     }
     })
+    cy.get('[aria-label="Tabs"] [data-satis-tabs-target="tab"]').eq(0).click()
 
   })
 })
