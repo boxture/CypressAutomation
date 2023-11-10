@@ -50,6 +50,7 @@ Cypress.Commands.add('resetView', (OrderElement) => {
       cy.get('.border-r > .items-center > img').click()
     }
     })
+    cy.get('.sts-card__tabs').eq(0).click()
   })
 })
 
