@@ -60,8 +60,7 @@ beforeEach(() => {
       cy.get('[data-column="type"]').find('li').contains('Filter values').should('be.visible')
       cy.get('[data-column="type"]').find('li').contains('Hide column').should('be.visible')
       cy.get('[data-column="type"]').find('li').contains('Group by').should('be.visible')
-      cy.get('[data-column="type"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('sal',{ delay: 500 })
-      cy.pause()
+      cy.get('[data-column="type"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('sal',{ delay: 200 })
       cy.get('.border-r > .items-center > img').click()
       cy.get('tr:nth-child(2) td:nth-child(4)').should('have.text', 'Sales order')
 
