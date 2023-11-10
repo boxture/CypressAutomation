@@ -40,7 +40,7 @@
 
 
 describe('RBAC visibility', () => {
-    it.only('Super User', () => {
+    it('Super User', () => {
       cy.login({ email: 'wrap-it_super_user@wrap-it.com', password: 'cipceg-xihpUr-pebbu4'})
 
       cy.visit('/')
@@ -275,7 +275,7 @@ describe('RBAC visibility', () => {
         // Reporting #3382
       //.and('contain', 'Reporting')
       //.and('contain', 'Bin location movements')
-      //.and('contain', 'Container Bin Location Movements')
+      //.and('contain', 'Container Bin location movements')
       //.and('contain', 'Container Inventory adjustments')
       //.and('contain', 'Inbounded inventory items')
       //.and('contain', 'Inventory on hand')
@@ -436,7 +436,7 @@ describe('RBAC visibility', () => {
         // Reporting
         .and('not.contain', 'Reporting')
         .and('not.contain', 'Bin location movements')
-        .and('not.contain', 'Container Bin Location Movements')
+        .and('not.contain', 'Container Bin location movements')
         .and('not.contain', 'Container Inventory adjustments')
         .and('not.contain', 'Inbounded inventory items')
         .and('not.contain', 'Inventory on hand')
@@ -597,7 +597,7 @@ describe('RBAC visibility', () => {
         // Reporting
         .and('contain', 'Reporting')
         .and('contain', 'Bin location movements')
-        .and('contain', 'Container Bin Location Movements')
+        .and('contain', 'Container Bin location movements')
         .and('contain', 'Container Inventory adjustments')
         .and('contain', 'Inbounded inventory items')
         .and('contain', 'Inventory on hand')
@@ -759,7 +759,7 @@ describe('RBAC visibility', () => {
         // Reporting
         .and('contain', 'Reporting')
         .and('contain', 'Bin location movements')
-        .and('contain', 'Container Bin Location Movements')
+        .and('contain', 'Container Bin location movements')
         .and('contain', 'Container Inventory adjustments')
         .and('contain', 'Inbounded inventory items')
         .and('contain', 'Inventory on hand')
@@ -920,7 +920,7 @@ describe('RBAC visibility', () => {
         // Reporting
         .and('contain', 'Reporting')
         .and('contain', 'Bin location movements')
-        .and('contain', 'Container Bin Location Movements')
+        .and('contain', 'Container Bin location movements')
         .and('contain', 'Container Inventory adjustments')
         .and('contain', 'Inbounded inventory items')
         .and('contain', 'Inventory on hand')
@@ -1081,7 +1081,7 @@ describe('RBAC visibility', () => {
         // Reporting
         .and('not.contain', 'Reporting')
         .and('not.contain', 'Bin location movements')
-        .and('not.contain', 'Container Bin Location Movements')
+        .and('not.contain', 'Container Bin location movements')
         .and('not.contain', 'Container Inventory adjustments')
         .and('not.contain', 'Inbounded inventory items')
         .and('not.contain', 'Inventory on hand')
@@ -1242,7 +1242,7 @@ describe('RBAC visibility', () => {
         // Reporting
         .and('not.contain', 'Reporting')
         .and('not.contain', 'Bin location movements')
-        .and('not.contain', 'Container Bin Location Movements')
+        .and('not.contain', 'Container Bin location movements')
         .and('not.contain', 'Container Inventory adjustments')
         .and('not.contain', 'Inbounded inventory items')
         .and('not.contain', 'Inventory on hand')
@@ -1403,7 +1403,7 @@ describe('RBAC visibility', () => {
         // Reporting
         .and('not.contain', 'Reporting')
         .and('not.contain', 'Bin location movements')
-        .and('not.contain', 'Container Bin Location Movements')
+        .and('not.contain', 'Container Bin location movements')
         .and('not.contain', 'Container Inventory adjustments')
         .and('not.contain', 'Inbounded inventory items')
         .and('not.contain', 'Inventory on hand')
@@ -1564,7 +1564,7 @@ describe('RBAC visibility', () => {
         // Reporting
         .and('not.contain', 'Reporting')
         .and('not.contain', 'Bin location movements')
-        .and('not.contain', 'Container Bin Location Movements')
+        .and('not.contain', 'Container Bin location movements')
         .and('not.contain', 'Container Inventory adjustments')
         .and('not.contain', 'Inbounded inventory items')
         .and('not.contain', 'Inventory on hand')
@@ -1725,7 +1725,7 @@ describe('RBAC visibility', () => {
         // Reporting
         .and('not.contain', 'Reporting')
         .and('not.contain', 'Bin location movements')
-        .and('not.contain', 'Container Bin Location Movements')
+        .and('not.contain', 'Container Bin location movements')
         .and('not.contain', 'Container Inventory adjustments')
         .and('not.contain', 'Inbounded inventory items')
         .and('not.contain', 'Inventory on hand')
