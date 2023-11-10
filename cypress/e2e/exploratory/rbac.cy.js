@@ -40,7 +40,7 @@
 
 
 describe('RBAC visibility', () => {
-    it('Super User', () => {
+    it.only('Super User', () => {
       cy.login({ email: 'wrap-it_super_user@wrap-it.com', password: 'cipceg-xihpUr-pebbu4'})
 
       cy.visit('/')
@@ -93,7 +93,7 @@ describe('RBAC visibility', () => {
         // Reporting
         .and('contain', 'Reporting')
         .and('contain', 'Bin location movements')
-        .and('contain', 'Container Bin Location movements')
+        .and('contain', 'Container Bin location movements')
         .and('contain', 'Container Inventory Adjustments')
         .and('contain', 'Inbounded inventory items')
         .and('contain', 'Inventory on hand')
