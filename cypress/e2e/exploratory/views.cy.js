@@ -858,7 +858,7 @@ describe('Views', () => {
     cy.get('[data-act-table-target="column"][data-column="inbounded_at"]').scrollIntoView().should('be.visible')
 
   })
-  it.only('Reporting - Manual inventory adjustments', () => {
+  it('Reporting - Manual inventory adjustments', () => {
 
     // Reporting - Manual inventory adjustments - #3292
     cy.visit('/reporting/manual_inventory_adjustments')

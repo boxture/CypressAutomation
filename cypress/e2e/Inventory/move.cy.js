@@ -44,8 +44,6 @@ beforeEach(() => {
     cy.url().should('include', '/inventory_moves/new')
     cy.get('[placeholder="Container"]').type(`${container}`.substring(0,8), {delay:200})
 
-    cy.pause()
-
     cy.get('[placeholder="From bin location"]').type(`${from_bin_location}`, {delay:200})
 
 
