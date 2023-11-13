@@ -36,21 +36,20 @@ Cypress.Commands.add('login', (user) => {
   })
 })
 
-Cypress.Commands.add('resetView', (OrderElement) => {
+Cypress.Commands.add('resetView', () => {
   cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
-  cy.wait(500)
   cy.get('[aria-label="Tabs"] .sts-menu__items').eq(0).then(($e1) => {
     cy.wrap($e1).find('li').then($e2=>{
     const text1 = $e2.text()
     if (text1.includes('Reset view')) {
-      cy.log(text1)
       cy.contains('Reset view').click()
       cy.get('.ml-4.flex-1 > .text-lg')
     } else {
       cy.get('.border-r > .items-center > img').click()
     }
     })
-    cy.get('.sts-card__tabs').eq(0).click()
+    cy.wait(500)
+    cy.get('[data-action="click->satis-tabs#select"]').eq(0).click()
   })
 })
 

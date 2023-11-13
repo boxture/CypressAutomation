@@ -184,7 +184,7 @@ beforeEach(() => {
       cy.get('[data-column="customer_reference_number"]').find('li').contains('Hide column').should('be.visible')
       cy.get('[data-column="customer_reference_number"] [data-filter="customer_reference_number"]').should('be.visible').clear().type('3745873465')
       cy.get('.border-r > .items-center > img').click()
-      cy.get('tr:nth-child(1) td:nth-child(9)').scrollIntoView().should('have.text', '3745873465')
+      cy.get('tr:nth-child(1) td:nth-child(9)').scrollIntoView().should('have.text', '3745873465', {delay:200})
 
     })
     it('Purchase Order Number Filter', () => {
