@@ -9,6 +9,7 @@
 
 
 
+
 beforeEach(() => {
   cy.login({
     email: 'acceptance-test+oms@boxture.com', password: 'xudrah-zygJa2-topbib'})
@@ -79,7 +80,7 @@ beforeEach(() => {
       cy.get('[data-column="state"]').find('li').contains('Hide column').should('be.visible')
       cy.get('[data-column="state"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('can',{ delay: 200 })
       cy.get('.border-r > .items-center > img').click()
-      cy.get('tr:nth-child(2) td:nth-child(5)').should('have.text', 'cancelled')
+      cy.get('tr:nth-child(2) td:nth-child(5)').should('have.visible.text', 'cancelled')
 
     })
     it('Channel Filter', () => {
