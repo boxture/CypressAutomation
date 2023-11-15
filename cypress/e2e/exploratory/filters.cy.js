@@ -10,7 +10,7 @@
 
 
 
-
+// test
 
 beforeEach(() => {
   cy.login({
@@ -104,7 +104,7 @@ beforeEach(() => {
       cy.get('tr:nth-child(2) td:nth-child(6)').should('have.text', 'eBay')
       cy.get('tr:nth-child(2) td:nth-child(6)').should('have.text', 'eBay')
       cy.get('tr:nth-child(2) td:nth-child(6)').should('have.text', 'eBay')
-            cy.contains('Reset view').click()
+      cy.contains('Reset view').click()
       cy.contains('.translation_missing', 'Orders').click()
 
     })
@@ -154,7 +154,7 @@ beforeEach(() => {
         const actualText = e1.text()
         expect(actualText).to.eq(currentMonth)
       })
-            cy.resetView()
+      cy.resetView()
       cy.get('[data-column="ship_at"] [data-icon="ellipsis"] ').should('be.visible').click()
       cy.get('[data-column="ship_at"] [data-satis-date-time-picker-target="input"]').should('be.visible').click()
       cy.get('[data-satis-date-time-picker-target="calendarView"]')
