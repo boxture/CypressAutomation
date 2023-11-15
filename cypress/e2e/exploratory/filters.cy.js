@@ -6,6 +6,8 @@
 // KNOWN ISSUES:
 // https://github.com/boxture/oms/issues/3131 Consistency in Filter behaviour
 // https://github.com/boxture/oms/issues/3157 Test cases for filters
+// https://github.com/boxture/oms/issues/3562 Dropdown auto-select not working
+
 
 
 
@@ -87,7 +89,7 @@ beforeEach(() => {
     })
     it('Channel Filter', () => {
 
-      //Consistency in Filter behaviour #3131
+      //Consistency in Filter behaviour #3562
       cy.visit('/orders')
       cy.resetView()
 
@@ -361,7 +363,7 @@ beforeEach(() => {
     })
     it('Origin Locations Filter', () => {
 
-      // Consistency in Filter behaviour #3131
+      // Consistency in Filter behaviour #3562
       cy.visit('/orders')
       cy.resetView()
 
@@ -380,7 +382,7 @@ beforeEach(() => {
     })
     it('Destination Locations Filter', () => {
 
-      // Consistency in Filter behaviour #3131
+      // Consistency in Filter behaviour #3562
       cy.visit('/orders')
       cy.resetView()
 
