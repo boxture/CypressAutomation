@@ -1,8 +1,10 @@
 // Improvements
 
 // 1. Why is the global variable not working
-// 2. Select bin location from the dropdown-list
-// 3. from_bin_location cannot be the same as to_bin_location
+
+// ISSUE
+// 1. container with inventory items that are expired are still availbe?
+// 2. container 5322a522 canot be moved, reason unknown
 
 
 let container
@@ -14,7 +16,7 @@ beforeEach(() => {
   
   describe('Container', () => {
     it('move container', () => {
-          
+
     // Find container
     cy.visit('/containers')
     cy.url().should('include', '/containers')
@@ -22,6 +24,10 @@ beforeEach(() => {
     cy.resetView()
 
     // Get container from URL
+    cy.get('[data-column="created_at"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
+    cy.get('[data-column="created_at"]').find('li').contains('Sort descending').should('be.visible').click()
+    cy.get('[id*="sort_icon_created_at"]').should('be.visible')
+
     cy.get('tr').last().click({force: true})
     cy.contains('Contents')
     cy.contains('Warehousing')
@@ -45,14 +51,21 @@ beforeEach(() => {
     cy.get('[placeholder="Container"]').type(`${container}`.substring(0,8), {delay:200})
 
     cy.get('[placeholder="From bin location"]').type(`${from_bin_location}`, {delay:200})
-
-
-    //cy.get('[data-satis-dropdown-item-text="RECEIVING"]').click(`${from_bin_location}`)
+    cy.get(`[data-satis-dropdown-item-text="${from_bin_location}"]`).click({force:true})
         
-    cy.get('[placeholder="To bin location"]').type('PICKING BIN', {delay:200})
+    if (`${from_bin_location}`.includes('RECEIVING')) {
+      cy.get('[placeholder="To bin location"]').type('PICKING', {delay:200})
+      cy.get(`[data-satis-dropdown-item-text="PICKING"]`).click({force:true})
+    } else {
+      cy.get('[placeholder="To bin location"]').type('RECEIVING', {delay:200})
+      cy.get(`[data-satis-dropdown-item-text="RECEIVING"]`).click({force:true})
+    }
 
-    // cy.get('[name^="inventory_put_away[from_bin_location]"]').select('[data-satis-dropdown-item-text="RECEIVING"]')
-    cy.get('.satis-dropdown [name^="inventory_put_away[from_bin_location]"]').select('RECEIVING', {force:true})
+    cy.get('.primary').contains('Move').click()
+
+    cy.pause()
+    cy.visit(`/containers/${container}`)
+    cy.get('.bin-location-info-item a').should('not.include.text', `${from_bin_location}`)
 
     })
     })
