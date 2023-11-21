@@ -13,7 +13,7 @@
 
 
 // test
-
+let id
 beforeEach(() => {
   cy.login({
     email: 'acceptance-test+oms@boxture.com', password: 'xudrah-zygJa2-topbib'})
@@ -49,8 +49,17 @@ beforeEach(() => {
       cy.get('[data-column="id"]').find('li').contains('Sort ascending').should('be.visible')
       cy.get('[data-column="id"]').find('li').contains('Sort descending').should('be.visible')
       cy.get('[data-column="id"]').find('li').contains('Hide column').should('be.visible')
-      cy.get('tr:nth-child(1) td:nth-child(5)').should('be.visible')
-      // Comment SH: This test fails as it cannot find '03312027'. Rather take the value from one of the existing lines and search on this value, this is more dynamic.
+      cy.get('tr:nth-child(1) td:nth-child(4)').then($id1=>{
+        id = $id1.text()
+        cy.log(id)
+        cy.wrap(id).as('id12')
+      })
+      cy.get('[data-column="id"]').find('[type="button"]').should('be.visible').click()
+      cy.get('@id12').then($id1=>{
+      cy.get('[data-column="id"] [data-controller=" form"]').type(`${$id1}`)
+      cy.get('.border-r > .items-center > img').click()
+      cy.get('[class="overflow-hidden tbdy"] tr').its('length').should('eq', 1)
+      })
 
     })
     it('TYPE Filter', () => {
@@ -66,7 +75,7 @@ beforeEach(() => {
       cy.get('[data-column="type"]').find('li').contains('Group by').should('be.visible')
       cy.get('[data-column="type"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('sal',{ delay: 200 })
       cy.get('.border-r > .items-center > img').click()
-      cy.get('tr:nth-child(2) td:nth-child(4)').should('have.visible.text', 'Sales order')
+      cy.get('tr:nth-child(2) td:nth-child(5)').should('have.visible.text', 'Sales order')
 
     })
     it('STATE Filter', () => {
@@ -84,7 +93,7 @@ beforeEach(() => {
       cy.get('[data-column="state"]').find('li').contains('Hide column').should('be.visible')
       cy.get('[data-column="state"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('can',{ delay: 200 })
       cy.get('.border-r > .items-center > img').click()
-      cy.get('tr:nth-child(2) td:nth-child(5)').should('have.visible.text', 'cancelled')
+      cy.get('tr:nth-child(2) td:nth-child(6)').should('have.visible.text', 'cancelled')
 
     })
     it('Channel Filter', () => {
@@ -102,10 +111,7 @@ beforeEach(() => {
       cy.get('[data-column="channel"]').find('li').contains('Sort descending').should('be.visible')
       cy.get('[data-column="channel"]').find('li').contains('Hide column').should('be.visible')
       cy.get('[data-column="channel"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('ebay')
-      cy.get('tr:nth-child(2) td:nth-child(6)').should('have.text', 'eBay')
-      cy.get('tr:nth-child(2) td:nth-child(6)').should('have.text', 'eBay')
-      cy.get('tr:nth-child(2) td:nth-child(6)').should('have.text', 'eBay')
-      cy.get('tr:nth-child(2) td:nth-child(6)').should('have.text', 'eBay')
+      cy.get('tr:nth-child(2) td:nth-child(7)').should('have.text', 'eBay')
       cy.contains('Reset view').click()
       cy.contains('.translation_missing', 'Orders').click()
 
@@ -124,10 +130,7 @@ beforeEach(() => {
       cy.get('[data-column="business_model"]').find('li').contains('Hide column').should('be.visible')
       cy.get('[data-column="business_model"]').find('li').contains('Group by').should('be.visible')
       cy.get('[data-column="business_model"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('Business to consumer')
-      cy.get('tr:nth-child(2) td:nth-child(7)').should('have.text', 'Business to consumer')
-      cy.get('tr:nth-child(2) td:nth-child(7)').should('have.text', 'Business to consumer')
-      cy.get('tr:nth-child(2) td:nth-child(7)').should('have.text', 'Business to consumer')
-      cy.get('tr:nth-child(2) td:nth-child(7)').should('have.text', 'Business to consumer')
+      cy.get('tr:nth-child(2) td:nth-child(8)').should('have.text', 'Business to consumer')
 
     })
     it('Ship At Filter', () => {
@@ -186,9 +189,17 @@ beforeEach(() => {
       cy.get('[data-column="customer_reference_number"]').find('li').contains('Sort ascending').should('be.visible')
       cy.get('[data-column="customer_reference_number"]').find('li').contains('Sort descending').should('be.visible')
       cy.get('[data-column="customer_reference_number"]').find('li').contains('Hide column').should('be.visible')
-      cy.get('[data-column="customer_reference_number"] [data-filter="customer_reference_number"]').should('be.visible').clear().type('3745873465')
+      cy.get('tr:nth-child(1) td:nth-child(10)').then($id1=>{
+        id = $id1.text()
+        cy.log(id)
+        cy.wrap(id).as('id12')
+      })
+      cy.get('[data-column="customer_reference_number"]').find('[type="button"]').should('be.visible').click()
+      cy.get('@id12').then($id1=>{
+      cy.get('[data-column="customer_reference_number"] [data-controller=" form"]').type(`${$id1}`)
       cy.get('.border-r > .items-center > img').click()
-      cy.get('tr:nth-child(1) td:nth-child(9)').scrollIntoView().should('have.text', '3745873465', {delay:200})
+      cy.get('[class="overflow-hidden tbdy"] tr').its('length').should('eq', 1)
+      })
 
     })
     it('Purchase Order Number Filter', () => {
@@ -347,7 +358,7 @@ beforeEach(() => {
       cy.get('[data-column="customer"]').find('li').contains('Hide column').should('be.visible')
       cy.get('[data-column="customer"] [data-filter="customer"]').should('be.visible').clear().type('Boxture')
       cy.get('.border-r > .items-center > img').click()
-      cy.get('tr:nth-child(2) td:nth-child(22)').should('have.text', 'Boxture BV')
+      cy.get('tr:nth-child(2) td:nth-child(23)').should('have.text', 'Boxture BV')
 
     })
     it('Vendor Filter', () => {
