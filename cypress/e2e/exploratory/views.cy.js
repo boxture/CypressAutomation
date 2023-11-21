@@ -1360,7 +1360,7 @@ describe('Views', () => {
     cy.get('[data-act-table-target="column"][data-column="created_at"]').scrollIntoView().should('be.visible')
 
   })
-  it.only('Settings', () => {
+  it('Settings', () => {
 
     // Settings
     cy.visit(
