@@ -63,7 +63,6 @@ beforeEach(() => {
 
     cy.get('.primary').contains('Move').click()
 
-    cy.pause()
     cy.visit(`/containers/${container}`)
     cy.get('.bin-location-info-item a').should('not.include.text', `${from_bin_location}`)
 
