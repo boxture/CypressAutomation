@@ -48,8 +48,7 @@ Cypress.Commands.add('resetView', () => {
       cy.get('.border-r > .items-center > img').click()
     }
     })
-    cy.wait(500)
-    cy.get('[data-action="click->satis-tabs#select"]').eq(0).click()
+    cy.get('[data-act-table-target="header"]')
   })
 })
 
