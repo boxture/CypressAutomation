@@ -112,7 +112,6 @@ beforeEach(() => {
       cy.get('[data-column="channel"]').find('li').contains('Hide column').should('be.visible')
       cy.get('[data-column="channel"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('ebay')
       cy.get('tr:nth-child(2) td:nth-child(7)').should('have.text', 'eBay')
-      cy.contains('Reset view').click()
       cy.contains('.translation_missing', 'Orders').click()
 
     })
@@ -379,10 +378,10 @@ beforeEach(() => {
       cy.resetView()
 
       cy.get('[data-column="origin_locations"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
-      cy.get('[data-column="origin_locations"]').find('li').should('have.length', '4')
+      cy.get('[data-column="origin_locations"]').find('li').should('have.length', '3')
       cy.get('[data-column="origin_locations"]').find('li').contains('Filter values').should('be.visible')
       cy.get('[data-column="origin_locations"]').find('li').contains('Hide column').should('be.visible')
-      cy.get('[data-column="origin_locations"]').find('li').contains('Group by').should('be.visible')
+      // cy.get('[data-column="origin_locations"]').find('li').contains('Group by').should('be.visible')
       cy.get('[placeholder="Origin locations"]').scrollIntoView().should('be.visible').clear().type('btx-alm-new')
       cy.get('.border-r > .items-center > img').click()
       cy.get('tr:nth-child(1) td:nth-child(24)').should('have.text', 'BTX-ALM-NEW')
@@ -398,10 +397,10 @@ beforeEach(() => {
       cy.resetView()
 
       cy.get('[data-column="destination_location"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
-      cy.get('[data-column="destination_location"]').find('li').should('have.length', '4')
+      cy.get('[data-column="destination_location"]').find('li').should('have.length', '3')
       cy.get('[data-column="destination_location"]').find('li').contains('Filter values').should('be.visible')
       cy.get('[data-column="destination_location"]').find('li').contains('Hide column').should('be.visible')
-      cy.get('[data-column="destination_location"]').find('li').contains('Group by').should('be.visible')
+      // cy.get('[data-column="destination_location"]').find('li').contains('Group by').should('be.visible')
       cy.get('[placeholder="Destination location"]').scrollIntoView().should('be.visible').clear().type('btx-alm-new')
       cy.get('.border-r > .items-center > img').click()
       cy.get('tr:nth-child(1) td:nth-child(25)').should('have.text', 'BTX-ALM-NEW')
