@@ -36,7 +36,6 @@ Cypress.Commands.add('login', (user) => {
   })
 })
 
-
 Cypress.Commands.add('resetView', () => {
   cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
   cy.get('[aria-label="Tabs"] .sts-menu__items').eq(0).then(($e1) => {
