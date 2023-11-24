@@ -37,13 +37,14 @@ Cypress.Commands.add('login', (user) => {
 })
 
 Cypress.Commands.add('resetView', () => {
+  cy.get('[data-act-table-target="header"]')
   cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
   cy.get('[aria-label="Tabs"] .sts-menu__items').eq(0).then(($e1) => {
     cy.wrap($e1).find('li').then($e2=>{
     const text1 = $e2.text()
     if (text1.includes('Reset view')) {
-      cy.contains('Reset view').click()
-      cy.get('.ml-4.flex-1 > .text-lg')
+      cy.contains('[data-card_key="orders_index_orders_tab"]','Reset view').click()
+      cy.wait(1000)
     } else {
       cy.get('.border-r > .items-center > img').click()
     }
