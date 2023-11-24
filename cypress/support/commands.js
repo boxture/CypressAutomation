@@ -43,7 +43,7 @@ Cypress.Commands.add('resetView', () => {
     cy.wrap($e1).find('li').then($e2=>{
     const text1 = $e2.text()
     if (text1.includes('Reset view')) {
-      cy.contains('[data-card_key="orders_index_orders_tab"]','Reset view').click()
+      cy.contains('Reset view').click()
       cy.wait(1000)
     } else {
       cy.get('.border-r > .items-center > img').click()
