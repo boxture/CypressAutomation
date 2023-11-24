@@ -54,7 +54,7 @@ beforeEach(() => {
         cy.log(id)
         cy.wrap(id).as('id12')
       })
-      cy.get('[data-column="id"]').find('[type="button"]').should('be.visible').click()
+      cy.get('[data-column="id"]').find('[type="button"]').should('be.visible').click({force:true})
       cy.get('@id12').then($id1=>{
       cy.get('[data-column="id"] [data-controller=" form"]').type(`${$id1}`)
       cy.get('.border-r > .items-center > img').click()
