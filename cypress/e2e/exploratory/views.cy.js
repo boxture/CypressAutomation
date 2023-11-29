@@ -58,7 +58,7 @@ describe('Views', () => {
     cy.get('[data-act-table-target="column"][data-column="received_at"]').scrollIntoView().should('be.visible')
 
   })
-  it('Purchase Order Lines - Basic', () => {
+  it.only('Purchase Order Lines - Basic', () => {
 
       // Purchase Order Lines - Basic  - #3463
       cy.visit('/orders?type=Orders%3A%3APurchaseOrder')
@@ -70,7 +70,7 @@ describe('Views', () => {
       cy.contains('h3', 'Addresses')
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
-      cy.get('[title*=".tabs.basic"]').eq(1).contains('Basic').click({ force: true })
+      cy.get('[id*="tab_label"]').eq(2).contains('Basic').click({ force: true })
       cy.get('[data-act-table-target="column"][data-column="#"]').scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="product_number"]').scrollIntoView().should('be.visible')
@@ -93,7 +93,7 @@ describe('Views', () => {
       cy.get('[data-act-table-target="column"][data-column="inventory"]').scrollIntoView().should('be.visible')
 
   })
-  it('Purchase Orders Lines - Items', () => {
+  it.only('Purchase Orders Lines - Items', () => {
 
       // Purchase Orders Lines - Items
       cy.visit('/orders?type=Orders%3A%3APurchaseOrder')
@@ -105,7 +105,7 @@ describe('Views', () => {
       cy.contains('h3', 'Addresses')
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
-      cy.get('[title*=".tabs.items"]').contains('Items').click({ force: true })
+      cy.get('[id*="tab_label"]').contains('Items').click({ force: true })
       cy.get('[data-act-table-target="column"][data-column="position"]').scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="status"]').scrollIntoView().should('be.visible')
@@ -157,7 +157,7 @@ describe('Views', () => {
       cy.contains('h3', 'Addresses')
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
-      cy.get('[title*=".tabs.basic"]').eq(1).contains('Basic').click({ force: true })
+      cy.get('[title*=".tabs.basic"]').eq(2).contains('Basic').click({ force: true })
       cy.get('[data-act-table-target="column"][data-column="#"]').scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="product_number"]').should('be.visible')
@@ -192,7 +192,7 @@ describe('Views', () => {
       cy.contains('h3', 'Addresses')
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
-      cy.get('[title*=".tabs.items"]').contains('Items').click({ force: true })
+      cy.get('[id*="tab_label"]').contains('Items').click({ force: true })
       cy.get('[data-act-table-target="column"][data-column="position"]').scrollIntoView().scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="status"]').scrollIntoView().should('be.visible')
@@ -244,7 +244,7 @@ describe('Views', () => {
       cy.contains('h3', 'Addresses')
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
-      cy.get('[title*=".tabs.basic"]').eq(1).contains('Basic').click({ force: true })
+      cy.get('[title*=".tabs.basic"]').eq(2).contains('Basic').click({ force: true })
       cy.get('[data-act-table-target="column"][data-column="#"]').scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="product_number"]').scrollIntoView().should('be.visible')
@@ -279,7 +279,7 @@ describe('Views', () => {
       cy.contains('h3', 'Addresses')
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
-      cy.get('[title*=".tabs.items"]').contains('Items').click({ force: true })
+      cy.get('[id*="tab_label"]').contains('Items').click({ force: true })
       cy.get('[data-act-table-target="column"][data-column="position"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="status"]').scrollIntoView().should('be.visible')
@@ -338,7 +338,7 @@ describe('Views', () => {
       cy.contains('h3', 'Addresses')
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
-      cy.get('[title*=".tabs.basic"]').eq(1).contains('Basic').click({ force: true })
+      cy.get('[title*=".tabs.basic"]').eq(2).contains('Basic').click({ force: true })
       cy.get('[data-act-table-target="column"][data-column="#"]').scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="product_number"]').should('be.visible')
@@ -373,7 +373,7 @@ describe('Views', () => {
       cy.contains('h3', 'Addresses')
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
-      cy.get('[title*=".tabs.items"]').contains('Items').click({ force: true })
+      cy.get('[id*="tab_label"]').contains('Items').click({ force: true })
       cy.get('[data-act-table-target="column"][data-column="position"]').scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="state"]').scrollIntoView().should('be.visible')
       cy.get('[data-act-table-target="column"][data-column="status"]').scrollIntoView().should('be.visible')
@@ -425,7 +425,7 @@ describe('Views', () => {
     cy.contains('h3', 'Addresses')
     cy.contains('h2', 'Comments')
     cy.contains('h3', 'Other')
-    cy.get('[title*=".tabs.basic"]').eq(1).contains('Basic').click({ force: true })
+    cy.get('[title*=".tabs.basic"]').eq(2).contains('Basic').click({ force: true })
     cy.get('[data-act-table-target="column"][data-column="#"]').scrollIntoView().should('be.visible')
     cy.get('[data-act-table-target="column"][data-column="state"]').scrollIntoView().should('be.visible')
     cy.get('[data-act-table-target="column"][data-column="product_number"]').scrollIntoView().should('be.visible')
@@ -460,7 +460,7 @@ describe('Views', () => {
     cy.contains('h3', 'Addresses')
     cy.contains('h2', 'Comments')
     cy.contains('h3', 'Other')
-    cy.get('[title*=".tabs.items"]').contains('Items').click({ force: true })
+    cy.get('[id*="tab_label"]').contains('Items').click({ force: true })
     cy.get('[data-act-table-target="column"][data-column="position"]').scrollIntoView().should('be.visible')
     cy.get('[data-act-table-target="column"][data-column="state"]').scrollIntoView().should('be.visible')
     cy.get('[data-act-table-target="column"][data-column="status"]').scrollIntoView().should('be.visible')
