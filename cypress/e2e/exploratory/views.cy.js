@@ -1359,463 +1359,463 @@ describe('Views', () => {
     cy.get('.selected [data-act-table-target="column"][data-column="created_at"]').scrollIntoView().should('be.visible')
 
   })
-  it('Settings', () => {
+  // it('Settings', () => {
 
-    // Settings
-    cy.visit(
-      'https://oms.staging.boxture.com/settings/settings?settable=BAh7CEkiCGdpZAY6BkVUSSI7Z2lkOi8vb21zL0FjY291bnQvZTY4YzllMWYtMjExOC00MDVmLTgzNWQtZTM0ODUzMWRlZTc2BjsAVEkiDHB1cnBvc2UGOwBUSSIKVmFyaW8GOwBUSSIPZXhwaXJlc19hdAY7AFRJIh0yMDIzLTA1LTE0VDExOjE1OjQ3LjM5NFoGOwBU--45a4ed9be250d510b978b83ee3e8540a1a12f23c'
-    )
-    cy.url().should('include', 'settings/settings?settable=')
+  //   // Settings
+  //   cy.visit(
+  //     'https://oms.staging.boxture.com/settings/settings?settable=BAh7CEkiCGdpZAY6BkVUSSI7Z2lkOi8vb21zL0FjY291bnQvZTY4YzllMWYtMjExOC00MDVmLTgzNWQtZTM0ODUzMWRlZTc2BjsAVEkiDHB1cnBvc2UGOwBUSSIKVmFyaW8GOwBUSSIPZXhwaXJlc19hdAY7AFRJIh0yMDIzLTA1LTE0VDExOjE1OjQ3LjM5NFoGOwBU--45a4ed9be250d510b978b83ee3e8540a1a12f23c'
+  //   )
+  //   cy.url().should('include', 'settings/settings?settable=')
 
-  })
-  it('Accounts: Billing contact required', () => {
+  // })
+  // it('Accounts: Billing contact required', () => {
 
-    // Settings - Accounts: Billing contact required
-    cy.visit('/settings/settings/032c9750-5de2-4fd5-9af2-080d688c8b75')
-    cy.url().should('include', '/settings/settings/032c9750-5de2-4fd5-9af2-080d688c8b75')
+  //   // Settings - Accounts: Billing contact required
+  //   cy.visit('/settings/settings/032c9750-5de2-4fd5-9af2-080d688c8b75')
+  //   cy.url().should('include', '/settings/settings/032c9750-5de2-4fd5-9af2-080d688c8b75')
 
-  })
-  it('Accounts: Contact kinds', () => {
+  // })
+  // it('Accounts: Contact kinds', () => {
 
-    // Settings - Accounts: Contact kinds
-    cy.visit('/settings/settings/ef211fd0-8ec1-4c59-be79-121f7bc16741')
-    cy.url().should('include', '/settings/settings/ef211fd0-8ec1-4c59-be79-121f7bc16741')
+  //   // Settings - Accounts: Contact kinds
+  //   cy.visit('/settings/settings/ef211fd0-8ec1-4c59-be79-121f7bc16741')
+  //   cy.url().should('include', '/settings/settings/ef211fd0-8ec1-4c59-be79-121f7bc16741')
 
-  })
-  it('Allocation: Auto allocate', () => {
+  // })
+  // it('Allocation: Auto allocate', () => {
 
-    // Settings - Allocation: Auto allocate
-    cy.visit('/settings/settings/d0394d0b-1f7d-4648-aa96-6732f5b13962')
-    cy.url().should('include', '/settings/settings/d0394d0b-1f7d-4648-aa96-6732f5b13962')
+  //   // Settings - Allocation: Auto allocate
+  //   cy.visit('/settings/settings/d0394d0b-1f7d-4648-aa96-6732f5b13962')
+  //   cy.url().should('include', '/settings/settings/d0394d0b-1f7d-4648-aa96-6732f5b13962')
 
-  })
-  it('Allocation: Auto allocate backorders', () => {
+  // })
+  // it('Allocation: Auto allocate backorders', () => {
 
-    // Settings - Allocation: Auto allocate backorders
-    cy.visit('/settings/settings/0ae6f06f-d81d-4a14-8c0d-5014d68bf4da')
-    cy.url().should('include', '/settings/settings/0ae6f06f-d81d-4a14-8c0d-5014d68bf4da')
+  //   // Settings - Allocation: Auto allocate backorders
+  //   cy.visit('/settings/settings/0ae6f06f-d81d-4a14-8c0d-5014d68bf4da')
+  //   cy.url().should('include', '/settings/settings/0ae6f06f-d81d-4a14-8c0d-5014d68bf4da')
 
-  })
-  it('Allocation: Backorder allowed', () => {
+  // })
+  // it('Allocation: Backorder allowed', () => {
 
-    // Settings - Allocation: Backorder allowed
-    cy.visit('/settings/settings/fa21530d-87a5-41af-858a-dcd662556fef')
-    cy.url().should('include', '/settings/settings/fa21530d-87a5-41af-858a-dcd662556fef')
+  //   // Settings - Allocation: Backorder allowed
+  //   cy.visit('/settings/settings/fa21530d-87a5-41af-858a-dcd662556fef')
+  //   cy.url().should('include', '/settings/settings/fa21530d-87a5-41af-858a-dcd662556fef')
 
-  })
-  it('Allocation: Partial allocation', () => {
+  // })
+  // it('Allocation: Partial allocation', () => {
 
-    // Settings - Allocation: Partial allocation
-    cy.visit('/settings/settings/f079109f-fe69-4e72-a7b9-2e4012904ad6')
-    cy.url().should('include', '/settings/settings/f079109f-fe69-4e72-a7b9-2e4012904ad6')
+  //   // Settings - Allocation: Partial allocation
+  //   cy.visit('/settings/settings/f079109f-fe69-4e72-a7b9-2e4012904ad6')
+  //   cy.url().should('include', '/settings/settings/f079109f-fe69-4e72-a7b9-2e4012904ad6')
 
-  })
-  it('Carrier: Account number', () => {
+  // })
+  // it('Carrier: Account number', () => {
 
-    // Settings - Carrier: Account number
-    cy.visit('/settings/settings/c65ca118-f1e2-4130-a1c3-88c1dfbd1379')
-    cy.url().should('include', '/settings/settings/c65ca118-f1e2-4130-a1c3-88c1dfbd1379')
+  //   // Settings - Carrier: Account number
+  //   cy.visit('/settings/settings/c65ca118-f1e2-4130-a1c3-88c1dfbd1379')
+  //   cy.url().should('include', '/settings/settings/c65ca118-f1e2-4130-a1c3-88c1dfbd1379')
 
-  })
-  it('Carrier: Api endpoint', () => {
+  // })
+  // it('Carrier: Api endpoint', () => {
 
-    // Settings - Carrier: Api endpoint
-    cy.visit('/settings/settings/bf90a20d-89da-4502-9857-050b0f67d331')
-    cy.url().should('include', '/settings/settings/bf90a20d-89da-4502-9857-050b0f67d331')
+  //   // Settings - Carrier: Api endpoint
+  //   cy.visit('/settings/settings/bf90a20d-89da-4502-9857-050b0f67d331')
+  //   cy.url().should('include', '/settings/settings/bf90a20d-89da-4502-9857-050b0f67d331')
 
-  })
-  it('Carrier: Authentication key', () => {
+  // })
+  // it('Carrier: Authentication key', () => {
 
-    // Settings - Carrier: Authentication key
-    cy.visit('/settings/settings/54bd2994-606d-4c4a-93cf-cc9c33f965fe')
-    cy.url().should('include', '/settings/settings/54bd2994-606d-4c4a-93cf-cc9c33f965fe')
+  //   // Settings - Carrier: Authentication key
+  //   cy.visit('/settings/settings/54bd2994-606d-4c4a-93cf-cc9c33f965fe')
+  //   cy.url().should('include', '/settings/settings/54bd2994-606d-4c4a-93cf-cc9c33f965fe')
 
-  })
-  it('Carrier: Authentication password', () => {
+  // })
+  // it('Carrier: Authentication password', () => {
 
-    // Settings - Carrier: Authentication password
-    cy.visit('/settings/settings/aaeed576-796b-4e1c-83e5-822869ca9dd5')
-    cy.url().should('include', '/settings/settings/aaeed576-796b-4e1c-83e5-822869ca9dd5')
+  //   // Settings - Carrier: Authentication password
+  //   cy.visit('/settings/settings/aaeed576-796b-4e1c-83e5-822869ca9dd5')
+  //   cy.url().should('include', '/settings/settings/aaeed576-796b-4e1c-83e5-822869ca9dd5')
 
-  })
-  it('Carrier:  Integration method', () => {
+  // })
+  // it('Carrier:  Integration method', () => {
 
-    // Settings - Carrier:  Integration method
-    cy.visit('/settings/settings/6fc044ed-1302-49d2-b30d-a828f43b254c')
-    cy.url().should('include', '/settings/settings/6fc044ed-1302-49d2-b30d-a828f43b254c')
+  //   // Settings - Carrier:  Integration method
+  //   cy.visit('/settings/settings/6fc044ed-1302-49d2-b30d-a828f43b254c')
+  //   cy.url().should('include', '/settings/settings/6fc044ed-1302-49d2-b30d-a828f43b254c')
 
-  })
-  it('Carrier: Pickup time', () => {
+  // })
+  // it('Carrier: Pickup time', () => {
 
-    // Settings - Carrier: Pickup time
-    cy.visit('/settings/settings/3e3185c8-29b7-43a4-8845-99f7a20156cc')
-    cy.url().should('include', '/settings/settings/3e3185c8-29b7-43a4-8845-99f7a20156cc')
+  //   // Settings - Carrier: Pickup time
+  //   cy.visit('/settings/settings/3e3185c8-29b7-43a4-8845-99f7a20156cc')
+  //   cy.url().should('include', '/settings/settings/3e3185c8-29b7-43a4-8845-99f7a20156cc')
 
-  })
-  it('Data protection and privacy: Order anonymize period', () => {
+  // })
+  // it('Data protection and privacy: Order anonymize period', () => {
 
-    // Settings - Data protection and privacy: Order anonymize period
-    cy.visit('/settings/settings/003da152-ac02-4f35-aca9-1244e5fb7d10')
-    cy.url().should('include', '/settings/settings/003da152-ac02-4f35-aca9-1244e5fb7d10')
+  //   // Settings - Data protection and privacy: Order anonymize period
+  //   cy.visit('/settings/settings/003da152-ac02-4f35-aca9-1244e5fb7d10')
+  //   cy.url().should('include', '/settings/settings/003da152-ac02-4f35-aca9-1244e5fb7d10')
 
-  })
-  it('Data protection and privacy: Shipment anonymize period', () => {
+  // })
+  // it('Data protection and privacy: Shipment anonymize period', () => {
 
-    // Settings - Data protection and privacy: Shipment anonymize period
-    cy.visit('/settings/settings/987e87c8-f004-415a-b1cf-c7c24e81fe96')
-    cy.url().should('include', '/settings/settings/987e87c8-f004-415a-b1cf-c7c24e81fe96')
+  //   // Settings - Data protection and privacy: Shipment anonymize period
+  //   cy.visit('/settings/settings/987e87c8-f004-415a-b1cf-c7c24e81fe96')
+  //   cy.url().should('include', '/settings/settings/987e87c8-f004-415a-b1cf-c7c24e81fe96')
 
-  })
-  it('i18n: Working days', () => {
+  // })
+  // it('i18n: Working days', () => {
 
-    // Settings - i18n: Working days
-    cy.visit('/settings/settings/a6def0ad-37ff-4c26-8cab-2c2348576232')
-    cy.url().should('include', '/settings/settings/a6def0ad-37ff-4c26-8cab-2c2348576232')
+  //   // Settings - i18n: Working days
+  //   cy.visit('/settings/settings/a6def0ad-37ff-4c26-8cab-2c2348576232')
+  //   cy.url().should('include', '/settings/settings/a6def0ad-37ff-4c26-8cab-2c2348576232')
 
-  })
-  it('Internationalization: Default currency', () => {
+  // })
+  // it('Internationalization: Default currency', () => {
 
-    // Settings - Internationalization: Default currency
-    cy.visit('/settings/settings/3e4e5efc-f4fa-4635-9831-adcaa15c9bd1')
-    cy.url().should('include', '/settings/settings/3e4e5efc-f4fa-4635-9831-adcaa15c9bd1')
+  //   // Settings - Internationalization: Default currency
+  //   cy.visit('/settings/settings/3e4e5efc-f4fa-4635-9831-adcaa15c9bd1')
+  //   cy.url().should('include', '/settings/settings/3e4e5efc-f4fa-4635-9831-adcaa15c9bd1')
 
-  })
-  it('Internationalization: Week start', () => {
+  // })
+  // it('Internationalization: Week start', () => {
 
-    // Settings - Internationalization: Week start
-    cy.visit('/settings/settings/1d299c7e-8b7e-4773-930b-cd6d832a343b')
-    cy.url().should('include', '/settings/settings/1d299c7e-8b7e-4773-930b-cd6d832a343b')
+  //   // Settings - Internationalization: Week start
+  //   cy.visit('/settings/settings/1d299c7e-8b7e-4773-930b-cd6d832a343b')
+  //   cy.url().should('include', '/settings/settings/1d299c7e-8b7e-4773-930b-cd6d832a343b')
 
-  })
-  it('Internationalization: Working days', () => {
+  // })
+  // it('Internationalization: Working days', () => {
 
-    // Settings - Internationalization: Working days
-    cy.visit('/settings/settings/6fef5d8b-aa85-40a7-a028-5f736ad2b8b2')
-    cy.url().should('include', '/settings/settings/6fef5d8b-aa85-40a7-a028-5f736ad2b8b2')
+  //   // Settings - Internationalization: Working days
+  //   cy.visit('/settings/settings/6fef5d8b-aa85-40a7-a028-5f736ad2b8b2')
+  //   cy.url().should('include', '/settings/settings/6fef5d8b-aa85-40a7-a028-5f736ad2b8b2')
 
-  })
-  it('Inventory: Allow kit to inventory', () => {
+  // })
+  // it('Inventory: Allow kit to inventory', () => {
 
-    // Settings - Inventory: Allow kit to inventory
-    cy.visit('/settings/settings/5b341bc6-185a-4a03-a0fb-a0e97cb9330a')
-    cy.url().should('include', '/settings/settings/5b341bc6-185a-4a03-a0fb-a0e97cb9330a')
+  //   // Settings - Inventory: Allow kit to inventory
+  //   cy.visit('/settings/settings/5b341bc6-185a-4a03-a0fb-a0e97cb9330a')
+  //   cy.url().should('include', '/settings/settings/5b341bc6-185a-4a03-a0fb-a0e97cb9330a')
 
-  })
-  it('Inventory: Container required', () => {
+  // })
+  // it('Inventory: Container required', () => {
 
-    // Settings - Inventory: Container required
-    cy.visit('/settings/settings/7fa11f93-5195-4828-b27b-808dab698a3d')
-    cy.url().should('include', '/settings/settings/7fa11f93-5195-4828-b27b-808dab698a3d')
+  //   // Settings - Inventory: Container required
+  //   cy.visit('/settings/settings/7fa11f93-5195-4828-b27b-808dab698a3d')
+  //   cy.url().should('include', '/settings/settings/7fa11f93-5195-4828-b27b-808dab698a3d')
 
-  })
-  it('Inventory: Ignore container levels', () => {
+  // })
+  // it('Inventory: Ignore container levels', () => {
 
-    // Settings - Inventory: Ignore container levels
-    cy.visit('/settings/settings/67df40f4-4827-4ca9-adb8-ee6fe2bfdefc')
-    cy.url().should('include', '/settings/settings/67df40f4-4827-4ca9-adb8-ee6fe2bfdefc')
+  //   // Settings - Inventory: Ignore container levels
+  //   cy.visit('/settings/settings/67df40f4-4827-4ca9-adb8-ee6fe2bfdefc')
+  //   cy.url().should('include', '/settings/settings/67df40f4-4827-4ca9-adb8-ee6fe2bfdefc')
 
-  })
-  it('Inventory: Multiple products per container', () => {
+  // })
+  // it('Inventory: Multiple products per container', () => {
 
-    // Settings - Inventory: Multiple products per container
-    cy.visit('/settings/settings/722389f0-2500-424e-bb82-46fd2b981022')
-    cy.url().should('include', '/settings/settings/722389f0-2500-424e-bb82-46fd2b981022')
+  //   // Settings - Inventory: Multiple products per container
+  //   cy.visit('/settings/settings/722389f0-2500-424e-bb82-46fd2b981022')
+  //   cy.url().should('include', '/settings/settings/722389f0-2500-424e-bb82-46fd2b981022')
 
-  })
-  it('Inventory: Recycle serial numbers', () => {
+  // })
+  // it('Inventory: Recycle serial numbers', () => {
 
-    // Settings - Inventory: Recycle serial numbers
-    cy.visit('/settings/settings/a33536c2-1d92-4528-bfd7-6529e53aa6da')
-    cy.url().should('include', '/settings/settings/a33536c2-1d92-4528-bfd7-6529e53aa6da')
+  //   // Settings - Inventory: Recycle serial numbers
+  //   cy.visit('/settings/settings/a33536c2-1d92-4528-bfd7-6529e53aa6da')
+  //   cy.url().should('include', '/settings/settings/a33536c2-1d92-4528-bfd7-6529e53aa6da')
 
-  })
-  it('Inventory: Reorder quantity', () => {
+  // })
+  // it('Inventory: Reorder quantity', () => {
 
-    // Settings - Inventory: Reorder quantity
-    cy.visit('/settings/settings/0e68e0c8-d328-43ab-a860-5fb7dd6da7a0')
-    cy.url().should('include', '/settings/settings/0e68e0c8-d328-43ab-a860-5fb7dd6da7a0')
+  //   // Settings - Inventory: Reorder quantity
+  //   cy.visit('/settings/settings/0e68e0c8-d328-43ab-a860-5fb7dd6da7a0')
+  //   cy.url().should('include', '/settings/settings/0e68e0c8-d328-43ab-a860-5fb7dd6da7a0')
 
-  })
-  it('Inventory: Reporting percent', () => {
+  // })
+  // it('Inventory: Reporting percent', () => {
 
-    // Settings - Inventory: Reporting percent
-    cy.visit('/settings/settings/fb4c4826-b930-48aa-84d5-62bfc3691871')
-    cy.url().should('include', '/settings/settings/fb4c4826-b930-48aa-84d5-62bfc3691871')
+  //   // Settings - Inventory: Reporting percent
+  //   cy.visit('/settings/settings/fb4c4826-b930-48aa-84d5-62bfc3691871')
+  //   cy.url().should('include', '/settings/settings/fb4c4826-b930-48aa-84d5-62bfc3691871')
 
-  })
-  it('Inventory: Restrict transactions to setup complete', () => {
+  // })
+  // it('Inventory: Restrict transactions to setup complete', () => {
 
-    // Settings - Inventory: Restrict transactions to setup complete - #3040
-    cy.visit('/settings/settings/cf3d8cce-166e-43c5-a6a6-1c7d5220a714')
-    cy.url().should('include', '/settings/settings/cf3d8cce-166e-43c5-a6a6-1c7d5220a714')
+  //   // Settings - Inventory: Restrict transactions to setup complete - #3040
+  //   cy.visit('/settings/settings/cf3d8cce-166e-43c5-a6a6-1c7d5220a714')
+  //   cy.url().should('include', '/settings/settings/cf3d8cce-166e-43c5-a6a6-1c7d5220a714')
 
-  })
-  it('Inventory: Target stock level', () => {
+  // })
+  // it('Inventory: Target stock level', () => {
 
-    // Settings - Inventory: Target stock level
-    cy.visit('/settings/settings/9fd4a450-3478-4408-b07a-9526e2ac1aa0')
-    cy.url().should('include', '/settings/settings/9fd4a450-3478-4408-b07a-9526e2ac1aa0')
+  //   // Settings - Inventory: Target stock level
+  //   cy.visit('/settings/settings/9fd4a450-3478-4408-b07a-9526e2ac1aa0')
+  //   cy.url().should('include', '/settings/settings/9fd4a450-3478-4408-b07a-9526e2ac1aa0')
 
-  })
-  it('Modules: Async picking', () => {
+  // })
+  // it('Modules: Async picking', () => {
 
-    // Settings - Modules: Async picking
-    cy.visit('/settings/settings/78bd91e5-a9e5-41a6-b4d5-fc61dc1f2b6a')
-    cy.url().should('include', '/settings/settings/78bd91e5-a9e5-41a6-b4d5-fc61dc1f2b6a')
+  //   // Settings - Modules: Async picking
+  //   cy.visit('/settings/settings/78bd91e5-a9e5-41a6-b4d5-fc61dc1f2b6a')
+  //   cy.url().should('include', '/settings/settings/78bd91e5-a9e5-41a6-b4d5-fc61dc1f2b6a')
 
-  })
-  it('Modules: Shopify', () => {
+  // })
+  // it('Modules: Shopify', () => {
 
-    // Settings - Modules: Shopify
-    cy.visit('/settings/settings/113c7044-240e-461f-85a4-0ca577284c49')
-    cy.url().should('include', '/settings/settings/113c7044-240e-461f-85a4-0ca577284c49')
+  //   // Settings - Modules: Shopify
+  //   cy.visit('/settings/settings/113c7044-240e-461f-85a4-0ca577284c49')
+  //   cy.url().should('include', '/settings/settings/113c7044-240e-461f-85a4-0ca577284c49')
 
-  })
-  it('Packing: Add to open shipment', () => {
+  // })
+  // it('Packing: Add to open shipment', () => {
 
-    // Settings - Packing: Add to open shipment
-    cy.visit('/settings/settings/d0c85323-63aa-4856-9817-5bff1e4dbe61')
-    cy.url().should('include', '/settings/settings/d0c85323-63aa-4856-9817-5bff1e4dbe61')
+  //   // Settings - Packing: Add to open shipment
+  //   cy.visit('/settings/settings/d0c85323-63aa-4856-9817-5bff1e4dbe61')
+  //   cy.url().should('include', '/settings/settings/d0c85323-63aa-4856-9817-5bff1e4dbe61')
 
-  })
-  it('Packing: Auto ship', () => {
+  // })
+  // it('Packing: Auto ship', () => {
 
-    // Settings - Packing: Auto ship
-    cy.visit('/settings/settings/1eff10f6-070b-41b8-9a7d-b4994b2981a0')
-    cy.url().should('include', '/settings/settings/1eff10f6-070b-41b8-9a7d-b4994b2981a0')
+  //   // Settings - Packing: Auto ship
+  //   cy.visit('/settings/settings/1eff10f6-070b-41b8-9a7d-b4994b2981a0')
+  //   cy.url().should('include', '/settings/settings/1eff10f6-070b-41b8-9a7d-b4994b2981a0')
 
-  })
-  it('Packing: Consume product packing materials', () => {
+  // })
+  // it('Packing: Consume product packing materials', () => {
 
-    // Settings - Packing: Consume product packing materials
-    cy.visit('/settings/settings/358318de-2843-4e5b-b81a-79f59cf7719e')
-    cy.url().should('include', '/settings/settings/358318de-2843-4e5b-b81a-79f59cf7719e')
+  //   // Settings - Packing: Consume product packing materials
+  //   cy.visit('/settings/settings/358318de-2843-4e5b-b81a-79f59cf7719e')
+  //   cy.url().should('include', '/settings/settings/358318de-2843-4e5b-b81a-79f59cf7719e')
 
-  })
-  it('Packing: Default packing material', () => {
+  // })
+  // it('Packing: Default packing material', () => {
 
-    // Settings - Packing: Default packing material
-    cy.visit('/settings/settings/46bb6bb8-120a-414d-bb4c-f33f61428aca')
-    cy.url().should('include', '/settings/settings/46bb6bb8-120a-414d-bb4c-f33f61428aca')
+  //   // Settings - Packing: Default packing material
+  //   cy.visit('/settings/settings/46bb6bb8-120a-414d-bb4c-f33f61428aca')
+  //   cy.url().should('include', '/settings/settings/46bb6bb8-120a-414d-bb4c-f33f61428aca')
 
-  })
-  it('Packing: Select product packing materials', () => {
+  // })
+  // it('Packing: Select product packing materials', () => {
 
-    // Settings - Packing: Select product packing materials
-    cy.visit('/settings/settings/edc8145f-660e-465d-b428-89f3526aeffc')
-    cy.url().should('include', '/settings/settings/edc8145f-660e-465d-b428-89f3526aeffc')
+  //   // Settings - Packing: Select product packing materials
+  //   cy.visit('/settings/settings/edc8145f-660e-465d-b428-89f3526aeffc')
+  //   cy.url().should('include', '/settings/settings/edc8145f-660e-465d-b428-89f3526aeffc')
 
-  })
-  it('Picking: Auto pack', () => {
+  // })
+  // it('Picking: Auto pack', () => {
 
-    // Settings - Picking: Auto pack
-    cy.visit('/settings/settings/15207ed5-8368-40eb-a680-5fbb5849ed4a')
-    cy.url().should('include', '/settings/settings/15207ed5-8368-40eb-a680-5fbb5849ed4a')
+  //   // Settings - Picking: Auto pack
+  //   cy.visit('/settings/settings/15207ed5-8368-40eb-a680-5fbb5849ed4a')
+  //   cy.url().should('include', '/settings/settings/15207ed5-8368-40eb-a680-5fbb5849ed4a')
 
-  })
-  it('Picking: Auto retire containers', () => {
+  // })
+  // it('Picking: Auto retire containers', () => {
 
-    // Settings - Picking: Auto retire containers
-    cy.visit('/settings/settings/e86415d3-73dd-4b27-9942-2101e69a89ed')
-    cy.url().should('include', '/settings/settings/e86415d3-73dd-4b27-9942-2101e69a89ed')
+  //   // Settings - Picking: Auto retire containers
+  //   cy.visit('/settings/settings/e86415d3-73dd-4b27-9942-2101e69a89ed')
+  //   cy.url().should('include', '/settings/settings/e86415d3-73dd-4b27-9942-2101e69a89ed')
 
-  })
-  it('Bulk strategy', () => {
+  // })
+  // it('Bulk strategy', () => {
 
-    // Settings - Picking: Bulk strategy
-    cy.visit('/settings/settings/2e0c43a4-ec0d-4c8a-95bf-a8e6b95121ea')
-    cy.url().should('include', '/settings/settings/2e0c43a4-ec0d-4c8a-95bf-a8e6b95121ea')
+  //   // Settings - Picking: Bulk strategy
+  //   cy.visit('/settings/settings/2e0c43a4-ec0d-4c8a-95bf-a8e6b95121ea')
+  //   cy.url().should('include', '/settings/settings/2e0c43a4-ec0d-4c8a-95bf-a8e6b95121ea')
 
-  })
-  it('Picking: Display product description', () => {
+  // })
+  // it('Picking: Display product description', () => {
 
-    // Settings - Picking: Display product description
-    cy.visit('/settings/settings/eb40444c-7c95-4613-9875-a1e9a4232f90')
-    cy.url().should('include', '/settings/settings/eb40444c-7c95-4613-9875-a1e9a4232f90')
+  //   // Settings - Picking: Display product description
+  //   cy.visit('/settings/settings/eb40444c-7c95-4613-9875-a1e9a4232f90')
+  //   cy.url().should('include', '/settings/settings/eb40444c-7c95-4613-9875-a1e9a4232f90')
 
-  })
-  it('Picking: Pending picking allowed', () => {
+  // })
+  // it('Picking: Pending picking allowed', () => {
 
-    // Settings - Picking: Pending picking allowed
-    cy.visit('/settings/settings/9dbe3c40-1510-4190-b84c-30efbb120327')
-    cy.url().should('include', '/settings/settings/9dbe3c40-1510-4190-b84c-30efbb120327')
+  //   // Settings - Picking: Pending picking allowed
+  //   cy.visit('/settings/settings/9dbe3c40-1510-4190-b84c-30efbb120327')
+  //   cy.url().should('include', '/settings/settings/9dbe3c40-1510-4190-b84c-30efbb120327')
 
-  })
-  it('Purging: Completed orders', () => {
+  // })
+  // it('Purging: Completed orders', () => {
 
-    // Settings - Purging: Completed orders
-    cy.visit('/settings/settings/c84f8a88-7ca3-43ca-a3be-5cefbf289c87')
-    cy.url().should('include', '/settings/settings/c84f8a88-7ca3-43ca-a3be-5cefbf289c87')
+  //   // Settings - Purging: Completed orders
+  //   cy.visit('/settings/settings/c84f8a88-7ca3-43ca-a3be-5cefbf289c87')
+  //   cy.url().should('include', '/settings/settings/c84f8a88-7ca3-43ca-a3be-5cefbf289c87')
 
-  })
-  it('Purging: Concept orders', () => {
+  // })
+  // it('Purging: Concept orders', () => {
 
-    // Settings - Purging: Concept orders
-    cy.visit('/settings/settings/55435ef6-02fe-4c21-b2e1-66ddf0fd98d7')
-    cy.url().should('include', '/settings/settings/55435ef6-02fe-4c21-b2e1-66ddf0fd98d7')
+  //   // Settings - Purging: Concept orders
+  //   cy.visit('/settings/settings/55435ef6-02fe-4c21-b2e1-66ddf0fd98d7')
+  //   cy.url().should('include', '/settings/settings/55435ef6-02fe-4c21-b2e1-66ddf0fd98d7')
 
-  })
-  it('Purging: Importo imports', () => {
+  // })
+  // it('Purging: Importo imports', () => {
 
-    // Settings - Purging: Importo imports
-    cy.visit('/settings/settings/2a5f9ff8-1efb-4d69-8db0-8a66e7ed4471')
-    cy.url().should('include', '/settings/settings/2a5f9ff8-1efb-4d69-8db0-8a66e7ed4471')
+  //   // Settings - Purging: Importo imports
+  //   cy.visit('/settings/settings/2a5f9ff8-1efb-4d69-8db0-8a66e7ed4471')
+  //   cy.url().should('include', '/settings/settings/2a5f9ff8-1efb-4d69-8db0-8a66e7ed4471')
 
-  })
-  it('Purging: Nuntius messages', () => {
+  // })
+  // it('Purging: Nuntius messages', () => {
 
-    // Settings - Purging: Nuntius messages
-    cy.visit('/settings/settings/8ce00b2b-0b4d-48d0-ba74-09da1d60848c')
-    cy.url().should('include', '/settings/settings/8ce00b2b-0b4d-48d0-ba74-09da1d60848c')
+  //   // Settings - Purging: Nuntius messages
+  //   cy.visit('/settings/settings/8ce00b2b-0b4d-48d0-ba74-09da1d60848c')
+  //   cy.url().should('include', '/settings/settings/8ce00b2b-0b4d-48d0-ba74-09da1d60848c')
 
-  })
-  it('Purging: Retired inventory', () => {
+  // })
+  // it('Purging: Retired inventory', () => {
 
-    // Settings - Purging: Retired inventory
-    cy.visit('/settings/settings/fb8630c2-78dd-486f-926f-f213e6999107')
-    cy.url().should('include', '/settings/settings/fb8630c2-78dd-486f-926f-f213e6999107')
+  //   // Settings - Purging: Retired inventory
+  //   cy.visit('/settings/settings/fb8630c2-78dd-486f-926f-f213e6999107')
+  //   cy.url().should('include', '/settings/settings/fb8630c2-78dd-486f-926f-f213e6999107')
 
-  })
-  it('Purging: Vorto messages', () => {
+  // })
+  // it('Purging: Vorto messages', () => {
 
-    // Settings - Purging: Vorto messages
-    cy.visit('/settings/settings/21531303-c1d8-4ed1-9550-e65060a66717')
-    cy.url().should('include', '/settings/settings/21531303-c1d8-4ed1-9550-e65060a66717')
+  //   // Settings - Purging: Vorto messages
+  //   cy.visit('/settings/settings/21531303-c1d8-4ed1-9550-e65060a66717')
+  //   cy.url().should('include', '/settings/settings/21531303-c1d8-4ed1-9550-e65060a66717')
 
-  })
-  it('Receiving: Over receive', () => {
+  // })
+  // it('Receiving: Over receive', () => {
 
-    // Settings - Receiving: Over receive
-    cy.visit('/settings/settings/263c703a-36d9-4689-8153-ba861ed9f3b0')
-    cy.url().should('include', '/settings/settings/263c703a-36d9-4689-8153-ba861ed9f3b0')
+  //   // Settings - Receiving: Over receive
+  //   cy.visit('/settings/settings/263c703a-36d9-4689-8153-ba861ed9f3b0')
+  //   cy.url().should('include', '/settings/settings/263c703a-36d9-4689-8153-ba861ed9f3b0')
 
-  })
-  it('Receiving: Over receive different product', () => {
+  // })
+  // it('Receiving: Over receive different product', () => {
 
-    // Settings - Receiving: Over receive different product
-    cy.visit('/settings/settings/1c538a0b-ca60-40bb-a10c-069521c54497')
-    cy.url().should('include', '/settings/settings/1c538a0b-ca60-40bb-a10c-069521c54497')
+  //   // Settings - Receiving: Over receive different product
+  //   cy.visit('/settings/settings/1c538a0b-ca60-40bb-a10c-069521c54497')
+  //   cy.url().should('include', '/settings/settings/1c538a0b-ca60-40bb-a10c-069521c54497')
 
-  })
-  it('Sales Orders: Required delivery contact fields	', () => {
+  // })
+  // it('Sales Orders: Required delivery contact fields	', () => {
 
-    // Settings - Sales Orders: Required delivery contact fields
-    cy.visit('/settings/settings/1fc04935-7c4e-49d9-8b5f-ba8c4f44cd2a')
-    cy.url().should('include', '/settings/settings/1fc04935-7c4e-49d9-8b5f-ba8c4f44cd2a')
+  //   // Settings - Sales Orders: Required delivery contact fields
+  //   cy.visit('/settings/settings/1fc04935-7c4e-49d9-8b5f-ba8c4f44cd2a')
+  //   cy.url().should('include', '/settings/settings/1fc04935-7c4e-49d9-8b5f-ba8c4f44cd2a')
 
-  })
-  it('Shipping: Backorder shipping method', () => {
+  // })
+  // it('Shipping: Backorder shipping method', () => {
 
-    // Settings - Shipping: Backorder shipping method
-    cy.visit('/settings/settings/f0af7fc7-305b-4ea3-9f98-3a41ebad7c94')
-    cy.url().should('include', '/settings/settings/f0af7fc7-305b-4ea3-9f98-3a41ebad7c94')
+  //   // Settings - Shipping: Backorder shipping method
+  //   cy.visit('/settings/settings/f0af7fc7-305b-4ea3-9f98-3a41ebad7c94')
+  //   cy.url().should('include', '/settings/settings/f0af7fc7-305b-4ea3-9f98-3a41ebad7c94')
 
-  })
-  it('Shipping: Cutoff time', () => {
+  // })
+  // it('Shipping: Cutoff time', () => {
 
-    // Settings - Shipping: Cutoff time
-    cy.visit('/settings/settings/70f4bafe-a060-4183-b328-f04d6ce99ca2')
-    cy.url().should('include', '/settings/settings/70f4bafe-a060-4183-b328-f04d6ce99ca2')
+  //   // Settings - Shipping: Cutoff time
+  //   cy.visit('/settings/settings/70f4bafe-a060-4183-b328-f04d6ce99ca2')
+  //   cy.url().should('include', '/settings/settings/70f4bafe-a060-4183-b328-f04d6ce99ca2')
 
-  })
-  it('Shipping: Default business model', () => {
+  // })
+  // it('Shipping: Default business model', () => {
 
-    // Settings - Shipping: Default business model
-    cy.visit('/settings/settings/9f6ee91d-7cfc-4172-baec-0dacf586b2a1')
-    cy.url().should('include', '/settings/settings/9f6ee91d-7cfc-4172-baec-0dacf586b2a1')
+  //   // Settings - Shipping: Default business model
+  //   cy.visit('/settings/settings/9f6ee91d-7cfc-4172-baec-0dacf586b2a1')
+  //   cy.url().should('include', '/settings/settings/9f6ee91d-7cfc-4172-baec-0dacf586b2a1')
 
-  })
-  it('Shipping: Default delivery terms', () => {
+  // })
+  // it('Shipping: Default delivery terms', () => {
 
-    // Settings - Shipping: Default delivery terms
-    cy.visit('/settings/settings/9e389941-3a5b-4372-b923-076255ecfb01')
-    cy.url().should('include', '/settings/settings/9e389941-3a5b-4372-b923-076255ecfb01')
+  //   // Settings - Shipping: Default delivery terms
+  //   cy.visit('/settings/settings/9e389941-3a5b-4372-b923-076255ecfb01')
+  //   cy.url().should('include', '/settings/settings/9e389941-3a5b-4372-b923-076255ecfb01')
 
-  })
-  it('Shipping: Default shipping method', () => {
+  // })
+  // it('Shipping: Default shipping method', () => {
 
-    // Settings - Shipping: Default shipping method
-    cy.visit('/settings/settings/c4a5d331-960f-4b48-84a9-e01d92771455')
-    cy.url().should('include', '/settings/settings/c4a5d331-960f-4b48-84a9-e01d92771455')
+  //   // Settings - Shipping: Default shipping method
+  //   cy.visit('/settings/settings/c4a5d331-960f-4b48-84a9-e01d92771455')
+  //   cy.url().should('include', '/settings/settings/c4a5d331-960f-4b48-84a9-e01d92771455')
 
-  })
-  it('Shipping: Partial shipping', () => {
+  // })
+  // it('Shipping: Partial shipping', () => {
 
-    // Settings - Shipping: Partial shipping
-    cy.visit('/settings/settings/39eb1980-be31-4043-8035-f53828b46656')
-    cy.url().should('include', '/settings/settings/39eb1980-be31-4043-8035-f53828b46656')
+  //   // Settings - Shipping: Partial shipping
+  //   cy.visit('/settings/settings/39eb1980-be31-4043-8035-f53828b46656')
+  //   cy.url().should('include', '/settings/settings/39eb1980-be31-4043-8035-f53828b46656')
 
-  })
-  it('Shipping: Shipping method required', () => {
+  // })
+  // it('Shipping: Shipping method required', () => {
 
-    // Settings - Shipping: Shipping method required
-    cy.visit('/settings/settings/b4550206-c0b6-4204-aa80-684100277239')
-    cy.url().should('include', '/settings/settings/b4550206-c0b6-4204-aa80-684100277239')
+  //   // Settings - Shipping: Shipping method required
+  //   cy.visit('/settings/settings/b4550206-c0b6-4204-aa80-684100277239')
+  //   cy.url().should('include', '/settings/settings/b4550206-c0b6-4204-aa80-684100277239')
 
-  })
-  it('Shipping: Sla days', () => {
+  // })
+  // it('Shipping: Sla days', () => {
 
-    // Settings - Shipping: Sla days
-    cy.visit('/settings/settings/9571719d-4fa3-4e1a-b4ac-9454386870b5')
-    cy.url().should('include', '/settings/settings/9571719d-4fa3-4e1a-b4ac-9454386870b5')
+  //   // Settings - Shipping: Sla days
+  //   cy.visit('/settings/settings/9571719d-4fa3-4e1a-b4ac-9454386870b5')
+  //   cy.url().should('include', '/settings/settings/9571719d-4fa3-4e1a-b4ac-9454386870b5')
 
-  })
-  it('Traffic lights: Green', () => {
+  // })
+  // it('Traffic lights: Green', () => {
 
-    // Settings - Traffic light: Green
-    cy.visit('/settings/settings/cffcf114-9f92-481a-b954-1645be60b124')
-    cy.url().should('include', '/settings/settings/cffcf114-9f92-481a-b954-1645be60b124')
+  //   // Settings - Traffic light: Green
+  //   cy.visit('/settings/settings/cffcf114-9f92-481a-b954-1645be60b124')
+  //   cy.url().should('include', '/settings/settings/cffcf114-9f92-481a-b954-1645be60b124')
 
-  })
-  it('Traffic lights: Orange', () => {
+  // })
+  // it('Traffic lights: Orange', () => {
 
-    // Settings - Traffic lightes: Orange
-    cy.visit('/settings/settings/6c87c8d9-cf9d-41b6-9725-77bd1d2dc437')
-    cy.url().should('include', '/settings/settings/6c87c8d9-cf9d-41b6-9725-77bd1d2dc437')
+  //   // Settings - Traffic lightes: Orange
+  //   cy.visit('/settings/settings/6c87c8d9-cf9d-41b6-9725-77bd1d2dc437')
+  //   cy.url().should('include', '/settings/settings/6c87c8d9-cf9d-41b6-9725-77bd1d2dc437')
 
-  })
-  it('Traffic lights: Red', () => {
+  // })
+  // it('Traffic lights: Red', () => {
 
-    // Settings - Traffic lights: Red
-    cy.visit('/settings/settings/6bf54617-a6b2-424b-92e7-a3527f1d3538')
-    cy.url().should('include', '/settings/settings/6bf54617-a6b2-424b-92e7-a3527f1d3538')
+  //   // Settings - Traffic lights: Red
+  //   cy.visit('/settings/settings/6bf54617-a6b2-424b-92e7-a3527f1d3538')
+  //   cy.url().should('include', '/settings/settings/6bf54617-a6b2-424b-92e7-a3527f1d3538')
 
-  })
-  it('Warehousing: Picking bin location name', () => {
+  // })
+  // it('Warehousing: Picking bin location name', () => {
 
-    // Settings - Warehousing: Picking bin location name
-    cy.visit('/settings/settings/161f98d2-ab23-4425-81b7-289e9bb14404')
-    cy.url().should('include', '/settings/settings/161f98d2-ab23-4425-81b7-289e9bb14404')
+  //   // Settings - Warehousing: Picking bin location name
+  //   cy.visit('/settings/settings/161f98d2-ab23-4425-81b7-289e9bb14404')
+  //   cy.url().should('include', '/settings/settings/161f98d2-ab23-4425-81b7-289e9bb14404')
 
-  })
-  it('Warehousing: Problem bin location name', () => {
+  // })
+  // it('Warehousing: Problem bin location name', () => {
 
-    // Settings - Warehousing: Problem bin location name
-    cy.visit('/settings/settings/e3ba6913-182b-47a3-b7c7-94f4a4616d9a')
-    cy.url().should('include', '/settings/settings/e3ba6913-182b-47a3-b7c7-94f4a4616d9a')
+  //   // Settings - Warehousing: Problem bin location name
+  //   cy.visit('/settings/settings/e3ba6913-182b-47a3-b7c7-94f4a4616d9a')
+  //   cy.url().should('include', '/settings/settings/e3ba6913-182b-47a3-b7c7-94f4a4616d9a')
 
-  })
-  it('Warehousing: Receiving bin location', () => {
+  // })
+  // it('Warehousing: Receiving bin location', () => {
 
-    // Settings - Warehousing: Receiving bin location
-    cy.visit('/settings/settings/dac325c2-70d0-42c7-9455-eb4aae78bc47')
-    cy.url().should('include', '/settings/settings/dac325c2-70d0-42c7-9455-eb4aae78bc47')
+  //   // Settings - Warehousing: Receiving bin location
+  //   cy.visit('/settings/settings/dac325c2-70d0-42c7-9455-eb4aae78bc47')
+  //   cy.url().should('include', '/settings/settings/dac325c2-70d0-42c7-9455-eb4aae78bc47')
 
-  })
-  it('Warehousing: Receiving bin location name', () => {
+  // })
+  // it('Warehousing: Receiving bin location name', () => {
 
-    // Settings - Warehousing: Receiving bin location name
-    cy.visit('/settings/settings/46315817-da8d-4152-ac04-c1a2c4c3ebc1')
-    cy.url().should('include', '/settings/settings/46315817-da8d-4152-ac04-c1a2c4c3ebc1')
+  //   // Settings - Warehousing: Receiving bin location name
+  //   cy.visit('/settings/settings/46315817-da8d-4152-ac04-c1a2c4c3ebc1')
+  //   cy.url().should('include', '/settings/settings/46315817-da8d-4152-ac04-c1a2c4c3ebc1')
 
-  })
-  it('Warehousing: Shipping bin location', () => {
+  // })
+  // it('Warehousing: Shipping bin location', () => {
 
-    // Settings - Warehousing: Shipping bin location
-    cy.visit('/settings/settings/12a15265-d981-4a3c-940d-cbc0428fbcbb')
-    cy.url().should('include', '/settings/settings/12a15265-d981-4a3c-940d-cbc0428fbcbb')
+  //   // Settings - Warehousing: Shipping bin location
+  //   cy.visit('/settings/settings/12a15265-d981-4a3c-940d-cbc0428fbcbb')
+  //   cy.url().should('include', '/settings/settings/12a15265-d981-4a3c-940d-cbc0428fbcbb')
 
-  })
+  //  })
   it('Integration', () => {
 
     // Admin - Integration

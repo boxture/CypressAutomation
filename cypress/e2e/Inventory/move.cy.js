@@ -20,13 +20,13 @@ beforeEach(() => {
     // Find container
     cy.visit('/containers')
     cy.url().should('include', '/containers')
-    cy.get('[data-action="click->satis-menu#show mouseleave->satis-menu#hide"]').first().click()
+    cy.get('[data-action="click->satis-menu#show"]').first().click()
     cy.resetView()
 
     // Get container from URL
     cy.get('[data-column="created_at"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
     cy.get('[data-column="created_at"]').find('li').contains('Sort descending').should('be.visible').click()
-    cy.get('[id*="sort_icon_created_at"]').should('be.visible')
+    cy.get('[id*="sort_icon_created_at"]').scrollIntoView().should('be.visible')
 
     cy.get('tr').last().click({force: true})
     cy.contains('Contents')
