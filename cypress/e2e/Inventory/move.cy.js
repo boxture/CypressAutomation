@@ -5,6 +5,7 @@
 // ISSUE
 // 1. container with inventory items that are expired are still availbe?
 // 2. container 5322a522 canot be moved, reason unknown
+// 3. https://github.com/boxture/oms/issues/3608 - Make Container show broadcastable
 
 
 let container
@@ -62,10 +63,13 @@ beforeEach(() => {
     }
 
     cy.get('.primary').contains('Move').click()
+    cy.get('.py-1').should('be.visible').contains('Moving inventory')
+    cy.get('.py-1').should('be.visible').contains('Inventory has been moved')
+
+    cy.wait(2000) // #3608
 
     cy.visit(`/containers/${container}`)
     cy.get('.bin-location-info-item a').should('not.include.text', `${from_bin_location}`)
-
     })
     })
   })
