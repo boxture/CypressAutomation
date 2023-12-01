@@ -14,7 +14,7 @@ let from_bin_location
 beforeEach(() => {
     cy.login({ email: 'acceptance-test+oms@boxture.com', password: 'xudrah-zygJa2-topbib'})
   })
-  
+
   describe('Container', () => {
     it('move container', () => {
 
@@ -40,7 +40,7 @@ beforeEach(() => {
       cy.log(container)
       cy.visit(`/containers/${container}`)
       cy.url().should('include', `/containers/${container}`)
-    
+
     // Get from bin location
     cy.get('.bin-location-info-item a').then($bin => {
         let from_bin_location = $bin.text()
@@ -53,7 +53,7 @@ beforeEach(() => {
 
     cy.get('[placeholder="From bin location"]').type(`${from_bin_location}`, {delay:200})
     cy.get(`[data-satis-dropdown-item-text="${from_bin_location}"]`).click({force:true})
-        
+
     if (`${from_bin_location}`.includes('RECEIVING')) {
       cy.get('[placeholder="To bin location"]').type('PICKING', {delay:200})
       cy.get(`[data-satis-dropdown-item-text="PICKING"]`).click({force:true})
@@ -66,7 +66,7 @@ beforeEach(() => {
     cy.get('.py-1').should('be.visible').contains('Moving inventory')
     cy.get('.py-1').should('be.visible').contains('Inventory has been moved')
 
-    cy.wait(2000) // ##3608
+    cy.wait(2000) // #3608
 
     cy.visit(`/containers/${container}`)
     cy.get('.bin-location-info-item a').should('not.include.text', `${from_bin_location}`)
