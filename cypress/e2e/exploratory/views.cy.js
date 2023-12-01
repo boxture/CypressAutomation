@@ -1822,7 +1822,6 @@ describe('Views', () => {
     cy.visit('/integration')
     cy.url().should('include', '/integration')
 
-    cy.resetView()
     cy.get('.selected [data-act-table-target="column"][data-column="id"]').scrollIntoView().should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="created_at"]').scrollIntoView().should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="flow"]').scrollIntoView().should('be.visible')
@@ -1909,7 +1908,6 @@ describe('Views', () => {
     cy.visit('/admin/integrations')
     cy.url().should('include', '/admin/integrations')
 
-    cy.resetView()
     cy.get('.selected [data-act-table-target="column"][data-column="name"]').scrollIntoView().should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="type"]').scrollIntoView().should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="integration_account"]').scrollIntoView().should('be.visible')
@@ -2028,7 +2026,6 @@ describe('Views', () => {
     cy.visit('/papers')
     cy.url().should('include', '/papers')
 
-    cy.resetView()
     cy.get('.selected [data-act-table-target="column"][data-column="owner"]').scrollIntoView().should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="template"]').scrollIntoView().should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="attachment"]').scrollIntoView().should('be.visible')
