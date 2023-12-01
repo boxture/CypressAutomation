@@ -66,7 +66,7 @@ beforeEach(() => {
     cy.get('.py-1').should('be.visible').contains('Moving inventory')
     cy.get('.py-1').should('be.visible').contains('Inventory has been moved')
 
-    cy.wait(2000) // #3608
+    cy.wait(2000) // ##3608
 
     cy.visit(`/containers/${container}`)
     cy.get('.bin-location-info-item a').should('not.include.text', `${from_bin_location}`)
