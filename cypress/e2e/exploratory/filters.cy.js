@@ -161,18 +161,31 @@ beforeEach(() => {
       cy.resetView()
       cy.get('[data-column="ship_at"] [data-icon="ellipsis"] ').should('be.visible').click()
       cy.get('[data-column="ship_at"] [data-satis-date-time-picker-target="input"]').should('be.visible').click()
+
       cy.get('[data-satis-date-time-picker-target="calendarView"]')
         .eq(0)
         .then((e1) => {
           cy.wrap(e1).find('[data-action="satis-date-time-picker#nextMonth"]')
         })
-        .click()
-      cy.get('[data-column="ship_at"] [data-satis-date-time-picker-target="month"]').then((e1) => {
+        .click().as('clickNext')
+        cy.get('[data-column="ship_at"] [data-satis-date-time-picker-target="month"]').then((e1) => {
         const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
         const d = new Date()
+          if(d.getMonth()+1 == 12){
+              cy.get('@clickNext')
+              expect(e1.text()).to.eq('January')
+
+          }
+          else{
         let currentMonth = monthNames[d.getMonth() + 1]
-        const actualText = e1.text()
-        expect(actualText).to.eq(currentMonth)
+        const actualMonth = e1.text()
+        cy.pause()
+        console.log(currentMonth)
+        console.log(actualMonth)
+        expect(actualMonth).to.eq(currentMonth)
+          }
+
       })
 
     })
