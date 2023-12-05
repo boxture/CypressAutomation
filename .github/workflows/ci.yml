@@ -24,7 +24,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_ICON: https://raw.githubusercontent.com/M-L-P/icons/main/PNGs/BSD/01-freeBSD.png
+          # SLACK_ICON: https://raw.githubusercontent.com/M-L-P/icons/main/PNGs/BSD/01-freeBSD.png
           SLACK_USERNAME: Test Automation
           SLACK_TITLE: Regression Test Report
           SLACK_MESSAGE: "https://github.com/boxture/automated_testing/actions/runs/${{github.run_id}} :rocket:"
