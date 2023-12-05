@@ -145,8 +145,9 @@ beforeEach(() => {
       cy.get('[data-column="ship_at"]').find('li').contains('Sort descending').should('be.visible')
       cy.get('[data-column="ship_at"]').find('li').contains('Hide column').should('be.visible')
       cy.get('[data-column="ship_at"] [data-satis-date-time-picker-target="input"]').should('be.visible').click()
-      cy.contains('.block', '1').click()
-      cy.contains('.block', '20').click()
+      cy.pause()
+      cy.get('[data-satis-date-time-picker-target="days"]').contains('1').click()
+      cy.get('[data-satis-date-time-picker-target="days"]').contains('20').click()
       cy.get('tr:nth-child(2) td:nth-child(4)').should('be.visible')
 
       cy.get('[data-column="ship_at"] [data-satis-date-time-picker-target="input"]').should('be.visible').click()
