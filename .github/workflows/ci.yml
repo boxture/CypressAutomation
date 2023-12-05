@@ -28,3 +28,4 @@ jobs:
           SLACK_TITLE: Regression Test Report
           SLACK_MESSAGE: "New changes :rocket:"
           SLACK_COLOR: ${{ job.status }}
+
