@@ -21,7 +21,7 @@ beforeEach(() => {
   })
   describe('Filters Orders overview', () => {
 
-    it.only('Account', () => {
+    it('Account', () => {
 
       cy.visit('/orders')
       cy.url().should('include', '/orders')
