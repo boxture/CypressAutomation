@@ -1,15 +1,15 @@
   let po
 
-  describe('purchase orders', () => {
+  describe('Purchase order', () => {
 
-    before(() => {
+    beforeEach(() => {
     cy.login({
-    email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
+    email: 'acceptance-test+oms@boxture.com', password: 'xudrah-zygJa2-topbib'})
 
   })
 
-    it('create a purchase order', () => {
-      // CREATE A PURCHASE ORDER
+    it('Create', () => {
+
       // 1. Navigate to Purchase Orders
       cy.visit('orders/new?type=purchase_order')
 
@@ -28,16 +28,16 @@
       cy.get('[id^=orders_purchase_order_forwarder]').type('DHL')
 
       // 6. Fill in Destination location
-      cy.get('[placeholder="Destination location"]').type('NLD-A',{ delay: 200 })
+      cy.get('[placeholder="Destination location"]').type('BTX-AL',{ delay: 200 })
 
       // 7. Fill in Product
-      cy.get('[placeholder="Product"]').eq(0).type('BXT-SNO23245',{ delay: 200 })
+      cy.get('[placeholder="Product"]').eq(0).type('BTX-SNO88711',{ delay: 200 })
 
       // 8. Fill in quantity
       cy.get('[data-order-line-target="quantity"]').eq(0).clear().type(3)
 
       // 9. Fill in product 2nd line
-      cy.get('[placeholder="Product"]').eq(1).type('BXT-SNO23245',{ delay: 500 })
+      cy.get('[placeholder="Product"]').eq(1).type('BXT-SNXX100123',{ delay: 500 })
 
       // 9.1 Fill in quantity 2nd line
       cy.get('[data-order-line-target="quantity"]').eq(1).clear().type(2)
@@ -53,70 +53,89 @@
         cy.log(po)
         cy.visit(`/orders/${po}`)
       })
-
-      // Click logout button
-      cy.get('span').contains('Logout').click({force: true})
-
-      // Verify logged out
-      cy.contains('Log in to your account')
-      cy.url().should('include', '/users/sign_in')
-
-      })
-
+      
     })
-
-  describe('purchase orders', () => {
-
-    before(() => {
-    cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
-  })
-
-    it('Confirm the purchase order', () => {
-      // CREATE A PURCHASE ORDER
-      // 1. Navigate to Purchase Orders
+    it('Edit and Update', () => {
       cy.visit(`/orders/${po}`)
-      cy.contains('.pr-1', 'Confirm').click({ force: true })
-      for (let i = 0; i < 20; i++) {
-			cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
-				statusElement => {
-					let status = statusElement.text()
-					if (status === 'concept') {
-						cy.wait(500)
-					  }
-				  }
-			  )
-		  }
-
-      // LOGOUT
-
-      // Click logout button
-      cy.get('span').contains('Logout').click({force: true})
-
-      // Verify logged out
-      cy.contains('Log in to your account')
-      cy.url().should('include', '/users/sign_in')
-
-      })
+      // click on Edit
+      // ...
 
     })
+    it('Show', () => {
+      //script
 
-  describe('purchase orders', () => {
+    })
+    it('Confirm', () => {
+      //script
 
-    before(() => {
-    cy.login({ email: 'wrap-it_receiver@wrap-it.com', password: 'fykja3-bobkev-Cogxyn'})
+    })
+    it('Hold', () => {
+      //script
+
+    })
+    it('Release', () => {
+      //script
+
+    })
+    it('Cancel', () => {
+      //script
+
   })
+})
 
-    it('Receive the purchase order', () => {
 
-      cy.visit(`/orders/${po}`)
-      cy.contains('.pr-1', 'Receive').click({ force: true })
-      cy.get('[placeholder="Packing material"]').type('a3',{ delay: 200 })
-      cy.get('[placeholder="Product"]').eq(0).type('BXT-SNO23245', {delay:200})
-      cy.get('[data-order-line-target="quantity"]').eq(0).type(5)
-      cy.get('[data-action="focus->satis-date-time-picker#showCalendar input->satis-date-time-picker#dateTimeEntered"]').click()
-      cy.get('[data-action="satis-date-time-picker#selectDay"]').contains('29').click()
-      cy.get('.button').click()
+  // describe('purchase orders', () => {
 
-      })
+  //   before(() => {
+  //   cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
+  // })
 
-    })
+  //   it('Confirm the purchase order', () => {
+  //     // CREATE A PURCHASE ORDER
+  //     // 1. Navigate to Purchase Orders
+  //     cy.visit(`/orders/${po}`)
+  //     cy.contains('.pr-1', 'Confirm').click({ force: true })
+  //     for (let i = 0; i < 20; i++) {
+	// 		cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
+	// 			statusElement => {
+	// 				let status = statusElement.text()
+	// 				if (status === 'concept') {
+	// 					cy.wait(500)
+	// 				  }
+	// 			  }
+	// 		  )
+	// 	  }
+
+  //     // LOGOUT
+
+  //     // Click logout button
+  //     cy.get('span').contains('Logout').click({force: true})
+
+  //     // Verify logged out
+  //     cy.contains('Log in to your account')
+  //     cy.url().should('include', '/users/sign_in')
+
+  //     })
+
+  //   })
+
+  // describe('purchase orders', () => {
+
+  //   before(() => {
+  //   cy.login({ email: 'wrap-it_receiver@wrap-it.com', password: 'fykja3-bobkev-Cogxyn'})
+  // })
+
+  //   it('Receive the purchase order', () => {
+
+  //     cy.visit(`/orders/${po}`)
+  //     cy.contains('.pr-1', 'Receive').click({ force: true })
+  //     cy.get('[placeholder="Packing material"]').type('a3',{ delay: 200 })
+  //     cy.get('[placeholder="Product"]').eq(0).type('BXT-SNO23245', {delay:200})
+  //     cy.get('[data-order-line-target="quantity"]').eq(0).type(5)
+  //     cy.get('[data-action="focus->satis-date-time-picker#showCalendar input->satis-date-time-picker#dateTimeEntered"]').click()
+  //     cy.get('[data-action="satis-date-time-picker#selectDay"]').contains('29').click()
+  //     cy.get('.button').click()
+
+  //     })
+
+  //   })

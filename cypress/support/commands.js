@@ -36,6 +36,12 @@ Cypress.Commands.add('login', (user) => {
   })
 })
 
+Cypress.Commands.add('logout',() => {
+  cy.get('span').contains('Logout').click({force: true})
+  cy.contains('Log in to your account')
+  cy.url().should('include', '/users/sign_in')
+})
+
 Cypress.Commands.add('resetView', () => {
   cy.get('[data-act-table-target="header"]')
   cy.get('[data-action="click->satis-menu#show"]').first().click()
