@@ -3,16 +3,16 @@ let container
 let from_bin_location
 
 describe('Ship a sales order', () => {
-  
+
   before(() => {
     cy.login({email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
-    
+
     })
-    
+
     it('Purchase orderrder create', () => {
 
     // CREATE A PURCHASE ORDER
-    
+
     // 1. Navigate to Purchase Orders
     cy.visit('orders/new?type=purchase_order')
 
@@ -69,10 +69,10 @@ describe('Ship a sales order', () => {
   })
 
 describe('Purchase order confirm', () => {
-  
+
   before(() => {
     cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
-  
+
   })
 
   it('Confirm the purchase order', () => {
@@ -95,14 +95,14 @@ describe('Purchase order confirm', () => {
   })
 
 describe('Purchase orders receive', () => {
-  
+
   before(() => {
     cy.login({ email: 'wrap-it_receiver@wrap-it.com', password: 'fykja3-bobkev-Cogxyn'})
-  
+
   })
-  
+
   it('Receive the purchase order', () => {
-    
+
     cy.visit(`/orders/${po}`)
 
     cy.contains('.pr-1', 'Receive').click({ force: true })
@@ -116,25 +116,25 @@ describe('Purchase orders receive', () => {
     })
 
   })
-  
+
 describe('Inventory move', () => {
-  
+
   before(() => {
     cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
   })
 
   it('Move inventory', () => {
-    
+
     cy.visit(`/orders/${po}`)
     cy.get('.text-lg').contains('Lines').should('be.visible')
-    
+
     cy.get('[id*="tab_label"]').contains('Items').click({ force: true })
     cy.get('.selected [data-act-table-target="column"][data-column="position"]').should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="container"]').scrollIntoView().should('be.visible')
 
     cy.get('[href*="/containers/"]').eq(3).click()
     cy.url().should('include', `/containers`)
-    
+
     cy.url().then(($url) => {
       const url = $url.split('/')
       container = url[4]
@@ -145,7 +145,7 @@ describe('Inventory move', () => {
 
     // Get from bin location
     cy.get('.bin-location-info-item a').then($bin => {
-        let from_bin_location = $bin.text()
+        from_bin_location = $bin.text()
         cy.log(from_bin_location)
 
     // Move container
@@ -160,21 +160,21 @@ describe('Inventory move', () => {
     cy.get(`[data-satis-dropdown-item-text="PICKING"]`).click({force:true})
 
     cy.get('.primary').contains('Move').click()
-    
+
     })
   })
-})  
+})
 })
 
 describe('Sales order create', () => {
 
   before(() => {
     cy.login({email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
-    
+
     })
-    
-    it.only('Create a sales order', () => {
-      
+
+    it('Create a sales order', () => {
+
       // CREATE A SALES ORDER
 
       // 1. Navigate to Sales Order
@@ -199,7 +199,7 @@ describe('Sales order create', () => {
       const so = url[4]
       cy.log(so)
       cy.visit(`/orders/${so}`)
-    
+
       })
    })
 

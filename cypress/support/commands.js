@@ -14,6 +14,7 @@
 
 Cypress.Commands.add('login', (user) => {
   cy.session(user, () => {
+    Cypress.session.clearAllSavedSessions()
     cy.clearCookies()
     cy.clearLocalStorage()
     cy.visit('/')
