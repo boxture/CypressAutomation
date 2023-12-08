@@ -107,7 +107,7 @@ describe('Purchase orders receive', () => {
     cy.visit(`/orders/${purchase_order}`)
 
     cy.contains('.pr-1', 'Receive').click({ force: true })
-    cy.get('[placeholder="Packing material"]').type('a3',{ delay: 200 })
+    cy.get('[placeholder="Packing material"]').should('be.visible').type('a3',{ delay: 200 })
     cy.get('[placeholder="Product"]').eq(0).type('BXT-SNO98304', {delay:200})
     cy.get('[data-order-line-target="quantity"]').eq(0).type(1)
     //cy.get('[data-action="focus->satis-date-time-picker#showCalendar input->satis-date-time-picker#dateTimeEntered"]').click()
@@ -210,10 +210,10 @@ describe('Sales order create', () => {
       //Get sales order
       cy.url().then(($url) => {
       const url = $url.split('/')
-      const sales_order = url[4]
+      sales_order = url[4]
       cy.log(sales_order)
 
-      //Confirm Sales orde
+      //Confirm Sales order
       cy.visit(`/orders/${sales_order}`)
       cy.contains('.pr-1', 'Confirm').click({ force: true })
       for (let i = 0; i < 40; i++) {
@@ -232,4 +232,25 @@ describe('Sales order create', () => {
    })
 
 })
+describe('Sales order create', () => {
+  
+  before(() => {
+    cy.login({email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
+
+    })
+
+    it('Generate a pick list', () => {
+
+      cy.visit(`/orders/${sales_order}`)
+
+      cy.contains('.pr-1', 'Pick').click({ force: true })
+      cy.url().should('include', `/orders/${sales_order}/pick/new`)
+
+      cy.get('.primary').contains('Pick').click()
+      cy.get('[id*="tab_label"]').contains('Pick Lists')
+
+    })
+
+  })
+
 
