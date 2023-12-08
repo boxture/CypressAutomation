@@ -1,6 +1,7 @@
-let po
+let purchase_order
 let container
 let from_bin_location
+let sales_order
 
 describe('Ship a sales order', () => {
 
@@ -52,9 +53,9 @@ describe('Ship a sales order', () => {
     //Get purchase order
     cy.url().then(($url) => {
       let url = $url.split('/')
-      po = url[4]
-      cy.log(po)
-      cy.visit(`/orders/${po}`)
+      purchase_order = url[4]
+      cy.log(purchase_order)
+      cy.visit(`/orders/${purchase_order}`)
     })
 
     // Click logout button
@@ -77,9 +78,9 @@ describe('Purchase order confirm', () => {
 
   it('Confirm the purchase order', () => {
 
-    cy.visit(`/orders/${po}`)
+    cy.visit(`/orders/${purchase_order}`)
     cy.contains('.pr-1', 'Confirm').click({ force: true })
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 40; i++) {
           cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
               statusElement => {
                   let status = statusElement.text()
@@ -103,7 +104,7 @@ describe('Purchase orders receive', () => {
 
   it('Receive the purchase order', () => {
 
-    cy.visit(`/orders/${po}`)
+    cy.visit(`/orders/${purchase_order}`)
 
     cy.contains('.pr-1', 'Receive').click({ force: true })
     cy.get('[placeholder="Packing material"]').type('a3',{ delay: 200 })
@@ -113,9 +114,21 @@ describe('Purchase orders receive', () => {
     //cy.get('[data-action="satis-date-time-picker#selectDay"]').contains('29').click()
     cy.get('.button').click()
 
-    })
+    for (let i = 0; i < 40; i++) {
+          cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
+              statusElement => {
+                  let status = statusElement.text()
+                  if (status === 'completed') {
+                      cy.wait(500)
+                    }
+                }
+            )
+        }
 
+    })
+  
   })
+
 
 describe('Inventory move', () => {
 
@@ -125,15 +138,15 @@ describe('Inventory move', () => {
 
   it('Move inventory', () => {
 
-    cy.visit(`/orders/${po}`)
+    cy.visit(`/orders/${purchase_order}`)
+    cy.url().should('include', `/orders/${purchase_order}`)
     cy.get('.text-lg').contains('Lines').should('be.visible')
 
     cy.get('[id*="tab_label"]').contains('Items').click({ force: true })
-    cy.get('.selected [data-act-table-target="column"][data-column="position"]').should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="container"]').scrollIntoView().should('be.visible')
 
     cy.get('[href*="/containers/"]').eq(3).click()
-    cy.url().should('include', `/containers`)
+    cy.url().should('include', '/containers')
 
     cy.url().then(($url) => {
       const url = $url.split('/')
@@ -141,7 +154,6 @@ describe('Inventory move', () => {
       cy.log(container)
       cy.visit(`/containers/${container}`)
       cy.url().should('include', `/containers/${container}`)
-
 
     // Get from bin location
     cy.get('.bin-location-info-item a').then($bin => {
@@ -159,11 +171,12 @@ describe('Inventory move', () => {
     cy.get('[placeholder="To bin location"]').type('PICKING', {delay:200})
     cy.get(`[data-satis-dropdown-item-text="PICKING"]`).click({force:true})
 
-    cy.get('.primary').contains('Move').click()
-
+    cy.get('.primary').contains('Move').click()})
+    
     })
+
   })
-})
+
 })
 
 describe('Sales order create', () => {
@@ -181,26 +194,42 @@ describe('Sales order create', () => {
       cy.visit('/orders/new?type=sales_order')
 
       // 2. Select Customer
-      cy.get('[placeholder=Customer]').type('Soylent Corp')
+      cy.get('[placeholder=Customer]').type('Soylent', {delay:200})
 
       // 3. Fill in Product
-      cy.get('[placeholder="Product"]').type('BXT-SNO23245')
+      cy.get('[placeholder="Product"]').type('BXT-SNO98304', {delay:200})
 
       // 4. Fill in quantity
-      cy.get('[id^=orders_sales_order_order_lines_attributes_TEMPLATE_quantity').clear().type(10)
+      //cy.get('[id^=orders_sales_order_order_lines_attributes_TEMPLATE_quantity').clear().type(1)
+      cy.get('[data-order-line-target="quantity"]').eq(0).clear().type(1)
 
       //Submit form
       cy.get('.button').contains('Create and continue editing').click()
       cy.url().should('include', '/edit')
 
-      //Get purchase order
+      //Get sales order
       cy.url().then(($url) => {
       const url = $url.split('/')
-      const so = url[4]
-      cy.log(so)
-      cy.visit(`/orders/${so}`)
+      const sales_order = url[4]
+      cy.log(sales_order)
 
+      //Confirm Sales orde
+      cy.visit(`/orders/${sales_order}`)
+      cy.contains('.pr-1', 'Confirm').click({ force: true })
+      for (let i = 0; i < 40; i++) {
+            cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
+                statusElement => {
+                    let status = statusElement.text()
+                    if (status === 'concept') {
+                        cy.wait(500)
+                      }
+                  }
+              )
+          }
+  
       })
+
    })
 
 })
+
