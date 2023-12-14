@@ -144,7 +144,7 @@ describe('Inventory move', () => {
     cy.get('[id*="tab_label"]').contains('Items').click({ force: true })
     cy.get('.selected [data-act-table-target="column"][data-column="container"]').scrollIntoView().should('be.visible')
 
-    cy.get('[href*="/containers/"]').eq(3).click()
+    cy.get('[href*="/containers/"]').eq(1).click()
     cy.url().should('include', `/containers`)
 
     cy.url().then(($url) => {
@@ -179,56 +179,56 @@ describe('Inventory move', () => {
 })
 
 describe('Sales order create', () => {
-
+  
   before(() => {
-    cy.pick({email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
+    cy.login({email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
+  
+  })
+
+  it('Create a sales order', () => {
+
+    // CREATE A SALES ORDER
+
+    // 1. Navigate to Sales Order
+    cy.visit('/orders/new?type=sales_order')
+
+    // 2. Select Customer
+    cy.get('[placeholder=Customer]').type('Soylent', {delay:200})
+
+    // 3. Fill in Product
+    cy.get('[placeholder="Product"]').type('BXT-SNO98304', {delay:200})
+
+    // 4. Fill in quantity
+    //cy.get('[id^=orders_sales_order_order_lines_attributes_TEMPLATE_quantity').clear().type(1)
+    cy.get('[data-order-line-target="quantity"]').eq(0).clear().type(1)
+
+    //Submit form
+    cy.get('.button').contains('Create and continue editing').click()
+    cy.url().should('include', '/edit')
+
+    //Get sales order
+    cy.url().then(($url) => {
+    const url = $url.split('/')
+    sales_order = url[4]
+    cy.log(sales_order)
+
+    //Confirm Sales order
+    cy.visit(`/orders/${sales_order}`)
+    cy.contains('.pr-1', 'Confirm').click({ force: true })
+    for (let i = 0; i < 40; i++) {
+          cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
+              statusElement => {
+                  let status = statusElement.text()
+                  if (status === 'concept') {
+                      cy.wait(500)
+                    }
+                }
+            )
+        }
 
     })
 
-    it('Create a sales order', () => {
-
-      // CREATE A SALES ORDER
-
-      // 1. Navigate to Sales Order
-      cy.visit('/orders/new?type=sales_order')
-
-      // 2. Select Customer
-      cy.get('[placeholder=Customer]').type('Soylent', {delay:200})
-
-      // 3. Fill in Product
-      cy.get('[placeholder="Product"]').type('BXT-SNO98304', {delay:200})
-
-      // 4. Fill in quantity
-      //cy.get('[id^=orders_sales_order_order_lines_attributes_TEMPLATE_quantity').clear().type(1)
-      cy.get('[data-order-line-target="quantity"]').eq(0).clear().type(1)
-
-      //Submit form
-      cy.get('.button').contains('Create and continue editing').click()
-      cy.url().should('include', '/edit')
-
-      //Get sales order
-      cy.url().then(($url) => {
-      const url = $url.split('/')
-      sales_order = url[4]
-      cy.log(sales_order)
-
-      //Confirm Sales order
-      cy.visit(`/orders/${sales_order}`)
-      cy.contains('.pr-1', 'Confirm').click({ force: true })
-      for (let i = 0; i < 40; i++) {
-            cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
-                statusElement => {
-                    let status = statusElement.text()
-                    if (status === 'concept') {
-                        cy.wait(500)
-                      }
-                  }
-              )
-          }
-
-      })
-
-   })
+  })
 
 })
 describe('Sales order create', () => {
@@ -252,34 +252,35 @@ describe('Sales order create', () => {
 
   })
 
-
-
 describe('Pick order', () => {
-
-  before(() => {
-    cy.pick({email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
-
-    })
 
     it.only('Pick Order', () => {
 
-      cy.contains('.item-title', 'My').click()
-		  cy.get(
-			'.page-current > .page-content > .list > ul > li > .item-link > .item-inner'
-		  ).click()
-      		cy.wait(2000)
+    // Login on Mobile
+    cy.visit('/mobile')
 
-		  cy.window().then(win => {
-			//stubbing prompt window
-			cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
-			const stub = cy.stub(win, 'prompt')
-			stub.returns('tote-001')
-		  })
+    // Verify login screen
+    cy.url().should('include', '/mobile')
+    cy.get('.login-screen-title').contains('Login')
 
+    cy.get('#user_email').type('wrap-it_picker@wrap-it.com')
+    cy.get('#user_password').type('picking')
+    cy.getCookie('_sessions_development').should('exist')
 
-   })
+    // Click Log in button
+    cy.get('button').click()
 
-})
+    // Assert login page
+    cy.get('.icon').should('be.visible')
+    cy.get(':nth-child(1) > .item-link > .item-inner > .item-title').click()
+		cy.get('.page-current > .page-content > .list > ul > li > .item-link > .item-inner').last().click()
+		cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+
+    // to be continued...
+		})
+  
+  })
+
 
 describe('Pack order', () => {
 
@@ -301,7 +302,6 @@ describe('Pack order', () => {
 			const stub = cy.stub(win, 'prompt')
 			stub.returns('tote-001')
 		  })
-
 
    })
 

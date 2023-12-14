@@ -37,6 +37,31 @@ Cypress.Commands.add('login', (user) => {
   })
 })
 
+Cypress.Commands.add('login_mobile', (user) => {
+  cy.session(user, () => {
+    Cypress.session.clearAllSavedSessions()
+    cy.clearCookies()
+    cy.clearLocalStorage()
+    cy.visit('/mobile')
+
+    // Verify login screen
+    cy.url().should('include', '/mobile')
+    cy.get('.login-screen-title').contains('Login')
+
+    cy.get('#user_email').type(user.email)
+    cy.get('#user_password').type(user.password)
+    cy.getCookie('_sessions_development').should('exist')
+
+    // Click Log in button
+    cy.get('button').click()
+    cy.wait(2000)
+
+    // Assert login page
+    cy.get('.icon').should('be.visible')
+    
+  })
+})
+
 Cypress.Commands.add('logout',() => {
   cy.get('span').contains('Logout').click({force: true})
   cy.contains('Log in to your account')
@@ -57,25 +82,6 @@ Cypress.Commands.add('resetView', () => {
     }
     })
     cy.get('[data-act-table-target="header"]')
-  })
-})
-
-Cypress.Commands.add('pick', (user) => {
-  cy.session(user, () => {
-    Cypress.session.clearAllSavedSessions()
-    cy.clearCookies()
-    cy.clearLocalStorage()
-    cy.visit('/mobile')
-
-    cy.get('#user_email').type(user.email)
-    cy.get('#user_password').type(user.password)
-
-    // Click Log in button
-    cy.get('button').click()
-    cy.url().should('include', '/')
-
-    // Verify login screen
-    cy.contains('Powered by Boxture') //IF THIS COMMAND IS REMOVED THE SCRIPT WILL FAIL
   })
 })
 
