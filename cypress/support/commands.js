@@ -60,6 +60,25 @@ Cypress.Commands.add('resetView', () => {
   })
 })
 
+Cypress.Commands.add('pick', (user) => {
+  cy.session(user, () => {
+    Cypress.session.clearAllSavedSessions()
+    cy.clearCookies()
+    cy.clearLocalStorage()
+    cy.visit('/mobile')
+
+    cy.get('#user_email').type(user.email)
+    cy.get('#user_password').type(user.password)
+
+    // Click Log in button
+    cy.get('button').click()
+    cy.url().should('include', '/')
+
+    // Verify login screen
+    cy.contains('Powered by Boxture') //IF THIS COMMAND IS REMOVED THE SCRIPT WILL FAIL
+  })
+})
+
 //
 //
 // -- This is a child command --

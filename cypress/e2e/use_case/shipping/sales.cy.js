@@ -127,12 +127,11 @@ describe('Inventory move', () => {
 
     cy.visit(`/orders/${po}`)
     cy.get('.text-lg').contains('Lines').should('be.visible')
-
     cy.get('[id*="tab_label"]').contains('Items').click({ force: true })
     cy.get('.selected [data-act-table-target="column"][data-column="position"]').should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="container"]').scrollIntoView().should('be.visible')
 
-    cy.get('[href*="/containers/"]').eq(3).click()
+    cy.get('[href*="/containers/"]').eq(1).click()
     cy.url().should('include', `/containers`)
 
     cy.url().then(($url) => {
@@ -169,7 +168,7 @@ describe('Inventory move', () => {
 describe('Sales order create', () => {
 
   before(() => {
-    cy.login({email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
+    cy.pick({email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
 
     })
 
@@ -201,6 +200,59 @@ describe('Sales order create', () => {
       cy.visit(`/orders/${so}`)
 
       })
+   })
+
+})
+
+describe('Pick order', () => {
+
+  before(() => {
+    cy.pick({email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
+
+    })
+
+    it.only('Pick Order', () => {
+
+      cy.contains('.item-title', 'My').click()
+		  cy.get(
+			'.page-current > .page-content > .list > ul > li > .item-link > .item-inner'
+		  ).click()
+      		cy.wait(2000)
+
+		  cy.window().then(win => {
+			//stubbing prompt window
+			cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+			const stub = cy.stub(win, 'prompt')
+			stub.returns('tote-001')
+		  })
+
+
+   })
+
+})
+
+describe('Pack order', () => {
+
+  before(() => {
+    cy.pick({email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
+
+    })
+    it('Pack Order', () => {
+
+      cy.contains('.item-title', 'My').click()
+		  cy.get(
+			'.page-current > .page-content > .list > ul > li > .item-link > .item-inner'
+		  ).click()
+      		cy.wait(2000)
+
+		  cy.window().then(win => {
+			//stubbing prompt window
+			cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+			const stub = cy.stub(win, 'prompt')
+			stub.returns('tote-001')
+		  })
+
+
    })
 
 })

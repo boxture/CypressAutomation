@@ -460,3 +460,135 @@ beforeEach(() => {
 
     })
   })
+
+  describe('Order Detail Page Overview - Basic', () => {
+
+    it.only('#', () => {
+
+      cy.visit('/orders')
+      cy.url().should('include', '/orders')
+      cy.resetView()
+
+      cy.get('tr').last().click({force: true})
+      cy.contains('Basic')
+      cy.get('.title').contains('#')
+      cy.pause()
+      cy.get('[data-column="#"] [data-popper-placement="bottom"').contains('Hide column')
+      cy.get('[data-column="account"] [data-icon="ellipsis"]').should('be.visible').click()
+      cy.get('[data-column="account"] [data-satis-dropdown-target="searchInput"]').should('be.visible')
+      cy.get('[data-column="account"] [data-satis-dropdown-target="resetButton"]').should('be.visible')
+      cy.get('[data-column="account"] [data-satis-dropdown-target="toggleButton"]').should('be.visible')
+      cy.get('[data-column="account"] [data-satis-dropdown-target="toggleButton"]').click()
+      cy.get('[data-column="account"] [data-action="click->satis-dropdown#select"]').should('have.length',3)
+      cy.get('[data-column="account"] [data-satis-dropdown-target="resetButton"]').should('be.visible').click()
+      cy.get('[data-column="account"]').find('li').should('have.length', '6')
+      cy.get('[data-column="account"]').find('li').contains('Filter values').should('be.visible')
+
+    })
+    it('State', () => {
+
+      cy.visit('/orders')
+      cy.resetView()
+
+      cy.get('[data-column="id"]').find('[type="button"]').should('be.visible').click()
+      cy.get('[data-column="id"]').find('li').should('have.length', '5')
+      cy.get('[data-column="id"]').find('li').contains('Filter values').should('be.visible')
+      cy.get('[data-column="id"]').find('li').contains('Sort ascending').should('be.visible')
+      cy.get('[data-column="id"]').find('li').contains('Sort descending').should('be.visible')
+      cy.get('[data-column="id"]').find('li').contains('Hide column').should('be.visible')
+      cy.get('tr:nth-child(1) td:nth-child(4)').then($id1=>{
+        id = $id1.text()
+        cy.log(id)
+        cy.wrap(id).as('id12')
+      })
+      cy.get('[data-column="id"]').find('[type="button"]').should('be.visible').click({force:true})
+      cy.get('@id12').then($id1=>{
+      cy.get('[data-column="id"] [data-controller=" form"]').type(`${$id1}`)
+      cy.get('.border-r > .items-center > img').click()
+      cy.get('[class="overflow-hidden tbdy"] tr').its('length').should('eq', 1)
+      })
+
+    })
+    it('Product Number', () => {
+
+      cy.visit('/orders')
+      cy.resetView()
+
+      cy.get('[data-column="type"] [data-icon="ellipsis"]').should('be.visible').click()
+      cy.get('ul').find('[data-satis-dropdown-target="searchInput"]').should('be.visible')
+      cy.get('[data-column="type"]').find('li').should('have.length', '4')
+      cy.get('[data-column="type"]').find('li').contains('Filter values').should('be.visible')
+      cy.get('[data-column="type"]').find('li').contains('Hide column').should('be.visible')
+      cy.get('[data-column="type"]').find('li').contains('Group by').should('be.visible')
+      cy.get('[data-column="type"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('sal',{ delay: 200 })
+      cy.get('.border-r > .items-center > img').click()
+      cy.get('tr:nth-child(2) td:nth-child(5)').should('have.visible.text', 'Sales order')
+
+    })
+
+  })
+
+  describe('Order Detail Page Overview', () => {
+
+    it.only('Basic', () => {
+
+      cy.visit('/orders')
+      cy.url().should('include', '/orders')
+      cy.resetView()
+
+      cy.get('tr').last().click({force: true})
+      cy.contains('Basic')
+      cy.pause()
+      cy.get('[data-column="account"] [data-icon="ellipsis"]').should('be.visible').click()
+      cy.get('[data-column="account"] [data-satis-dropdown-target="searchInput"]').should('be.visible')
+      cy.get('[data-column="account"] [data-satis-dropdown-target="resetButton"]').should('be.visible')
+      cy.get('[data-column="account"] [data-satis-dropdown-target="toggleButton"]').should('be.visible')
+      cy.get('[data-column="account"] [data-satis-dropdown-target="toggleButton"]').click()
+      cy.get('[data-column="account"] [data-action="click->satis-dropdown#select"]').should('have.length',3)
+      cy.get('[data-column="account"] [data-satis-dropdown-target="resetButton"]').should('be.visible').click()
+      cy.get('[data-column="account"]').find('li').should('have.length', '6')
+      cy.get('[data-column="account"]').find('li').contains('Filter values').should('be.visible')
+
+    })
+    it('Items', () => {
+
+      cy.visit('/orders')
+      cy.resetView()
+
+      cy.get('[data-column="id"]').find('[type="button"]').should('be.visible').click()
+      cy.get('[data-column="id"]').find('li').should('have.length', '5')
+      cy.get('[data-column="id"]').find('li').contains('Filter values').should('be.visible')
+      cy.get('[data-column="id"]').find('li').contains('Sort ascending').should('be.visible')
+      cy.get('[data-column="id"]').find('li').contains('Sort descending').should('be.visible')
+      cy.get('[data-column="id"]').find('li').contains('Hide column').should('be.visible')
+      cy.get('tr:nth-child(1) td:nth-child(4)').then($id1=>{
+        id = $id1.text()
+        cy.log(id)
+        cy.wrap(id).as('id12')
+      })
+      cy.get('[data-column="id"]').find('[type="button"]').should('be.visible').click({force:true})
+      cy.get('@id12').then($id1=>{
+      cy.get('[data-column="id"] [data-controller=" form"]').type(`${$id1}`)
+      cy.get('.border-r > .items-center > img').click()
+      cy.get('[class="overflow-hidden tbdy"] tr').its('length').should('eq', 1)
+      })
+
+    })
+    it('Pricing and values', () => {
+
+      cy.visit('/orders')
+      cy.resetView()
+
+      cy.get('[data-column="type"] [data-icon="ellipsis"]').should('be.visible').click()
+      cy.get('ul').find('[data-satis-dropdown-target="searchInput"]').should('be.visible')
+      cy.get('[data-column="type"]').find('li').should('have.length', '4')
+      cy.get('[data-column="type"]').find('li').contains('Filter values').should('be.visible')
+      cy.get('[data-column="type"]').find('li').contains('Hide column').should('be.visible')
+      cy.get('[data-column="type"]').find('li').contains('Group by').should('be.visible')
+      cy.get('[data-column="type"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('sal',{ delay: 200 })
+      cy.get('.border-r > .items-center > img').click()
+      cy.get('tr:nth-child(2) td:nth-child(5)').should('have.visible.text', 'Sales order')
+
+    })
+
+  })
