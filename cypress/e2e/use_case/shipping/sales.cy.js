@@ -265,18 +265,32 @@ describe('Pick order', () => {
 
     cy.get('#user_email').type('wrap-it_picker@wrap-it.com')
     cy.get('#user_password').type('picking')
-    cy.getCookie('_sessions_development').should('exist')
 
     // Click Log in button
     cy.get('button').click()
 
     // Assert login page
     cy.get('.icon').should('be.visible')
-    cy.get(':nth-child(1) > .item-link > .item-inner > .item-title').click()
-		cy.get('.page-current > .page-content > .list > ul > li > .item-link > .item-inner').last().click()
-		cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+    cy.get(':nth-child(1) > .item-link > .item-inner > .item-title').click() // << All
 
-    // to be continued...
+    cy.wait(1500)
+
+		cy.get('.page-current > .page-content > .list > ul > li > .item-link > .item-inner').last().click()
+    cy.pause()
+    cy.window().then(tote => {
+      //stubbing prompt window
+      cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+      const stub1 = cy.stub(tote, 'prompt')
+      stub1.returns('AUTOTE')
+      })
+
+    cy.window().then(container => {
+      //stubbing prompt window
+      cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+      const stub = cy.stub(container, 'prompt')
+      stub.returns('`${container}`')
+      })
+
 		})
   
   })
@@ -300,7 +314,8 @@ describe('Pack order', () => {
 			//stubbing prompt window
 			cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
 			const stub = cy.stub(win, 'prompt')
-			stub.returns('tote-001')
+    // Get from bin location
+			stub.returns('')
 		  })
 
    })
