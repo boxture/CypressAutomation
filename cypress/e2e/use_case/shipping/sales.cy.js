@@ -254,7 +254,7 @@ describe('Sales order create', () => {
 
 describe('Pick order', () => {
 
-    it.only('Pick Order', () => {
+    it('Pick Order', () => {
 
     // Login on Mobile
     cy.visit('/mobile')
@@ -299,7 +299,7 @@ describe('Pick order', () => {
 describe('Pack order', () => {
 
   before(() => {
-    cy.pick({email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
+    cy.login_mobile({email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
 
     })
     it('Pack Order', () => {
