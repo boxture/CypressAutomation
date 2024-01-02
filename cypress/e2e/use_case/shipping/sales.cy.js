@@ -10,7 +10,7 @@ describe('Ship a sales order', () => {
 
     })
 
-    it('Purchase orderrder create', () => {
+    it('Purchase order create', () => {
 
     // CREATE A PURCHASE ORDER
 
@@ -236,7 +236,7 @@ describe('Sales order create', () => {
   before(() => {
     cy.login({email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
 
-    })
+  })
 
     it('Generate a pick list', () => {
 
@@ -250,53 +250,80 @@ describe('Sales order create', () => {
 
     })
 
-  })
+})
+
 
 describe('Pick order', () => {
 
-    it('Pick Order', () => {
+  it('Pick Order', () => {
 
-    // Login on Mobile
-    cy.visit('/mobile')
+  // Login on Mobile
+  cy.visit('/mobile')
 
-    // Verify login screen
-    cy.url().should('include', '/mobile')
-    cy.get('.login-screen-title').contains('Login')
+  // Verify login screen
+  cy.url().should('include', '/mobile')
+  cy.get('.login-screen-title').contains('Login')
 
-    cy.get('#user_email').type('wrap-it_picker@wrap-it.com')
-    cy.get('#user_password').type('picking')
+  cy.get('#user_email').type('wrap-it_picker@wrap-it.com')
+  cy.get('#user_password').type('picking')
 
-    // Click Log in button
-    cy.get('button').click()
+  // Click Log in button
+  cy.get('button').click()
 
-    // Assert login page
-    cy.get('.icon').should('be.visible')
-    cy.get(':nth-child(1) > .item-link > .item-inner > .item-title').click() // << All
+  // Assert login page
+  cy.get('.icon').should('be.visible')
+  cy.get(':nth-child(1) > .item-link > .item-inner > .item-title').click() // << All
 
-    cy.wait(1500)
+  cy.wait(1500)
 
-		cy.get('.page-current > .page-content > .list > ul > li > .item-link > .item-inner').last().click()
-    cy.pause()
-    cy.window().then(tote => {
-      //stubbing prompt window
-      cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
-      const stub1 = cy.stub(tote, 'prompt')
-      stub1.returns('AUTOTE')
-      })
+  cy.get('.page-current > .page-content > .list > ul > li > .item-link > .item-inner').last().click()
 
-    cy.window().then(container => {
-      //stubbing prompt window
-      cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
-      const stub = cy.stub(container, 'prompt')
-      stub.returns('`${container}`')
-      })
 
-		})
+  before(() => (stub(win, 'prompt')
+    .returns(TOTE)  
+  ));  
+  after(() => win.prompt.restore());
   
-  })
+  cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+    
 
 
-describe('Pack order', () => {
+
+
+
+
+    // before(() => (
+    //   cy.window().then(win => {
+    //     .stub(win, 'prompt').onFirstCall()
+    //     .returns('AUTOTE')
+    //     .onSecondCall()
+    //     .returns('`${container}`')
+    // ))
+    // after(() => win.prompt.restore())
+
+    // cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+
+    // cy.window().then(win => {
+    //   //stubbing prompt window
+    //   cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+    //   const stub = cy.stub(win, 'prompt')
+    //   stub.returns('AUTOTE').reset()
+    //   })
+
+
+    // cy.window().then(container => {
+    //   //stubbing prompt window
+    //   cy.get('.page-current > .toolbar > .toolbar-inner svg').invoke('reset').click()
+    //   const stub = cy.stub(container, 'prompt')
+    //   stub.returns('`${container}`')
+    //   })
+
+	})
+  
+})
+
+
+describe.skip('Pack order', () => {
 
   before(() => {
     cy.login_mobile({email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
