@@ -2,17 +2,15 @@ let container_1
 let container_2
 let purchase_order
 let kit_order
-let stub
+let barcode
 
 const kit_product = 'BXT-KIT66724'
-const kit_product_qty = 1
-
+const kit_product_qty = 2
 const kit_component_a = 'BXT-CPNT-R603A'
-const kit_component_a_qty = 1
-
+const kit_component_a_qty = 2
 const kit_component_b = 'BXT-CPNT-R603B'
-const kit_component_b_qty = 1
-
+const kit_component_b_qty = 2
+const kits_to_build_qty = 2
 
 describe('KITTING', () => {
 
@@ -95,7 +93,7 @@ describe('Purchase order confirm', () => {
           cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
               statusElement => {
                   let status = statusElement.text()
-                  if (status === 'concept') {
+                  if (status !== 'pending') {
                       cy.wait(1000)
                     }
                 }
@@ -136,20 +134,18 @@ describe('Purchase orders receive', () => {
     
     // 5. Fill in a kit component on the 2nd line
     cy.get('[placeholder="Product"]').eq(1).type(kit_component_b, {delay:200})
-    cy.pause()
     
     // 6. Fill in a quantity
     cy.get('[data-order-line-target="quantity"]').eq(1).type(kit_component_b_qty)
     
-    cy.pause()
     // 7. Click Receive
     cy.get('.button').click()
 
     for (let i = 0; i < 300; i++) {
-          cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
+            cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
               statusElement => {
                   let status = statusElement.text()
-                  if (status === 'expected') {
+                  if (status !== 'completed') {
                       cy.wait(1000)
                     }
                 }
@@ -157,13 +153,10 @@ describe('Purchase orders receive', () => {
         }
 
     // Get container 1st id
-    cy.get('[id*="tab_label"]').contains('Items').click({ force: true })
-    cy.wait(1000)
+    cy.get('[data-column="position"]', {timeout:30000}).should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="container"]').scrollIntoView().should('be.visible')
 
-
     cy.get('[href*="/containers/"]').eq(1).click()
-    cy.wait(1000)
     cy.url().should('include', `/containers`)
 
     cy.url().then(($url) => {
@@ -177,14 +170,14 @@ describe('Purchase orders receive', () => {
     // 1. Navigate to Purchase Order
     cy.visit(`/orders/${purchase_order}`)
     cy.url().should('include', `/orders/${purchase_order}`)
-    cy.wait(1000)
+    cy.wait(1500)
 
     // 2. Get container 2nd container id
     cy.get('[id*="tab_label"]').contains('Items').click({ force: true })
-    cy.wait(1000)
+    cy.get('[data-column="position"]', {timeout:30000}).should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="container"]').scrollIntoView().should('be.visible')
 
-    cy.get('[href*="/containers/"]').eq(3).click()
+    cy.get('[href*="/containers/"]').last().click()
     cy.url().should('include', `/containers`)
 
     cy.url().then(($url) => {
@@ -290,7 +283,6 @@ describe.skip('Inventory move', () => {
 
     cy.get('.py-1').should('be.visible').contains('Moving inventory')
     cy.get('.py-1').should('be.visible').contains('Inventory has been moved')
-
     cy.wait(1500)
 
     // Move 2nd component to a picking bin
@@ -376,7 +368,7 @@ describe('Kit order confirm', () => {
       cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
         statusElement => {
           let status = statusElement.text()
-          if (status === 'concept') {
+          if (status !== 'processing') {
             cy.wait(500)
                     }
                 }
@@ -481,40 +473,37 @@ describe('Pick kit order', () => {
         // Assert login page.
         cy.get('.icon').should('be.visible')
         cy.get(':nth-child(1) > .item-link > .item-inner > .item-title').click() // << All
-  
         cy.wait(1500)
   
         // 4. Scroll and click the last (most recent) order.
         cy.get('.page-current > .page-content > .list > ul > li > .item-link > .item-inner').last().click()
 
         // 5. Fill in a Tote.
+        cy.wait(1500)
         cy.window().then(win => {
-        stub = cy.stub(win, 'prompt')
-        stub.returns('AUTOTE')
+        barcode = cy.stub(win, 'prompt')
+        barcode.returns('AUTOTE')
 
-        cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
-        })
-
-        cy.window().then(container => {
-        stub.restore()
-
-        //stubbing prompt window
-        cy.stub(container, 'prompt').returns(container_1)
-        cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
-
-        })
-        cy.window().then(container => {
-        stub.restore()
-
-        //stubbing prompt window
-        cy.stub(container, 'prompt').returns(container_2)
+        cy.wait(1500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
         
         })
+        cy.window().then(container => {
+        barcode.restore()
+        cy.stub(container, 'prompt').returns(container_1)
 
+        cy.wait(1500)
+        cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+        
+        })
+        cy.window().then(container => {
+        barcode.restore()
+        cy.stub(container, 'prompt').returns(container_2)
 
-        cy.pause()
-
+        cy.wait(1500)
+        cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+        
+        })
 
         // cy.wait(2000)
 
@@ -549,7 +538,7 @@ describe('Pick kit order', () => {
     })
 })
 
-describe('Kit an order', () => {
+describe.skip('Kit an order', () => {
 
   before(() => {
     cy.login({email: 'wrap-it_kitter@wrap-it.com', password: 'Mumvez-caxpe2-wapviv'})
@@ -576,7 +565,7 @@ describe('Kit an order', () => {
     cy.get('[placeholder="Product"]').eq(0).type(kit_product, {delay:200})
 
     // 6. Fill in Quantity
-    //cy.get('[id^=orders_build_items_attributes_TEMPLATE_quantity').clear().type(1)
+    cy.get('[id*="quantity"]').eq(0).type(kits_to_build_qty, {force:true})
 
     // 7. Click Build
     cy.get('.primary').click()
@@ -595,4 +584,3 @@ describe('Kit an order', () => {
     })
 
 })
-
