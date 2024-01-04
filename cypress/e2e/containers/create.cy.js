@@ -9,21 +9,21 @@ beforeEach(() => {
   describe('Container', () => {
     it('Create container', () => {
 
-    // visit container
+    // 1. Navigate to Containers
     cy.visit('/containers')
     cy.url().should('include', '/containers')
 
-    // create container
+    // 2. Click Create
     cy.get('[href="/containers/new"]').click({force: true})
 
-    // fill in packing material
+    // 3. Fill in Packing Material
     cy.get('[placeholder="Packing material"]').type(packing_material, {delay:200})
 
-    // fill in bin location
+    // 4. Fill in bin location
     cy.get('[placeholder="Bin location"]').type(bin_location,{delay:200})
     cy.get('[data-satis-dropdown-item-text="PICKING"]').click()
 
-    // click on create conatainer
+    // 5. Click Create Container
     cy.get('[type="submit"]').click()
 
     cy.get('.signum-notification-body').then(e1 =>{
