@@ -3,10 +3,10 @@ describe('State Transition', ()=>{
 
 
     })
-    it('available --> picked',()=>{
+    // it('available --> picked',()=>{
 
 
-    })
+    // })
 })
 
 
