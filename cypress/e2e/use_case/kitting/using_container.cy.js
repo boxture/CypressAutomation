@@ -5,8 +5,6 @@ let kit_order
 let barcode
 let kit_container
 
-const packing_material = 'Gift '
-const bin_location='kitting'
 const kit_product = 'BXT-KIT66724'
 const kit_product_qty = 2
 const kit_component_a = 'BXT-CPNT-R603A'
@@ -23,63 +21,63 @@ describe('KITTING', () => {
     })
 
     it('Purchase order create', () => {
+      
+      // CREATE A PURCHASE ORDER
+        
+      // 1. Navigate to Purchase Orders
+      cy.visit('orders/new?type=purchase_order')
 
-    // CREATE A PURCHASE ORDER
+      // 2. Fill in Customer Reference
+      const dayjs = require('dayjs')
+      cy.log(dayjs().format('{YYYY} MM-DDTHH:mm:ss'))
+      cy.get('[id^=orders_purchase_order_customer_reference_number]').type(dayjs().format('DDmmssYY'))
 
-    // 1. Navigate to Purchase Orders
-    cy.visit('orders/new?type=purchase_order')
+      // 3. Fill in Purchase Order Number
+      cy.get('[id^=orders_purchase_order_purchase_order_number]').type(dayjs().format('ssYYDDmm'))
 
-    // 2. Fill in Customer Reference
-    const dayjs = require('dayjs')
-    cy.log(dayjs().format('{YYYY} MM-DDTHH:mm:ss'))
-    cy.get('[id^=orders_purchase_order_customer_reference_number]').type(dayjs().format('DDmmssYY'))
+      // 4. Fill in Inbound Tracking Number
+      cy.get('[id^=orders_purchase_order_inbound_tracking_number]').type(dayjs().format('AWBMMDDHHmm'))
 
-    // 3. Fill in Purchase Order Number
-    cy.get('[id^=orders_purchase_order_purchase_order_number]').type(dayjs().format('ssYYDDmm'))
+      // 5. Fill in Forwarder
+      cy.get('[id^=orders_purchase_order_forwarder]').type('DHL')
 
-    // 4. Fill in Inbound Tracking Number
-    cy.get('[id^=orders_purchase_order_inbound_tracking_number]').type(dayjs().format('AWBMMDDHHmm'))
+      // 6. Fill in Destination location
+      cy.get('[placeholder="Destination location"]').type('NLD-A',{ delay: 200 })
 
-    // 5. Fill in Forwarder
-    cy.get('[id^=orders_purchase_order_forwarder]').type('DHL')
+      // 7. Fill in Product
+      cy.get('[placeholder="Product"]').eq(0).type(kit_component_a,{ delay: 200 })
 
-    // 6. Fill in Destination location
-    cy.get('[placeholder="Destination location"]').type('NLD-A',{ delay: 200 })
+      // 8. Fill in quantity
+      cy.get('[data-order-line-target="quantity"]').eq(0).clear().type(kit_component_a_qty)
 
-    // 7. Fill in Product
-    cy.get('[placeholder="Product"]').eq(0).type(kit_component_a,{ delay: 200 })
+      // 9. Fill in product 2nd line
+      cy.get('[placeholder="Product"]').eq(1).type(kit_component_b,{ delay: 200 })
 
-    // 8. Fill in quantity
-    cy.get('[data-order-line-target="quantity"]').eq(0).clear().type(kit_component_a_qty)
+      // 9.1 Fill in quantity 2nd line
+      cy.get('[data-order-line-target="quantity"]').eq(1).clear().type(kit_component_b_qty)
 
-    // 9. Fill in product 2nd line
-    cy.get('[placeholder="Product"]').eq(1).type(kit_component_b,{ delay: 200 })
+      // 10. Submit form
+      cy.get('.button').contains('Create and continue editing').click()
+      cy.url().should('include', '/edit')
 
-    // 9.1 Fill in quantity 2nd line
-    cy.get('[data-order-line-target="quantity"]').eq(1).clear().type(kit_component_b_qty)
+      //Get purchase order
+      cy.url().then(($url) => {
+        let url = $url.split('/')
+        purchase_order = url[4]
+        cy.log(purchase_order)
+        cy.visit(`/orders/${purchase_order}`)
+      })
 
-    // 10. Submit form
-    cy.get('.button').contains('Create and continue editing').click()
-    cy.url().should('include', '/edit')
+      // Click logout button
+      cy.get('span').contains('Logout').click({force: true})
 
-    //Get purchase order
-    cy.url().then(($url) => {
-      let url = $url.split('/')
-      purchase_order = url[4]
-      cy.log(purchase_order)
-      cy.visit(`/orders/${purchase_order}`)
+      // Verify logged out
+      cy.contains('Log in to your account')
+      cy.url().should('include', '/users/sign_in')
+
+      })
+
     })
-
-    // Click logout button
-    cy.get('span').contains('Logout').click({force: true})
-
-    // Verify logged out
-    cy.contains('Log in to your account')
-    cy.url().should('include', '/users/sign_in')
-
-    })
-
-  })
 
 describe('Purchase order confirm', () => {
 
@@ -87,7 +85,7 @@ describe('Purchase order confirm', () => {
     cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
 
   })
-
+  
   it('Confirm the purchase order', () => {
 
     cy.visit(`/orders/${purchase_order}`)
@@ -251,68 +249,6 @@ describe('Inventory move containers', () => {
       })
   })
 
-
-
-describe.skip('Inventory move', () => {
-
-  before(() => {
-    cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
-  })
-
-  it('Move inventory', () => {
-
-    // 1. Navigate to Inventory move
-    cy.visit('/inventory_moves/new')
-    cy.url().should('include', '/inventory_moves/new')
-
-    // 2. Fill in From binlocation
-    cy.get('[placeholder="From bin location"]').type('RECEIVING', {delay:200})
-    cy.get('[data-satis-dropdown-item-text="RECEIVING"]').click({force:true})
-
-    // 3. Fill in To binlocation
-    cy.get('[placeholder="To bin location"]').type('PICKING', {delay:200})
-    cy.get('[data-satis-dropdown-item-text="PICKING"]').click({force:true})
-
-    // 4. Fill in Product
-    cy.get('[placeholder="Product"]').type(kit_component_a, {delay:200})
-
-    // 5. Fill in quantity
-    cy.get('[id="inventory_put_away_quantity"]').clear().type(1)
-
-    // 6. Click Move
-    cy.get('.primary').contains('Move').click()
-
-    cy.wait(1000)
-
-    cy.get('.py-1').should('be.visible').contains('Moving inventory')
-    cy.get('.py-1').should('be.visible').contains('Inventory has been moved')
-    cy.wait(1500)
-
-    // Move 2nd component to a picking bin
-
-    // 2b. Fill in From binlocation
-    cy.get('[placeholder="From bin location"]').type('RECEIVING', {delay:200})
-    cy.get('[data-satis-dropdown-item-text="RECEIVING"]').click({force:true})
-
-    // 3b. Fill in To binlocation
-    cy.get('[placeholder="To bin location"]').type('PICKING', {delay:200})
-    cy.get('[data-satis-dropdown-item-text="PICKING"]').click({force:true})
-
-    // 4b. Fill in Product
-    cy.get('[placeholder="Product"]').type(kit_component_b, {delay:200})
-
-    // 5b. Fill in quantity
-    cy.get('[id="inventory_put_away_quantity"]').clear().type(1)
-
-    // 6b. Click Move
-    cy.get('.primary').contains('Move').click()
-
-    cy.wait(1000)
-    cy.get('.py-1').should('be.visible').contains('Moving inventory')
-    cy.get('.py-1').should('be.visible').contains('Inventory has been moved')
-
-    })
-})
 
 describe('Kit order create', () => {
 
@@ -485,7 +421,7 @@ describe('Pick kit order', () => {
         cy.wait(1500)
         cy.window().then(win => {
         barcode = cy.stub(win, 'prompt')
-        barcode.returns('TOTE040')
+        barcode.returns('TOTE-100059')
 
         cy.wait(1500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
@@ -507,39 +443,10 @@ describe('Pick kit order', () => {
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
 
         })
-
-        // cy.wait(2000)
-
-        // // 6. Swipe PickOne
-        // cy.get('.swipeout-content > .item-link > .item-inner')
-        // .trigger('pointerdown')
-        // cy.wait(500)
-
-        // cy.get('.swipeout-content > .item-link > .item-inner')
-        // .trigger('pointermove', 'right')
-        // cy.wait(500)
-
-        // cy.get('.swipeout-content > .item-link > .item-inner')
-        // .trigger('pointerup', { force: true })
-        // cy.wait(500)
-
-        // // 6b. Pick 2nd component
-        // cy.get('.swipeout-content > .item-link > .item-inner').click()
-        // cy.wait(500)
-
-        // cy.get('.swipeout-content > .item-link > .item-inner')
-        // .trigger('pointerdown')
-        // cy.wait(500)
-
-        // cy.get('.swipeout-content > .item-link > .item-inner')
-        // .trigger('pointermove', 'right')
-        // cy.wait(500)
-
-        // cy.get('.swipeout-content > .item-link > .item-inner')
-        // .trigger('pointerup', { force: true })
-
+    
     })
-})
+  
+  })
 
 describe('Kit an order', () => {
 
@@ -557,31 +464,33 @@ describe('Kit an order', () => {
         cy.get('[href="/containers/new"]').click({force: true})
 
         // 4. Fill in bin location
-        cy.get('[placeholder="Bin location"]').type(bin_location,{delay:200})
+        cy.get('[placeholder="Bin location"]').type('KITTING',{delay:200})
 
         // 3. Fill in Packing Material
-        cy.get('[placeholder="Packing material"]').type(packing_material, {delay:200})
+        cy.get('[placeholder="Packing material"]').type('9836389850', {delay:200})
 
         // 5. Click Create Container
         cy.get('[type="submit"]').click()
 
         cy.get('.signum-notification-body').then(e1 =>{
-            kit_container = e1.text().substring(11,19)
-        })
+          kit_container = e1.text().substring(11,19)
+          cy.log(kit_container)
 
+        cy.wait(5000)
+        
         // 1. Navigate to the kit order created.
         cy.visit(`/orders/${kit_order}`)
         cy.url().should('include', `/orders/${kit_order}`)
-        cy.pause()
+
         // 2. Click Build from the context menu.
         cy.contains('.pr-1', 'Build').click({ force: true })
         cy.url().should('include', `/orders/${kit_order}/build/new`)
 
         // 3. Fill in Bin location
-        cy.get('[placeholder="Bin location"]').type('KIT', {delay:200})
+        cy.get('[placeholder="Bin location"]').type('KITTING', {delay:200})
 
-        // 4. Fill in Packing material
-        cy.get('[placeholder="Container"').eq(0).type(kit_container, {delay:200})
+        // 4. Fill in container
+        cy.get('[placeholder="Container"]').eq(0).type(kit_container, {delay:200})
 
         // 5. Fill in Product
         cy.get('[placeholder="Product"]').eq(0).type(kit_product, {delay:200})
@@ -596,7 +505,7 @@ describe('Kit an order', () => {
             cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
                 statusElement => {
                     let status = statusElement.text()
-                    if (status === 'picked') {
+                    if (status !== 'completed') {
                         cy.wait(1000)
                         }
                     }
@@ -606,3 +515,4 @@ describe('Kit an order', () => {
         })
 
     })
+})

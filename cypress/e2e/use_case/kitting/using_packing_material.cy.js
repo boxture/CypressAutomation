@@ -482,7 +482,7 @@ describe('Pick kit order', () => {
         cy.wait(1500)
         cy.window().then(win => {
         barcode = cy.stub(win, 'prompt')
-        barcode.returns('AUTOTE')
+        barcode.returns('TOTE-100052')
 
         cy.wait(1500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
@@ -538,7 +538,7 @@ describe('Pick kit order', () => {
     })
 })
 
-describe.skip('Kit an order', () => {
+describe('Kit an order', () => {
 
   before(() => {
     cy.login({email: 'wrap-it_kitter@wrap-it.com', password: 'Mumvez-caxpe2-wapviv'})
