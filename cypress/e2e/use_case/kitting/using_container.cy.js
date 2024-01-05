@@ -1,10 +1,12 @@
-
 let container_1
 let container_2
 let purchase_order
 let kit_order
 let barcode
+let kit_container
 
+const packing_material = 'Gift '
+const bin_location='kitting'
 const kit_product = 'BXT-KIT66724'
 const kit_product_qty = 2
 const kit_component_a = 'BXT-CPNT-R603A'
@@ -13,7 +15,7 @@ const kit_component_b = 'BXT-CPNT-R603B'
 const kit_component_b_qty = 2
 const kits_to_build_qty = 2
 
-describe.only('KITTING', () => {
+describe('KITTING', () => {
 
   before(() => {
     cy.login({email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
@@ -26,12 +28,6 @@ describe.only('KITTING', () => {
 
     // 1. Navigate to Purchase Orders
     cy.visit('orders/new?type=purchase_order')
-    // cy.get('@cont').then( e1 =>{
-    //     cy.log(e1)
-    // })
-const myValue = Cypress.env('text1')
-        cy.log(myValue)
-    cy.pause()
 
     // 2. Fill in Customer Reference
     const dayjs = require('dayjs')
@@ -489,7 +485,7 @@ describe('Pick kit order', () => {
         cy.wait(1500)
         cy.window().then(win => {
         barcode = cy.stub(win, 'prompt')
-        barcode.returns('AUTOTE')
+        barcode.returns('TOTE040')
 
         cy.wait(1500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
@@ -545,7 +541,7 @@ describe('Pick kit order', () => {
     })
 })
 
-describe.skip('Kit an order', () => {
+describe('Kit an order', () => {
 
   before(() => {
     cy.login({email: 'wrap-it_kitter@wrap-it.com', password: 'Mumvez-caxpe2-wapviv'})
@@ -554,40 +550,59 @@ describe.skip('Kit an order', () => {
 
     it('Building Kits', () => {
 
-    // 1. Navigate to the kit order created.
-    cy.visit(`/orders/${kit_order}`)
-    cy.url().should('include', `/orders/${kit_order}`)
+        cy.visit('/containers')
+        cy.url().should('include', '/containers')
 
-    // 2. Click Build from the context menu.
-    cy.contains('.pr-1', 'Build').click({ force: true })
-    cy.url().should('include', `/orders/${kit_order}/build/new`)
+        // 2. Click Create
+        cy.get('[href="/containers/new"]').click({force: true})
 
-    // 3. Fill in Bin location
-    cy.get('[placeholder="Bin location"]').type('KIT', {delay:200})
+        // 4. Fill in bin location
+        cy.get('[placeholder="Bin location"]').type(bin_location,{delay:200})
 
-    // 4. Fill in Packing material
-    cy.get('[placeholder="Packing material"').type('C4', {delay:200})
+        // 3. Fill in Packing Material
+        cy.get('[placeholder="Packing material"]').type(packing_material, {delay:200})
 
-    // 5. Fill in Product
-    cy.get('[placeholder="Product"]').eq(0).type(kit_product, {delay:200})
+        // 5. Click Create Container
+        cy.get('[type="submit"]').click()
 
-    // 6. Fill in Quantity
-    cy.get('[id*="quantity"]').eq(0).type(kits_to_build_qty, {force:true})
+        cy.get('.signum-notification-body').then(e1 =>{
+            kit_container = e1.text().substring(11,19)
+        })
 
-    // 7. Click Build
-    cy.get('.primary').click()
+        // 1. Navigate to the kit order created.
+        cy.visit(`/orders/${kit_order}`)
+        cy.url().should('include', `/orders/${kit_order}`)
+        cy.pause()
+        // 2. Click Build from the context menu.
+        cy.contains('.pr-1', 'Build').click({ force: true })
+        cy.url().should('include', `/orders/${kit_order}/build/new`)
 
-    for (let i = 0; i < 300; i++) {
-        cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
-            statusElement => {
-                let status = statusElement.text()
-                if (status === 'picked') {
-                    cy.wait(1000)
+        // 3. Fill in Bin location
+        cy.get('[placeholder="Bin location"]').type('KIT', {delay:200})
+
+        // 4. Fill in Packing material
+        cy.get('[placeholder="Container"').eq(0).type(kit_container, {delay:200})
+
+        // 5. Fill in Product
+        cy.get('[placeholder="Product"]').eq(0).type(kit_product, {delay:200})
+
+        // 6. Fill in Quantity
+        cy.get('[id*="quantity"]').eq(0).type(kits_to_build_qty, {force:true})
+
+        // 7. Click Build
+        cy.get('.primary').click()
+
+        for (let i = 0; i < 300; i++) {
+            cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
+                statusElement => {
+                    let status = statusElement.text()
+                    if (status === 'picked') {
+                        cy.wait(1000)
+                        }
                     }
-                }
-            )
-        }
+                )
+            }
+
+        })
 
     })
-
-})
