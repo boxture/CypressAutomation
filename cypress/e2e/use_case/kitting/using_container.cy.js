@@ -421,7 +421,7 @@ describe('Pick kit order', () => {
         cy.wait(1500)
         cy.window().then(win => {
         barcode = cy.stub(win, 'prompt')
-        barcode.returns('TOTE-100059')
+        barcode.returns('TOTE-100061')
 
         cy.wait(1500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()

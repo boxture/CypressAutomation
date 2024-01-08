@@ -1,4 +1,4 @@
-let serialNumber = Math.floor((Math.random() * 1000000000000) + 1);
+let serial_number = Math.floor((Math.random() * 1000000000000) + 1);
 
 describe('Inventory Adjust', () => {
 
@@ -6,7 +6,7 @@ describe('Inventory Adjust', () => {
         cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
     })
 
-    it('inventory adjust +', () => {
+    it('serialized full product', () => {
 
         // 1. Navigate to Inventory Adjust
         cy.visit('/inventories/new')
@@ -20,14 +20,13 @@ describe('Inventory Adjust', () => {
         cy.get('[placeholder="Product"]').type('BXT-SNF78252', {delay:200})
 
         // 4. Fill in a Serial Number
-        cy.get('#inventory_adjust_serial_number').type(serialNumber)
+        cy.get('#inventory_adjust_serial_number').type(serial_number)
 
         // 5. Fill in a Status
         cy.get('#inventory_adjust_status').select('New')
 
         // 6. Click Adjust
         cy.get('.button').click()
-
 
     })
 

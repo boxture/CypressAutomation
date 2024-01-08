@@ -2,7 +2,7 @@ const outbound_serial_number = Math.floor((Math.random() * 100000000000000) + 1)
 const full_serial_number = Math.floor((Math.random() * 10000000000000) + 1);
 const full_product = 'BXT-SNF78252'
 const outbound_product = 'BXT-SNO78354'
-const tote = 'TOTE-100060'
+const tote = 'TOTE-100064'
 
 let pickable_container
 let non_pickable_container
@@ -209,7 +209,7 @@ describe('Order', () => {
             cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
                 statusElement => {
                     let status = statusElement.text()
-                    if (status === 'concept') {
+                    if (status !== 'processing') {
                         cy.wait(500)
                         }
                     }
@@ -265,18 +265,18 @@ describe("** Pick scenario's", () => {
         // Assert login page.
         cy.get('.icon').should('be.visible')
         cy.get(':nth-child(1) > .item-link > .item-inner > .item-title').click() // << All
-        cy.wait(1500)
+        cy.wait(2500)
   
         // 4. Scroll and click the last (most recent) order.
         cy.get('.page-current > .page-content > .list > ul > li > .item-link > .item-inner').last().click()
 
         // 5. Scan tote
-        cy.wait(1500)
+        cy.wait(2500)
         cy.window().then(win => {
         barcode = cy.stub(win, 'prompt')
         barcode.returns(tote)
 
-        cy.wait(1500)
+        cy.wait(2500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
         
         })
@@ -285,7 +285,7 @@ describe("** Pick scenario's", () => {
         barcode.restore()
         cy.stub(win, 'prompt').returns(pickable_container)
 
-        cy.wait(1500)
+        cy.wait(2500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
 
         })
@@ -294,7 +294,7 @@ describe("** Pick scenario's", () => {
         barcode.restore()
         cy.stub(win, 'prompt').returns(non_pickable_container)
 
-        cy.wait(1500)
+        cy.wait(2500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
 
         })
@@ -303,7 +303,7 @@ describe("** Pick scenario's", () => {
         barcode.restore()
         cy.stub(win, 'prompt').returns(full_serial_number+3)
 
-        cy.wait(1500)
+        cy.wait(2500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
 
         })
@@ -312,7 +312,7 @@ describe("** Pick scenario's", () => {
         barcode.restore()
         cy.stub(win, 'prompt').returns(full_serial_number+4)
 
-        cy.wait(1500)
+        cy.wait(2500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
 
         })
@@ -321,7 +321,7 @@ describe("** Pick scenario's", () => {
         barcode.restore()
         cy.stub(win, 'prompt').returns(outbound_product)
 
-        cy.wait(1500)
+        cy.wait(2500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
 
         })
@@ -330,7 +330,7 @@ describe("** Pick scenario's", () => {
         barcode.restore()
         cy.stub(win, 'prompt').returns(9990000010021)
 
-        cy.wait(1500)
+        cy.wait(2500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
 
         })
@@ -339,7 +339,7 @@ describe("** Pick scenario's", () => {
         barcode.restore()
         cy.stub(win, 'prompt').returns('45387ONS-TXB')
     
-        cy.wait(1500)
+        cy.wait(2500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
 
         })
@@ -348,11 +348,11 @@ describe("** Pick scenario's", () => {
         barcode.restore()
         cy.stub(win, 'prompt').returns('1200100000999')
     
-        cy.wait(1500)
+        cy.wait(2500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
 
         // 14. Swipe PickOne
-        cy.wait(1500)
+        cy.wait(2500)
         cy.get('.swipeout-content > .item-link > .item-inner')
         .trigger('pointerdown')
         cy.wait(500)
