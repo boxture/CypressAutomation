@@ -2,7 +2,7 @@ const outbound_serial_number = Math.floor((Math.random() * 100000000000000) + 1)
 const full_serial_number = Math.floor((Math.random() * 10000000000000) + 1);
 const full_product = 'BXT-SNF78252'
 const outbound_product = 'BXT-SNO78354'
-const tote = 'TOTE-100064'
+const tote = 'autote'
 
 let pickable_container
 let non_pickable_container

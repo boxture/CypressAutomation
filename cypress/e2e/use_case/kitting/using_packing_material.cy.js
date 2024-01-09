@@ -248,8 +248,6 @@ describe('Inventory move containers', () => {
       })
   })
 
-
-
 describe.skip('Inventory move', () => {
 
   before(() => {
