@@ -1,8 +1,8 @@
-const outbound_serial_number = Math.floor((Math.random() * 100000000000000) + 1);
-const full_serial_number = Math.floor((Math.random() * 10000000000000) + 1);
+const outbound_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
+const full_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
 const full_product = 'BXT-SNF78252'
 const outbound_product = 'BXT-SNO78354'
-const tote = 'autote'
+const tote = 'TOTE-100068'
 
 let pickable_container
 let non_pickable_container
@@ -34,7 +34,7 @@ describe("Picking scenario's", () => {
 
     describe('Inventory', () => {
         
-        it('1. Create a pickable and non-pickable container containing full and outbound products', () => {
+        it('1. Create a pickable and non-pickable, container containing full and outbound products, create outbound products loose on a bin', () => {
 
     // Create pickable container
 
@@ -190,7 +190,7 @@ describe('Order', () => {
         cy.get('[placeholder="Product"]').eq(1).type(outbound_product, {delay:200})
 
         // 6. Fill in quantity
-        cy.get('[data-order-line-target="quantity"]').eq(1).clear().type(5)
+        cy.get('[data-order-line-target="quantity"]').eq(1).clear().type(10)
     
         // 7. Submit form
         cy.get('.button').contains('Create and continue editing').click()
@@ -364,6 +364,9 @@ describe("** Pick scenario's", () => {
         cy.get('.swipeout-content > .item-link > .item-inner')
         .trigger('pointerup', { force: true })
         cy.wait(500)
+
+        // 15. pickAll
+        cy.contains('Pick all').click({force:true})
         
         })
 
@@ -421,7 +424,8 @@ describe('Release tote', () => {
         cy.get('[id*="serial_number"]').eq(2).type(outbound_serial_number+2).type('{enter}')
         cy.get('[id*="serial_number"]').eq(2).type(outbound_serial_number+3).type('{enter}')
         cy.get('[id*="serial_number"]').eq(2).type(outbound_serial_number+4).type('{enter}')
-        cy.get('[id*="serial_number"]').eq(2).type(outbound_serial_number+5)
+        cy.get('[id*="serial_number"]').eq(2).type(outbound_serial_number+5).type('{enter}')
+        cy.get('[id*="serial_number"]').eq(2).type(outbound_serial_number+6)
 
         // 14. Enter quantity (automatically)
         cy.get('[id*="quantity"]').eq(2).click()
