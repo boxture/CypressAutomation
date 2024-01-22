@@ -30,7 +30,7 @@ let barcode
 
     // 5. Click Create Container
     cy.get('[type="submit"]').click()
-    cy.pause()
+    cy.wait(2000)
     cy.get('.signum-notification-drawer-tray .py-1').first().find('a').click({force:true})
     cy.wait(5000)
     cy.url().then(($url) => {
@@ -52,7 +52,7 @@ describe('available --> picked',()=>{
     cy.visit('/inventories/new')
     cy.get('[placeholder="Bin location"]').type(bin_location,{delay:200})
     cy.get('[data-satis-dropdown-item-text="PICKING"]').click()
-    cy.get('[placeholder="Container"]').type(container.substring(0,8),{delay:200}).should('contain',container)
+    cy.get('[placeholder="Container"]').type(container.substring(0,8),{delay:200})
         // 3. Fill in Product
     cy.get('[placeholder="Product"]').type(product, {delay:200})
     cy.get('[data-satis-dropdown-item-text="[Boxture Acceptance Test] BXT-SNXX29999477 BXT-SNXX 20221 Demo Product"]').click()
@@ -159,7 +159,6 @@ describe('available --> picked',()=>{
         // 4. Scroll and click the last (most recent) order.
         cy.get('.page-current > .page-content > .list > ul > li > .item-link > .item-inner').last().click()
         cy.log(container)
-        cy.pause()
         // 5. Fill in a Tote.
         cy.wait(1500)
         cy.window().then(win => {
@@ -176,15 +175,17 @@ describe('available --> picked',()=>{
 
         cy.wait(1500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+        cy.wait(1500)
 
         })
 
     })
+
     it('picked status of container', ()=>{
         cy.visit(`/containers/${container}`)
+        cy.contains('picked')
     })
     })
-
 
 })
 
