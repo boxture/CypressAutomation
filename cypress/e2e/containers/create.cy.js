@@ -25,13 +25,18 @@ beforeEach(() => {
 
     // 5. Click Create Container
     cy.get('[type="submit"]').click()
+    // cy.get('.signum-notification-body').then(e1 =>{
+    //     container = e1.text().substring(11,19)
+    //     cy.log(container)
+    // })
+    cy.get('.signum-notification-drawer-tray .py-1').first().find('a').click({force:true})
+    cy.wait(5000)
+    cy.url().then(($url) => {
+    const url = $url.split('/')
+    container = url[4]
+    cy.log(container)
 
-    cy.get('.signum-notification-body').then(e1 =>{
-        container = e1.text().substring(11,19)
-        cy.log(container)
     })
-
-    // assert container name
 
     })
 
