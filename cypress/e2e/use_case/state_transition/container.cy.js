@@ -2,6 +2,7 @@ let container
 let packing_material = 'Box 1'
 let bin_location='picking'
 let product = 'BXT-SNXX29999477'
+let scan_tote='TOTE-100091'
 let sales_order
 let barcode
 
@@ -163,7 +164,7 @@ describe('available --> picked',()=>{
         cy.wait(1500)
         cy.window().then(win => {
         barcode = cy.stub(win, 'prompt')
-        barcode.returns('TOTE-100091')
+        barcode.returns(scan_tote)
 
         cy.wait(1500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
@@ -187,6 +188,31 @@ describe('available --> picked',()=>{
     })
     })
 
+describe('picked --> retired',()=>{
+    it('Sales Order Pack',()=>{
+
+    cy.visit(`/orders/${sales_order}/pack/new`)
+    cy.pause()
+    cy.contains('Packs')
+
+    cy.get('.nested-fields [placeholder="Tote"]').eq(0).should('be.visible').type(scan_tote,{delay:200})
+    cy.get('.nested-fields [placeholder="Container"]').eq(0).type(container.substring(0,8),{delay:200})
+    cy.get('.nested-fields [placeholder="Product"]').eq(0).type(product, {delay:200})
+    cy.get('.form-group-quantity [data-satis-input-target="input"]').eq(0).type(1)
+    cy.get('[type="submit"]').click()
+    cy.contains('Packed')
+
+    })
+    it('retired status of container', ()=>{
+    cy.visit(`/containers/${container}`)
+    cy.contains('retired')
+    
+    })
+
+
+    })
+
 })
+
 
 
