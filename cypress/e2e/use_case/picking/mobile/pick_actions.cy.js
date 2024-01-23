@@ -2,7 +2,7 @@ const outbound_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
 const full_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
 const full_product = 'BXT-SNF78252'
 const outbound_product = 'BXT-SNO78354'
-const tote = 'TOTE-100068'
+const tote = 'TOTE-100070'
 
 let pickable_container
 let non_pickable_container
@@ -245,7 +245,7 @@ describe('Pick list', () => {
     
 describe("** Pick scenario's", () => {
     
-    it('4. Pick container, from non-pickable container, by serial number, product number, ean or upc, aliases and swipe pickOne', () => {
+    it('4. Pick A) container B) from non-pickable container C) by serial number D) product numberd E) ean or upc F) aliases G) swipe pickOne and H) pickAll', () => {
 
         // 1. Login on Mobile.
         cy.visit('/mobile')
@@ -352,18 +352,20 @@ describe("** Pick scenario's", () => {
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
 
         // 14. Swipe PickOne
-        cy.wait(2500)
-        cy.get('.swipeout-content > .item-link > .item-inner')
-        .trigger('pointerdown')
-        cy.wait(500)
+        cy.contains('Pick one').click({force:true})
+        
+        // cy.wait(2500)
+        // cy.get('.swipeout-content > .item-link > .item-inner')
+        // .trigger('pointerdown')
+        // cy.wait(500)
 
-        cy.get('.swipeout-content > .item-link > .item-inner')
-        .trigger('pointermove', 'right')
-        cy.wait(500)
+        // cy.get('.swipeout-content > .item-link > .item-inner')
+        // .trigger('pointermove', 'right')
+        // cy.wait(500)
 
-        cy.get('.swipeout-content > .item-link > .item-inner')
-        .trigger('pointerup', { force: true })
-        cy.wait(500)
+        // cy.get('.swipeout-content > .item-link > .item-inner')
+        // .trigger('pointerup', { force: true })
+        // cy.wait(500)
 
         // 15. pickAll
         cy.contains('Pick all').click({force:true})
@@ -420,12 +422,16 @@ describe('Release tote', () => {
         cy.get('[placeholder="Product"]').eq(2).type(outbound_product, {delay:200})
 
         // 13. Scan outbound serial numbers
+        cy.get('[id*="serial_number"]').eq(2).type(outbound_serial_number+0).type('{enter}')
         cy.get('[id*="serial_number"]').eq(2).type(outbound_serial_number+1).type('{enter}')
         cy.get('[id*="serial_number"]').eq(2).type(outbound_serial_number+2).type('{enter}')
         cy.get('[id*="serial_number"]').eq(2).type(outbound_serial_number+3).type('{enter}')
         cy.get('[id*="serial_number"]').eq(2).type(outbound_serial_number+4).type('{enter}')
         cy.get('[id*="serial_number"]').eq(2).type(outbound_serial_number+5).type('{enter}')
-        cy.get('[id*="serial_number"]').eq(2).type(outbound_serial_number+6)
+        cy.get('[id*="serial_number"]').eq(2).type(outbound_serial_number+6).type('{enter}')
+        cy.get('[id*="serial_number"]').eq(2).type(outbound_serial_number+7).type('{enter}')
+        cy.get('[id*="serial_number"]').eq(2).type(outbound_serial_number+8).type('{enter}')
+        cy.get('[id*="serial_number"]').eq(2).type(outbound_serial_number+9)
 
         // 14. Enter quantity (automatically)
         cy.get('[id*="quantity"]').eq(2).click()

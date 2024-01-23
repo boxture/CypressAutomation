@@ -2,8 +2,14 @@ let purchase_order
 let container
 let from_bin_location
 let sales_order
+let barcode
 
-describe('Ship a sales order', () => {
+const outbound_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
+const outbound_product = 'BXT-KIT91104'
+const tote = 'TOTE-100066'
+
+
+describe('Ship an outbound product on a sales order', () => {
 
   before(() => {
     cy.login({email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
@@ -11,8 +17,6 @@ describe('Ship a sales order', () => {
     })
 
     it('Purchase order create', () => {
-
-    // CREATE A PURCHASE ORDER
 
     // 1. Navigate to Purchase Orders
     cy.visit('orders/new?type=purchase_order')
@@ -35,13 +39,13 @@ describe('Ship a sales order', () => {
     cy.get('[placeholder="Destination location"]').type('NLD-A',{ delay: 200 })
 
     // 7. Fill in Product
-    cy.get('[placeholder="Product"]').eq(0).type('BXT-SNO98304',{ delay: 200 })
+    cy.get('[placeholder="Product"]').eq(0).type(outbound_product,{ delay: 200 })
 
     // 8. Fill in quantity
     cy.get('[data-order-line-target="quantity"]').eq(0).clear().type(1)
 
     // 9. Fill in product 2nd line
-    //cy.get('[placeholder="Product"]').eq(1).type('BXT-SNO23245',{ delay: 500 })
+    //cy.get('[placeholder="Product"]').eq(1).type('outbound_product',{ delay: 500 })
 
     // 9.1 Fill in quantity 2nd line
     //cy.get('[data-order-line-target="quantity"]').eq(1).clear().type(2)
@@ -108,7 +112,7 @@ describe('Purchase orders receive', () => {
 
     cy.contains('.pr-1', 'Receive').click({ force: true })
     cy.get('[placeholder="Packing material"]').should('be.visible').type('a3',{ delay: 200 })
-    cy.get('[placeholder="Product"]').eq(0).type('BXT-SNO98304', {delay:200})
+    cy.get('[placeholder="Product"]').eq(0).type(outbound_product, {delay:200})
     cy.get('[data-order-line-target="quantity"]').eq(0).type(1)
     //cy.get('[data-action="focus->satis-date-time-picker#showCalendar input->satis-date-time-picker#dateTimeEntered"]').click()
     //cy.get('[data-action="satis-date-time-picker#selectDay"]').contains('29').click()
@@ -196,7 +200,7 @@ describe('Sales order create', () => {
     cy.get('[placeholder=Customer]').type('Soylent', {delay:200})
 
     // 3. Fill in Product
-    cy.get('[placeholder="Product"]').type('BXT-SNO98304', {delay:200})
+    cy.get('[placeholder="Product"]').type(outbound_product, {delay:200})
 
     // 4. Fill in quantity
     //cy.get('[id^=orders_sales_order_order_lines_attributes_TEMPLATE_quantity').clear().type(1)
@@ -231,7 +235,7 @@ describe('Sales order create', () => {
   })
 
 })
-describe('Sales order create', () => {
+describe('Generate a pick list', () => {
 
   before(() => {
     cy.login({email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
@@ -248,103 +252,91 @@ describe('Sales order create', () => {
       cy.get('.primary').contains('Pick').click()
       cy.get('[id*="tab_label"]').contains('Pick Lists')
 
+      cy.wait(2500)
+
     })
 
 })
 
 
-describe('Pick order', () => {
-
-  it('Pick Order', () => {
-
-  // Login on Mobile
-  cy.visit('/mobile')
-
-  // Verify login screen
-  cy.url().should('include', '/mobile')
-  cy.get('.login-screen-title').contains('Login')
-
-  cy.get('#user_email').type('wrap-it_picker@wrap-it.com')
-  cy.get('#user_password').type('picking')
-
-  // Click Log in button
-  cy.get('button').click()
-
-  // Assert login page
-  cy.get('.icon').should('be.visible')
-  cy.get(':nth-child(1) > .item-link > .item-inner > .item-title').click() // << All
-
-  cy.wait(1500)
-
-  cy.get('.page-current > .page-content > .list > ul > li > .item-link > .item-inner').last().click()
-
-
-  before(() => (stub(win, 'prompt')
-    .returns(TOTE)  
-  ));  
-  after(() => win.prompt.restore());
-  
-  cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+describe("Pick order", () => {
     
+  it('Pick inventory', () => {
+
+      // 1. Login on Mobile.
+      cy.visit('/mobile')
+      cy.url().should('include', '/mobile')
+
+      // Assert login screen
+      cy.url().should('include', '/mobile')
+      cy.get('.login-screen-title').contains('Login')
+
+      // 2. Fill in credentials.
+      cy.get('#user_email').type('wrap-it_picker@wrap-it.com')
+      cy.get('#user_password').type('picking')
+
+      // 3. Click Log in.
+      cy.get('button').click()
+
+      // Assert login page.
+      cy.get('.icon').should('be.visible')
+      cy.get(':nth-child(1) > .item-link > .item-inner > .item-title').click() // << All
+      cy.wait(2500)
+
+      // 4. Scroll and click the last (most recent) order.
+      cy.get('.page-current > .page-content > .list > ul > li > .item-link > .item-inner').last().click()
+
+      // 5. Scan tote
+      cy.wait(2500)
+      cy.window().then(win => {
+      barcode = cy.stub(win, 'prompt')
+      barcode.returns(tote)
+
+      cy.wait(2500)
+      cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+      
+      })
+      // 6. Container
+      cy.window().then(win => {
+      barcode.restore()
+      cy.stub(win, 'prompt').returns(container)
+
+      cy.wait(2500)
+      cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+
+      cy.wait(2500)
+
+      })
+    })
+  })
 
 
-
-
-
-
-    // before(() => (
-    //   cy.window().then(win => {
-    //     .stub(win, 'prompt').onFirstCall()
-    //     .returns('AUTOTE')
-    //     .onSecondCall()
-    //     .returns('`${container}`')
-    // ))
-    // after(() => win.prompt.restore())
-
-    // cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
-
-    // cy.window().then(win => {
-    //   //stubbing prompt window
-    //   cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
-    //   const stub = cy.stub(win, 'prompt')
-    //   stub.returns('AUTOTE').reset()
-    //   })
-
-
-    // cy.window().then(container => {
-    //   //stubbing prompt window
-    //   cy.get('.page-current > .toolbar > .toolbar-inner svg').invoke('reset').click()
-    //   const stub = cy.stub(container, 'prompt')
-    //   stub.returns('`${container}`')
-    //   })
-
-	})
-  
-})
-
-
-describe.skip('Pack order', () => {
+describe('Pack', () => {
 
   before(() => {
-    cy.login_mobile({email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
+      cy.login({ email: 'wrap-it_packer@wrap-it.com', password: 'womje7-hEsrij-jaqhys'})
+  
+      })
 
+  it('5. Pack', () => {
+
+      // 1. Navigate to Packs
+      cy.visit(`/orders/${sales_order}/pack/new`)
+
+      // 2. Scan tote
+      cy.get('[placeholder="Tote"]').eq(1).type(tote, {delay:200})
+
+      // 3. Scan picked container
+      cy.get('[placeholder="Container"]').eq(1).type(container.substring(11,19), {delay:200})
+
+      // 4. Scan outbound product from the picked container
+      cy.get('[placeholder="Product"]').eq(0).type(outbound_product, {delay:200})
+
+      // 6. Enter quantity (automatically)
+      cy.get('[id*="quantity"]').eq(2).click()
+
+      // 7. Click Pack
+      cy.get('.button').contains('Pack').click()
+
+      })
     })
-    it('Pack Order', () => {
-
-      cy.contains('.item-title', 'My').click()
-		  cy.get(
-			'.page-current > .page-content > .list > ul > li > .item-link > .item-inner'
-		  ).click()
-      		cy.wait(2000)
-
-		  cy.window().then(win => {
-			//stubbing prompt window
-			cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
-			const stub = cy.stub(win, 'prompt')
-    // Get from bin location
-			stub.returns('')
-		  })
-
-   })
-
-})

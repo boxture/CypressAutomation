@@ -10,7 +10,7 @@ describe('State Transition', () => {
         
     })
 
-        it(' --> concept', () => {
+        it(' . --> concept', () => {
 
             // 1. Navigate to products and click New product.
             cy.visit('/products/new')
