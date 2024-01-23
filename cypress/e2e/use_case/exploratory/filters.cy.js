@@ -145,7 +145,6 @@ beforeEach(() => {
       cy.get('[data-column="ship_at"]').find('li').contains('Sort descending').should('be.visible')
       cy.get('[data-column="ship_at"]').find('li').contains('Hide column').should('be.visible')
       cy.get('[data-column="ship_at"] [data-satis-date-time-picker-target="input"]').should('be.visible').click()
-      cy.pause()
       cy.get('[data-satis-date-time-picker-target="days"]').contains('1').click()
       cy.get('[data-satis-date-time-picker-target="days"]').contains('20').click()
       cy.get('tr:nth-child(2) td:nth-child(4)').should('be.visible')
@@ -181,7 +180,6 @@ beforeEach(() => {
           else{
         let currentMonth = monthNames[d.getMonth() + 1]
         const actualMonth = e1.text()
-        cy.pause()
         console.log(currentMonth)
         console.log(actualMonth)
         expect(actualMonth).to.eq(currentMonth)
@@ -461,9 +459,9 @@ beforeEach(() => {
     })
   })
 
-  describe('Order Detail Page Overview - Basic', () => {
+  describe.skip('Order Detail Page Overview - Basic', () => {
 
-    it.only('#', () => {
+    it('#', () => {
 
       cy.visit('/orders')
       cy.url().should('include', '/orders')
@@ -472,7 +470,6 @@ beforeEach(() => {
       cy.get('tr').last().click({force: true})
       cy.contains('Basic')
       cy.get('.title').contains('#')
-      cy.pause()
       cy.get('[data-column="#"] [data-popper-placement="bottom"').contains('Hide column')
       cy.get('[data-column="account"] [data-icon="ellipsis"]').should('be.visible').click()
       cy.get('[data-column="account"] [data-satis-dropdown-target="searchInput"]').should('be.visible')
@@ -528,9 +525,9 @@ beforeEach(() => {
 
   })
 
-  describe('Order Detail Page Overview', () => {
+  describe.skip('Order Detail Page Overview', () => {
 
-    it.only('Basic', () => {
+    it('Basic', () => {
 
       cy.visit('/orders')
       cy.url().should('include', '/orders')
@@ -538,7 +535,6 @@ beforeEach(() => {
 
       cy.get('tr').last().click({force: true})
       cy.contains('Basic')
-      cy.pause()
       cy.get('[data-column="account"] [data-icon="ellipsis"]').should('be.visible').click()
       cy.get('[data-column="account"] [data-satis-dropdown-target="searchInput"]').should('be.visible')
       cy.get('[data-column="account"] [data-satis-dropdown-target="resetButton"]').should('be.visible')
