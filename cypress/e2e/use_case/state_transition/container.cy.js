@@ -1,7 +1,7 @@
 let container
 let packing_material = 'Box 1'
 let bin_location='picking'
-let product = 'BXT-SNXX29999477'
+let product = 'BXT-SNXX29999497'
 let scan_tote='TOTE-100091'
 let sales_order
 let barcode
@@ -56,7 +56,7 @@ describe('available --> picked',()=>{
     cy.get('[placeholder="Container"]').type(container.substring(0,8),{delay:200})
         // 3. Fill in Product
     cy.get('[placeholder="Product"]').type(product, {delay:200})
-    cy.get('[data-satis-dropdown-item-text="[Boxture Acceptance Test] BXT-SNXX29999477 BXT-SNXX 20221 Demo Product"]').click()
+    cy.get('[data-satis-dropdown-item-text="[Boxture Acceptance Test] BXT-SNXX29999497 BXT-SNXX 20221 Demo Product"]').click()
     cy.wait(1000)
     cy.get('#inventory_adjust_quantity').type('1', {delay:200})
     // 5. Fill in a Status
@@ -65,7 +65,7 @@ describe('available --> picked',()=>{
     // 6. Click Adjust
     cy.get('.button').click()
     cy.contains('Adding inventory')
-    cy.contains('Inventory Added for BXT-SNXX29999477')
+    cy.contains('Inventory Added for BXT-SNXX29999497')
 
     })
 
@@ -206,7 +206,7 @@ describe('picked --> retired',()=>{
     it('retired status of container', ()=>{
     cy.visit(`/containers/${container}`)
     cy.contains('retired')
-    
+
     })
 
 
