@@ -253,7 +253,7 @@ describe('Inventory move containers', () => {
       })
   })
 
-  describe.only('Kit order create', () => {
+  describe('Kit order create', () => {
 
     before(() => {
       cy.login({email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
@@ -290,7 +290,7 @@ describe('Inventory move containers', () => {
 })
 
 
-describe.only('Kit order confirm', () => {
+describe('Kit order confirm', () => {
 
   before(() => {
     cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
@@ -472,9 +472,6 @@ describe('Kit an order', () => {
 
     // 4. Fill in Packing material
     cy.get('[placeholder="Packing material"').type('C4', {delay:200})
-
-    // 5. Fill in Tote
-    cy.get('[placeholder="Tote"]').eq(0).type(tote, {delay:200})
 
     // 5. Fill in Product
     cy.get('[placeholder="Product"]').eq(0).type(kit_product, {delay:200})
