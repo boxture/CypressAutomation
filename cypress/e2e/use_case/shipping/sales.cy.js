@@ -6,7 +6,7 @@ let barcode
 
 const outbound_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
 const outbound_product = 'BXT-KIT91104'
-const tote = 'TOTE-100066'
+const tote = 'TOTE-100084'
 
 
 describe('Ship an outbound product on a sales order', () => {
@@ -332,10 +332,10 @@ describe('Pack', () => {
       // 4. Scan outbound product from the picked container
       cy.get('[placeholder="Product"]').eq(0).type(outbound_product, {delay:200})
 
-      // 6. Enter quantity (automatically)
+      // 5. Enter quantity (automatically)
       cy.get('[id*="quantity"]').eq(2).click()
 
-      // 7. Click Pack
+      // 6. Click Pack
       cy.get('.button').contains('Pack').click()
 
       })
