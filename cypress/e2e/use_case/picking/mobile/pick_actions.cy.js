@@ -2,7 +2,7 @@ const outbound_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
 const full_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
 const full_product = 'BXT-SNF78252'
 const outbound_product = 'BXT-SNO78354'
-const tote = 'TOTE-100070'
+const tote = 'TOTE-100084'
 
 let pickable_container
 let non_pickable_container
@@ -275,6 +275,7 @@ describe("** Pick scenario's", () => {
         cy.window().then(win => {
         barcode = cy.stub(win, 'prompt')
         barcode.returns(tote)
+        cy.pause()
 
         cy.wait(2500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
