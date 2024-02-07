@@ -11,7 +11,7 @@ const kit_component_a_qty = 2
 const kit_component_b = 'BXT-CPNT-Y513B'
 const kit_component_b_qty = 2
 const kits_to_build_qty = 2
-const tote = 'TOTE-100081'
+const tote = 'TOTE-100085'
 
 describe('KITTING', () => {
 
@@ -154,6 +154,8 @@ describe('Purchase orders receive', () => {
         }
 
     // Get container 1st id
+    cy.wait(1000)
+    cy.get('[id*="tab_label"]').contains('Items').click({ force: true })
     cy.get('[data-column="position"]', {timeout:30000}).should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="container"]').scrollIntoView().should('be.visible')
 
