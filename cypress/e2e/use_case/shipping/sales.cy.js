@@ -333,7 +333,7 @@ describe('Pack', () => {
       cy.get('[placeholder="Product"]').eq(0).type(outbound_product, {delay:200})
 
       // 5. Enter quantity (automatically)
-      cy.get('[id*="quantity"]').eq(2).click()
+      cy.get('[id*="quantity"]').eq(0).click()
 
       // 6. Click Pack
       cy.get('.button').contains('Pack').click()
