@@ -192,7 +192,6 @@ describe('picked --> retired',()=>{
     it('Sales Order Pack',()=>{
 
     cy.visit(`/orders/${sales_order}/pack/new`)
-    cy.pause()
     cy.contains('Packs')
 
     cy.get('.nested-fields [placeholder="Tote"]').eq(0).should('be.visible').type(scan_tote,{delay:200})
