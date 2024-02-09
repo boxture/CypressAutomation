@@ -6,7 +6,7 @@ let barcode
 
 const outbound_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
 const outbound_product = 'BXT-KIT91104'
-const tote = 'TOTE-100084'
+const tote = 'TOTE-100086'
 
 
 describe('Ship an outbound product on a sales order', () => {
@@ -84,12 +84,12 @@ describe('Purchase order confirm', () => {
 
     cy.visit(`/orders/${purchase_order}`)
     cy.contains('.pr-1', 'Confirm').click({ force: true })
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 60; i++) {
           cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
               statusElement => {
                   let status = statusElement.text()
-                  if (status === 'concept') {
-                      cy.wait(500)
+                  if (status === 'pending') {
+                      cy.wait(1000)
                     }
                 }
             )
@@ -110,6 +110,7 @@ describe('Purchase orders receive', () => {
 
     cy.visit(`/orders/${purchase_order}`)
 
+    cy.wait(1000)
     cy.contains('.pr-1', 'Receive').click({ force: true })
     cy.get('[placeholder="Packing material"]').should('be.visible').type('a3',{ delay: 200 })
     cy.get('[placeholder="Product"]').eq(0).type(outbound_product, {delay:200})
@@ -198,6 +199,9 @@ describe('Sales order create', () => {
 
     // 2. Select Customer
     cy.get('[placeholder=Customer]').type('Soylent', {delay:200})
+
+    // 2b Fill in shipping method
+    //cy.get('[placeholder="Shipping method"]').type('DHL Express', {delay:200})
 
     // 3. Fill in Product
     cy.get('[placeholder="Product"]').type(outbound_product, {delay:200})
