@@ -3,10 +3,11 @@ let container
 let from_bin_location
 let sales_order
 let barcode
+let shipment
 
 const outbound_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
 const outbound_product = 'BXT-KIT91104'
-const tote = 'TOTE-100086'
+const tote = 'TOTE-100097'
 
 
 describe('Ship an outbound product on a sales order', () => {
@@ -88,7 +89,7 @@ describe('Purchase order confirm', () => {
           cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
               statusElement => {
                   let status = statusElement.text()
-                  if (status === 'pending') {
+                  if (status !== 'pending') {
                       cy.wait(1000)
                     }
                 }
@@ -223,12 +224,12 @@ describe('Sales order create', () => {
     //Confirm Sales order
     cy.visit(`/orders/${sales_order}`)
     cy.contains('.pr-1', 'Confirm').click({ force: true })
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 60; i++) {
           cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
               statusElement => {
                   let status = statusElement.text()
-                  if (status === 'concept') {
-                      cy.wait(500)
+                  if (status !== 'processing') {
+                      cy.wait(1000)
                     }
                 }
             )
@@ -250,6 +251,7 @@ describe('Generate a pick list', () => {
 
       cy.visit(`/orders/${sales_order}`)
 
+      cy.wait(1000)
       cy.contains('.pr-1', 'Pick').click({ force: true })
       cy.url().should('include', `/orders/${sales_order}/pick/new`)
 
@@ -322,7 +324,7 @@ describe('Pack', () => {
   
       })
 
-  it('5. Pack', () => {
+  it('Pack', () => {
 
       // 1. Navigate to Packs
       cy.visit(`/orders/${sales_order}/pack/new`)
@@ -331,16 +333,55 @@ describe('Pack', () => {
       cy.get('[placeholder="Tote"]').eq(1).type(tote, {delay:200})
 
       // 3. Scan picked container
-      cy.get('[placeholder="Container"]').eq(1).type(container.substring(11,19), {delay:200})
+      cy.get('[placeholder="Container"]').eq(1).type(container.substring(0,8), {delay:200})
 
       // 4. Scan outbound product from the picked container
       cy.get('[placeholder="Product"]').eq(0).type(outbound_product, {delay:200})
 
-      // 5. Enter quantity (automatically)
-      cy.get('[id*="quantity"]').eq(0).click()
+      // 5. Enter quantity
+      cy.get('[id*="quantity"]').eq(0).type(1)
 
       // 6. Click Pack
       cy.get('.button').contains('Pack').click()
 
       })
     })
+
+describe('Ship', () => {
+
+  before(() => {
+    cy.login({ email: 'wrap-it_shipper@wrap-it.com', password: 'qokseg-rugga0-gApcir'})
+  
+  })
+
+  it('Ship', () => {
+
+      // 1. Navigate to Sales Order
+      cy.visit(`/orders/${sales_order}`)
+
+      cy.get('[id*="tab_label"]').contains("Pick Lists").scrollIntoView().should('be.visible')
+      cy.get('[id*="tab_label"]').contains("Shipments").should('be.visible')
+      cy.get('[id*="tab_label"]').contains("Papers").should('be.visible')
+
+
+      cy.get('[id*="tab_label"]').contains('Shipments').click()
+      cy.get('td:nth-child(8)').should('have.text', `-#${sales_order.toUpperCase()}`.substring(0,10)).eq(2).click()
+
+      cy.get('.sts-card__header').contains('Shipment').should('be.visible')
+      cy.contains('.pr-1', 'Ship').click({ force: true })
+
+      for (let i = 0; i < 60; i++) {
+        cy.get('.state-info-item > .text-sm').then(
+            statusElement => {
+                let status = statusElement.text()
+                if (status !== 'shipped') {
+                    cy.wait(1000)
+                  }
+              }
+          )
+      }
+
+  })
+
+})
+

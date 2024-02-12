@@ -280,7 +280,6 @@ describe("** Pick scenario's", () => {
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
         
         })
-        cy.pause()
         // 6. Scan pickable container
         cy.window().then(win => {
         barcode.restore()
@@ -371,7 +370,8 @@ describe("** Pick scenario's", () => {
         // 15. pickAll
         cy.wait(2500)
         cy.contains('Pick all').click({force:true})
-        
+
+        cy.wait(2500)
         })
 
       })

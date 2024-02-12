@@ -11,7 +11,7 @@ const kit_component_a_qty = 2
 const kit_component_b = 'BXT-CPNT-Y513B'
 const kit_component_b_qty = 2
 const kits_to_build_qty = 2
-const tote = 'TOTE-100085'
+const tote = 'TOTE-100096'
 
 describe('KITTING', () => {
 
