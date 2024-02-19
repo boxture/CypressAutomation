@@ -7,7 +7,7 @@ let shipment
 
 const outbound_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
 const outbound_product = 'BXT-KIT91104'
-const tote = 'TOTE-100097'
+const tote = 'AUTOTE'
 
 
 describe('Ship an outbound product on a sales order', () => {
@@ -330,6 +330,7 @@ describe('Pack', () => {
       cy.visit(`/orders/${sales_order}/pack/new`)
 
       // 2. Scan tote
+      cy.wait(1000)
       cy.get('[placeholder="Tote"]').eq(1).type(tote, {delay:200})
 
       // 3. Scan picked container
@@ -343,6 +344,8 @@ describe('Pack', () => {
 
       // 6. Click Pack
       cy.get('.button').contains('Pack').click()
+
+      cy.wait(2500)
 
       })
     })
@@ -359,13 +362,13 @@ describe('Ship', () => {
       // 1. Navigate to Sales Order
       cy.visit(`/orders/${sales_order}`)
 
+      cy.wait(1000)
       cy.get('[id*="tab_label"]').contains("Pick Lists").scrollIntoView().should('be.visible')
       cy.get('[id*="tab_label"]').contains("Shipments").should('be.visible')
       cy.get('[id*="tab_label"]').contains("Papers").should('be.visible')
 
-
       cy.get('[id*="tab_label"]').contains('Shipments').click()
-      cy.get('td:nth-child(8)').should('have.text', `-#${sales_order.toUpperCase()}`.substring(0,10)).eq(2).click()
+      cy.get('[href*="/shipments/"] td:nth-child(8)').should('have.text', `#${sales_order}`.toUpperCase().substring(0,10)).click()
 
       cy.get('.sts-card__header').contains('Shipment').should('be.visible')
       cy.contains('.pr-1', 'Ship').click({ force: true })
