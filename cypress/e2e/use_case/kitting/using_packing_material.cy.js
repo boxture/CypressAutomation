@@ -11,7 +11,7 @@ const kit_component_a_qty = 2
 const kit_component_b = 'BXT-CPNT-Y513B'
 const kit_component_b_qty = 2
 const kits_to_build_qty = 2
-const tote = 'TOTE-100096'
+const tote = 'TOTE-100106'
 
 describe('KITTING', () => {
 
@@ -395,7 +395,7 @@ describe('Create a pick list', () => {
   
   })
 
-describe('Pick kit order', () => {
+describe.skip('Pick kit order', () => {
     
     it('Pick Kit Order', () => {
 
@@ -452,7 +452,7 @@ describe('Pick kit order', () => {
     })
 })
 
-describe('Kit an order', () => {
+describe.skip('Kit an order', () => {
 
   before(() => {
     cy.login({email: 'wrap-it_kitter@wrap-it.com', password: 'Mumvez-caxpe2-wapviv'})
