@@ -89,8 +89,7 @@ describe('State Transition - Purchase order', () => {
 
             // 2. Verify order line state
             cy.get('[id*="tab_label"]').contains('Items').click({ force: true })
-            cy.get('td').eq(1).contains('expected')
-
+            cy.get('td:nth-child(2)').should('have.text', 'pendingexpected')
 
         })
 
@@ -147,7 +146,7 @@ describe('State Transition - Purchase order', () => {
 
             // 2. Verify order line state
             cy.get('[id*="tab_label"]').contains('Items').click({ force: true })
-            cy.get('td').eq(1).contains('received')
+            cy.get('td:nth-child(2)').should('have.text', 'completedreceived')
 
         })
 
