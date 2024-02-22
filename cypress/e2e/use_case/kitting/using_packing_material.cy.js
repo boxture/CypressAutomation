@@ -11,7 +11,7 @@ const kit_component_a_qty = 2
 const kit_component_b = 'BXT-CPNT-Y513B'
 const kit_component_b_qty = 2
 const kits_to_build_qty = 2
-const tote = 'TOTE-100106'
+const tote = 'AUTOTE'
 
 describe('KITTING', () => {
 
@@ -308,12 +308,12 @@ describe('Kit order confirm', () => {
     // 2. Click Confirm from the context menu
     cy.contains('.pr-1', 'Confirm').click({ force: true })
 
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 600; i++) {
       cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
         statusElement => {
           let status = statusElement.text()
           if (status !== 'processing') {
-            cy.wait(500)
+            cy.wait(1000)
                     }
                 }
             )
@@ -342,7 +342,7 @@ describe.skip('Allocate Kit order', () => {
       // 3. Click the button Allocate to allocate all lines.
       cy.get('.primary').contains('Allocate').click()
 
-      for (let i = 0; i < 300; i++) {
+      for (let i = 0; i < 600; i++) {
             cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
                 statusElement => {
                     let status = statusElement.text()
@@ -378,7 +378,7 @@ describe('Create a pick list', () => {
         // 3. Click Pick.
         cy.get('.primary').contains('Pick').click()
 
-        for (let i = 0; i < 300; i++) {
+        for (let i = 0; i < 600; i++) {
             cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
                 statusElement => {
                     let status = statusElement.text()
@@ -395,7 +395,7 @@ describe('Create a pick list', () => {
   
   })
 
-describe.skip('Pick kit order', () => {
+describe('Pick kit order', () => {
     
     it('Pick Kit Order', () => {
 
@@ -452,7 +452,7 @@ describe.skip('Pick kit order', () => {
     })
 })
 
-describe.skip('Kit an order', () => {
+describe('Kit an order', () => {
 
   before(() => {
     cy.login({email: 'wrap-it_kitter@wrap-it.com', password: 'Mumvez-caxpe2-wapviv'})
@@ -484,7 +484,7 @@ describe.skip('Kit an order', () => {
     // 7. Click Build
     cy.get('.primary').click()
 
-    for (let i = 0; i < 300; i++) {
+    for (let i = 0; i < 600; i++) {
         cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
             statusElement => {
                 let status = statusElement.text()
