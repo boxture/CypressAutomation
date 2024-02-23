@@ -198,8 +198,11 @@ describe('Sales order create', () => {
     // 1. Navigate to Sales Order
     cy.visit('/orders/new?type=sales_order')
 
+    const dayjs = require('dayjs')
+    cy.get('[id^="orders_sales_order_customer_reference_number"]').type(dayjs().format('DDmmssYY'))
+
     // 2. Select Customer
-    cy.get('[placeholder=Customer]').type('Soylent', {delay:200})
+    cy.get('[placeholder=Customer]').type('Simpsons', {delay:200})
 
     // 2b Fill in shipping method
     //cy.get('[placeholder="Shipping method"]').type('DHL Express', {delay:200})
@@ -240,14 +243,14 @@ describe('Sales order create', () => {
   })
 
 })
-describe('Generate a pick list', () => {
+describe('Generate a picklist', () => {
 
   before(() => {
     cy.login({email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
 
   })
 
-    it('Generate a pick list', () => {
+    it('Generate a picklist', () => {
 
       cy.visit(`/orders/${sales_order}`)
 
@@ -256,7 +259,7 @@ describe('Generate a pick list', () => {
       cy.url().should('include', `/orders/${sales_order}/pick/new`)
 
       cy.get('.primary').contains('Pick').click()
-      cy.get('[id*="tab_label"]').contains('Pick Lists')
+      cy.get('[id*="tab_label"]').contains('Picklists')
 
       cy.wait(2500)
 
@@ -363,7 +366,7 @@ describe('Ship', () => {
       cy.visit(`/orders/${sales_order}`)
 
       cy.wait(1000)
-      cy.get('[id*="tab_label"]').contains("Pick Lists").scrollIntoView().should('be.visible')
+      cy.get('[id*="tab_label"]').contains("Picklists").scrollIntoView().should('be.visible')
       cy.get('[id*="tab_label"]').contains("Shipments").should('be.visible')
       cy.get('[id*="tab_label"]').contains("Papers").should('be.visible')
 

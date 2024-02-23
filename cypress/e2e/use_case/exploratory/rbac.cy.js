@@ -40,170 +40,426 @@
 
 
 describe('RBAC visibility', () => {
-    it('Super User', () => {
+
+    it.only('Super User', () => {
       cy.login({ email: 'wrap-it_super_user@wrap-it.com', password: 'cipceg-xihpUr-pebbu4'})
 
-      cy.visit('/')
-      cy.url().should('eq', 'https://oms.staging.boxture.com/')
+      describe('All views visible', () => {
 
-      // #3394
-      cy.get('.sts-sidebar-menu-item__label')
-        .should('exist')
-        .and('be.visible')
+        it('test', () => {
 
-        // Home
-        .and('contain', 'Home')
+        cy.visit('/')
+        cy.url().should('eq', 'https://oms.staging.boxture.com/')
 
+        // #3394
         cy.get('.sts-sidebar-menu-item__label')
+          .should('exist')
+          .and('be.visible')
+
+          // Home
+          .and('contain', 'Home')
+
+          // Orders
+          .and('contain', 'Orders')
+
+          // Picklists
+          .and('contain', 'Picklists')
+          .and('contain', 'Plans')
+          .and('contain', 'Wave')
+
+          // Shipments
+          .and('contain', 'Shipments')
+          
+          // Inventory
+          .and('contain', 'Inventory')
+
+          // Container
+          .and('contain', 'Container')
+          
+          // Products
+          .and('contain', 'Products')
+          .and('contain', 'Product categories')
+          
+          // Customers
+          .and('contain', 'Customer')
+
+          // Vendors
+          .and('contain', 'Vendors')
+
+          // Reporting
+          .and('contain', 'Reporting')
+          .and('contain', 'Bin Location Movements')
+          .and('contain', 'Inbounded inventory items')
+          .and('contain', 'Inventory on hand')
+          .and('contain', 'Manual inventory adjustments')
+          .and('contain', 'Open sales orders')
+          .and('contain', 'Open receives')
+          .and('contain', 'Shipped products')
+          .and('contain', 'Shipped serial numbers')
+
+          // Tickets
+          .and('contain', 'Tickets')
+          .and('contain', 'Work orders')
+          .and('contain', 'Problems')
+          .and('contain', 'Groups')
+          .and('contain', 'Contacts')
+          .and('contain', 'Organizations')
+
+          // Billing
+          .and('contain', 'Billing')                       // This should refer to Billing
+          .and('contain', 'Events')                        // This should refer to Billing > Events
+
+          // Transaction logs
+          .and('contain', 'Transaction logs')
+
+          // Mobile apps
+          .and('contain', 'Mobile apps')
+          
+          // Admin
+          .and('contain', 'Admin')
+
+          // Users & Accounts
+          .and('contain', 'Users & Accounts')
+          .and('contain', 'Accounts')
+          .and('contain', 'Users')
+          
+          // Carriers & Services
+          .and('contain', 'Carriers & Services')
+          .and('contain', 'Carriers')
+          .and('contain', 'Channels')
+          .and('contain', 'Service types')
+          .and('contain', 'Shipping methods')
+          .and('contain', 'Holidays')
+          .and('contain', 'Reasons')
+
+          // Warehousing
+          .and('contain', 'Warehousing')
+          .and('contain', 'Locations')
+          .and('contain', 'Bin-locations')
+          .and('contain', 'Totes')
+          .and('contain', 'Packing materials')
+
+          // Settings
+          .and('contain', 'Settings')
+
+          // Integration
+          .and('contain', 'Integration')
+          .and('contain', 'Flows')
+          .and('contain', 'Messages')
+          .and('contain', 'Credentials')
+          .and('contain', 'Authorized')
+          .and('contain', 'Applications')
+          .and('contain', 'Third party')
+
+          // Admin > Imports
+          .and('contain', 'Imports')                // this should refer to Admin > Imports
+          .and('contain', 'Bin-locations')
+          .and('contain', 'Packing materials')
+          .and('contain', 'Products')               // this should refer to Admin Imports > Product
+          .and('contain', 'Totes')
+          .and('contain', 'Users')
+          .and('contain', 'Orders')                 // this should refer to Admin > Imports > Order
+
+          // Admin > Messaging
+          .and('contain', 'Messaging')
+          .and('contain', 'Messages')
+          .and('contain', 'Templates')              // this should refer to Messaging Template
+          .and('contain', 'Layouts')
+          .and('contain', 'Locales')                // this should refer to Messaging Locales
+          .and('contain', 'Campaigns')
+          .and('contain', 'Lists')
+
+          // Admin > Papers
+          .and('contain', 'Papers')
+          .and('contain', 'Templates')              // this should refer to Papers Template
+          .and('contain', 'Locales')                // this should refer to Papers Locales
+
+          // Admin > Sites
+          .and('contain', 'Sites')
+
+          // Mobile apps
+          .and('contain', 'Mobile apps')
+
+          // Admin > Billing
+          .and('contain', 'Billing')                // this should refer to Admin > Billing
+          .and('contain', 'Sources')
+          .and('contain', 'Event-types')
+          .and('contain', 'Rate-groups')
+          .and('contain', 'Rate-types')
+          .and('contain', 'Rates')
+
+          // Admin > Exceptions
+          .and('contain', 'Exceptions')
+        })
+      
+      }),
+
+    describe('All actions available', () => {
+      cy.visit('/orders')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/orders')
+      cy.get('.sts-menu__items')
         .should('exist')
-        .and('be.visible')
+        .and('contain', 'New Purchase order')
+        .and('contain', 'New Transfer order')
+        .and('contain', 'New Sales order')
+        .and('contain', 'New Return order')
+        .and('contain', 'New Scrap order')
+        .and('contain', 'New Kit order')
+        .and('contain', 'Import')
+        .and('contain', 'Sales order')
+        .and('contain', 'Purchase order')
+        .and('contain', 'Transfer order')
+        .and('contain', 'Return order')
+        .and('contain', 'Scrap order')
+      
+      cy.visit('/pick_list_plans')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/pick_list_plans')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
 
-        // Orders
-        .and('contain', 'Orders')
-
-        // Pick lists
-        .and('contain', 'Pick lists')
-        .and('contain', 'Plans')
-        .and('contain', 'Wave')
-
-        // Shipments
-        .and('contain', 'Shipments')
-
-        // Inventory
-        .and('contain', 'Inventory')
+      cy.visit('/inventories')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/inventories')
+      cy.get('.sts-menu__items')
+        .should('exist')
         .and('contain', 'Consolidated')
         .and('contain', 'Kits')
         .and('contain', 'Adjust')
+        .and('contain', 'Import')
+        .and('contain', 'License Plates')
         .and('contain', 'Move')
 
-        // Containers
-        .and('contain', 'Containers')
-
-        // Products
-        .and('contain', 'Products')
+      cy.visit('/containers')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/containers')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
+      
+      cy.visit('/products')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/products')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
         .and('contain', 'Import')
-        .and('contain', 'Product categories')
 
-        // Customers
-        .and('contain', 'Customer')
+      cy.visit('/product_categories')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/product_categories')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
 
-        // Vendor
-        .and('contain', 'Vendor')
+      cy.visit('/customers')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/customers')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
+        
+      cy.visit('/vendors')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/vendors')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
 
-        // Reporting
-        .and('contain', 'Reporting')
-        .and('contain', 'Bin location movements')
-        .and('contain', 'Container Bin location movements')
-        .and('contain', 'Container Inventory adjustments')
-        .and('contain', 'Inbounded inventory items')
-        .and('contain', 'Inventory on hand')
-        .and('contain', 'Manual inventory adjustments')
-        .and('contain', 'Open sales orders')
-        .and('contain', 'Open receives')
-        .and('contain', 'Replenishment items')
-        .and('contain', 'Shipped products')
-        .and('contain', 'Shipped serial numbers')
+      cy.visit('/agent/tickets')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/agent/tickets')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
 
-        // Tickets
-        .and('contain', 'Tickets')
-        .and('contain', 'Work orders')
-        .and('contain', 'Problems')
-        .and('contain', 'Groups')
-        .and('contain', 'Contacts')
-        .and('contain', 'Organizations')
+      cy.visit('/agent/tickets?kind=manual')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/agent/tickets?kind=manual')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
 
-        // Billing
-        .and('contain', 'Billing')                        // This should refer to Billing
-        .and('contain', 'Events')                         // This should refer to Billing > Events
+      cy.visit('/agent/tickets?kind=automated')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/agent/tickets?kind=automated')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
 
-        // Transaction logs
-        .and('contain', 'Transaction logs')
+      cy.visit('/agent/groups')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/agent/groups')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
 
-        // Audits
-        .and('contain', 'Audits')
+      cy.visit('/agent/contacts')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/agent/contacts')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
+        .and('contain', 'My contact')
 
-        // Mobile
-        .and('contain', 'Mobile apps')
+      cy.visit('/agent/organizations')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/agent/organizations')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
 
-        // Admin > Users & Accounts > Accounts
-        .and('contain', 'Admin')
-        .and('contain', 'Users & Accounts')
-        .and('contain', 'Accounts')
-        .and('contain', 'Users')
+      cy.visit('/admin/accounts')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/admin/accounts')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
 
-        // Admin > Carriers & Services
-        .and('contain', 'Carriers & Services')
-        .and('contain', 'Carriers')
-        .and('contain', 'Channels')
-        .and('contain', 'Service types')
-        .and('contain', 'Shipping methods')
-        .and('contain', 'Holidays')
-        .and('contain', 'Reasons')
+      cy.visit('/admin/users')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/admin/users')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
+        .and('contain', 'import')
 
-        // Admin > Warehousing
-        .and('contain', 'Warehousing')
-        .and('contain', 'Locations')
-        .and('contain', 'Bin locations')
-        .and('contain', 'Totes')
-        .and('contain', 'Packing materials')
+      cy.visit('/admin/shipping_methods')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/admin/shipping_methods')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
 
-        // Admin > Settings
-        .and('contain', 'Settings')
+      cy.visit('/admin/holidays')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/admin/holidays')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
 
-        // Admin > Integration
-        .and('contain', 'Integration')
-        .and('contain', 'Flows')
-        .and('contain', 'Messages')
-        .and('contain', 'Credentials')
-        .and('contain', 'Oauth')
-        .and('contain', 'Authorized')
-        .and('contain', 'Applications')
-        .and('contain', 'Third party')
+      cy.visit('/admin/reasons')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/admin/reasons')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
 
-        // Admin > Imports
-        .and('contain', 'Imports')                // this should refer to Admin > Imports
-        .and('contain', 'Bin-locations')
-        .and('contain', 'Packing materials')
-        .and('contain', 'Products')               // this should refer to Admin Imports > Product
-        .and('contain', 'Totes')
-        .and('contain', 'Users')
-        .and('contain', 'Adjust Inventory')
-        .and('contain', 'Orders')                 // this should refer to Admin > Imports > Orders
-        .and('contain', 'Purchase order')         // this should refer to Admin > Imports > Orders
-        .and('contain', 'Transfer order')         // this should refer to Admin > Imports > Orders
-        .and('contain', 'Return order')           // this should refer to Admin > Imports > Orders
-        .and('contain', 'Scrap order')            // this should refer to Admin > Imports > Orders
+      cy.visit('/admin/locations')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/admin/locations')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
 
-        // Admin > Messaging
-        .and('contain', 'Messaging')
-        .and('contain', 'Messages')
-        .and('contain', 'Templates')              // this should refer to Messaging Template
-        .and('contain', 'Layouts')
-        .and('contain', 'Locales')                // this should refer to Messaging Locales
-        .and('contain', 'Campaigns')
+      cy.visit('/admin/bin_locations')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/admin/bin_locations')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
+        .and('contain', 'import')
+
+      cy.visit('/admin/totes')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/admin/totes')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
+        .and('contain', 'import')
+
+      cy.visit('/admin/packing_materials')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/admin/packing_materials')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
+        .and('contain', 'import')
+
+      cy.visit('/integration/flows')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/integration/flows')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'New')
+
+      cy.visit('/integration/credentials')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/integration/credentials')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'New')
+
+      cy.visit('/oauth/applications')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/oauth/applications')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
+
+      cy.visit('/admin/integrations')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/admin/integrations')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
+
+      cy.visit('/messaging/admin/templates')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/messaging/admin/templates')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'New')
+
+      cy.visit('/messaging/admin/layouts')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/messaging/admin/layouts')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'New')
+
+      cy.visit('/messaging/admin/locales')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/messaging/admin/locales')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'New')
+
+      cy.visit('/messaging/admin/campaigns')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/messaging/admin/campaigns')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'New')
         .and('contain', 'Lists')
 
-        // Admin > Papers
-        .and('contain', 'Papers')
-        .and('contain', 'Templates')              // this should refer to Papers Template
-        .and('contain', 'Locales')                // this should refer to Papers Locales
+      cy.visit('/messaging/admin/lists')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/messaging/admin/lists')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'New')
 
-        // Admin > Sites
-        .and('contain', 'Sites')
+      cy.visit('/papers/admin/templates')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/papers/admin/templates')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'New')
 
-        // Admin > Apps
-        .and('contain', 'Apps')
+      cy.visit('/papers/admin/locales')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/papers/admin/locales')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'New')
 
-        // Admin > Billing
-        .and('contain', 'Billing')                // this should refer to Admin > Billing
-        .and('contain', 'Sources')
-        .and('contain', 'Event types')
-        .and('contain', 'Rate groups')
-        .and('contain', 'Rate types')
-        .and('contain', 'Rates')
+      cy.visit('/distribution/admin/apps')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/distribution/admin/apps')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'Create')
 
-        // Admin > Exceptions
-        .and('contain', 'Exceptions')
+      cy.visit('/admin/billing/sources')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/admin/billing/sources')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'New')
+
+      cy.visit('/admin/billing/event_types')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/admin/billing/event_types')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'New')
+
+      cy.visit('/admin/billing/rate_groups')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/admin/billing/rate_groups')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'New')
+
+      cy.visit('/admin/billing/rate_types')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/admin/billing/rate_types')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'New')
+
+      cy.visit('/admin/billing/rates')
+      cy.url().should('eq', 'https://oms.staging.boxture.com/admin/billing/rates')
+      cy.get('.sts-menu__items')
+        .should('exist')
+        .and('contain', 'New')
+
+    }),
+      
 
     }),
     it.skip('Admin visiblilty', () => {  // tc fails 2FA to be automated

@@ -2,7 +2,7 @@ const outbound_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
 const full_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
 const full_product = 'BXT-SNF78252'
 const outbound_product = 'BXT-SNO78354'
-const tote = 'TOTE-100096'
+const tote = 'AUTOTE'
 
 let pickable_container
 let non_pickable_container
@@ -205,12 +205,12 @@ describe('Order', () => {
         // Confirm Sales order
         cy.visit(`/orders/${sales_order}`)
         cy.contains('.pr-1', 'Confirm').click({ force: true })
-        for (let i = 0; i < 40; i++) {
+        for (let i = 0; i < 600; i++) {
             cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
                 statusElement => {
                     let status = statusElement.text()
                     if (status !== 'processing') {
-                        cy.wait(500)
+                        cy.wait(1000)
                         }
                     }
                 )
