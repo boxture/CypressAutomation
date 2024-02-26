@@ -6,11 +6,11 @@ let scan_tote='TOTE-100091'
 let sales_order
 let barcode
 
- describe('State Transition', ()=>{
+ describe('Container', ()=>{
 
     beforeEach(() => {
     cy.login({ email: 'acceptance-test+oms@boxture.com', password: 'xudrah-zygJa2-topbib'})
-     })
+        })
 
     it('--> available',()=>{
 
@@ -43,12 +43,9 @@ let barcode
     })
 
 
-})
+        })
 
-
-
-describe('available --> picked',()=>{
-    it('Adjust Inventory',()=>{
+    it('available --> picked',()=>{
 
     cy.visit('/inventories/new')
     cy.get('[placeholder="Bin location"]').type(bin_location,{delay:200})
@@ -67,9 +64,7 @@ describe('available --> picked',()=>{
     cy.contains('Adding inventory')
     cy.contains('Inventory Added for BXT-SNXX29999497')
 
-    })
-
-    it('Create a sales order', () => {
+    //-------------------
 
     // CREATE A SALES ORDER
 
@@ -94,7 +89,11 @@ describe('available --> picked',()=>{
     const url = $url.split('/')
     sales_order = url[4]
     cy.log(sales_order)
-    })
+
+
+
+
+
     cy.contains('.pr-1', 'Confirm').click({ force: true })
     for (let i = 0; i < 20; i++) {
 			cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
@@ -107,11 +106,9 @@ describe('available --> picked',()=>{
 			  )
 		  }
 
-    })
+          //----------------------
 
-    it('Generate a pick list', () => {
-
-        // 1. Navigate to the kit order created.
+    // 1. Navigate to the kit order created.
         cy.visit(`/orders/${sales_order}`)
         cy.url().should('include', `/orders/${sales_order}`)
 
@@ -131,11 +128,9 @@ describe('available --> picked',()=>{
               )
           }
 
-        cy.get('[id*="tab_label"]').contains('Pick Lists')
+        cy.get('[id*="tab_label"]').contains('Picklists')
 
-    })
-
-    it('Pick Sales Order', () => {
+          //---------------------
 
         // 1. Login on Mobile.
         cy.visit('/mobile')
@@ -178,17 +173,22 @@ describe('available --> picked',()=>{
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
         cy.wait(1500)
 
-        })
+        //-----------
 
-    })
-
-    it('picked status of container', ()=>{
         cy.visit(`/containers/${container}`)
         cy.contains('picked')
-    })
+
+        })
+
+
+
     })
 
-describe('picked --> retired',()=>{
+
+    })
+
+
+it('picked --> retired',()=>{
     it('Sales Order Pack',()=>{
 
     cy.visit(`/orders/${sales_order}/pack/new`)
