@@ -1,7 +1,7 @@
 let container
 let packing_material = 'Box 1'
 let bin_location='picking'
-let product = 'BXT-SNXX29999497'
+let product = 'BXT-SNXX29999534'
 let scan_tote='TOTE-100091'
 let sales_order
 let barcode
@@ -11,6 +11,9 @@ let barcode
     beforeEach(() => {
     cy.login({ email: 'acceptance-test+oms@boxture.com', password: 'xudrah-zygJa2-topbib'})
         })
+
+    describe('available > picked > retired',()=>{
+
 
     it('--> available',()=>{
 
@@ -53,7 +56,7 @@ let barcode
     cy.get('[placeholder="Container"]').type(container.substring(0,8),{delay:200})
         // 3. Fill in Product
     cy.get('[placeholder="Product"]').type(product, {delay:200})
-    cy.get('[data-satis-dropdown-item-text="[Boxture Acceptance Test] BXT-SNXX29999497 BXT-SNXX 20221 Demo Product"]').click()
+    cy.get('[data-satis-dropdown-item-text="[Boxture Acceptance Test] BXT-SNXX29999534 BXT-SNXX 20221 Demo Product"]').click()
     cy.wait(1000)
     cy.get('#inventory_adjust_quantity').type('1', {delay:200})
     // 5. Fill in a Status
@@ -62,7 +65,8 @@ let barcode
     // 6. Click Adjust
     cy.get('.button').click()
     cy.contains('Adding inventory')
-    cy.contains('Inventory Added for BXT-SNXX29999497')
+    cy.contains('Inventory Added for BXT-SNXX29999534')
+
 
     //-------------------
 
@@ -188,30 +192,31 @@ let barcode
     })
 
 
-it('picked --> retired',()=>{
-    it('Sales Order Pack',()=>{
+    it('picked --> retired',()=>{
+
 
     cy.visit(`/orders/${sales_order}/pack/new`)
     cy.contains('Packs')
-
-    cy.get('.nested-fields [placeholder="Tote"]').eq(0).should('be.visible').type(scan_tote,{delay:200})
-    cy.get('.nested-fields [placeholder="Container"]').eq(0).type(container.substring(0,8),{delay:200})
     cy.get('.nested-fields [placeholder="Product"]').eq(0).type(product, {delay:200})
+    cy.get('.nested-fields [placeholder="Tote"]').eq(0).should('be.visible').type(scan_tote,{delay:200})
+    cy.get('div[class="col-span-11"] input[placeholder="Container"]').eq(0).type(container.substring(0,8),{delay:300})
     cy.get('.form-group-quantity [data-satis-input-target="input"]').eq(0).type(1)
     cy.get('[type="submit"]').click()
     cy.contains('Packed')
-
-    })
-    it('retired status of container', ()=>{
     cy.visit(`/containers/${container}`)
-    cy.contains('retired')
+    cy.reload()
+    cy.get('.state-info-item dd').contains('retired')
+
+
+
+    })
 
     })
 
 
+
     })
 
-})
 
 
 

@@ -10,7 +10,7 @@ module.exports = defineConfig({
   experimentalMemoryManagement: false,
   numTestsKeptInMemory: 0,
   // videoRecording: false,
-  // watchForFileChanges: false,
+  watchForFileChanges: false,
   // retries: {
   //   runMode: 2,
   // },
