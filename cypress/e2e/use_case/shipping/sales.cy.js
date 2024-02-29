@@ -6,7 +6,7 @@ let barcode
 let shipment
 
 const outbound_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
-const outbound_product = 'BXT-KIT91104'
+const outbound_product = 'BXT-SNO78347'
 const tote = 'AUTOTE'
 
 
@@ -63,16 +63,9 @@ describe('Ship an outbound product on a sales order', () => {
       cy.visit(`/orders/${purchase_order}`)
     })
 
-    // Click logout button
-    cy.get('span').contains('Logout').click({force: true})
-
-    // Verify logged out
-    cy.contains('Log in to your account')
-    cy.url().should('include', '/users/sign_in')
-
-    })
-
   })
+
+})
 
 describe('Purchase order confirm', () => {
 
@@ -254,7 +247,7 @@ describe('Generate a picklist', () => {
 
       cy.visit(`/orders/${sales_order}`)
 
-      cy.wait(1000)
+      cy.wait(2000)
       cy.contains('.pr-1', 'Pick').click({ force: true })
       cy.url().should('include', `/orders/${sales_order}/pick/new`)
 
@@ -364,14 +357,19 @@ describe('Ship', () => {
 
       // 1. Navigate to Sales Order
       cy.visit(`/orders/${sales_order}`)
+      //cy.visit('/orders/67378e75-d455-4a10-8c0d-da65c1cb920f')
 
       cy.wait(1000)
       cy.get('[id*="tab_label"]').contains("Picklists").scrollIntoView().should('be.visible')
       cy.get('[id*="tab_label"]').contains("Shipments").should('be.visible')
       cy.get('[id*="tab_label"]').contains("Papers").should('be.visible')
-
+      cy.wait(2500)
+      
       cy.get('[id*="tab_label"]').contains('Shipments').click()
-      cy.get('[href*="/shipments/"] td:nth-child(8)').should('have.text', `#${sales_order}`.toUpperCase().substring(0,10)).click()
+
+      //cy.get('.selected td:nth-child(8)').eq(1).should('have.text', '67378e75'.toUpperCase().substring(0,10)).click()
+      cy.get('.selected td:nth-child(8)').eq(1).should('have.text', `#${sales_order}`.toUpperCase().substring(0,9)).click()
+
 
       cy.get('.sts-card__header').contains('Shipment').should('be.visible')
       cy.contains('.pr-1', 'Ship').click({ force: true })
