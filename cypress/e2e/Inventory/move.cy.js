@@ -63,8 +63,8 @@ beforeEach(() => {
     }
 
     cy.get('.primary').contains('Move').click()
-    cy.get('.py-1').should('be.visible').contains('Moving inventory')
-    cy.get('.py-1').should('be.visible').contains('Inventory has been moved')
+    cy.get('.signum-notification-body__mb').should('be.visible').contains('Moving inventory')
+    cy.get('.signum-notification-body__mb').should('be.visible').contains('Inventory has been moved')
 
     cy.wait(2000) // #3608
 

@@ -29,7 +29,7 @@ beforeEach(() => {
     //     container = e1.text().substring(11,19)
     //     cy.log(container)
     // })
-    cy.get('.signum-notification-drawer-tray .py-1').first().find('a').click({force:true})
+    cy.get('.signum-notification-body__mb__bc__mc__tx').first().find('a').click({force:true})
     cy.wait(5000)
     cy.url().then(($url) => {
     const url = $url.split('/')
