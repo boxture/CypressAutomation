@@ -28,8 +28,8 @@ beforeEach(() => {
     cy.get('[data-column="created_at"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
     cy.get('[data-column="created_at"]').find('li').contains('Sort descending').should('be.visible').click()
     cy.get('[id*="sort_icon_created_at"]').scrollIntoView().should('be.visible')
-    cy.pause()
-    // cy.get('tr').last().click({force: true})
+
+    cy.get('tr').last().click({force: true})
     cy.contains('Contents')
     cy.contains('Warehousing')
     cy.contains('Others')

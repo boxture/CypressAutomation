@@ -27,6 +27,7 @@ describe('Views', () => {
     cy.visit('/orders')
     cy.url().should('include', '/orders')
 
+    
     cy.resetView()
     cy.get('.selected [data-act-table-target="column"][data-column="account"]').scrollIntoView().should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="id"]').scrollIntoView().should('be.visible')
@@ -122,9 +123,9 @@ describe('Views', () => {
       cy.get('.selected [data-act-table-target="column"][data-column="parcel"]').scrollIntoView().should('be.visible')
 
   })
-  it('Purchase Orders Lines - Pricing and Values', () => {
+  it('Purchase Orders Lines - Pricing and values', () => {
 
-      // Purchase Orders Lines - Pricing and Values - #3463
+      // Purchase Orders Lines - Pricing and values - #3463
       cy.visit('/orders?type=Orders%3A%3APurchaseOrder')
       cy.url().should('include', '/orders?type=Orders%3A%3APurchaseOrder')
 
@@ -134,7 +135,7 @@ describe('Views', () => {
       cy.contains('h3', 'Addresses')
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
-      cy.get('[id*="tab_label"]').contains('Pricing and Values').click({ force: true })
+      cy.get('[id*="tab_label"]').contains('Pricing and values').click({ force: true })
       cy.get('.selected [data-act-table-target="column"][data-column="position"]').scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="description"]').scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="customs_description"]').scrollIntoView().should('be.visible')
@@ -209,9 +210,9 @@ describe('Views', () => {
       cy.get('.selected [data-act-table-target="column"][data-column="parcel"]').scrollIntoView().should('be.visible')
 
   })
-  it('Transfer Orders Lines - Pricing and Values', () => {
+  it('Transfer Orders Lines - Pricing and values', () => {
 
-      // Purchase Orders Lines - Pricing and Values
+      // Purchase Orders Lines - Pricing and values
       cy.visit('/orders?type=Orders%3A%3ATransferOrder')
       cy.url().should('include', '/orders?type=Orders%3A%3ATransferOrder')
 
@@ -221,7 +222,7 @@ describe('Views', () => {
       cy.contains('h3', 'Addresses')
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
-      cy.get('[id*="tab_label"]').contains('Pricing and Values').click({ force: true })
+      cy.get('[id*="tab_label"]').contains('Pricing and values').click({ force: true })
       cy.get('.selected [data-act-table-target="column"][data-column="position"]').scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="description"]').scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="customs_description"]').scrollIntoView().should('be.visible')
@@ -296,9 +297,9 @@ describe('Views', () => {
       cy.get('.selected [data-act-table-target="column"][data-column="parcel"]').scrollIntoView().should('be.visible')
 
   })
-  it('Sales Orders Lines - Pricing and Values', () => {
+  it('Sales Orders Lines - Pricing and values', () => {
 
-      // Sales Orders Lines - Pricing and Values - #3463
+      // Sales Orders Lines - Pricing and values - #3463
       cy.visit('/orders?type=Orders%3A%3ASalesOrder')
       cy.url().should('include', '/orders?type=Orders%3A%3ASalesOrder')
 
@@ -308,7 +309,7 @@ describe('Views', () => {
       cy.contains('h3', 'Addresses')
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
-      cy.get('[id*="tab_label"]').contains('Pricing and Values').click({ force: true })
+      cy.get('[id*="tab_label"]').contains('Pricing and values').click({ force: true })
       cy.get('.selected [data-act-table-target="column"][data-column="position"]').scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="description"]').scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="currency"]').scrollIntoView().should('be.visible')
@@ -389,9 +390,9 @@ describe('Views', () => {
       cy.get('.selected [data-act-table-target="column"][data-column="parcel"]').scrollIntoView().should('be.visible')
 
   })
-  it('Return Orders Lines - Pricing and Values', () => {
+  it('Return Orders Lines - Pricing and values', () => {
 
-      // Return Orders Lines - Pricing and Values
+      // Return Orders Lines - Pricing and values
       cy.visit('/orders?type=Orders%3A%3AReturnOrder')
       cy.url().should('include', '/orders?type=Orders%3A%3AReturnOrder')
 
@@ -401,7 +402,7 @@ describe('Views', () => {
       cy.contains('h3', 'Addresses')
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
-      cy.get('[id*="tab_label"]').contains('Pricing and Values').click({ force: true })
+      cy.get('[id*="tab_label"]').contains('Pricing and values').click({ force: true })
       cy.get('.selected [data-act-table-target="column"][data-column="position"]').scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="description"]').scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="customs_description"]').scrollIntoView().should('be.visible')
@@ -476,9 +477,9 @@ describe('Views', () => {
     cy.get('.selected [data-act-table-target="column"][data-column="parcel"]').scrollIntoView().should('be.visible')
 
   })
-  it('Scrap Orders Lines - Pricing and Values', () => {
+  it('Scrap Orders Lines - Pricing and values', () => {
 
-    // Scrap Orders Lines - Pricing and Values
+    // Scrap Orders Lines - Pricing and values
     cy.visit('/orders?type=Orders%3A%3AScrapOrder')
     cy.url().should('include', '/orders?type=Orders%3A%3AScrapOrder')
 
@@ -488,7 +489,7 @@ describe('Views', () => {
     cy.contains('h3', 'Addresses')
     cy.contains('h2', 'Comments')
     cy.contains('h3', 'Other')
-    cy.get('[id*="tab_label"]').contains('Pricing and Values').click({ force: true })
+    cy.get('[id*="tab_label"]').contains('Pricing and values').click({ force: true })
     cy.get('.selected [data-act-table-target="column"][data-column="position"]').scrollIntoView().should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="description"]').scrollIntoView().should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="customs_description"]').scrollIntoView().should('be.visible')
