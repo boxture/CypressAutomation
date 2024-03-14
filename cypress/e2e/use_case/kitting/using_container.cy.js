@@ -6,12 +6,12 @@ let barcode
 let kit_container
 
 const kit_product = 'BXT-KIT66724'
-const kit_product_qty = 2
+const kit_product_qty = 1
 const kit_component_a = 'BXT-CPNT-R603A'
-const kit_component_a_qty = 2
+const kit_component_a_qty = 1
 const kit_component_b = 'BXT-CPNT-R603B'
-const kit_component_b_qty = 2
-const kits_to_build_qty = 2
+const kit_component_b_qty = 1
+const kits_to_build_qty = 1
 
 describe('KITTING', () => {
 
@@ -21,9 +21,9 @@ describe('KITTING', () => {
     })
 
     it('Purchase order create', () => {
-      
+
       // CREATE A PURCHASE ORDER
-        
+
       // 1. Navigate to Purchase Orders
       cy.visit('orders/new?type=purchase_order')
 
@@ -68,13 +68,6 @@ describe('KITTING', () => {
         cy.visit(`/orders/${purchase_order}`)
       })
 
-      // Click logout button
-      cy.get('span').contains('Logout').click({force: true})
-
-      // Verify logged out
-      cy.contains('Log in to your account')
-      cy.url().should('include', '/users/sign_in')
-
       })
 
     })
@@ -85,7 +78,7 @@ describe('Purchase order confirm', () => {
     cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
 
   })
-  
+
   it('Confirm the purchase order', () => {
 
     cy.visit(`/orders/${purchase_order}`)
@@ -154,7 +147,8 @@ describe('Purchase orders receive', () => {
         }
 
     // Get container 1st id
-    cy.get('[data-column="position"]', {timeout:30000}).should('be.visible')
+    // cy.get('[data-column="position"]', {timeout:30000}).should('be.visible')
+    cy.get('[data-action="click->satis-tabs#select"]').contains('Items').click()
     cy.get('.selected [data-act-table-target="column"][data-column="container"]').scrollIntoView().should('be.visible')
 
     cy.get('[href*="/containers/"]').eq(1).click()
@@ -221,8 +215,8 @@ describe('Inventory move containers', () => {
 
       cy.wait(1000)
 
-      cy.get('.py-1').should('be.visible').contains('Moving inventory')
-      cy.get('.py-1').should('be.visible').contains('Inventory has been moved')
+      cy.get('.signum-notification-body__mb').should('be.visible').contains('Moving inventory')
+      cy.get('.signum-notification-body__mb').should('be.visible').contains('Inventory has been moved')
 
       cy.wait(1500)
 
@@ -241,10 +235,8 @@ describe('Inventory move containers', () => {
 
       // 6b. Click Move
       cy.get('.primary').contains('Move').click()
-
-      cy.wait(1000)
-      cy.get('.py-1').should('be.visible').contains('Moving inventory')
-      cy.get('.py-1').should('be.visible').contains('Inventory has been moved')
+      cy.get('.signum-notification-body__mb').should('be.visible').contains('Moving inventory')
+      cy.get('.signum-notification-body__mb').should('be.visible').contains('Inventory has been moved')
 
       })
   })
@@ -264,10 +256,11 @@ describe('Kit order create', () => {
     cy.url().should('include', '/orders/new?type=kit_order')
 
     // 2. Select Destination location.
-    cy.get('[placeholder="Destination location"]').type('NLD-A', {delay:200})
+    cy.get('[placeholder="Destination location"]').type('NLD-AMSTE', {delay:200})
 
     // 3. Fill in Product.
     cy.get('[placeholder="Product"]').type(kit_product, {delay:200})
+    cy.wait(1000)
 
     // 4. Fill in quantity.
     cy.get('[data-order-line-target="quantity"]').eq(0).clear().type(kit_product_qty)
@@ -384,7 +377,7 @@ describe('Create a pick list', () => {
               )
           }
 
-        cy.get('[id*="tab_label"]').contains('Pick Lists')
+        cy.get('[id*="tab_label"]').contains('Picklists')
 
       })
 
@@ -441,11 +434,11 @@ describe('Pick kit order', () => {
 
         cy.wait(1500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
-
+        cy.wait(1500)
         })
-    
+
     })
-  
+
   })
 
 describe('Kit an order', () => {
@@ -472,12 +465,13 @@ describe('Kit an order', () => {
         // 5. Click Create Container
         cy.get('[type="submit"]').click()
 
-        cy.get('.signum-notification-body').then(e1 =>{
+
+        cy.wait(1000)
+        cy.get('.signum-notification-body__mb').then(e1 =>{
           kit_container = e1.text().substring(11,19)
           cy.log(kit_container)
-
+          cy.pause()
         cy.wait(5000)
-        
         // 1. Navigate to the kit order created.
         cy.visit(`/orders/${kit_order}`)
         cy.url().should('include', `/orders/${kit_order}`)

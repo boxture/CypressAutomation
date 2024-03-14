@@ -33,7 +33,7 @@ describe("Picking scenario's", () => {
     })
 
     describe('Inventory', () => {
-        
+
         it('1. Create a pickable and non-pickable, container containing full and outbound products, create outbound products loose on a bin', () => {
 
     // Create pickable container
@@ -54,6 +54,7 @@ describe("Picking scenario's", () => {
 
         // 5. Click Create Container
         cy.get('[type="submit"]').click()
+        cy.wait(1000)
 
         cy.get('.signum-notification-body').then(e1 =>{
             pickable_container = e1.text().substring(11,19)
@@ -61,7 +62,7 @@ describe("Picking scenario's", () => {
 
         cy.wait(5000)
 
-        
+
     // Create non-pickable container
 
         // 1. Click Create
@@ -169,20 +170,20 @@ describe('Order', () => {
 
     before(() => {
         cy.login({email: 'account_owner@emoe.com', password: 'bujsaz-5norzu-zibdaG'})
-    
+
     })
-    
+
     it('2. Create Sales order for all items', () => {
-    
+
         // 1. Navigate to Sales Order
         cy.visit('/orders/new?type=sales_order')
-    
+
         // 2. Select Customer
         cy.get('[placeholder=Customer]').type('Soylent', {delay:200})
-    
+
         // 3. Fill in Product with serialization mode is full
         cy.get('[placeholder="Product"]').type(full_product, {delay:200})
-    
+
         // 4. Fill in quantity
         cy.get('[data-order-line-target="quantity"]').eq(0).clear().type(4)
 
@@ -191,17 +192,17 @@ describe('Order', () => {
 
         // 6. Fill in quantity
         cy.get('[data-order-line-target="quantity"]').eq(1).clear().type(10)
-    
+
         // 7. Submit form
         cy.get('.button').contains('Create and continue editing').click()
         cy.url().should('include', '/edit')
-    
+
         // Get sales order
         cy.url().then(($url) => {
         const url = $url.split('/')
         sales_order = url[4]
         cy.log(sales_order)
-    
+
         // Confirm Sales order
         cy.visit(`/orders/${sales_order}`)
         cy.contains('.pr-1', 'Confirm').click({ force: true })
@@ -215,22 +216,22 @@ describe('Order', () => {
                     }
                 )
             }
-    
+
         })
-    
+
     })
-    
+
 })
 
 describe('Pick list', () => {
-    
+
     before(() => {
 
         cy.login({email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
     })
 
     it('3. Generate a pick list', () => {
-        
+
         cy.visit(`/orders/${sales_order}`)
 
         cy.contains('.pr-1', 'Pick').click({ force: true })
@@ -242,9 +243,9 @@ describe('Pick list', () => {
     })
 
 })
-    
+
 describe("** Pick scenario's", () => {
-    
+
     it('4. Pick A) container B) from non-pickable container C) by serial number D) product numberd E) ean or upc F) aliases G) swipe pickOne and H) pickAll', () => {
 
         // 1. Login on Mobile.
@@ -254,19 +255,19 @@ describe("** Pick scenario's", () => {
         // Assert login screen
         cy.url().should('include', '/mobile')
         cy.get('.login-screen-title').contains('Login')
-  
+
         // 2. Fill in credentials.
         cy.get('#user_email').type('wrap-it_picker@wrap-it.com')
         cy.get('#user_password').type('picking')
-  
+
         // 3. Click Log in.
         cy.get('button').click()
-  
+
         // Assert login page.
         cy.get('.icon').should('be.visible')
         cy.get(':nth-child(1) > .item-link > .item-inner > .item-title').click() // << All
         cy.wait(2500)
-  
+
         // 4. Scroll and click the last (most recent) order.
         cy.get('.page-current > .page-content > .list > ul > li > .item-link > .item-inner').last().click()
 
@@ -278,7 +279,7 @@ describe("** Pick scenario's", () => {
 
         cy.wait(2500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
-        
+
         })
         // 6. Scan pickable container
         cy.window().then(win => {
@@ -338,7 +339,7 @@ describe("** Pick scenario's", () => {
         cy.window().then(win => {
         barcode.restore()
         cy.stub(win, 'prompt').returns('45387ONS-TXB')
-    
+
         cy.wait(2500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
 
@@ -347,13 +348,13 @@ describe("** Pick scenario's", () => {
         cy.window().then(win => {
         barcode.restore()
         cy.stub(win, 'prompt').returns('1200100000999')
-    
+
         cy.wait(2500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
 
         // 14. Swipe PickOne
         cy.contains('Pick one').click({force:true})
-        
+
         // cy.wait(2500)
         // cy.get('.swipeout-content > .item-link > .item-inner')
         // .trigger('pointerdown')
@@ -382,7 +383,7 @@ describe('Release tote', () => {
 
     before(() => {
         cy.login({ email: 'wrap-it_packer@wrap-it.com', password: 'womje7-hEsrij-jaqhys'})
-    
+
         })
 
     it('5. Pack', () => {
