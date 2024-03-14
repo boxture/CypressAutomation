@@ -238,7 +238,7 @@ describe('Pick list', () => {
         cy.url().should('include', `/orders/${sales_order}/pick/new`)
 
         cy.get('.primary').contains('Pick').click()
-        cy.get('[id*="tab_label"]').contains('Pick Lists')
+        cy.get('[id*="tab_label"]').contains('Picklists')
 
     })
 
