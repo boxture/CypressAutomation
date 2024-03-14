@@ -26,7 +26,9 @@ Cypress.Commands.add('login', (user) => {
 
     // Get an input, type into it
     cy.get('[id^=user_email]').type(user.email)
+    //cy.wait(1000)
     cy.get('[id^=user_password]').type(user.password)
+    //cy.wait(5000)
 
     // Click Log in button
     cy.get('button').click()

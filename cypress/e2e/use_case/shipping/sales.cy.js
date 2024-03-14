@@ -357,7 +357,6 @@ describe('Ship', () => {
 
       // 1. Navigate to Sales Order
       cy.visit(`/orders/${sales_order}`)
-      //cy.visit('/orders/67378e75-d455-4a10-8c0d-da65c1cb920f')
 
       cy.wait(1000)
       cy.get('[id*="tab_label"]').contains("Picklists").scrollIntoView().should('be.visible')
@@ -366,8 +365,6 @@ describe('Ship', () => {
       cy.wait(2500)
       
       cy.get('[id*="tab_label"]').contains('Shipments').click()
-
-      //cy.get('.selected td:nth-child(8)').eq(1).should('have.text', '67378e75'.toUpperCase().substring(0,10)).click()
       cy.get('.selected td:nth-child(8)').eq(1).should('have.text', `#${sales_order}`.toUpperCase().substring(0,9)).click()
 
 
@@ -388,4 +385,5 @@ describe('Ship', () => {
   })
 
 })
+
 

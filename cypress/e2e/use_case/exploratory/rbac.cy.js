@@ -39,157 +39,159 @@
 // https://github.com/boxture/oms/issues/3516: multiple roles are able to create a Transfer but not allowed
 
 
-describe('RBAC visibility', () => {
+describe("RBAC visibility", () => {
 
-    it.only('Super User', () => {
-      cy.login({ email: 'wrap-it_super_user@wrap-it.com', password: 'cipceg-xihpUr-pebbu4'})
+  before(() => {
+    cy.login({ email: 'wrap-it_super_user@wrap-it.com', password: 'cipceg-xihpUr-pebbu4'
 
-      describe('All views visible', () => {
+    })
 
-        it('test', () => {
-
-        cy.visit('/')
-        cy.url().should('eq', 'https://oms.staging.boxture.com/')
-
-        // #3394
-        cy.get('.sts-sidebar-menu-item__label')
-          .should('exist')
-          .and('be.visible')
-
-          // Home
-          .and('contain', 'Home')
-
-          // Orders
-          .and('contain', 'Orders')
-
-          // Picklists
-          .and('contain', 'Picklists')
-          .and('contain', 'Plans')
-          .and('contain', 'Wave')
-
-          // Shipments
-          .and('contain', 'Shipments')
+    describe.only('All views visible', () => {
+        
+        it.only('1. Test', () => {
           
-          // Inventory
-          .and('contain', 'Inventory')
+          cy.visit('/')
+          cy.url().should('eq', 'https://oms.staging.boxture.com/')
 
-          // Container
-          .and('contain', 'Container')
-          
-          // Products
-          .and('contain', 'Products')
-          .and('contain', 'Product categories')
-          
-          // Customers
-          .and('contain', 'Customer')
+          // #3394
+          cy.get('.sts-sidebar-menu-item__label')
+            .should('exist')
+            .and('be.visible')
 
-          // Vendors
-          .and('contain', 'Vendors')
+            // Home
+            .and('contain', 'Home')
 
-          // Reporting
-          .and('contain', 'Reporting')
-          .and('contain', 'Bin Location Movements')
-          .and('contain', 'Inbounded inventory items')
-          .and('contain', 'Inventory on hand')
-          .and('contain', 'Manual inventory adjustments')
-          .and('contain', 'Open sales orders')
-          .and('contain', 'Open receives')
-          .and('contain', 'Shipped products')
-          .and('contain', 'Shipped serial numbers')
+            // Orders
+            .and('contain', 'Orders')
 
-          // Tickets
-          .and('contain', 'Tickets')
-          .and('contain', 'Work orders')
-          .and('contain', 'Problems')
-          .and('contain', 'Groups')
-          .and('contain', 'Contacts')
-          .and('contain', 'Organizations')
+            // Picklists
+            .and('contain', 'Picklists')
+            .and('contain', 'Plans')
+            .and('contain', 'Wave')
 
-          // Billing
-          .and('contain', 'Billing')                       // This should refer to Billing
-          .and('contain', 'Events')                        // This should refer to Billing > Events
+            // Shipments
+            .and('contain', 'Shipments')
+            
+            // Inventory
+            .and('contain', 'Inventory')
 
-          // Transaction logs
-          .and('contain', 'Transaction logs')
+            // Container
+            .and('contain', 'Container')
+            
+            // Products
+            .and('contain', 'Products')
+            .and('contain', 'Product categories')
+            
+            // Customers
+            .and('contain', 'Customer')
 
-          // Mobile apps
-          .and('contain', 'Mobile apps')
-          
-          // Admin
-          .and('contain', 'Admin')
+            // Vendors
+            .and('contain', 'Vendors')
 
-          // Users & Accounts
-          .and('contain', 'Users & Accounts')
-          .and('contain', 'Accounts')
-          .and('contain', 'Users')
-          
-          // Carriers & Services
-          .and('contain', 'Carriers & Services')
-          .and('contain', 'Carriers')
-          .and('contain', 'Channels')
-          .and('contain', 'Service types')
-          .and('contain', 'Shipping methods')
-          .and('contain', 'Holidays')
-          .and('contain', 'Reasons')
+            // Reporting
+            .and('contain', 'Reporting')
+            .and('contain', 'Bin Location Movements')
+            .and('contain', 'Inbounded inventory items')
+            .and('contain', 'Inventory on hand')
+            .and('contain', 'Manual inventory adjustments')
+            .and('contain', 'Open sales orders')
+            .and('contain', 'Open receives')
+            .and('contain', 'Shipped products')
+            .and('contain', 'Shipped serial numbers')
 
-          // Warehousing
-          .and('contain', 'Warehousing')
-          .and('contain', 'Locations')
-          .and('contain', 'Bin-locations')
-          .and('contain', 'Totes')
-          .and('contain', 'Packing materials')
+            // Tickets
+            .and('contain', 'Tickets')
+            .and('contain', 'Work orders')
+            .and('contain', 'Problems')
+            .and('contain', 'Groups')
+            .and('contain', 'Contacts')
+            .and('contain', 'Organizations')
 
-          // Settings
-          .and('contain', 'Settings')
+            // Billing
+            .and('contain', 'Billing')                       // This should refer to Billing
+            .and('contain', 'Events')                        // This should refer to Billing > Events
 
-          // Integration
-          .and('contain', 'Integration')
-          .and('contain', 'Flows')
-          .and('contain', 'Messages')
-          .and('contain', 'Credentials')
-          .and('contain', 'Authorized')
-          .and('contain', 'Applications')
-          .and('contain', 'Third party')
+            // Transaction logs
+            .and('contain', 'Transaction logs')
 
-          // Admin > Imports
-          .and('contain', 'Imports')                // this should refer to Admin > Imports
-          .and('contain', 'Bin-locations')
-          .and('contain', 'Packing materials')
-          .and('contain', 'Products')               // this should refer to Admin Imports > Product
-          .and('contain', 'Totes')
-          .and('contain', 'Users')
-          .and('contain', 'Orders')                 // this should refer to Admin > Imports > Order
+            // Mobile apps
+            .and('contain', 'Mobile apps')
+            
+            // Admin
+            .and('contain', 'Admin')
 
-          // Admin > Messaging
-          .and('contain', 'Messaging')
-          .and('contain', 'Messages')
-          .and('contain', 'Templates')              // this should refer to Messaging Template
-          .and('contain', 'Layouts')
-          .and('contain', 'Locales')                // this should refer to Messaging Locales
-          .and('contain', 'Campaigns')
-          .and('contain', 'Lists')
+            // Users & Accounts
+            .and('contain', 'Users & Accounts')
+            .and('contain', 'Accounts')
+            .and('contain', 'Users')
+            
+            // Carriers & Services
+            .and('contain', 'Carriers & Services')
+            .and('contain', 'Carriers')
+            .and('contain', 'Channels')
+            .and('contain', 'Service types')
+            .and('contain', 'Shipping methods')
+            .and('contain', 'Holidays')
+            .and('contain', 'Reasons')
 
-          // Admin > Papers
-          .and('contain', 'Papers')
-          .and('contain', 'Templates')              // this should refer to Papers Template
-          .and('contain', 'Locales')                // this should refer to Papers Locales
+            // Warehousing
+            .and('contain', 'Warehousing')
+            .and('contain', 'Locations')
+            .and('contain', 'Bin-locations')
+            .and('contain', 'Totes')
+            .and('contain', 'Packing materials')
 
-          // Admin > Sites
-          .and('contain', 'Sites')
+            // Settings
+            .and('contain', 'Settings')
 
-          // Mobile apps
-          .and('contain', 'Mobile apps')
+            // Integration
+            .and('contain', 'Integration')
+            .and('contain', 'Flows')
+            .and('contain', 'Messages')
+            .and('contain', 'Credentials')
+            .and('contain', 'Authorized')
+            .and('contain', 'Applications')
+            .and('contain', 'Third party')
 
-          // Admin > Billing
-          .and('contain', 'Billing')                // this should refer to Admin > Billing
-          .and('contain', 'Sources')
-          .and('contain', 'Event-types')
-          .and('contain', 'Rate-groups')
-          .and('contain', 'Rate-types')
-          .and('contain', 'Rates')
+            // Admin > Imports
+            .and('contain', 'Imports')                // this should refer to Admin > Imports
+            .and('contain', 'Bin-locations')
+            .and('contain', 'Packing materials')
+            .and('contain', 'Products')               // this should refer to Admin Imports > Product
+            .and('contain', 'Totes')
+            .and('contain', 'Users')
+            .and('contain', 'Orders')                 // this should refer to Admin > Imports > Order
 
-          // Admin > Exceptions
-          .and('contain', 'Exceptions')
+            // Admin > Messaging
+            .and('contain', 'Messaging')
+            .and('contain', 'Messages')
+            .and('contain', 'Templates')              // this should refer to Messaging Template
+            .and('contain', 'Layouts')
+            .and('contain', 'Locales')                // this should refer to Messaging Locales
+            .and('contain', 'Campaigns')
+            .and('contain', 'Lists')
+
+            // Admin > Papers
+            .and('contain', 'Papers')
+            .and('contain', 'Templates')              // this should refer to Papers Template
+            .and('contain', 'Locales')                // this should refer to Papers Locales
+
+            // Admin > Sites
+            .and('contain', 'Sites')
+
+            // Mobile apps
+            .and('contain', 'Mobile apps')
+
+            // Admin > Billing
+            .and('contain', 'Billing')                // this should refer to Admin > Billing
+            .and('contain', 'Sources')
+            .and('contain', 'Event-types')
+            .and('contain', 'Rate-groups')
+            .and('contain', 'Rate-types')
+            .and('contain', 'Rates')
+
+            // Admin > Exceptions
+            .and('contain', 'Exceptions')
         })
       
       }),
@@ -458,9 +460,8 @@ describe('RBAC visibility', () => {
         .should('exist')
         .and('contain', 'New')
 
-    }),
+      })
       
-
     }),
     it.skip('Admin visiblilty', () => {  // tc fails 2FA to be automated
 
@@ -2701,7 +2702,7 @@ describe('RBAC Actions - Create a transfer order', () => {
     cy.get('.primary').contains('Create Transfer order')
 
   })
-  it.skip('Billing - Not allowed', () => {
+  it('Billing - Not allowed', () => {
 
     cy.login({ email: 'wrap-it_billing@wrap-it.com', password: 'tihto1-miqmyr-wimbuJ'})
 
@@ -2769,7 +2770,7 @@ describe('RBAC Actions - Create a transfer order', () => {
     cy.get('.primary').contains('Create Transfer order')
 
   })
-  it.skip('Picker - Not allowed', () => {
+  it('Picker - Not allowed', () => {
 
     cy.login({ email: 'wrap-it_picker@wrap-it.com', password: 'picking'})
 
