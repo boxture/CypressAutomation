@@ -25,6 +25,8 @@ beforeEach(() => {
     cy.resetView()
 
     // Get container from URL
+    cy.get('[data-column="state"] [data-action="click->satis-menu#show"]').scrollIntoView().should('be.visible').click()
+    cy.get('[placeholder="State"]').type('avail')
     cy.get('[data-column="created_at"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
     cy.get('[data-column="created_at"]').find('li').contains('Sort descending').should('be.visible').click()
     cy.get('[id*="sort_icon_created_at"]').scrollIntoView().should('be.visible')
@@ -64,6 +66,7 @@ beforeEach(() => {
     }
 
     cy.get('.primary').contains('Move').click()
+    cy.wait(1000)
     cy.get('.signum-notification-body__mb').should('be.visible').contains('Moving inventory')
     cy.get('.signum-notification-body__mb').should('be.visible').contains('Inventory has been moved')
 

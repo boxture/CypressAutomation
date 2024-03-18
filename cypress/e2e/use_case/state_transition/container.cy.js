@@ -212,40 +212,21 @@ let barcode
     })
 
     })
-    describe('available > picked_packed > retired',()=>{
+    describe.only('available > picked_packed > retired',()=>{
 
-    it.only('toggle switch ON - AutoPack',()=>{
+    it('toggle switch ON - AutoPack',()=>{
 
 
     // 1. Navigate to Containers
     cy.visit('/settings/settings?settable=eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJanRuYVdRNkx5OXZiWE12UVdOamIzVnVkQzh5WkdZek9HSmtaQzFpTURObUxUUTNOV1F0WVdFM1lTMWlPVFV4T0RZeE1UUTBZV0lHT2daRlZBPT0iLCJleHAiOiIyMDI0LTAzLTI4VDA4OjUwOjA2LjI0MloiLCJwdXIiOiJWYXJpbyJ9fQ%3D%3D--023242fa8b6970d2a8bf123e28e4feb9b4093d14')
     cy.url().should('include', '/settings')
-    cy.pause()
-    cy.get('#tab_label_picking > .translation_missing')
-
-    // 3. Fill in Packing Material
-    cy.get('[placeholder="Packing material"]').type(packing_material, {delay:200})
-
-    // 4. Fill in bin location
-    cy.get('[placeholder="Bin location"]').type(bin_location,{delay:200})
-    cy.get('[data-satis-dropdown-item-text="PICKING"]').click()
-
-    // 5. Click Create Container
-    cy.get('[type="submit"]').click()
-    cy.wait(2000)
-    cy.get('.signum-notification-drawer-tray .py-1').first().find('a').click({force:true})
-    cy.wait(5000)
-    cy.url().then(($url) => {
-    const url = $url.split('/')
-    container = url[4]
-    cy.log(container)
-
+    cy.get('#tab_label_picking').click()
+    cy.contains('Auto pack').click()
+    cy.contains('Picking: Auto pack').should('be.visible')
+    cy.get('.mt-3').click()
 
     })
 
-
-
-})
     it('--> available',()=>{
 
 
@@ -266,7 +247,7 @@ let barcode
     // 5. Click Create Container
     cy.get('[type="submit"]').click()
     cy.wait(2000)
-    cy.get('.signum-notification-drawer-tray .py-1').first().find('a').click({force:true})
+    cy.get('.signum-notification-body__mb__bc__mc__tx').first().find('a').click({force:true})
     cy.wait(5000)
     cy.url().then(($url) => {
     const url = $url.split('/')
@@ -277,9 +258,9 @@ let barcode
     })
 
 
-        })
+    })
 
-    it('available --> picked',()=>{
+    it('available --> picked_and_packed',()=>{
 
     cy.visit('/inventories/new')
     cy.get('[placeholder="Bin location"]').type(bin_location,{delay:200})
@@ -411,7 +392,7 @@ let barcode
         //-----------
 
         cy.visit(`/containers/${container}`)
-        cy.contains('picked')
+        cy.contains('picked_and_packed')
 
         })
 
@@ -421,7 +402,6 @@ let barcode
 
 
     })
-
 
     it('picked --> retired',()=>{
 
@@ -441,9 +421,20 @@ let barcode
 
 
     })
-
     })
 
+    it('toggle switch OFF - AutoPack',()=>{
+
+
+    // 1. Navigate to Containers
+    cy.visit('/settings/settings?settable=eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJanRuYVdRNkx5OXZiWE12UVdOamIzVnVkQzh5WkdZek9HSmtaQzFpTURObUxUUTNOV1F0WVdFM1lTMWlPVFV4T0RZeE1UUTBZV0lHT2daRlZBPT0iLCJleHAiOiIyMDI0LTAzLTI4VDA4OjUwOjA2LjI0MloiLCJwdXIiOiJWYXJpbyJ9fQ%3D%3D--023242fa8b6970d2a8bf123e28e4feb9b4093d14')
+    cy.url().should('include', '/settings')
+    cy.get('#tab_label_picking').click()
+    cy.contains('Auto pack').click()
+    cy.contains('Picking: Auto pack').should('be.visible')
+    cy.get('.mt-3').click()
+
+    })
 
     })
 
