@@ -992,7 +992,7 @@ describe('Role Base Access Controle', () => {
       
     }),
     
-    it.only('Actions', () => {
+    it('Actions', () => {
       
       cy.visit('/orders')
       cy.url().should('eq', 'https://oms.staging.boxture.com/orders')

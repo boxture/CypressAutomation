@@ -139,11 +139,12 @@ describe('Inventory move', () => {
 
     cy.visit(`/orders/${purchase_order}`)
     cy.url().should('include', `/orders/${purchase_order}`)
+    cy.pause()
     cy.get('.text-lg').contains('Lines').should('be.visible')
     cy.get('[id*="tab_label"]').contains('Items').click({ force: true })
     cy.get('.selected [data-act-table-target="column"][data-column="container"]').scrollIntoView().should('be.visible')
 
-    cy.get('[href*="/containers/"]').eq(1).click()
+    cy.get('[href*="/containers/"]').eq(0).click()
     cy.url().should('include', `/containers`)
 
     cy.url().then(($url) => {

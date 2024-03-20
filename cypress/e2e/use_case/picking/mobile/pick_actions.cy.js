@@ -77,7 +77,8 @@ describe("Picking scenario's", () => {
 
         // 4. Click Create Container
         cy.get('[type="submit"]').click()
-
+        cy.wait(1000)
+        
         cy.get('.signum-notification-body').then(e1 =>{
             non_pickable_container = e1.text().substring(11,19)
             cy.log(non_pickable_container)
@@ -372,7 +373,7 @@ describe("** Pick scenario's", () => {
         cy.wait(2500)
         cy.contains('Pick all').click({force:true})
 
-        cy.wait(2500)
+        cy.wait(5000)
         })
 
       })

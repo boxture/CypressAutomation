@@ -6,12 +6,12 @@ let barcode
 let kit_container
 
 const kit_product = 'BXT-KIT66724'
-const kit_product_qty = 1
+const kit_product_qty = 2
 const kit_component_a = 'BXT-CPNT-R603A'
-const kit_component_a_qty = 1
+const kit_component_a_qty = 2
 const kit_component_b = 'BXT-CPNT-R603B'
-const kit_component_b_qty = 1
-const kits_to_build_qty = 1
+const kit_component_b_qty = 2
+const kits_to_build_qty = 2
 
 describe('KITTING', () => {
 
