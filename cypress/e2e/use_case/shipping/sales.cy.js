@@ -139,12 +139,13 @@ describe('Inventory move', () => {
 
     cy.visit(`/orders/${purchase_order}`)
     cy.url().should('include', `/orders/${purchase_order}`)
-    cy.pause()
+
     cy.get('.text-lg').contains('Lines').should('be.visible')
     cy.get('[id*="tab_label"]').contains('Items').click({ force: true })
     cy.get('.selected [data-act-table-target="column"][data-column="container"]').scrollIntoView().should('be.visible')
 
-    cy.get('[href*="/containers/"]').eq(0).click()
+    //cy.get('[href*="/containers/"]').eq(0).click()
+    cy.get('.cursor-pointer > :nth-child(12) > a').click()
     cy.url().should('include', `/containers`)
 
     cy.url().then(($url) => {
@@ -199,7 +200,7 @@ describe('Sales order create', () => {
     cy.get('[placeholder=Customer]').type('Simpsons', {delay:200})
 
     // 2b Fill in shipping method
-    //cy.get('[placeholder="Shipping method"]').type('DHL Express', {delay:200})
+    cy.get('[placeholder="Shipping method"]').type('DHL Express', {delay:200})
 
     // 3. Fill in Product
     cy.get('[placeholder="Product"]').type(outbound_product, {delay:200})
@@ -306,6 +307,7 @@ describe("Pick order", () => {
 
       cy.wait(2500)
       cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+      cy.pause()
 
       cy.wait(2500)
 

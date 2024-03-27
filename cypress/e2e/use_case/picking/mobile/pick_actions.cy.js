@@ -50,7 +50,9 @@ describe("Picking scenario's", () => {
 
         // 4. Fill in bin location
         cy.get('[placeholder="Bin location"]').type('PICKING',{delay:200})
+        cy.wait(1000)
         cy.get('[data-satis-dropdown-item-text="PICKING"]').click()
+        cy.wait(1000)
 
         // 5. Click Create Container
         cy.get('[type="submit"]').click()
@@ -373,7 +375,7 @@ describe("** Pick scenario's", () => {
         cy.wait(2500)
         cy.contains('Pick all').click({force:true})
 
-        cy.wait(5000)
+        cy.wait(2500)
         })
 
       })
