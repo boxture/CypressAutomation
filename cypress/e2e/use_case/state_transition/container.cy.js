@@ -6,14 +6,18 @@ let scan_tote='TOTE-100091'
 let sales_order
 let barcode
 
- describe('Container', ()=>{
+ describe('State Transition', ()=>{
 
     beforeEach(() => {
     cy.login({ email: 'acceptance-test+oms@boxture.com', password: 'xudrah-zygJa2-topbib'})
         })
 
-    describe('available > picked > retired',()=>{
 
+
+    describe('Container',()=>{
+
+
+    describe.only('available > picked > retired',()=>{
 
     it('--> available',()=>{
 
@@ -35,7 +39,7 @@ let barcode
     // 5. Click Create Container
     cy.get('[type="submit"]').click()
     cy.wait(2000)
-    cy.get('.signum-notification-drawer-tray .py-1').first().find('a').click({force:true})
+    cy.get('.signum-notification-body__mb__bc__mc__tx').first().find('a').click({force:true})
     cy.wait(5000)
     cy.url().then(($url) => {
     const url = $url.split('/')
@@ -211,8 +215,13 @@ let barcode
 
     })
 
+
+     })
     })
-    describe.only('available > picked_packed > retired',()=>{
+
+
+
+    describe('available > picked_packed > retired',()=>{
 
     it('toggle switch ON - AutoPack',()=>{
 
@@ -392,6 +401,7 @@ let barcode
         //-----------
 
         cy.visit(`/containers/${container}`)
+        cy.reload()
         cy.contains('picked_and_packed')
 
         })

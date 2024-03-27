@@ -73,6 +73,7 @@ beforeEach(() => {
     cy.wait(2000) // #3608
 
     cy.visit(`/containers/${container}`)
+    cy.reload()
     cy.get('.bin-location-info-item a').should('not.include.text', `${from_bin_location}`)
     })
     })
