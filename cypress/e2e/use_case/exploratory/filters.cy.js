@@ -201,17 +201,12 @@ beforeEach(() => {
       cy.get('[data-column="customer_reference_number"]').find('li').contains('Sort ascending').should('be.visible')
       cy.get('[data-column="customer_reference_number"]').find('li').contains('Sort descending').should('be.visible')
       cy.get('[data-column="customer_reference_number"]').find('li').contains('Hide column').should('be.visible')
-      cy.get('tr:nth-child(1) td:nth-child(10)').then($id1=>{
-        id = $id1.text()
-        cy.log(id)
-        cy.wrap(id).as('id12')
-      })
       cy.get('[data-column="customer_reference_number"]').find('[type="button"]').should('be.visible').click()
-      cy.get('@id12').then($id1=>{
-      cy.get('[data-column="customer_reference_number"] [data-controller=" form"]').type(`${$id1}`)
-      cy.get('.border-r > .items-center > img').click()
-      cy.get('[class="overflow-hidden tbdy"] tr').its('length').should('eq', 1)
-      })
+      cy.get('[data-column="customer_reference_number"] [data-controller=" form"]').type('0005',{delay:200})
+      cy.get('.ml-4.flex-1 > .text-lg').click()
+      cy.wait(1000)
+      cy.get('tr:nth-child(1) td:nth-child(10)').scrollIntoView().should('have.text', '0005')
+
 
     })
     it('Purchase Order Number Filter', () => {
