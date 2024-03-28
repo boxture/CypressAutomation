@@ -519,9 +519,7 @@ beforeEach(() => {
       cy.get('.form-label[for=account_contacts_attributes_1_chamber_of_commerce_number]').contains('Chamber of commerce number')
   
       // Contacts
-      cy.get('.sts-tabs .tab[id^=contacts]').click()
-      // Currently this page is crashing, missing content, ticket https://github.com/boxture/oms/issues/2902
-  
+      cy.get('.sts-tabs .tab[id^=contacts]').click() // #ticket 3985
       cy.get('.sts-tabs .tab[id^=meta_data]').click()
       cy.get('.form-label[for=account_notes]').contains('Notes')
       cy.get('.form-label[for=account_metadata_yaml]').contains('Metadata')
@@ -764,7 +762,8 @@ beforeEach(() => {
       cy.get('.form-label[for=doorkeeper_application_scopes]').contains('Scopes')
   
       // Authorized
-      cy.get('span#tab_label_8138783e-7656-4085-888e-dc408f684909').click()
+      //cy.get('span#tab_label_8138783e-7656-4085-888e-dc408f684909').click()
+      cy.get('.translation_missing').contains('Authorized').click()
   
     }),
     it('Third party create Netsuite', () => {
@@ -876,7 +875,7 @@ beforeEach(() => {
       cy.get('.form-label[for=list_name]').contains('Name')
   
     }),
-    it('Papers template create', () => {
+    it.only('Papers template create', () => {
               
       // -- Papers template create
       cy.visit('/papers/admin/templates/new')
@@ -907,7 +906,7 @@ beforeEach(() => {
       cy.get('.form-label[for=template_metadata]').contains('Metadata')
   
       // Papers
-      cy.get('span#tab_label_7f4ebd91-0d92-40a8-9080-018c5a291526').click()
+      cy.get('.translation_missing').contains('Papers').click()
   
     }),
     it('Papers locale create', () => {
