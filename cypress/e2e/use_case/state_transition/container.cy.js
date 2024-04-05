@@ -45,7 +45,8 @@ let barcode
     const url = $url.split('/')
     container = url[4]
     cy.log(container)
-
+    cy.visit(`/containers/${container}`)
+    cy.get('.state-info-item dd').contains('available')
 
     })
 
