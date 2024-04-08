@@ -519,7 +519,6 @@ beforeEach(() => {
       cy.get('.form-label[for=account_contacts_attributes_1_chamber_of_commerce_number]').contains('Chamber of commerce number')
   
       // Contacts
-      cy.get('.sts-tabs .tab[id^=contacts]').click() // #ticket 3985
       cy.get('.sts-tabs .tab[id^=meta_data]').click()
       cy.get('.form-label[for=account_notes]').contains('Notes')
       cy.get('.form-label[for=account_metadata_yaml]').contains('Metadata')
@@ -875,7 +874,7 @@ beforeEach(() => {
       cy.get('.form-label[for=list_name]').contains('Name')
   
     }),
-    it.only('Papers template create', () => {
+    it('Papers template create', () => {
               
       // -- Papers template create
       cy.visit('/papers/admin/templates/new')
