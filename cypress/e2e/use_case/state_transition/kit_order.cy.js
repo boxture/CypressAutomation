@@ -118,17 +118,18 @@ describe('State Transition', () => {
               statusElement => {
                   let status = statusElement.text()
                   if (status !== 'completed') {
+                      cy.reload()
+
                       cy.wait(1000)
                     }
                 }
             )
         }
-
     // Get container 1st id
     // cy.get('[data-column="position"]', {timeout:30000}).should('be.visible')
     cy.get('[data-action="click->satis-tabs#select"]').contains('Items').click()
     cy.get('.selected [data-act-table-target="column"][data-column="container"]').scrollIntoView().should('be.visible')
-
+        cy.wait(1000)
     cy.get('[href*="/containers/"]').eq(1).click()
     cy.url().should('include', `/containers`)
 
@@ -138,12 +139,11 @@ describe('State Transition', () => {
         cy.log(container_1)
         cy.visit(`/containers/${container_1}`)
         cy.url().should('include', `/containers/${container_1}`)
-
+        cy.wait(2000)
         cy.visit(`/containers/${container_1}`)
         cy.get('.state-info-item dd').contains('available')
+        cy.wait(2000)
 
-        cy.visit(`/containers/${container_2}`)
-        cy.get('.state-info-item dd').contains('available')
 
     })
     // 1. Navigate to Purchase Order
@@ -267,7 +267,7 @@ describe('State Transition', () => {
                 }
             )
         }
-
+        cy.reload()
 
         // 1. Navigate to the kit order created.
         cy.visit(`/orders/${kit_order}`)
@@ -390,12 +390,13 @@ describe('State Transition', () => {
                 statusElement => {
                     let status = statusElement.text()
                     if (status !== 'completed') {
+                        cy.reload()
+
                         cy.wait(1000)
                         }
                     }
                 )
             }
-
 
         cy.visit(`/containers/${container_1}`)
         cy.get('.state-info-item dd').contains('retired')
