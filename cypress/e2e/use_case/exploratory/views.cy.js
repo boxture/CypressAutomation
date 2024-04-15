@@ -233,7 +233,7 @@ describe('Views', () => {
       cy.get('.selected [data-act-table-target="column"][data-column="declared_insurance_value"]').scrollIntoView().should('be.visible')
 
   })
-  it.only('Sales Order Lines - Basic', () => {
+  it('Sales Order Lines - Basic', () => {
 
       // Sales Order Lines - Basic - #3463
       cy.visit('/orders?type=Orders%3A%3ASalesOrder')
@@ -246,7 +246,6 @@ describe('Views', () => {
       cy.contains('h2', 'Comments')
       cy.contains('h3', 'Other')
       cy.get('[id*="tab_label"]').eq(4).contains('Basic').click({ force: true })
-      cy.pause()
       cy.get('.selected [data-act-table-target="column"][data-column="#"]').scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="state"]').eq(0).scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="product_number"]').scrollIntoView().should('be.visible')
@@ -283,7 +282,7 @@ describe('Views', () => {
       cy.contains('h3', 'Other')
       cy.get('[id*="tab_label"]').contains('Items').click({ force: true })
       cy.get('.selected [data-act-table-target="column"][data-column="position"]').should('be.visible')
-      cy.get('.selected [data-act-table-target="column"][data-column="state"]').scrollIntoView().should('be.visible')
+      cy.get('.selected [data-act-table-target="column"][data-column="state"]').eq(0).scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="status"]').scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="quantity"]').scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="product_number"]').scrollIntoView().should('be.visible')
@@ -315,7 +314,7 @@ describe('Views', () => {
       cy.get('.selected [data-act-table-target="column"][data-column="description"]').scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="currency"]').scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="price"]').scrollIntoView().should('be.visible')
-      cy.get('.selected [data-act-table-target="column"][data-column="quantity"]').scrollIntoView().should('be.visible')
+      cy.get('.selected [data-act-table-target="column"][data-column="quantity"]').eq(0).scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="amount"]').scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="discount"]').scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="tax"]').scrollIntoView().should('be.visible')
