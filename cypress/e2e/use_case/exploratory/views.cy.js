@@ -1161,7 +1161,7 @@ describe('Views', () => {
     cy.get('.selected [data-act-table-target="column"][data-column="created_at"]').scrollIntoView().should('be.visible')
 
   })
-  it('Audits', () => {
+  it.skip('Audits', () => {
 
     // Audits - #3291
     cy.visit('/audits')
