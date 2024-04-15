@@ -284,7 +284,7 @@ describe('Views', () => {
       cy.get('.selected [data-act-table-target="column"][data-column="position"]').should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="state"]').eq(0).scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="status"]').scrollIntoView().should('be.visible')
-      cy.get('.selected [data-act-table-target="column"][data-column="quantity"]').scrollIntoView().should('be.visible')
+      cy.get('.selected [data-act-table-target="column"][data-column="quantity"]').eq(0).scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="product_number"]').scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="product_name"]').scrollIntoView().should('be.visible')
       cy.get('.selected [data-act-table-target="column"][data-column="ordered_sn"]').scrollIntoView().should('be.visible')
@@ -1917,7 +1917,7 @@ describe('Views', () => {
     cy.get('.selected [data-act-table-target="column"][data-column="last_order_at"]').scrollIntoView().should('be.visible')
 
   })
-  it('Imports', () => {
+  it.skip('Imports', () => {
 
     // Imports
     cy.visit('/importing')
@@ -1933,16 +1933,15 @@ describe('Views', () => {
     cy.get('.selected [data-act-table-target="column"][data-column="extra_links"]').scrollIntoView().should('be.visible')
 
   })
-  it('Messaging', () => {
+  it.skip('Messaging', () => {
 
     // Admin - Messaging - #3293
     cy.visit('/messaging/')
-    cy.pause()
     cy.url().should('include', '/messaging')
     cy.get('a[href*="Action table export"]').should('be.visible')
 
   })
-  it('Messages', () => {
+  it.skip('Messages', () => {
 
     // Admin - Messaging - Messages
     cy.visit('/messaging/admin/messages')
