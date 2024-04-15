@@ -71,7 +71,7 @@ Cypress.Commands.add('logout',() => {
 })
 
 Cypress.Commands.add('resetView', () => {
-  cy.get('[data-act-table-target="header"]', { timeout:300000 })
+  cy.get('[data-act-table-target="header"]', { timeout:12000 })
   cy.get('[data-action="click->satis-menu#show"]').first().click()
   cy.get('[aria-label="Tabs"] .sts-menu__items').eq(0).then(($e1) => {
     cy.wrap($e1).find('li').then($e2=>{
