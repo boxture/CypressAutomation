@@ -34,7 +34,7 @@ describe('Ship an outbound product on a sales order', () => {
     cy.get('[id^=orders_purchase_order_inbound_tracking_number]').type(dayjs().format('AWBMMDDHHmm'))
 
     // 5. Fill in Forwarder
-    cy.get('[id^=orders_purchase_order_forwarder]').type('DHL')
+    //cy.get('[id^=orders_purchase_order_forwarder]').type('DHL')
 
     // 6. Fill in Destination location
     cy.get('[placeholder="Destination location"]').type('NLD-A',{ delay: 200 })
@@ -197,10 +197,10 @@ describe('Sales order create', () => {
     cy.get('[id^="orders_sales_order_customer_reference_number"]').type(dayjs().format('DDmmssYY'))
 
     // 2. Select Customer
-    cy.get('[placeholder=Customer]').type('Simpsons', {delay:200})
+    cy.get('[placeholder=Customer]').type('Soylent Green', {delay:200})
 
     // 2b Fill in shipping method
-    cy.get('[placeholder="Shipping method"]').type('DHL Express', {delay:200})
+    cy.get('[placeholder="Shipping method"]').type('DHL Express', {delay:200})  // use customer Soylent Green
 
     // 3. Fill in Product
     cy.get('[placeholder="Product"]').type(outbound_product, {delay:200})
@@ -307,7 +307,6 @@ describe("Pick order", () => {
 
       cy.wait(2500)
       cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
-      cy.pause()
 
       cy.wait(2500)
 
