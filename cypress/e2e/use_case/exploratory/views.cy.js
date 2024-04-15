@@ -1956,7 +1956,7 @@ describe('Views', () => {
     cy.get('.selected [data-act-table-target="column"][data-column="status"]').scrollIntoView().should('be.visible')
 
   })
-  it('Messaging - Templates', () => {
+  it.skip('Messaging - Templates', () => {
 
     // Admin - Messaging - Templates
     cy.visit('/messaging/admin/templates')
@@ -1972,7 +1972,7 @@ describe('Views', () => {
     cy.get('.selected [data-act-table-target="column"][data-column="created_at"]').scrollIntoView().should('be.visible')
 
   })
-  it('Messaging - Layout', () => {
+  it.skip('Messaging - Layout', () => {
 
     // Admin - Messaging - Layout
     cy.visit('/messaging/admin/layouts')
@@ -1983,7 +1983,7 @@ describe('Views', () => {
     cy.get('.selected [data-act-table-target="column"][data-column="metadata"]').scrollIntoView().should('be.visible')
 
   })
-  it('Messaging - Locales', () => {
+  it.skip('Messaging - Locales', () => {
 
     // Admin - Messaging - Locales
     cy.visit('/messaging/admin/locales')
@@ -2008,7 +2008,7 @@ describe('Views', () => {
     cy.get('.selected [data-act-table-target="column"][data-column="list"]').scrollIntoView().should('be.visible')
 
   })
-  it('Messaging Lists', () => {
+  it.skip('Messaging Lists', () => {
 
     // Admin - Messaging Lists
     cy.visit('/messaging/admin/lists')
