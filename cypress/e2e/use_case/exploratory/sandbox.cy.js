@@ -654,7 +654,7 @@ describe('Picklist plan', () => {
 })
 
 
-describe.only("Picking", () => {
+describe("Picking", () => {
 
   before('Set location', () => {
     
