@@ -213,10 +213,12 @@ describe('Inventory move containers', () => {
       // 6. Click Move
       cy.get('.primary').contains('Move').click()
 
-      cy.wait(1000)
+      cy.get('.signum-notification-body__mb').as('alert')
+      cy.get('@alert').should('be.visible').contains('Moving inventory')
 
-      cy.get('.signum-notification-body__mb').should('be.visible').contains('Moving inventory')
-      cy.get('.signum-notification-body__mb').should('be.visible').contains('Inventory has been moved')
+      cy.get('.signum-notification-body__mb').as('alert')
+      cy.get('@alert').should('be.visible').contains('Inventory has been moved')
+
 
       cy.wait(1500)
 
@@ -235,8 +237,12 @@ describe('Inventory move containers', () => {
 
       // 6b. Click Move
       cy.get('.primary').contains('Move').click()
-      cy.get('.signum-notification-body__mb').should('be.visible').contains('Moving inventory')
-      cy.get('.signum-notification-body__mb').should('be.visible').contains('Inventory has been moved')
+
+      cy.get('.signum-notification-body__mb').as('alert')
+      cy.get('@alert').should('be.visible').contains('Moving inventory')
+
+      cy.get('.signum-notification-body__mb').as('alert')
+      cy.get('@alert').should('be.visible').contains('Inventory has been moved')
 
       })
   })
@@ -470,7 +476,7 @@ describe('Kit an order', () => {
         cy.get('.signum-notification-body__mb').then(e1 =>{
           kit_container = e1.text().substring(11,19)
           cy.log(kit_container)
-          cy.pause()
+
         cy.wait(5000)
         // 1. Navigate to the kit order created.
         cy.visit(`/orders/${kit_order}`)
