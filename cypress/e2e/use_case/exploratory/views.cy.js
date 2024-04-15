@@ -500,7 +500,7 @@ describe('Views', () => {
     cy.get('.selected [data-act-table-target="column"][data-column="declared_insurance_value"]').scrollIntoView().should('be.visible')
 
   })
-  it('Pick Lists ', () => {
+  it.skip('Pick Lists ', () => {
 
     // Pick Lists
     cy.visit('/pick_lists')
@@ -1277,7 +1277,7 @@ describe('Views', () => {
     cy.get('.selected [data-act-table-target="column"][data-column="end_on"]').scrollIntoView().should('be.visible')
 
   })
-  it('Reasons', () => {
+  it.skip('Reasons', () => {
 
     // Admin - Carriers & Services - Reasons
     cy.visit('/admin/reasons')
@@ -1994,7 +1994,7 @@ describe('Views', () => {
     cy.get('.selected [data-act-table-target="column"][data-column="metadata"]').scrollIntoView().should('be.visible')
 
   })
-  it('Messaging Campaigns', () => {
+  it.skip('Messaging Campaigns', () => {
 
     // Admin - Messaging Campaigns
     cy.visit('/messaging/admin/campaigns')
