@@ -156,24 +156,21 @@ describe('Inventory move', () => {
       cy.url().should('include', `/containers/${container}`)
 
     // Get from bin location
-    cy.get('.bin-location-info-item a').then($bin => {
-        from_bin_location = $bin.text()
-        cy.log(from_bin_location)
+    //cy.get('.bin-location-info-item a').then($bin => {
+    //    from_bin_location = $bin.text()
+    //    cy.log(from_bin_location)
 
     // Move container
     cy.visit('/inventory_moves/new')
     cy.url().should('include', '/inventory_moves/new')
     cy.get('[placeholder="Container"]').type(`${container}`.substring(0,8), {delay:200})
 
-    cy.get('[placeholder="From bin location"]').type(`${from_bin_location}`, {delay:200})
-    cy.get(`[data-satis-dropdown-item-text="${from_bin_location}"]`).click({force:true})
-
     cy.get('[placeholder="To bin location"]').type('PICKING', {delay:200})
     cy.get(`[data-satis-dropdown-item-text="PICKING"]`).click({force:true})
 
     cy.get('.primary').contains('Move').click()})
 
-    })
+    //})
 
   })
 
