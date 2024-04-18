@@ -41,7 +41,7 @@ describe('State Transition', () => {
 
             // 6. Search the product created.
             cy.visit('/products')
-            cy.resetView()
+            // cy.resetView()
             cy.get('[placeholder="Search"]').type(outbound_product).type('{enter}')
             cy.wait(1000)
 
