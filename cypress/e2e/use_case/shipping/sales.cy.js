@@ -143,6 +143,7 @@ describe('Inventory move', () => {
     cy.get('.text-lg').contains('Lines').should('be.visible')
     cy.get('[id*="tab_label"]').contains('Items').click({ force: true })
     cy.get('.selected [data-act-table-target="column"][data-column="container"]').scrollIntoView().should('be.visible')
+    cy.wait(1000)
 
     //cy.get('[href*="/containers/"]').eq(0).click()
     cy.get('.cursor-pointer > :nth-child(12) > a').click()
@@ -278,23 +279,25 @@ describe("Pick order", () => {
 
       // 3. Click Log in.
       cy.get('button').click()
+      cy.get('.toast-text', {timeout:30000}).contains('Logged in').should('exist')
 
       // Assert login page.
       cy.get('.icon').should('be.visible')
-      cy.get(':nth-child(1) > .item-link > .item-inner > .item-title').click() // << All
-      cy.wait(2500)
+      cy.get(':nth-child(1) > .item-link > .item-inner > .item-title', {visible:true}).click() // << All
 
+      cy.get(':nth-child(1) > .item-link > .item-inner > .item-title', {visible:true}).eq(1).click() // << Ready To Pick
+      cy.wait(2500)
+      
       // 4. Scroll and click the last (most recent) order.
       cy.get('.page-current > .page-content > .list > ul > li > .item-link > .item-inner').last().click()
 
       // 5. Scan tote
-      cy.wait(2500)
       cy.window().then(win => {
       barcode = cy.stub(win, 'prompt')
       barcode.returns(tote)
 
-      cy.wait(2500)
       cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+      cy.get('.toast-text', {timeout:30000}).contains(`Using tote ${tote}`).should('exist')
       
       })
       // 6. Container
@@ -302,10 +305,8 @@ describe("Pick order", () => {
       barcode.restore()
       cy.stub(win, 'prompt').returns(container)
 
-      cy.wait(2500)
       cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
-
-      cy.wait(2500)
+      cy.get('.toast-text', {timeout:30000}).contains('Pick list fully picked, next pick list opened').should('exist')
 
       })
     })
@@ -323,9 +324,9 @@ describe('Pack', () => {
 
       // 1. Navigate to Packs
       cy.visit(`/orders/${sales_order}/pack/new`)
+      cy.wait(2500)
 
       // 2. Scan tote
-      cy.wait(1000)
       cy.get('[placeholder="Tote"]').eq(1).type(tote, {delay:200})
 
       // 3. Scan picked container
