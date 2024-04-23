@@ -132,7 +132,7 @@ beforeEach(() => {
       cy.get('tr:nth-child(2) td:nth-child(8)').should('have.text', 'Business to consumer')
 
     })
-    it('Ship At Filter', () => {
+    it.only('Ship At Filter', () => {
 
       cy.visit('/orders')
       cy.resetView()
@@ -144,6 +144,7 @@ beforeEach(() => {
       cy.get('[data-column="ship_at"]').find('li').contains('Sort ascending').should('be.visible')
       cy.get('[data-column="ship_at"]').find('li').contains('Sort descending').should('be.visible')
       cy.get('[data-column="ship_at"]').find('li').contains('Hide column').should('be.visible')
+      cy.pause()
       cy.get('[data-column="ship_at"] [data-satis-date-time-picker-target="input"]').should('be.visible').click()
       cy.get('[data-satis-date-time-picker-target="days"]').contains('1').click()
       cy.get('[data-satis-date-time-picker-target="days"]').contains('20').click()
