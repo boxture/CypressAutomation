@@ -209,6 +209,18 @@ describe('Sales Order', () => {
         .should('contain.text', gift_message)
 
     })
+    it('Confirm', () => {
+          
+      cy.visit(`/orders/${sales_order}`)
+      cy.url().should('include', `/${sales_order}`)
+      cy.contains('.pr-1', 'Confirm').click({ force: true })
+
+      // Assert Quantity
+      cy.get('.cursor-pointer')
+        .find('td').eq(1)
+        .should('not.contain.text', 'concept', {timeout:15000})
+    })
+    
     it('Edit and Update', () => {
 
       cy.visit(`/orders/${sales_order}`)
@@ -370,17 +382,6 @@ describe('Sales Order', () => {
         .should('contain.text', 'Thank you!')
     
     
-    })
-    it('Confirm', () => {
-          
-      cy.visit(`/orders/${sales_order}`)
-      cy.url().should('include', `/${sales_order}`)
-      cy.contains('.pr-1', 'Confirm').click({ force: true })
-
-      // Assert Quantity
-      cy.get('.cursor-pointer')
-        .find('td').eq(1)
-        .should('not.contain.text', 'concept', {timeout:15000})
     })
     
     it('Hold', () => {
