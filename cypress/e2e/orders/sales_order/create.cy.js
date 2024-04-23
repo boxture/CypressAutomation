@@ -103,7 +103,7 @@ describe('Sales Order', () => {
     
     it('Show', () => {
         
-    cy.visit(`/orders/${sales_order}`)
+    cy.visit(`/orders/${sales_order}/edit`)
     cy.contains('.pr-1', 'Show').click({ force: true })
 
     // Assert Business Model
