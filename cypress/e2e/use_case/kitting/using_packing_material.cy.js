@@ -416,8 +416,10 @@ describe('Pick kit order', () => {
 
         // Assert login page.
         cy.get('.icon').should('be.visible')
-        cy.get(':nth-child(1) > .item-link > .item-inner > .item-title').click() // << All
-        cy.wait(1500)
+        cy.get(':nth-child(1) > .item-link > .item-inner > .item-title', {visible:true}).click() // << All
+
+        cy.get(':nth-child(1) > .item-link > .item-inner > .item-title', {visible:true}).eq(1).click() // << Ready To Pick
+        cy.wait(2500)
 
         // 4. Scroll and click the last (most recent) order.
         cy.get('.page-current > .page-content > .list > ul > li > .item-link > .item-inner').last().click()
