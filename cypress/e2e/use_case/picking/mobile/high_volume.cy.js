@@ -1,10 +1,10 @@
 const non_serialized_product = 'BXT-SNO78356'
-const tote = 'TOTE-100119'
+const tote = 'TOTE-100129'
 
 let non_pickable_container
 let sales_order
 let barcode
-let inventory_adjust_quantity = 250
+let inventory_adjust_quantity = 10
 
 /*
 
@@ -158,11 +158,14 @@ describe('Pick list', () => {
 
 describe("** Pick scenario's", () => {
 
+
     it('4. Swipe pickAll', () => {
 
         // 1. Login on Mobile.
         cy.visit('/mobile')
         cy.url().should('include', '/mobile')
+
+        cy.pause()
 
         // Assert login screen
         cy.url().should('include', '/mobile')
@@ -179,6 +182,8 @@ describe("** Pick scenario's", () => {
         // Assert login page.
         cy.get('.icon').should('be.visible')
         cy.get(':nth-child(1) > .item-link > .item-inner > .item-title').click() // << All
+
+        cy.get(':nth-child(1) > .item-link > .item-inner > .item-title', {visible:true}).eq(1).click() // << Ready To Pick
         cy.wait(2500)
 
         // 4. Scroll and click the last (most recent) order.
