@@ -30,8 +30,7 @@ let barcode
     cy.get('[href="/containers/new"]').click({force: true})
 
     // 3. Fill in Packing Material
-    cy.get('[placeholder="Packing material"]').type(packing_material, {delay:200})
-
+    cy.get('[data-satis-dropdown-item-text="[Boxture Acceptance Test] 2983000634 Box 1"]').click({force:true})
     // 4. Fill in bin location
     cy.get('[placeholder="Bin location"]').type(bin_location,{delay:200})
     cy.get('[data-satis-dropdown-item-text="PICKING"]').click()
@@ -62,7 +61,7 @@ let barcode
         // 3. Fill in Product
     cy.get('[placeholder="Product"]').type(product, {delay:200})
     cy.get('[data-satis-dropdown-item-text="[Boxture Acceptance Test] BXT-SNXX29999534 BXT-SNXX 20221 Demo Product"]').click()
-    cy.wait(1000)
+    cy.wait(2000)
     cy.get('#inventory_adjust_quantity').type('1', {delay:200})
     // 5. Fill in a Status
     cy.get('#inventory_adjust_status').select('New')
@@ -136,9 +135,8 @@ let barcode
                   }
               )
           }
-
+        cy.visit(`/orders/${sales_order}`)
         cy.get('[id*="tab_label"]').contains('Picklists')
-
           //---------------------
 
         // 1. Login on Mobile.
@@ -160,8 +158,9 @@ let barcode
         // cy.get('.icon').should('be.visible')
         cy.get(':nth-child(1) > .item-link > .item-inner > .item-title').contains('All').click() // << All
         cy.wait(1500)
-
+        cy.get('.translation_missing').contains('Ready To Pick').click()
         // 4. Scroll and click the last (most recent) order.
+        cy.wait(3000)
         cy.get('.page-current > .page-content > .list > ul > li > .item-link > .item-inner').last().click()
         cy.log(container)
         // 5. Fill in a Tote.
@@ -201,6 +200,7 @@ let barcode
 
 
     cy.visit(`/orders/${sales_order}/pack/new`)
+    cy.pause()
     cy.contains('Packs')
     cy.get('.nested-fields [placeholder="Product"]').eq(0).type(product, {delay:200})
     cy.get('.nested-fields [placeholder="Tote"]').eq(0).should('be.visible').type(scan_tote,{delay:200})
@@ -208,6 +208,7 @@ let barcode
     cy.get('.form-group-quantity [data-satis-input-target="input"]').eq(0).type(1)
     cy.get('[type="submit"]').click()
     cy.contains('Packed')
+    cy.wait(5000)
     cy.visit(`/containers/${container}`)
     cy.reload()
     cy.get('.state-info-item dd').contains('retired')

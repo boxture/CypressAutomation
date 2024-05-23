@@ -93,7 +93,7 @@ describe('State Transition', () => {
     cy.contains('.pr-1', 'Receive').click({ force: true })
 
     // 2b. Fill in a packing material
-    cy.get('[placeholder="Packing material"]').type('BOX 1', {delay:200})
+    cy.get('[data-satis-dropdown-item-text="[Boxture Acceptance Test] 2983000634 Box 1"]').click({force:true})
 
     // 3. Fill in a kit component
     cy.get('[placeholder="Product"]').eq(0).type(kit_component_a, {delay:200})
@@ -102,7 +102,7 @@ describe('State Transition', () => {
     cy.get('[data-order-line-target="quantity"]').eq(0).type(kit_component_a_qty)
 
     // 4b. Fill in packig material
-    cy.get('[placeholder="Packing material"]').eq(1).type('BOX 1', {delay:200})
+    cy.get('[data-satis-dropdown-item-text="[Boxture Acceptance Test] 2983000634 Box 1"]').eq(1).click({force:true})
 
     // 5. Fill in a kit component on the 2nd line
     cy.get('[placeholder="Product"]').eq(1).type(kit_component_b, {delay:200})
@@ -130,7 +130,7 @@ describe('State Transition', () => {
     cy.get('[data-action="click->satis-tabs#select"]').contains('Items').click()
     cy.get('.selected [data-act-table-target="column"][data-column="container"]').scrollIntoView().should('be.visible')
         cy.wait(1000)
-    cy.get('[href*="/containers/"]').eq(1).click()
+    cy.get('td [href*="/containers/"]').eq(1).click()
     cy.url().should('include', `/containers`)
 
     cy.url().then(($url) => {
@@ -156,7 +156,7 @@ describe('State Transition', () => {
     cy.get('[data-column="position"]', {timeout:30000}).should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="container"]').scrollIntoView().should('be.visible')
 
-    cy.get('[href*="/containers/"]').last().click()
+    cy.get('td [href*="/containers/"]').last().click()
     cy.url().should('include', `/containers`)
 
     cy.url().then(($url) => {
@@ -298,6 +298,8 @@ describe('State Transition', () => {
 
         cy.get(':nth-child(1) > .item-link > .item-inner > .item-title').contains('All').click() // << All
         cy.wait(1500)
+        cy.get('.translation_missing').contains('Ready To Pick').click()
+        cy.wait(3000)
 
         // 4. Scroll and click the last (most recent) order.
         cy.get('.page-current > .page-content > .list > ul > li > .item-link > .item-inner').last().click()
