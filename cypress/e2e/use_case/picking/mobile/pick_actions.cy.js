@@ -1,7 +1,7 @@
 const outbound_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
 const full_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
-const full_product = 'BXT-SNF78252'
-const outbound_product = 'BXT-SNO78354'
+const full_product = 'BXT-SNF78254'
+const outbound_product = 'BXT-SNO78358'
 const tote = 'AUTOTE'
 
 let pickable_container
@@ -226,14 +226,14 @@ describe('Order', () => {
 
 })
 
-describe('Pick list', () => {
+describe('Picklist', () => {
 
     before(() => {
 
         cy.login({email: 'wrap-it_pick_list_planner@wrap-it.com', password: 'kexwic-rAfwab-zubmu1'})
     })
 
-    it('3. Generate a pick list', () => {
+    it('3. Generate a picklist', () => {
 
         cy.visit(`/orders/${sales_order}`)
 
@@ -249,11 +249,13 @@ describe('Pick list', () => {
 
 describe("** Pick scenario's", () => {
 
+
     it('4. Pick A) container B) from non-pickable container C) by serial number D) product numberd E) ean or upc F) aliases G) swipe pickOne and H) pickAll', () => {
 
         // 1. Login on Mobile.
         cy.visit('/mobile')
         cy.url().should('include', '/mobile')
+        cy.pause()
 
         // Assert login screen
         cy.url().should('include', '/mobile')
@@ -265,23 +267,25 @@ describe("** Pick scenario's", () => {
 
         // 3. Click Log in.
         cy.get('button').click()
+        cy.get('.toast-text', {timeout:30000}).contains('Logged in').should('exist')
 
         // Assert login page.
         cy.get('.icon').should('be.visible')
         cy.get(':nth-child(1) > .item-link > .item-inner > .item-title').click() // << All
+
+        cy.get(':nth-child(1) > .item-link > .item-inner > .item-title', {visible:true}).eq(1).click() // << Ready To Pick
         cy.wait(2500)
 
         // 4. Scroll and click the last (most recent) order.
         cy.get('.page-current > .page-content > .list > ul > li > .item-link > .item-inner').last().click()
 
         // 5. Scan tote
-        cy.wait(2500)
         cy.window().then(win => {
         barcode = cy.stub(win, 'prompt')
         barcode.returns(tote)
 
-        cy.wait(2500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+        cy.get('.toast-text', {timeout:30000}).contains(`Using tote ${tote}`).should('exist')
 
         })
         // 6. Scan pickable container
@@ -289,17 +293,27 @@ describe("** Pick scenario's", () => {
         barcode.restore()
         cy.stub(win, 'prompt').returns(pickable_container)
 
-        cy.wait(2500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+        cy.get('.toast-text', {timeout:30000}).contains('Pick registered').should('exist')
 
         })
+        // // 7. Scan non-pickable container
+        // cy.window().then(win => {
+        // barcode.restore()
+        // cy.stub(win, 'prompt').returns(non_pickable_container)
+
+        // cy.wait(2500)
+        // cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+
+        // })
+
         // 7. Scan non-pickable container
         cy.window().then(win => {
         barcode.restore()
         cy.stub(win, 'prompt').returns(non_pickable_container)
-
-        cy.wait(2500)
+            
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
+        cy.get('.toast-text', {timeout:30000}).contains('Container container is not pickable, pick items from it instead').should('exist')
 
         })
         // 8. Scan serial number from the non-pickable container
@@ -332,7 +346,7 @@ describe("** Pick scenario's", () => {
         // 11. Scan ean or upc
         cy.window().then(win => {
         barcode.restore()
-        cy.stub(win, 'prompt').returns(9990000010021)
+        cy.stub(win, 'prompt').returns(9997456000865)
 
         cy.wait(2500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
@@ -341,7 +355,7 @@ describe("** Pick scenario's", () => {
         // 12. Scan alias product number
         cy.window().then(win => {
         barcode.restore()
-        cy.stub(win, 'prompt').returns('45387ONS-TXB')
+        cy.stub(win, 'prompt').returns('85387ONS-TXB')
 
         cy.wait(2500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
@@ -350,7 +364,7 @@ describe("** Pick scenario's", () => {
         // 13. Scan alias ean or upc
         cy.window().then(win => {
         barcode.restore()
-        cy.stub(win, 'prompt').returns('1200100000999')
+        cy.stub(win, 'prompt').returns('5680006547999')
 
         cy.wait(2500)
         cy.get('.page-current > .toolbar > .toolbar-inner svg').click()
