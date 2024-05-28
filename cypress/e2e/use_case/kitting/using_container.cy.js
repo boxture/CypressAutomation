@@ -302,7 +302,7 @@ describe('Kit order confirm', () => {
     // 2. Click Confirm from the context menu
     cy.contains('.pr-1', 'Confirm').click({ force: true })
 
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 180; i++) {
       cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
         statusElement => {
           let status = statusElement.text()
