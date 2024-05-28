@@ -1,5 +1,5 @@
 let container
-let packing_material = 'Box 1'
+let packing_material = '2983000634'
 let bin_location='picking'
 
 beforeEach(() => {
