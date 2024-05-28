@@ -3,8 +3,8 @@ const dayjs = require('dayjs')
 // Basics
 const business_model = 'Business to business'
 const channel = 'Amazon'
-const ship_earliest_on = `${dayjs().format(('DD'))}`
-const ship_latest_on = `${dayjs().format(('DD'))}`
+const ship_earliest_on = `${dayjs().format(('D'))}`
+const ship_latest_on = `${dayjs().format(('D'))}`
 const other_reference_number = Math.floor((Math.random() * 1000000))
 const purchase_order_number = Math.floor((Math.random() * 1000000))
 const customer_reference_number = Math.floor((Math.random() * 1000000))
@@ -71,6 +71,7 @@ describe('Sales Order', () => {
       cy.get('[placeholder=Customer]').type(customer, {delay:200})
   
       // 12. Fill in Product
+      cy.wait(1000)
       cy.get('[placeholder="Product"]').type(outbound_product, {delay:200})
   
       // 13. Fill in quantity
@@ -209,17 +210,6 @@ describe('Sales Order', () => {
         .should('contain.text', gift_message)
 
     })
-    it('Confirm', () => {
-          
-      cy.visit(`/orders/${sales_order}`)
-      cy.url().should('include', `/${sales_order}`)
-      cy.contains('.pr-1', 'Confirm').click({ force: true })
-
-      // Assert Quantity
-      cy.get('.cursor-pointer')
-        .find('td').eq(1)
-        .should('not.contain.text', 'concept', {timeout:15000})
-    })
     
     it('Edit and Update', () => {
 
@@ -234,105 +224,109 @@ describe('Sales Order', () => {
       // 3. Update Channel
       cy.get('[placeholder="Channel"]').clear().type('BigCommerce')
 
-      // 4. Clear Ship Earliest On
-      cy.get('[data-action="click->satis-date-time-picker#clear"]').eq(0).click()
+       // 4. Clear Ship Earliest On
+       cy.get('[data-action="click->satis-date-time-picker#clear"]').eq(0).click()
 
-      // 5. Clear Ship Latest On
-      cy.get('[data-action="click->satis-date-time-picker#clear"]').eq(1).click()
+       // 5. Clear Ship Latest On
+       cy.get('[data-action="click->satis-date-time-picker#clear"]').eq(1).click()
 
-      // 6. Update in Other Reference Number
-      cy.get('[id="orders_sales_order_other_reference_number"]').clear().type(other_reference_number+1)
+       // 6. Update in Other Reference Number
+       cy.get('[id="orders_sales_order_other_reference_number"]').clear().type(other_reference_number+1)
 
-      // 7. Update Delivery Terms
-      cy.get('[placeholder="Delivery terms"]').clear().type('EXW')
+       // 7. Update Delivery Terms
+       cy.get('[placeholder="Delivery terms"]').clear().type('EXW')
 
-      // 8. Update in Purchase Order Number
-      cy.get('[id="orders_sales_order_purchase_order_number"]').clear().type(purchase_order_number+1)
+       // 8. Update in Purchase Order Number
+       cy.get('[id="orders_sales_order_purchase_order_number"]').clear().type(purchase_order_number+1)
         
-      // 9. Update in Customer Reference Number
-      cy.get('[id^="orders_sales_order_customer_reference_number"]').clear().type(customer_reference_number+1)
+       // 9. Update in Customer Reference Number
+       cy.get('[id^="orders_sales_order_customer_reference_number"]').clear().type(customer_reference_number+1)
 
-      // 10. Update in Shipping Method
-      cy.get('[placeholder="Shipping method"]').clear().type('Standard', {delay:200})
+       // 10. Update in Shipping Method
+       cy.get('[placeholder="Shipping method"]').clear().type('Standard')
 
-      // 11. Select Customer
-      cy.get('[placeholder=Customer]').clear().type('Simpsons', {delay:200})
+       // 11. Select Customer
+       cy.get('[placeholder=Customer]').clear().type('Simpsons', {delay:200})
         
-      // 12. Update in Product
-      cy.get('[placeholder="Product"]').eq(0).clear().type('BXT-SNO78355', {delay:200})
+       // 12. Update in Product
+       cy.wait(1000)
+       cy.get('[placeholder="Product"]').eq(0).clear().type('BXT-SNO78355', {delay:200})
 
-      // 13. Update in quantity
-      cy.get('[data-order-line-target="quantity"]').eq(0).clear().type(2)
+       // 13. Update in quantity
+       cy.get('[data-order-line-target="quantity"]').eq(0).clear().type(2)
 
-      // 14. Navigate to Notes
-      cy.get('[id="tab_label_notes"]').scrollIntoView().click()
+       // 14. Navigate to Notes
+       cy.get('[id="tab_label_notes"]').scrollIntoView().click()
 
-      // 15. Update in Notes
-      cy.get('[id="orders_sales_order_notes"]').clear().type('Could be shipped tomorrow.')
+       // 15. Update in Notes
+       cy.get('[id="orders_sales_order_notes"]').clear().type('Could be shipped tomorrow.')
 
-      // 16. Update in Packing Instructions 
-      cy.get('[id="orders_sales_order_packing_instructions"]').clear().type('Please note, package is fragile.')
+       // 16. Update in Packing Instructions 
+       cy.get('[id="orders_sales_order_packing_instructions"]').clear().type('Please note, package is fragile.')
 
-      // 17. Update in Gift Message
-      cy.get('[id="orders_sales_order_gift_message"]').clear().type('Thank you!')
+       // 17. Update in Gift Message
+       cy.get('[id="orders_sales_order_gift_message"]').clear().type('Thank you!')
 
-      //Submit form
-      cy.get('.button').contains('Update Sales order').click()
-      cy.url().should('include', `/${sales_order}`)
+       //Submit form
+       cy.wait(3000)
+       cy.get('.button').contains('Update Sales order').click()
+       cy.url().should('include', `/${sales_order}`)
+
+
 
 
       // Assert Business Model
-        cy.get('.business-model-info-item')
-          .find('dd')
-          .should('contain.text', 'Business to consumer')
+         cy.get('.business-model-info-item')
+           .find('dd')
+           .should('contain.text', 'Business to consumer')
               
-      // Assert Channel
-      cy.get('.channel-info-item')
-        .find('dd')
-        .should('contain.text', 'BigCommerce')
+       // Assert Channel
+       cy.get('.channel-info-item')
+         .find('dd')
+         .should('contain.text', 'BigCommerce')
       
-      // Assert Ship Earliest On
-      cy.get('.ship-earliest-on-info-item')
-        .find('dd')
-        .should('contain.text', `${dayjs().format(('MMM D'))}`)
+       // Assert Ship Earliest On
+       cy.get('.ship-earliest-on-info-item')
+         .find('dd')
+         .should('contain.text', `${dayjs().format(('MMM DD'))}`)
 
-      // Assert Ship Latest On
-      cy.get('.ship-latest-on-info-item').should('not.exist')
+       // Assert Ship Latest On
+       cy.get('.ship-latest-on-info-item').should('not.exist')
 
-      // Assert Other Reference
-      cy.get('.other-reference-number-info-item')
-        .find('dd')
-        .should('contain.text', other_reference_number+1)
+       // Assert Other Reference
+       cy.get('.other-reference-number-info-item')
+         .find('dd')
+         .should('contain.text', other_reference_number+1)
 
-      // Assert Delivery Terms
-      cy.get('.delivery-terms-info-item')
-          .find('dd')
-        .should('contain.text', 'EXW')
+       // Assert Delivery Terms
+       cy.get('.delivery-terms-info-item')
+         .find('dd')
+         .should('contain.text', 'EXW')
 
-      // Assert Purchase Order Number
-      cy.get('.purchase-order-number-info-item')
-        .find('dd')
-        .should('contain.text', purchase_order_number+1)
+       // Assert Purchase Order Number
+       cy.get('.purchase-order-number-info-item')
+         .find('dd')
+         .should('contain.text', purchase_order_number+1)
 
-      // Assert Customer Reference Number
-      cy.get('.customer-reference-number-info-item')
-      .find('dd')
-      .should('contain.text', customer_reference_number+1)
+       // Assert Customer Reference Number
+       cy.get('.customer-reference-number-info-item')
+       .find('dd')
+       .should('contain.text', customer_reference_number+1)
 
-      // Assert Shipping Method
-      cy.get('.shipping-method-info-item')
-        .find('dd')
-        .should('contain.text', 'Standard')
+       // Assert Shipping Method
+       cy.get('.shipping-method-info-item')
+         .find('dd')
+         .should('contain.text', 'Standard')
 
-      // Assert Billing
-      cy.get('[id="Billing-content"]')
-        .should('exist')
-        .and('contain', 'Test User')
-        .and('contain', 'Globex Corporation')
-        .and('contain', '450 Mindoro St.')
-        .and('contain', 'Morro Bay  93442')
-        .and('contain', 'United States of America')
-        .and('contain', '+1 805-772-3961')
+       // Assert Billing
+       cy.get('[id="Billing-content"]')
+         .should('exist')
+         .and('contain', 'Test User')
+         .and('contain', 'Globex Corporation')
+         .and('contain', '450 Mindoro St.')
+         .and('contain', 'Morro Bay  93442')
+         .and('contain', 'United States of America')
+         .and('contain', '+1 805-772-3961')
 
       // Assert Delivery
       cy.get('[id=Delivery-content]')
@@ -357,9 +351,9 @@ describe('Sales Order', () => {
         .and('contain', '+1 805-772-3961')
 
       // Assert Product
-      cy.get('a[href*="products"]')
-        .should('exist')
-        .and('contain', 'BXT-SNO78355')
+        cy.get('a[href*="products"]')
+          .should('exist')
+          .and('contain', 'BXT-SNO78355')
 
       // Assert Quantity
       cy.get('.cursor-pointer')
@@ -381,7 +375,19 @@ describe('Sales Order', () => {
         .find('dd')
         .should('contain.text', 'Thank you!')
     
-    
+    })
+
+    it('Confirm', () => {
+          
+      cy.visit(`/orders/${sales_order}`)
+      cy.url().should('include', `/${sales_order}`)
+      cy.contains('.pr-1', 'Confirm').click({ force: true })
+      cy.pause()
+
+      // Assert Quantity
+      cy.get('.cursor-pointer')
+        .find('td').eq(1)
+        .should('not.contain.text', 'concept', {timeout:15000})
     })
     
     it('Hold', () => {
@@ -416,7 +422,6 @@ describe('Sales Order', () => {
         cy.get('.state-info-item')
           .find('.text-sm')
           .should('not.contain.text', 'hold')
-
 
     })
     it('Cancel', () => {
