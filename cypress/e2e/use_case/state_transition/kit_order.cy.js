@@ -267,7 +267,6 @@ describe('State Transition', () => {
                 }
             )
         }
-        cy.reload()
 
         // 1. Navigate to the kit order created.
         cy.visit(`/orders/${kit_order}`)
@@ -374,9 +373,9 @@ describe('State Transition', () => {
 
         // 3. Fill in Bin location
         cy.get('[placeholder="Bin location"]').type('KITTING', {delay:200})
-
+            cy.pause()
         // 4. Fill in container
-        cy.get('[placeholder="Container"]').eq(0).type(kit_container, {delay:200})
+        cy.get('[placeholder="Packing material"').eq(0).type('w1', {delay:200})
 
         // 5. Fill in Product
         cy.get('[placeholder="Product"]').eq(0).type(kit_product, {delay:200})
@@ -392,8 +391,6 @@ describe('State Transition', () => {
                 statusElement => {
                     let status = statusElement.text()
                     if (status !== 'completed') {
-                        cy.reload()
-
                         cy.wait(1000)
                         }
                     }
