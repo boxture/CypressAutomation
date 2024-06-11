@@ -417,7 +417,6 @@ describe('Pick kit order', () => {
 
         // 4. Scroll and click the last (most recent) order.
         cy.get('.item-link > .item-inner').last().click()
-        //cy.get('.page-current > .page-content > .list > ul > li > .item-link > .item-inner').last().click()
 
         // 5. Fill in a Tote.
         cy.wait(1500)
