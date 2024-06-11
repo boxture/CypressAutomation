@@ -226,6 +226,7 @@ describe('Sales order create', () => {
                   let status = statusElement.text()
                   if (status !== 'processing') {
                       cy.wait(1000)
+                      cy.log(i)
                     }
                 }
             )
@@ -268,6 +269,7 @@ describe("Pick order", () => {
       // 1. Login on Mobile.
       cy.visit('/mobile')
       cy.url().should('include', '/mobile')
+      cy.pause()
 
       // Assert login screen
       cy.url().should('include', '/mobile')
@@ -289,7 +291,7 @@ describe("Pick order", () => {
       cy.wait(2500)
       
       // 4. Scroll and click the last (most recent) order.
-      cy.get('.page-current > .page-content > .list > ul > li > .item-link > .item-inner').last().click()
+      cy.get('.item-link > .item-inner').last().click()
 
       // 5. Scan tote
       cy.window().then(win => {
