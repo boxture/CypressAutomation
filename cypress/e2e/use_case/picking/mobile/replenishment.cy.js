@@ -1,4 +1,5 @@
-const outbound_product = 'BXT-SNX09841'
+const outbound_product_standard_bin = 'BXT-SNX09841'
+const outbound_product_no_standard_bin = 'BXT-SNO74651'
 const inventory_adjust_quantity = '10'
 const sales_order_quantity = '10'
 const other_reference_number = Math.floor((Math.random() * 1000000))
@@ -7,7 +8,8 @@ const customer_reference_number = Math.floor((Math.random() * 1000000))
 const shipping_method = 'DHL'
 const customer = 'Soylent'
 
-let non_pickable_container
+let non_pickable_container_1
+let non_pickable_container_2
 let sales_order
 let picklist
 
@@ -22,7 +24,7 @@ describe('Replenish a picklist line', () => {
         it('1. Adjust inventory whose bin is not the standard bin for this product.', () => {
             
             
-            // Create non-pickable container
+            // Create 2 non-pickable container
 
             // 1. Navigate to Containers
             cy.visit('/containers')
@@ -43,38 +45,87 @@ describe('Replenish a picklist line', () => {
             cy.wait(1000)
             
             cy.get('.signum-notification-body').then(e1 =>{
-                non_pickable_container = e1.text().substring(11,19)
-            cy.log(non_pickable_container)
+                non_pickable_container_1 = e1.text().substring(11,19)
+            cy.log(non_pickable_container_1)
 
-            cy.wait(2000)
+            cy.wait(1000)
+
+            // Creating 2nd container
+
+            // 1. Navigate to Containers
+            cy.visit('/containers')
+            cy.url().should('include', '/containers')
+
+            // 2. Click Create
+            cy.get('[href="/containers/new"]').click({force: true})
+
+            // 3. Fill in Packing Material
+            cy.get('[placeholder="Packing material"]').type('9836389850', {delay:200})
+
+            // 4. Fill in bin location
+            cy.get('[placeholder="Bin location"]').type('PICKING',{delay:200})
+            cy.get('[data-satis-dropdown-item-text="PICKING"]').click()
+
+            // 5. Click Create Container
+            cy.get('[type="submit"]').click()
+            cy.wait(1000)
+            
+            cy.get('.signum-notification-body').then(e1 =>{
+                non_pickable_container_2 = e1.text().substring(11,19)
+            cy.log(non_pickable_container_2)
+
+            cy.wait(1000)
 
 
-        // Adjust inventory for non-pickable container
+        // Adjust inventory for both containers
 
-            // 6. Navigate to Inventory Adjust
+            // 1. Navigate to Inventory Adjust
             cy.visit('/inventories/new')
             cy.url().should('include', '/inventories/new')
 
-            // 6. Fill in a container
-            cy.get('[placeholder="Container"]').type(`${non_pickable_container}`, {delay:200})
+            // 2. Fill in a container
+            cy.get('[placeholder="Container"]').type(`${non_pickable_container_1}`, {delay:200})
 
-            /* 7. Fill in a Bin location
+            /* 3. Fill in a Bin location
             Note: Bin location is filled in automatically based on the container */
 
-            // 8. Fill in Product
-            cy.get('[placeholder="Product"]').type(outbound_product, {delay:200})
+            // 4. Fill in Product
+            cy.get('[placeholder="Product"]').type(outbound_product_standard_bin, {delay:200})
 
-            // 9. Fill in an Adjustment Quanity
+            // 5. Fill in an Adjustment Quanity
             cy.get('[id="inventory_adjust_quantity"]').clear().type(inventory_adjust_quantity)
 
-            // 12. Fill in a Status
+            // 6. Fill in a Status
             cy.get('#inventory_adjust_status').select('New')
 
-            // 13. Click Adjust
+            // 6. Click Adjust
             cy.get('.button').click()
 
-            cy.wait(2000)
+            cy.wait(1000)
 
+        // Adjust inventory for the 2nd container created.
+
+            // 1. Fill in a container
+            cy.get('[placeholder="Container"]').type(`${non_pickable_container_2}`, {delay:200})
+
+            /* 2. Fill in a Bin location
+            Note: Bin location is filled in automatically based on the container */
+
+            // 3. Fill in Product
+            cy.get('[placeholder="Product"]').type(outbound_product_no_standard_bin, {delay:200})
+
+            // 4. Fill in an Adjustment Quanity
+            cy.get('[id="inventory_adjust_quantity"]').clear().type(inventory_adjust_quantity)
+
+            // 5. Fill in a Status
+            cy.get('#inventory_adjust_status').select('New')
+
+            // 6. Click Adjust
+            cy.get('.button').click()
+
+            cy.wait(1000)
+
+            })
         })
     })
 
@@ -85,7 +136,7 @@ describe('Replenish a picklist line', () => {
           
         })
 
-        it('2. Create a sales order for a product that is not in a standard bin.', () => {
+        it('2. Create a sales order for a both products, with one product configured with a standard bin.', () => {
             
             // 1. Navigate to Sales Order
             cy.visit('/orders/new?type=sales_order')
@@ -106,12 +157,18 @@ describe('Replenish a picklist line', () => {
             // 6. Select Customer
             cy.get('[placeholder=Customer]').type(customer, {delay:200})
         
-            // 7. Fill in Product
+            // 7. Fill in Product configured with a standard bin
             cy.wait(1000)
-            cy.get('[placeholder="Product"]').type(outbound_product, {delay:200})
+            cy.get('[placeholder="Product"]').type(outbound_product_standard_bin, {delay:200})
         
-            // 8. Fill in quantity
+            // 8. Fill in quantity first product
             cy.get('[data-order-line-target="quantity"]').eq(0).clear().type(sales_order_quantity)
+
+            // 10. Fill in Product that has no standard bin configured.
+            cy.get('[placeholder="Product"]').eq(1).type(outbound_product_no_standard_bin, {delay:200})
+            
+            // 8. Fill in quantity 2nd product
+            cy.get('[data-order-line-target="quantity"]').eq(1).clear().type(sales_order_quantity)
         
             //Submit form
             cy.get('.button').contains('Create and continue editing').click()
@@ -157,19 +214,19 @@ describe('Replenish a picklist line', () => {
             cy.wait(2000)
             cy.contains('.pr-1', 'Pick').click({ force: true })
             cy.url().should('include', `/orders/${sales_order}/pick/new`)
-      
+
+            cy.wait(2000)
             cy.get('.primary').contains('Pick').click()
             cy.get('[id*="tab_label"]').contains('Picklists').scrollIntoView().click()
-            cy.get('.selected td:nth-child(5)').eq(1).should('have.text', 'pending').click()
+            cy.get('.selected td:nth-child(5)').eq(2).should('have.text', 'pending').click()
 
+            cy.wait(2000)
             cy.get('[id*="tab_label"]').contains('Lines').scrollIntoView().click()
             cy.get('.selected td:nth-child(6)').eq(0).should('have.text', 'replenish').click()
+            cy.get('.selected td:nth-child(6)').eq(1).should('have.text', 'pending').click()
 
       
             })
         })
     })
 })
-
-
-
