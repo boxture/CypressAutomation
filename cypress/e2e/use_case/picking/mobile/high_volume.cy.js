@@ -187,7 +187,7 @@ describe("** Pick scenario's", () => {
         cy.wait(2500)
 
         // 4. Scroll and click the last (most recent) order.
-        cy.get('.page-current > .page-content > .list > ul > li > .item-link > .item-inner').last().click()
+        cy.get('.item-link > .item-inner').last().click()
 
         // 5. Scan tote
         cy.window().then(win => {

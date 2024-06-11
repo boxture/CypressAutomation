@@ -62,7 +62,7 @@ describe("Picking scenario's", () => {
             pickable_container = e1.text().substring(11,19)
             cy.log(pickable_container)
 
-        cy.wait(5000)
+        cy.wait(3000)
 
 
     // Create non-pickable container
@@ -85,7 +85,7 @@ describe("Picking scenario's", () => {
             non_pickable_container = e1.text().substring(11,19)
             cy.log(non_pickable_container)
 
-        cy.wait(5000)
+        cy.wait(3000)
 
 
     // Adjust inventory for pickable container
@@ -115,7 +115,7 @@ describe("Picking scenario's", () => {
         // 13. Click Adjust
         cy.get('.button').click()
 
-        cy.wait(5000)
+        cy.wait(3000)
 
     // Adjust inventory for non-pickable container
 
@@ -140,7 +140,7 @@ describe("Picking scenario's", () => {
         // 13. Click Adjust
         cy.get('.button').click()
 
-        cy.wait(5000)
+        cy.wait(3000)
 
         })
 
@@ -255,7 +255,6 @@ describe("** Pick scenario's", () => {
         // 1. Login on Mobile.
         cy.visit('/mobile')
         cy.url().should('include', '/mobile')
-        cy.pause()
 
         // Assert login screen
         cy.url().should('include', '/mobile')
@@ -277,7 +276,7 @@ describe("** Pick scenario's", () => {
         cy.wait(2500)
 
         // 4. Scroll and click the last (most recent) order.
-        cy.get('.page-current > .page-content > .list > ul > li > .item-link > .item-inner').last().click()
+        cy.get('.item-link > .item-inner').last().click()
 
         // 5. Scan tote
         cy.window().then(win => {
