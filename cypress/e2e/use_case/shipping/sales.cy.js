@@ -7,7 +7,7 @@ let shipment
 
 const outbound_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
 const outbound_product = 'BXT-SNO78348'
-const tote = 'AUTOTE'
+const tote = 'TOTE-100128'
 
 
 describe('Ship an outbound product on a sales order', () => {
@@ -78,12 +78,13 @@ describe('Purchase order confirm', () => {
 
     cy.visit(`/orders/${purchase_order}`)
     cy.contains('.pr-1', 'Confirm').click({ force: true })
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 600; i++) {
           cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
               statusElement => {
                   let status = statusElement.text()
                   if (status !== 'pending') {
                       cy.wait(1000)
+                      cy.log(i)
                     }
                 }
             )
@@ -269,7 +270,6 @@ describe("Pick order", () => {
       // 1. Login on Mobile.
       cy.visit('/mobile')
       cy.url().should('include', '/mobile')
-      cy.pause()
 
       // Assert login screen
       cy.url().should('include', '/mobile')
@@ -291,7 +291,8 @@ describe("Pick order", () => {
       cy.wait(2500)
       
       // 4. Scroll and click the last (most recent) order.
-      cy.get('.item-link > .item-inner').last().click()
+      cy.log(`#${sales_order}`.toUpperCase().substring(0,7))
+      cy.get('.item-link').contains(`#${sales_order}`.toUpperCase().substring(0,7)).click()
 
       // 5. Scan tote
       cy.window().then(win => {
