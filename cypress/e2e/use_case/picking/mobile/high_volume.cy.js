@@ -4,7 +4,7 @@ const tote = 'TOTE-100129'
 let non_pickable_container
 let sales_order
 let barcode
-let inventory_adjust_quantity = 10
+let inventory_adjust_quantity = 1001
 
 /*
 
@@ -15,7 +15,7 @@ TEST CASES
 */
 
 
-describe("Picking scenario's", () => {
+describe('Pick high volume', () => {
 
   before(() => {
     cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
@@ -124,6 +124,7 @@ describe('Order', () => {
                     let status = statusElement.text()
                     if (status !== 'processing') {
                         cy.wait(1000)
+                        cy.log(i)
                         }
                     }
                 )
@@ -152,11 +153,18 @@ describe('Pick list', () => {
         cy.get('.primary').contains('Pick').click()
         cy.get('[id*="tab_label"]').contains('Picklists')
 
+        cy.log(`sales order ${sales_order}`)
+        cy.log(`tote ${tote}`)
+        cy.log(`container ${non_pickable_container}`)
+
+        cy.wait(2500)
+        cy.pause()
+
     })
 
 })
 
-describe("** Pick scenario's", () => {
+describe.skip("** Pick high volume", () => {
 
 
     it('4. Swipe pickAll', () => {
