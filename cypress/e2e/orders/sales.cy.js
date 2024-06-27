@@ -280,7 +280,7 @@ describe('Sales Order', () => {
        cy.get('[id="orders_sales_order_gift_message"]').clear().type('Thank you!')
 
        //Submit form
-       cy.wait(3000)
+       cy.wait(1500)
        cy.get('.button').contains('Update Sales order').click()
        cy.url().should('include', `/${sales_order}`)
 
