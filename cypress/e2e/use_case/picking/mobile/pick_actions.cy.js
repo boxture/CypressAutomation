@@ -2,7 +2,7 @@ const outbound_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
 const full_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
 const full_product = 'BXT-SNF78254'
 const outbound_product = 'BXT-SNO78358'
-const tote = 'AUTOTE'
+const tote = 'TOTE-99995'
 
 let pickable_container
 let non_pickable_container
@@ -25,7 +25,7 @@ TEST CASES
 */
 
 
-describe("Picking scenario's", () => {
+describe("All available picking scenario's", () => {
 
   before(() => {
     cy.login({ email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
@@ -243,11 +243,21 @@ describe('Picklist', () => {
         cy.get('.primary').contains('Pick').click()
         cy.get('[id*="tab_label"]').contains('Picklists')
 
+        cy.log(`sales order ${sales_order}.toUpperCase().substring(0,9)`)
+        cy.log(`tote: ${tote}`)
+        cy.log(`pickable container ${pickable_container}`)
+        cy.log(`non-pickable container ${non_pickable_container}`)
+        cy.log(`sn ${full_serial_number+3}`)
+        cy.log(`sn ${full_serial_number+4}`)
+
+        cy.wait(2500)
+        cy.pause()
+
     })
 
 })
 
-describe("** Pick scenario's", () => {
+describe.skip("** All available pick scenario's", () => {
 
 
     it('4. Pick A) container B) from non-pickable container C) by serial number D) product numberd E) ean or upc F) aliases G) swipe pickOne and H) pickAll', () => {
