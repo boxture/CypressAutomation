@@ -4,11 +4,11 @@ let purchase_order
 let kit_order
 let barcode
 
-const kit_product = 'BXT-KIT88721'
+const kit_product = 'BXT-KIT998723'
 const kit_product_qty = 2
-const kit_component_a = 'BXT-CPNT-Y513A'
+const kit_component_a = 'BXT-CPNT-L543A'
 const kit_component_a_qty = 2
-const kit_component_b = 'BXT-CPNT-Y513B'
+const kit_component_b = 'BXT-CPNT-L543B'
 const kit_component_b_qty = 2
 const kits_to_build_qty = 2
 const tote = 'AUTOTE'
