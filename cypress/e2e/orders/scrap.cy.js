@@ -116,7 +116,7 @@ describe('Scrap Order', () => {
 
         // Assert Origin Location
         cy.get('.cursor-pointer')
-          .find('td').eq(18)
+          .find('td').eq(20)
           .should('contain.text', 'NLD-AMSTERDAM')
     
         // Assert Notes
@@ -199,7 +199,7 @@ describe('Scrap Order', () => {
 
           // Assert Origin Location
           cy.get('.cursor-pointer')
-            .find('td').eq(18)
+            .find('td').eq(20)
             .should('contain.text', 'NLD-UTRECHT')
       
           // Assert Quantity
