@@ -1,6 +1,6 @@
-const outbound_product_standard_bin = 'BXT-SNX09841'
-const outbound_product_no_standard_bin = 'BXT-SNO74651'
-const inventory_adjust_quantity = '10'
+const outbound_product_standard_bin = 'BXT-SNX09843'
+const outbound_product_no_standard_bin = 'BXT-SNO74652'
+const inventory_adjust_quantity = '20'
 const sales_order_quantity = '10'
 const other_reference_number = Math.floor((Math.random() * 1000000))
 const purchase_order_number = Math.floor((Math.random() * 1000000))
@@ -21,7 +21,7 @@ describe('Replenish a picklist line', () => {
 
     describe('Inventory', () => {
 
-        it('1. Adjust inventory whose bin is not the standard bin for this product.', () => {
+        it('1. Adjust inventory for two products whose bin is not the standard.', () => {
             
             
             // Create 2 non-pickable container
@@ -84,15 +84,16 @@ describe('Replenish a picklist line', () => {
             cy.url().should('include', '/inventories/new')
 
             // 2. Fill in a container
-            cy.get('[placeholder="Container"]').type(`${non_pickable_container_1}`, {delay:200})
+            cy.get('[placeholder="Container"]').type(non_pickable_container_1, {delay:200})
 
             /* 3. Fill in a Bin location
             Note: Bin location is filled in automatically based on the container */
 
             // 4. Fill in Product
             cy.get('[placeholder="Product"]').type(outbound_product_standard_bin, {delay:200})
+            cy.wait(1000)
 
-            // 5. Fill in an Adjustment Quanity
+            // 5. Fill in an Adjustment Quantity
             cy.get('[id="inventory_adjust_quantity"]').clear().type(inventory_adjust_quantity)
 
             // 6. Fill in a Status
@@ -106,13 +107,14 @@ describe('Replenish a picklist line', () => {
         // Adjust inventory for the 2nd container created.
 
             // 1. Fill in a container
-            cy.get('[placeholder="Container"]').type(`${non_pickable_container_2}`, {delay:200})
+            cy.get('[placeholder="Container"]').type(non_pickable_container_2, {delay:200})
 
             /* 2. Fill in a Bin location
             Note: Bin location is filled in automatically based on the container */
 
             // 3. Fill in Product
             cy.get('[placeholder="Product"]').type(outbound_product_no_standard_bin, {delay:200})
+            cy.wait(1000)
 
             // 4. Fill in an Adjustment Quanity
             cy.get('[id="inventory_adjust_quantity"]').clear().type(inventory_adjust_quantity)
@@ -128,6 +130,7 @@ describe('Replenish a picklist line', () => {
             })
         })
     })
+})
 
     describe('Order', () => {
 
@@ -158,8 +161,8 @@ describe('Replenish a picklist line', () => {
             cy.get('[placeholder=Customer]').type(customer, {delay:200})
         
             // 7. Fill in Product configured with a standard bin
-            cy.wait(1000)
             cy.get('[placeholder="Product"]').type(outbound_product_standard_bin, {delay:200})
+            cy.wait(1000)
         
             // 8. Fill in quantity first product
             cy.get('[data-order-line-target="quantity"]').eq(0).clear().type(sales_order_quantity)
@@ -183,7 +186,7 @@ describe('Replenish a picklist line', () => {
             //Confirm Sales order
             cy.visit(`/orders/${sales_order}`)
             cy.contains('.pr-1', 'Confirm').click({ force: true })
-            for (let i = 0; i < 60; i++) {
+            for (let i = 0; i < 600; i++) {
                 cy.get('#basic-content > .grid > :nth-child(1) > .text-sm').then(
                     statusElement => {
                         let status = statusElement.text()
@@ -197,8 +200,9 @@ describe('Replenish a picklist line', () => {
         })
 
     })
-
 })
+
+
 
     describe('Generate a picklist', () => {
 
@@ -228,5 +232,39 @@ describe('Replenish a picklist line', () => {
       
             })
         })
-    })
-})
+        describe('Empty bin-locations', () => {
+            
+            before(() => {
+              cy.login({email: 'wrap-it_warehouse_associate@wrap-it.com', password: 'xuvwi8-tojhiP-tanvyq'})
+            
+            })
+            
+            it('4. Downadjust the remaining items for both containers', () => {
+              cy.visit('/inventories/new')
+              cy.url().should('include', '/inventories/new')
+
+              // Fill in container the 1st container
+              cy.get('[placeholder="Container"]').type(non_pickable_container_1, {delay:200})
+              cy.wait(1000)
+
+              // Fill in the remaining items to downadjust
+              cy.get('[id="inventory_adjust_quantity"]').type('{backspace}'+ -10)
+
+              // Submit page
+              cy.get('.button').click()
+
+              cy.wait(2000)
+
+              // Fill in the 2nd container
+              cy.get('[placeholder="Container"]').type(non_pickable_container_2, {delay:200})
+              cy.wait(1000)
+
+              // Fill in the remaining items to downadjust
+              cy.get('[id="inventory_adjust_quantity"]').type('{backspace}'+ -10)
+
+              // Submit page
+              cy.get('.button').click()
+
+            })
+          })
+        })
