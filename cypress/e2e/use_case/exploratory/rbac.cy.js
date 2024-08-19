@@ -3090,8 +3090,8 @@ describe('Role Base Access Controle', () => {
         .should('exist')
         .and('contain', 'Consolidated')
         .and('contain', 'Kits')
-        .and('contain', 'Adjust')
-        .and('contain', 'Import')
+        .and('not.contain', 'Adjust')
+        .and('not.contain', 'Import')
         .and('contain', 'License Plates')
         .and('contain', 'Move')
 
@@ -4589,7 +4589,7 @@ describe('Role Base Access Controle', () => {
   })
 
 
-  describe.only('Replenisher', () => {
+  describe('Replenisher', () => {
 
     beforeEach(() => {
       cy.login({ email: 'wrap-it_replenisher@wrap-it.com', password: 'bukda3-mokwUp-hoswif' })
