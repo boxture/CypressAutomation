@@ -1,14 +1,14 @@
 let purchase_order
 let container
-let from_bin_location
 let sales_order
 let sales_order_shipping_method = 'DHL Express'
 let barcode
-let shipment
+
 
 const outbound_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
-const outbound_product = 'BXT-SNO78348'
-const tote = 'TOTE-99995'
+const outbound_product = 'BXT-SNO35360'
+const lot = '1234AB'
+const tote = 'TOTE-02'
 
 
 describe('Ship an outbound product in a picked container.', () => {
@@ -99,6 +99,22 @@ describe('Ship an outbound product in a picked container.', () => {
         cy.contains('.pr-1', 'Receive').click({ force: true })
         cy.get('[placeholder="Packing material"]').should('be.visible').type('a3',{ delay: 200 })
         cy.get('[placeholder="Product"]').eq(0).type(outbound_product, {delay:200})
+
+        if('[id*="lot"]'){
+          cy.get('[id*="_lot"]').eq(0).type(lot)
+        }
+
+        if('[id*=_expires_on]'){
+          const date = new Date()
+          let current_day = date.getDate()
+          let expires_on = current_day+1
+
+          cy.get('[id*=_expires_on]').click
+          cy.get('.satis-date-time-picker').click()
+          cy.get('[data-satis-date-time-picker-target="days"]').contains(expires_on).click()
+        }
+        
+
         cy.get('[data-order-line-target="quantity"]').eq(0).type(1)
         //cy.get('[data-action="focus->satis-date-time-picker#showCalendar input->satis-date-time-picker#dateTimeEntered"]').click()
         //cy.get('[data-action="satis-date-time-picker#selectDay"]').contains('29').click()
@@ -132,12 +148,13 @@ describe('Ship an outbound product in a picked container.', () => {
         cy.url().should('include', `/orders/${purchase_order}`)
 
         cy.get('.text-lg').contains('Lines').should('be.visible')
+        cy.get('[id*="tab_label"]').contains('Items').should('be.visible')
         cy.get('[id*="tab_label"]').contains('Items').click({ force: true })
         cy.get('.selected [data-act-table-target="column"][data-column="container"]').scrollIntoView().should('be.visible')
-        cy.wait(1000)
 
         //cy.get('[href*="/containers/"]').eq(0).click()
-        cy.get('.cursor-pointer > :nth-child(12) > a').click()
+        cy.get('[id*="tab_label"]').contains('Items').click()
+        cy.get('.cursor-pointer > :nth-child(13) > a').click()
         cy.url().should('include', `/containers`)
 
         cy.url().then(($url) => {
@@ -244,7 +261,9 @@ describe('Ship an outbound product in a picked container.', () => {
           cy.get('[id*="tab_label"]').contains('Picklists')
 
           cy.wait(2500)
-          cy.log(`For sales order ${sales_order}, pick container ${container} using ${tote}`)
+          cy.log(`sales order ${sales_order.substring(0,8)}`)
+          cy.log(`tote ${tote}`)
+          cy.log(`picked container ${container.substring(0,8)}`)
           cy.pause()
 
         })
@@ -339,6 +358,22 @@ describe('Outbound', ()  => {
 
       // 5. Scan serial number
       cy.get('[id="orders_pack_parcels_attributes_0_items_attributes_0_serial_number"]').type(outbound_serial_number)
+
+      // 6. Fill in lot (optional)
+      if ('[id*="lot"]') {
+        cy.get('#orders_pack_parcels_attributes_0_items_attributes_0_lot').type(lot, {force:true})
+      }
+
+      // 7. Fill in expires on (optional)
+      if('[id*=expires_on]'){
+        const date = new Date()
+        let current_day = date.getDate()
+        let expires_on = current_day+1
+
+        cy.get('[id*=_expires_on]').click
+        cy.get('.satis-date-time-picker').click()
+        cy.get('[data-satis-date-time-picker-target="days"]').contains(expires_on).click()
+      }
 
       // 6. Enter quantity
       cy.get('[id*="quantity"]').eq(0).type(1)
