@@ -16,7 +16,6 @@ beforeEach(() => {
     // -- New purchase order create
     cy.visit('/orders/new?type=purchase_order')
     cy.url().should('include', '/orders/new?type=purchase_order')
-    cy.pause()
   
     // Header - Basics
     cy.get('.form-label[for=orders_purchase_order_delivery_terms]').contains('Delivery terms')
