@@ -2,7 +2,7 @@ const outbound_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
 const full_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
 const full_product = 'BXT-SNF78254'
 const outbound_product = 'BXT-SNO78358'
-const tote = 'TOTE-99995'
+const tote = 'TOTE-02'
 
 let pickable_container
 let non_pickable_container
@@ -243,8 +243,8 @@ describe('Picklist', () => {
         cy.get('.primary').contains('Pick').click()
         cy.get('[id*="tab_label"]').contains('Picklists')
 
-        cy.log(`sales order ${sales_order}.toUpperCase().substring(0,9)`)
-        cy.log(`tote: ${tote}`)
+        cy.log(`sales order ${sales_order.toUpperCase().substring(0,8)}`)
+        cy.log(`tote ${tote}`)
         cy.log(`pickable container ${pickable_container}`)
         cy.log(`non-pickable container ${non_pickable_container}`)
         cy.log(`sn ${full_serial_number+3}`)
