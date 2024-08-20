@@ -80,7 +80,7 @@ Cypress.Commands.add('resetView', () => {
       cy.contains('[data-card_key]','Reset view').click()
       cy.wait(1000)
     } else {
-      cy.get('.border-r > .items-center > img').click()
+      cy.get('.ml-4.flex-1 > .text-lg').click()
     }
     })
     cy.get('[data-act-table-target="header"]')

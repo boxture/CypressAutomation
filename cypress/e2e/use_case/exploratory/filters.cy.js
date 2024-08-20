@@ -55,10 +55,11 @@ beforeEach(() => {
         cy.log(id)
         cy.wrap(id).as('id12')
       })
+
       cy.get('[data-column="order_number"]').find('[type="button"]').should('be.visible').click({force:true})
       cy.get('@id12').then($id1=>{
-      cy.get('[data-column="order_number"] [data-controller=" form"]').type(`${$id1}`)
-      cy.get('.border-r > .items-center > img').click()
+      cy.get('[data-column="order_number"] [data-controller=" form"]').type(`${$id1}`).type('{enter}')
+      cy.get('.ml-4.flex-1 > .text-lg').click
       cy.get('[class="overflow-hidden tbdy"] tr').its('length').should('eq', 1)
       })
 
@@ -75,7 +76,7 @@ beforeEach(() => {
       cy.get('[data-column="type"]').find('li').contains('Hide column').should('be.visible')
       cy.get('[data-column="type"]').find('li').contains('Group by').should('be.visible')
       cy.get('[data-column="type"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('sal',{ delay: 200 })
-      cy.get('.border-r > .items-center > img').click()
+      cy.get('.ml-4.flex-1 > .text-lg').click
       cy.get('tr:nth-child(2) td:nth-child(5)').should('have.visible.text', 'Sales order')
 
     })
@@ -93,7 +94,7 @@ beforeEach(() => {
       cy.get('[data-column="state"]').find('li').contains('Sort descending').should('be.visible')
       cy.get('[data-column="state"]').find('li').contains('Hide column').should('be.visible')
       cy.get('[data-column="state"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('can',{ delay: 200 })
-      cy.get('.border-r > .items-center > img').click()
+      cy.get('.ml-4.flex-1 > .text-lg').click
       cy.get('tr:nth-child(2) td:nth-child(6)').should('have.visible.text', 'cancelled')
 
     })
@@ -112,7 +113,6 @@ beforeEach(() => {
       cy.get('[data-column="channel"]').find('li').contains('Hide column').should('be.visible')
       cy.get('[data-column="channel"] [data-satis-dropdown-target="searchInput"]').should('be.visible').clear().type('ebay')
       // cy.get('tr:nth-child(2) td:nth-child(7)').should('have.text', 'eBay')  //Consistency in Filter behaviour #3562
-      cy.contains('.translation_missing', 'Orders').click()
 
     })
     it('Business Model Filter', () => {
@@ -132,7 +132,7 @@ beforeEach(() => {
       cy.get('tr:nth-child(2) td:nth-child(8)').should('have.text', 'Business to consumer')
 
     })
-    it.only('Ship At Filter', () => {
+    it('Ship At Filter', () => {
 
       cy.visit('/orders')
       cy.resetView()
@@ -362,8 +362,7 @@ beforeEach(() => {
       cy.get('[data-column="customer"]').find('li').should('have.length', '3')
       cy.get('[data-column="customer"]').find('li').contains('Filter values').should('be.visible')
       cy.get('[data-column="customer"]').find('li').contains('Hide column').should('be.visible')
-      cy.get('[data-column="customer"] [data-filter="customer"]').should('be.visible').clear().type('Boxture')
-      cy.get('.border-r > .items-center > img').click()
+      cy.get('[data-column="customer"] [data-filter="customer"]').should('be.visible').clear().type('Boxture').type('{enter}')
       cy.get('tr:nth-child(2) td:nth-child(23)').should('have.text', 'Boxture BV')
 
     })
