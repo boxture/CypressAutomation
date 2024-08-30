@@ -345,6 +345,7 @@ beforeEach(() => {
       cy.visit('/orders')
       cy.resetView()
 
+      cy.get('.ml-4.flex-1 > .text-lg').click()
       cy.get('[data-column="cancelled"] [data-icon="ellipsis"] ').scrollIntoView().should('be.visible').click()
       cy.get('[data-column="cancelled"]').find('li').should('have.length', '3')
       cy.get('[data-column="cancelled"]').find('li').contains('Sort ascending').should('be.visible')
