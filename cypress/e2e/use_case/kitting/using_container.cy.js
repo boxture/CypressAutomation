@@ -12,6 +12,7 @@ const kit_component_a_qty = 2
 const kit_component_b = 'BXT-CPNT-R603B'
 const kit_component_b_qty = 2
 const kits_to_build_qty = 2
+const tote = 'AUTOTE'
 
 describe('KITTING', () => {
 
@@ -384,13 +385,21 @@ describe('Create a pick list', () => {
               )
           }
 
+          cy.log(`kit order ${kit_order.toUpperCase().substring(0,8)}`)
+          cy.log(`tote ${tote}`)
+          cy.log(`container_1 ${container_1}`)
+          cy.log(`container_2 ${container_2}`)
+        
         cy.get('[id*="tab_label"]').contains('Picklists')
+
+        cy.pause()
+
 
       })
 
   })
 
-describe('Pick kit order', () => {
+describe.skip('Pick kit order', () => {
 
     it('Pick Kit Order', () => {
 

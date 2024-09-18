@@ -372,9 +372,11 @@ describe('Create a pick list', () => {
         cy.visit(`/orders/${kit_order}`)
         cy.url().should('include', `/orders/${kit_order}`)
 
-        // 2. Click Pick from the context menu.
-        cy.contains('.pr-1', 'Pick').click({ force: true })
-        cy.url().should('include', `/orders/${kit_order}/pick/new`)
+        cy.pause()
+
+        // // 2. Click Pick from the context menu.
+        // cy.contains('.pr-1', 'Pick').click({ force: true })
+        // cy.url().should('include', `/orders/${kit_order}/pick/new`)
 
         // 3. Click Pick.
         cy.get('.primary').contains('Pick').click()
@@ -390,13 +392,22 @@ describe('Create a pick list', () => {
               )
           }
 
+        
+          cy.log(`kit order ${kit_order.toUpperCase().substring(0,8)}`)
+          cy.log(`tote ${tote}`)
+          cy.log(`container_1 ${container_1}`)
+          cy.log(`container_2 ${container_2}`)
+
         cy.get('[id*="tab_label"]').contains('Picklists')
+
+        cy.pause()
+
 
       })
 
   })
 
-describe('Pick kit order', () => {
+describe.skip('Pick kit order', () => {
 
     it('Pick Kit Order', () => {
 

@@ -6,9 +6,10 @@ let barcode
 
 
 const outbound_serial_number = Math.floor((Math.random() * 1000000000000) + 1);
-const outbound_product = 'BXT-SNO35360'
+const outbound_product = 'BXT-SNO35360' // lot and expirty flag enabled
+//const outbound_product = 'BXT-SNO35361'
 const lot = '1234AB'
-const tote = 'TOTE-02'
+const tote = 'TOTE-21'
 
 
 describe('Ship an outbound product in a picked container.', () => {
@@ -100,7 +101,7 @@ describe('Ship an outbound product in a picked container.', () => {
         cy.get('[placeholder="Packing material"]').should('be.visible').type('a3',{ delay: 200 })
         cy.get('[placeholder="Product"]').eq(0).type(outbound_product, {delay:200})
 
-        if('[id*="lot"]'){
+        if('[id*="_lot"]'){
           cy.get('[id*="_lot"]').eq(0).type(lot)
         }
 
@@ -114,7 +115,6 @@ describe('Ship an outbound product in a picked container.', () => {
           cy.get('[data-satis-date-time-picker-target="days"]').contains(expires_on).click()
         }
         
-
         cy.get('[data-order-line-target="quantity"]').eq(0).type(1)
         //cy.get('[data-action="focus->satis-date-time-picker#showCalendar input->satis-date-time-picker#dateTimeEntered"]').click()
         //cy.get('[data-action="satis-date-time-picker#selectDay"]').contains('29').click()
@@ -376,7 +376,7 @@ describe('Outbound', ()  => {
       }
 
       // 6. Enter quantity
-      cy.get('[id*="quantity"]').eq(0).type(1)
+      cy.get('[id*="quantity"]').eq(0).clear().type(1)
 
       // 7. Click Pack
       cy.get('.button').contains('Pack').click()

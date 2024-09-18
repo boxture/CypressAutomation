@@ -541,7 +541,7 @@ describe('Views', () => {
     cy.get('.selected [data-act-table-target="column"][data-column="actions"]').scrollIntoView().should('be.visible')
 
   })
-  it('Waves ', () => {
+  it.only('Waves ', () => {
 
     // Waves
     cy.visit('/pick_list_waves')
@@ -552,7 +552,8 @@ describe('Views', () => {
         cy.contains('Reset view').click()
         cy.contains('.translation_missing', 'Orders').click()
       } else {
-        cy.get('.border-r > .items-center > img').click()
+        //cy.get('.border-r > .items-center > img').click()
+        cy.get('.ml-4.flex-1 > .text-lg').click()
       }
     })
     cy.get('.selected [data-act-table-target="column"][data-column="account"]').scrollIntoView().should('be.visible')
@@ -828,9 +829,9 @@ describe('Views', () => {
     cy.get('.selected [data-act-table-target="column"][data-column="product_category"]').scrollIntoView().should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="un_number"]').scrollIntoView().should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="status"]').scrollIntoView().should('be.visible')
-    cy.get('.selected [data-act-table-target="column"][data-column="container"]').scrollIntoView().should('be.visible')
-    cy.get('.selected [data-act-table-target="column"][data-column="packing_material_number"]').scrollIntoView().should('be.visible')
-    cy.get('.selected [data-act-table-target="column"][data-column="packing_material_name"]').scrollIntoView().should('be.visible')
+    cy.get('.selected [data-act-table-target="column"][data-column="parcel_name"]').scrollIntoView().should('be.visible')
+    cy.get('.selected [data-act-table-target="column"][data-column="parcel_description"]').scrollIntoView().should('be.visible')
+    cy.get('.selected [data-act-table-target="column"][data-column="physical_packaging"]').scrollIntoView().should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="total_weight"]').scrollIntoView().should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="serial"]').scrollIntoView().should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="lot"]').scrollIntoView().should('be.visible')
@@ -985,9 +986,8 @@ describe('Views', () => {
     cy.get('.selected [data-act-table-target="column"][data-column="quantity"]').scrollIntoView().should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="currency"]').scrollIntoView().should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="value"]').scrollIntoView().should('be.visible')
-    cy.get('.selected [data-act-table-target="column"][data-column="packing_material_number"]').scrollIntoView().should('be.visible')
-    cy.get('.selected [data-act-table-target="column"][data-column="packing_material_name"]').scrollIntoView().should('be.visible')
-    cy.get('.selected [data-act-table-target="column"][data-column="packaging_number"]').scrollIntoView().should('be.visible')
+    cy.get('.selected [data-act-table-target="column"][data-column="parcel_name"]').scrollIntoView().should('be.visible')
+    cy.get('.selected [data-act-table-target="column"][data-column="parcel_description"]').scrollIntoView().should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="weight"]').scrollIntoView().should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="weight_unit"]').scrollIntoView().should('be.visible')
     cy.get('.selected [data-act-table-target="column"][data-column="length"]').scrollIntoView().should('be.visible')

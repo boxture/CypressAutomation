@@ -108,7 +108,7 @@ describe('Sales Order', () => {
       cy.url().should('include', `/${sales_order}`)
       cy.contains('.pr-1', 'Confirm').click({ force: true })
 
-      // Assert Quantity
+      // Assert State
       cy.get('.cursor-pointer')
         .find('td').eq(1)
         .should('not.contain.text', 'concept', {timeout:15000})
@@ -132,12 +132,12 @@ describe('Sales Order', () => {
     // Assert Ship Earliest On
     cy.get('.ship-earliest-on-info-item')
         .find('dd')
-        .should('contain.text', `${dayjs().format(('MMM D'))}`)
+        .should('contain.text', `${dayjs().format(('MMM DD'))}`)
 
     // Assert Ship Latest On
     cy.get('.ship-latest-on-info-item')
         .find('dd')
-        .should('contain.text', `${dayjs().format(('MMM D'))}`)
+        .should('contain.text', `${dayjs().format(('MMM DD'))}`)
 
     // Assert Other Reference
     cy.get('.other-reference-number-info-item')
@@ -288,9 +288,9 @@ describe('Sales Order', () => {
 
 
       // Assert Business Model
-         cy.get('.business-model-info-item')
-           .find('dd')
-           .should('contain.text', 'Business to consumer')
+      cy.get('.business-model-info-item')
+        .find('dd')
+        .should('contain.text', 'Business to consumer')
               
        // Assert Channel
        cy.get('.channel-info-item')

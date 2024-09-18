@@ -79,11 +79,11 @@ describe('Inventory Adjust', () => {
         cy.get('[placeholder="Bin location"]').type('PICKING', {delay:200})
         cy.get('[data-satis-dropdown-item-text="PICKING"]').click({force:true})
 
-        // 4. Fill in quantity
-        cy.get('[id="inventory_adjust_quantity"]').type(2)
-
-        // 5. Fill in a Status
+        // 4. Fill in a Status
         cy.get('#inventory_adjust_status').select('Defective')
+
+        // 5. Fill in quantity
+        cy.get('[id="inventory_adjust_quantity"]').type(2)
 
         // 6. Click Adjust
         cy.get('.button').click()
@@ -95,18 +95,18 @@ describe('Inventory Adjust', () => {
         cy.visit('/inventories/new')
         cy.url().should('include', '/inventories/new')
 
-        // 1. Fill in Product
+        // 2. Fill in Product
         cy.get('[placeholder="Product"]').type(outbound_product, {delay:200})
 
-        // 2. Fill in a Bin location
+        // 3. Fill in a Bin location
         cy.get('[placeholder="Bin location"]').type('PICKING', {delay:200})
         cy.get('[data-satis-dropdown-item-text="PICKING"]').click({force:true})
 
-        // 4. Fill in target qty for this bin
-        cy.get('[id="inventory_adjust_target_quantity"]').type(0)
-
-        // 5. Fill in a Status
+        // 4. Fill in a Status
         cy.get('#inventory_adjust_status').select('Defective')
+
+        // 5. Fill in target qty for this bin
+        cy.get('[id="inventory_adjust_target_quantity"]').type(0)
 
         // 6. Click Adjust
         cy.get('.button').click()
